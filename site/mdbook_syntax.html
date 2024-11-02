@@ -1,0 +1,860 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sun" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>New &amp; improved</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/tabs.css">
+        <link rel="stylesheet" href="./mdbook-admonish.css">
+        <link rel="stylesheet" href="theme/sun.css">
+        <link rel="stylesheet" href="theme/catppuccin.css">
+        <link rel="stylesheet" href="theme/catppuccin-admonish.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "macchiato" : "sun";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('sun')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Guides & personal stuff</li><li class="chapter-item expanded "><a href="Powershell.html"><strong aria-hidden="true">1.</strong> Powershell</a></li><li class="chapter-item expanded "><a href="ffmpeg.html"><strong aria-hidden="true">2.</strong> FFMpeg</a></li><li class="chapter-item expanded "><a href="vscode.html"><strong aria-hidden="true">3.</strong> VS Code</a></li><li class="chapter-item expanded affix "><li class="part-title">Windows Shortcuts</li><li class="chapter-item expanded "><a href="essential_shortcuts.html"><strong aria-hidden="true">4.</strong> Essential Shortcuts</a></li><li class="chapter-item expanded "><a href="desktop_shortcuts.html"><strong aria-hidden="true">5.</strong> Desktop Shortcuts</a></li><li class="chapter-item expanded "><a href="windows_key.html"><strong aria-hidden="true">6.</strong> Windows Key</a></li><li class="chapter-item expanded "><a href="alt_codes_and_symbols.html"><strong aria-hidden="true">7.</strong> Alt Codes & Symbols</a></li><li class="chapter-item expanded affix "><li class="part-title">Markdown</li><li class="chapter-item expanded "><a href="markdown_syntax.html"><strong aria-hidden="true">8.</strong> Syntax</a></li><li class="chapter-item expanded "><a href="mdbook_syntax.html" class="active"><strong aria-hidden="true">9.</strong> mdBook Syntax</a></li><li class="chapter-item expanded affix "><li class="part-title">Spotify</li><li class="chapter-item expanded "><a href="Spotify_playlist_backup.html"><strong aria-hidden="true">10.</strong> Spotify Backup List</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="sun">Sun</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Manual</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+</style>
+<h1 id="mdbook-syntax"><a class="header" href="#mdbook-syntax">mdBook Syntax</a></h1>
+<ul>
+<li><a href="#change-title-tab-on-browser">Change title tab on browser</a>
+<ul>
+<li><a href="#embedify">Embedify</a></li>
+<li><a href="#alerts">Alerts</a></li>
+<li><a href="#mermaid">Mermaid</a></li>
+<li><a href="#tabs">Tabs</a></li>
+<li><a href="#admonish">Admonish</a></li>
+</ul>
+</li>
+</ul>
+<br>
+<h1 id="change-title-tab-on-browser"><a class="header" href="#change-title-tab-on-browser">Change title tab on browser</a></h1>
+<pre><code>{{#title New &amp; improved}}
+</code></pre>
+<h2 id="embedify"><a class="header" href="#embedify">Embedify</a></h2>
+<p>Get <a href="https://github.com/MR-Addict/mdbook-embedify">mdBook-embedify</a> Embed videos. Include banners, scroll-to-top and footer options.</p>
+<iframe
+  allowfullscreen
+  name="youtube"
+  loading="lazy"
+  src="https://www.youtube.com/embed/Osqf4oIK0E8"
+  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+></iframe>
+</br>  
+<h2 id="alerts"><a class="header" href="#alerts">Alerts</a></h2>
+<p>Modified and translated version of mdBook-alerts: <a href="https://github.com/horbjorn/rs-mdbook-alerts">https://github.com/horbjorn/rs-mdbook-alerts</a></p>
+<div class="mdbook-alerts mdbook-alerts-notera">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  notera
+</p>
+<p>Text</p>
+</div>
+<div class="mdbook-alerts mdbook-alerts-tips">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tips
+</p>
+<p>Annan text</p>
+</div>
+<div class="mdbook-alerts mdbook-alerts-viktigt">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  viktigt
+</p>
+<p>..nånting</p>
+</div>
+<div class="mdbook-alerts mdbook-alerts-varning">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  varning
+</p>
+<p>Se upp!</p>
+</div>
+<div class="mdbook-alerts mdbook-alerts-fara">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  fara
+</p>
+<p>Lugn..</p>
+</div>
+<br>
+<p>mdBook's builtin version in html:</p>
+<pre><code>&lt;div class="warning"&gt;
+
+This is a bad thing that you should pay attention to.
+
+Warning blocks should be used sparingly in documentation, to avoid "warning
+fatigue," where people are trained to ignore them because they usually don't
+matter for what they're doing.
+&lt;/div&gt; 
+</code></pre>
+<div class="warning">
+<p>This is a bad thing that you should pay attention to.</p>
+<p>Warning blocks should be used sparingly in documentation, to avoid "warning
+fatigue," where people are trained to ignore them because they usually don't
+matter for what they're doing.</p>
+</div>  
+</br>
+<h2 id="mermaid"><a class="header" href="#mermaid">Mermaid</a></h2>
+<p><a href="https://mermaid.js.org/config/theming.html">Mermaid Theme</a></p>
+<p><a href="https://github.com/badboy/mdbook-mermaid">mdBook-mermaid</a></p>
+<pre class="mermaid">%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#bfbfbf',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#b9b9b9',
+      'lineColor': '#abcadf',
+      'secondaryColor': '#abcadf',
+      'tertiaryColor': '#fff'
+    }
+  }
+}%%
+
+graph LR;
+
+    
+
+    iVentoy(iVentoy)--1.BOOTP---&gt;DHCP(DHCP);
+    DHCP--2.PXE--&gt;iVentoy;
+    DHCP--3.IP---&gt;Dator(Dator);
+    iVentoy--4.Payload--&gt;Dator;
+    iVentoy--5.Start--&gt;Dator;
+    iVentoy&lt;--shake--&gt;DHCP
+     Test(Test)--&gt; TVÅ(TVÅ)
+     OST(OST)--&gt; SKINKA(SKINKA)
+
+
+    click iVentoy href &quot;./iventoy.html&quot;
+
+    style iVentoy fill:#839bac,color:#FFFFFF,stroke-opacity:0.2
+    
+    style DHCP fill:#d9d9d9,color:#FFFFFF,stroke-opacity:0.2
+
+    style Test fill:#cfd9d8,color:#FFFFFF,stroke-opacity:0.2
+
+    style Dator fill:#cfd9d8,color:#FFFFFF,stroke-opacity:0.2
+
+    style OST fill:#cfd6d9,color:#FFFFFF,stroke-opacity:0.2
+
+    style SKINKA fill:#f3fffd,color:#8c8c8c,stroke-opacity:0.2
+    
+    
+   
+</pre>
+<details>
+<summary>Source code for above</summary>
+<pre><code>```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#bfbfbf',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#b9b9b9',
+      'lineColor': '#abcadf',
+      'secondaryColor': '#abcadf',
+      'tertiaryColor': '#fff'
+    }
+  }
+}%%
+
+graph LR;
+
+    
+
+    iVentoy(iVentoy)--1.BOOTP---&gt;DHCP(DHCP);
+    DHCP--2.PXE--&gt;iVentoy;
+    DHCP--3.IP---&gt;Dator(Dator);
+    iVentoy--4.Payload--&gt;Dator;
+    iVentoy--5.Start--&gt;Dator;
+    iVentoy&lt;--shake--&gt;DHCP
+     Test(Test)--&gt; TVÅ(TVÅ)
+     OST(OST)--&gt; SKINKA(SKINKA)
+
+
+    click iVentoy href "./iventoy.html"
+
+    style iVentoy fill:#839bac,color:#FFFFFF,stroke-opacity:0.2
+    
+    style DHCP fill:#d9d9d9,color:#FFFFFF,stroke-opacity:0.2
+
+    style Test fill:#cfd9d8,color:#FFFFFF,stroke-opacity:0.2
+
+    style Dator fill:#cfd9d8,color:#FFFFFF,stroke-opacity:0.2
+
+    style OST fill:#cfd6d9,color:#FFFFFF,stroke-opacity:0.2
+
+    style SKINKA fill:#f3fffd,color:#8c8c8c,stroke-opacity:0.2
+    
+```    
+   
+</code></pre>
+</details>
+<br>
+<br>
+<pre class="mermaid">%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#abcadf',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#abcadf',
+      'lineColor': '#fae2b3',
+      'secondaryColor': '#89a389',
+      'tertiaryColor': '#fff'
+    }
+  }
+}%%
+        graph TD
+          A[Christmas] --&gt;|Get money| B(Go shopping)
+          B --&gt; C{Let me think}
+          B --&gt; G[/Another/]
+          C ==&gt;|One| D[Laptop]
+          C --&gt;|Two| E[iPhone]
+          C --&gt;|Three| F[fa:fa-car Car]
+
+style D fill:#cdcdf3,color:#FFFFFF,stroke-opacity:0.2
+
+style E fill:#c8f1f3,color:#FFFFFF,stroke-opacity:0.2
+
+style G fill:#f9e5bc,color:#8c8c8c,stroke-opacity:0.2
+
+style C fill:#839bac,color:#,stroke-opacity:0.2
+
+style B fill:#c7e9d3,color:#FFFFFF,stroke-opacity:0.2
+
+style F fill:#cbd5df,color:#FFFFFF,stroke-opacity:0.2
+
+style Test fill:#dfdfdf,color:#FFFFFF,stroke-opacity:0.2
+
+
+
+          subgraph section
+            C
+            D
+            E
+            F
+            G
+          end
+          
+          
+</pre>
+<details>
+<summary>Source code for above</summary>
+<pre><code>```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#abcadf',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#abcadf',
+      'lineColor': '#fae2b3',
+      'secondaryColor': '#89a389',
+      'tertiaryColor': '#fff'
+    }
+  }
+}%%
+        graph TD
+          A[Christmas] --&gt;|Get money| B(Go shopping)
+          B --&gt; C{Let me think}
+          B --&gt; G[/Another/]
+          C ==&gt;|One| D[Laptop]
+          C --&gt;|Two| E[iPhone]
+          C --&gt;|Three| F[fa:fa-car Car]
+
+style D fill:#cdcdf3,color:#FFFFFF,stroke-opacity:0.2
+
+style E fill:#c8f1f3,color:#FFFFFF,stroke-opacity:0.2
+
+style G fill:#f9e5bc,color:#8c8c8c,stroke-opacity:0.2
+
+style C fill:#839bac,color:#,stroke-opacity:0.2
+
+style B fill:#c7e9d3,color:#FFFFFF,stroke-opacity:0.2
+
+style F fill:#cbd5df,color:#FFFFFF,stroke-opacity:0.2
+
+style Test fill:#dfdfdf,color:#FFFFFF,stroke-opacity:0.2
+
+
+
+          subgraph section
+            C
+            D
+            E
+            F
+            G
+          end
+          
+          
+```
+</code></pre>
+</details>
+<br>
+<br>
+<pre class="mermaid">graph LR
+    
+    subgraph Förfrågan
+    iVentoy--1.BOOTP--&gt;DHCP
+    end
+    subgraph Svar
+    Dator&lt;--2.PXE--&gt;iVentoy
+    end
+    
+    
+
+</pre>
+<details>
+<summary>Source code for above</summary>
+<pre><code>```mermaid
+graph LR
+    
+    subgraph Förfrågan
+    iVentoy--1.BOOTP--&gt;DHCP
+    end
+    subgraph Svar
+    Dator&lt;--2.PXE--&gt;iVentoy
+    end
+    
+    
+
+```
+</code></pre>
+</details>
+<h2 id="tabs"><a class="header" href="#tabs">Tabs</a></h2>
+<p>Get <a href="https://github.com/RustForWeb/mdbook-plugins/tree/main/packages/mdbook-tabs">mdbook-tabs</a></p>
+<pre><code>{{#tabs }}
+{{#tab name="Tab 1" }}
+**Tab content 1**
+{{#endtab }}
+{{#tab name="Tab 2" }}
+_Tab content 2_
+{{#endtab }}
+{{#tab name="Tab 3" }}
+~~Tab content 3~~
+{{#endtab }}
+{{#endtabs }}
+</code></pre>
+<div class="mdbook-tabs-container">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Tab 1">Tab 1</button>
+<button class="mdbook-tab" data-tabname="Tab 2">Tab 2</button>
+<button class="mdbook-tab" data-tabname="Tab 3">Tab 3</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Tab 1">
+<p><strong>Tab content 1</strong></p>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Tab 2">
+<p><em>Tab content 2</em></p>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Tab 3">
+<p><del>Tab content 3</del></p>
+</div>
+</div>
+<br>
+<pre><code>{{#tabs global="example" }}
+{{#tab name="Tab 1" }}
+Some content.
+{{#endtab }}
+{{#endtabs }}
+</code></pre>
+<div class="mdbook-tabs-container" data-tabglobal="example">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Tab 1">Tab 1</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Tab 1">
+<p>Some content.</p>
+</div>
+</div>
+<h2 id="admonish"><a class="header" href="#admonish">Admonish</a></h2>
+<p>Install <a href="https://github.com/tommilligan/mdbook-admonish">admonish</a></p>
+<p>Examples:</p>
+<pre><code>```admonish
+Some text
+```
+</code></pre>
+<pre><code>```admonish example
+example
+```
+</code></pre>
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
+<div class="admonition-title">
+<div id="admonition-note-title">
+<p>Note</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
+</div>
+<div>
+<p>Some text</p>
+</div>
+</div>
+<div id="admonition-example" class="admonition admonish-example" role="note" aria-labelledby="admonition-example-title">
+<div class="admonition-title">
+<div id="admonition-example-title">
+<p>Example</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-example"></a>
+</div>
+<div>
+<p>example</p>
+</div>
+</div>
+<div id="admonition-tldr" class="admonition admonish-abstract" role="note" aria-labelledby="admonition-tldr-title">
+<div class="admonition-title">
+<div id="admonition-tldr-title">
+<p>TL;DR</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tldr"></a>
+</div>
+<div>
+<p>abstract, summary, tldr</p>
+</div>
+</div>
+<div id="admonition-check" class="admonition admonish-success" role="note" aria-labelledby="admonition-check-title">
+<div class="admonition-title">
+<div id="admonition-check-title">
+<p>Check</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-check"></a>
+</div>
+<div>
+<p>success, check, done</p>
+</div>
+</div>
+<div id="admonition-question" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-title">
+<div class="admonition-title">
+<div id="admonition-question-title">
+<p>Question</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question"></a>
+</div>
+<div>
+<p>question, faq, help</p>
+</div>
+</div>
+<div id="admonition-info" class="admonition admonish-info" role="note" aria-labelledby="admonition-info-title">
+<div class="admonition-title">
+<div id="admonition-info-title">
+<p>Info</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-info"></a>
+</div>
+<div>
+<p>info, todo</p>
+</div>
+</div>
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
+<div class="admonition-title">
+<div id="admonition-tip-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
+</div>
+<div>
+<p>tip, hint, important</p>
+</div>
+</div>
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
+<div class="admonition-title">
+<div id="admonition-warning-title">
+<p>Warning</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
+</div>
+<div>
+<p>warning, caution, attention</p>
+</div>
+</div>
+<div id="admonition-fail" class="admonition admonish-failure" role="note" aria-labelledby="admonition-fail-title">
+<div class="admonition-title">
+<div id="admonition-fail-title">
+<p>Fail</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-fail"></a>
+</div>
+<div>
+<p>failure, fail, missing</p>
+</div>
+</div>
+<div id="admonition-danger" class="admonition admonish-danger" role="note" aria-labelledby="admonition-danger-title">
+<div class="admonition-title">
+<div id="admonition-danger-title">
+<p>Danger</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-danger"></a>
+</div>
+<div>
+<p>danger, error</p>
+</div>
+</div>
+<div id="admonition-bug" class="admonition admonish-bug" role="note" aria-labelledby="admonition-bug-title">
+<div class="admonition-title">
+<div id="admonition-bug-title">
+<p>Bug</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-bug"></a>
+</div>
+<div>
+<p>bug</p>
+</div>
+</div>
+<div id="admonition-quote" class="admonition admonish-quote" role="note" aria-labelledby="admonition-quote-title">
+<div class="admonition-title">
+<div id="admonition-quote-title">
+<p>Quote</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-quote"></a>
+</div>
+<div>
+<p>quote, cite</p>
+</div>
+</div>
+<pre><code>```admonish quote collapsible=true, title='A title that really &lt;span style="color: #e70073"&gt;pops&lt;/span&gt;'
+To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt; your reader's attention.
+```
+</code></pre>
+<details id="admonition-a-title-that-really-pops" class="admonition admonish-quote" role="note" aria-labelledby="admonition-a-title-that-really-pops-title">
+<summary class="admonition-title">
+<div id="admonition-a-title-that-really-pops-title">
+<p>A title that really <span style="color: #e70073">pops</span></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-a-title-that-really-pops"></a>
+</summary>
+<div>
+<p>To really <b><span style="color: #e70073">grab</span></b> your reader's attention.</p>
+</div>
+</details>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="markdown_syntax.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="Spotify_playlist_backup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="markdown_syntax.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="Spotify_playlist_backup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/tabs.js"></script>
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+        <script src="custom-pagewidth.js"></script>
+
+
+    </div>
+    </body>
+</html>

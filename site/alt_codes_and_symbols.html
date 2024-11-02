@@ -1,0 +1,483 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sun" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Alt Codes &amp; Symbols - Manual</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/tabs.css">
+        <link rel="stylesheet" href="./mdbook-admonish.css">
+        <link rel="stylesheet" href="theme/sun.css">
+        <link rel="stylesheet" href="theme/catppuccin.css">
+        <link rel="stylesheet" href="theme/catppuccin-admonish.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "macchiato" : "sun";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('sun')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Guides & personal stuff</li><li class="chapter-item expanded "><a href="Powershell.html"><strong aria-hidden="true">1.</strong> Powershell</a></li><li class="chapter-item expanded "><a href="ffmpeg.html"><strong aria-hidden="true">2.</strong> FFMpeg</a></li><li class="chapter-item expanded "><a href="vscode.html"><strong aria-hidden="true">3.</strong> VS Code</a></li><li class="chapter-item expanded affix "><li class="part-title">Windows Shortcuts</li><li class="chapter-item expanded "><a href="essential_shortcuts.html"><strong aria-hidden="true">4.</strong> Essential Shortcuts</a></li><li class="chapter-item expanded "><a href="desktop_shortcuts.html"><strong aria-hidden="true">5.</strong> Desktop Shortcuts</a></li><li class="chapter-item expanded "><a href="windows_key.html"><strong aria-hidden="true">6.</strong> Windows Key</a></li><li class="chapter-item expanded "><a href="alt_codes_and_symbols.html" class="active"><strong aria-hidden="true">7.</strong> Alt Codes & Symbols</a></li><li class="chapter-item expanded affix "><li class="part-title">Markdown</li><li class="chapter-item expanded "><a href="markdown_syntax.html"><strong aria-hidden="true">8.</strong> Syntax</a></li><li class="chapter-item expanded "><a href="mdbook_syntax.html"><strong aria-hidden="true">9.</strong> mdBook Syntax</a></li><li class="chapter-item expanded affix "><li class="part-title">Spotify</li><li class="chapter-item expanded "><a href="Spotify_playlist_backup.html"><strong aria-hidden="true">10.</strong> Spotify Backup List</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="sun">Sun</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Manual</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+</style>
+<h1 id="keyboard-shortcuts-and-symbols"><a class="header" href="#keyboard-shortcuts-and-symbols">Keyboard Shortcuts and Symbols</a></h1>
+<p>Select the symbol you want to copy. Use your mouse or the <kbd>Ctrl</kbd> <kbd> + </kbd> <kbd>C</kbd> shortcut on your keyboard.</p>
+<ul>
+<li><a href="#arrow-symbols">Arrow symbols</a></li>
+<li><a href="#bullet-symbols">Bullet symbols</a></li>
+<li><a href="#recycling-symbols">Recycling symbols</a></li>
+<li><a href="#copyright-and-trademark-symbols">Copyright and trademark symbols</a></li>
+<li><a href="#temperature-symbols">Temperature symbols</a></li>
+<li><a href="#hearts-etc-symbols">Hearts, etc. symbols</a></li>
+<li><a href="#music-symbols">Music symbols</a></li>
+<li><a href="#math-symbols">Math symbols</a></li>
+<li><a href="#currency-symbols">Currency symbols</a></li>
+<li><a href="#greek-letter-symbols-lower-case-and-capital">Greek letter symbols (Lower case and capital)</a></li>
+<li><a href="#star-symbols">Star symbols</a></li>
+<li><a href="#zodiac-symbols">Zodiac symbols</a></li>
+<li><a href="#weather-symbols">Weather symbols</a></li>
+<li><a href="#chess-symbols">Chess symbols</a></li>
+<li><a href="#engineering-symbols">Engineering symbols</a></li>
+<li><a href="#numbers-and-letters-in-circles-symbols">Numbers and letters in circles symbols</a></li>
+<li><a href="#windows-alt-codes-and-unicode-symbols">Windows ALT-Codes and Unicode Symbols</a></li>
+</ul>
+<h2 id="arrow-symbols"><a class="header" href="#arrow-symbols">Arrow symbols</a></h2>
+<p>↑ ↓ → ← ↔ ▲ ▼ ► ◄ △ ⇿ ⇾ ⇽ ⇼ ⇻ ⇺ ⇹ ⇸ ⇶ ⇵ ⇳ ⇲ ⇱ ⇪ ⇩ ⇨ ⇧ ⇦<br />
+⇥ ⇤ ⇣ ⇢ ⇡ ⇠⇛⇚⇙ ⇘ ⇗ ⇖ ⇕ ⇔ ⇓ ⇒ ⇑ ⇐ ⇌ ⇋ ⥊ ⥋ ⇆ ⇅ ⇄ ↻ ↺ ↹<br />
+↷ ↶ ↵ ↴ ↳ ↲ ↱ ↰ ↮ ↬ ↫ ↨ ↧ ↦ ↥ ↤ ↛ ↚ ↙ ↘ ↗ ↖ ↕</p>
+<h2 id="bullet-symbols"><a class="header" href="#bullet-symbols">Bullet symbols</a></h2>
+<p>• ‣ ⁃ ◘ ◦ ⦾ ⦿ ✓ ✔ ☑ ☒ ⦿ ⦾ ✪ ☓ ✖ « » ✗ ❞ ❝</p>
+<h2 id="recycling-symbols"><a class="header" href="#recycling-symbols">Recycling symbols</a></h2>
+<p>♲ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ♻ ♼ ♽</p>
+<h2 id="copyright-and-trademark-symbols"><a class="header" href="#copyright-and-trademark-symbols">Copyright and trademark symbols</a></h2>
+<p>© ℗ ⓒ ® ™</p>
+<h2 id="temperature-symbols"><a class="header" href="#temperature-symbols">Temperature symbols</a></h2>
+<p>℃ ℉ °</p>
+<h2 id="hearts-etc-symbols"><a class="header" href="#hearts-etc-symbols">Hearts, etc. symbols</a></h2>
+<p>♡ ♥ ❤ ∞☺☻♂ ♀ ☯</p>
+<h2 id="music-symbols"><a class="header" href="#music-symbols">Music symbols</a></h2>
+<p>♩ ♪ ♫ ♭ ♮ ♯ 𝄪 𝄆 𝄇 𝄈 𝄐 𝄑 𝄒 𝆒 𝆓 𝄫 𝄞 𝄢 𝄡</p>
+<h2 id="math-symbols"><a class="header" href="#math-symbols">Math symbols</a></h2>
+<p>¼ ½ ¾ ⅓ ⅔ ⅛ ⅜ ⅝ ≈ &gt; ≥ ≧ ≩ ≫ ≳ ⋝ ÷ ∕ ± ∓ ≂ ⊟ ⊞ ⨁ ⨤ ⨦ %<br />
+∟∠∡ ⊾⟀ ⦜ ⦛ ⦠ √ ∛ ∜ ⍍ ≡ ≢ ⧥ ⩧ ⅀ ◊ ⟠ ⨌⨍⨏ ⨜ ⨛ ◜ ◝ ◞ ◟ ⤸ ⤹<br />
+◆ ◇ ❖ ○ ◍ ● ◐ ◑ ◒ ◓ ◔ ◕ ◖ ◗ ⬡ ⬢ ‰ ⁿ ¹ ² ³ § ∞ ㅅ ⌖<br />
+◧ ◨ ◩ ◪ ▢ ▣ ▤ ▥ ▦ ▧ ▨ ▩ ▪ ▫ ▬ ▭ ▮ ▯ ▰ ▱ ◆ ◇ ◈ ◉ ◊<br />
+○ ◌ ◎ ◘ ◙ ◚ ◛ ◜ ◝ ◞ ◟ ◠ ◡ ◢ ◣ ◤ ◥ ◦ ◫ ◬ ◭ ◮ ◯ ▲ △ ▴ ▵<br />
+▶ ▷ ▸ ▹ ► ▻ ▼ ▽ ▾ ▿ ◀ ◁ ◂ ◃ ◄ ◅</p>
+<h2 id="currency-symbols"><a class="header" href="#currency-symbols">Currency symbols</a></h2>
+<p>£ € $ ¢ ¥ ƒ ₧ ؋ ₳ ฿ ₵ ₡ ₢ ₫ ₯ ₠ ₣ ₲ ₴ ₭ ₺<br />
+ℳ ₥ ₦ ₱ ₰ 元 圆 圓 ﷼ ​​₹ ₨ ​ ₪ ​ ​₸ ​₮ ​ ₩ ​ ¥ ​円</p>
+<h2 id="greek-letter-symbols-lower-case-and-capital"><a class="header" href="#greek-letter-symbols-lower-case-and-capital">Greek letter symbols (Lower case and capital)</a></h2>
+<p>α Α ß Β γ Γ δ Δ ε Ε ζ Ζ η Η θ ϴ ι Ι κ Κ λ Λ μ<br />
+Μ ν Ν ξ Ξ ο Ο π Π ρ Ρ σ Σ τ Τ ϒ Υ φ ϕ ψ Ψ ω Ω</p>
+<h2 id="star-symbols"><a class="header" href="#star-symbols">Star symbols</a></h2>
+<p>⋆ ✢ ✥ ✦ ✧ ❂ ❉ ✱ ✲ ✴ ✵ ✶ ✷ ✸ ❇ ✹ ✺ ✻ ✼ ❈ ✮ ✡</p>
+<h2 id="zodiac-symbols"><a class="header" href="#zodiac-symbols">Zodiac symbols</a></h2>
+<p>♒ ♓ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑</p>
+<h2 id="weather-symbols"><a class="header" href="#weather-symbols">Weather symbols</a></h2>
+<p>☼ ☽ ☾ ❅ ❆ ϟ ☀ ☁ ☂ ☃ ☄ ☼</p>
+<h2 id="chess-symbols"><a class="header" href="#chess-symbols">Chess symbols</a></h2>
+<p>♔ ♚ ♕ ♛ ♗ ♝ ♘ ♞ ♙ ♟ ♖ ♜</p>
+<h2 id="engineering-symbols"><a class="header" href="#engineering-symbols">Engineering symbols</a></h2>
+<p>⌀⌁⌂⍳⍴ ⍵ ⍶ ⍷ ⍸ ⍹ ⍺ ⌃⌄⌅⌆⌇⌈⌉⌊⌋⌌⌍⌎⌏⌐⌑⌒⌓⌔⌕⌖⌗⌘⌙⌚⌛<br />
+⌜⌝⌞⌟⌠⌡⌢⌣⌤ ⌥ ⌦⌧⌫⌬⌭⌮⌯⌰⌱⌲⌳⌴⌵⌶⌿⍀⍁ ⍂ ⍃ ⍄<br />
+⍅ ⍆ ⍇ ⍈ ⍉ ⍊ ⍋ ⍌ ⍍ ⍎ ⍏ ⍐ ⍒ ⍓ ⍔ ⍕ ⍖ ⍗<br />
+⍘ ⍙ ⍚ ⍜ ⍝ ⍞ ⍟ ⍠ ⍡ ⍢ ⍣ ⍤ ⍥ ⍦ ⍧ ⍨ ⍩ ⍪ ⍫ ⍬<br />
+⍭ ⍮ ⍯ ⍰ ⌷ ⌸ ⌹ ⌺ ⌻ ⌼ ⍱ ﹘﹝﹞</p>
+<h2 id="numbers-and-letters-in-circles-symbols"><a class="header" href="#numbers-and-letters-in-circles-symbols">Numbers and letters in circles symbols</a></h2>
+<p>⓪ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨<br />
+ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ<br />
+ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ<br />
+Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ<br />
+Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ</p>
+<h2 id="windows-alt-codes-and-unicode-symbols"><a class="header" href="#windows-alt-codes-and-unicode-symbols"><p style="text-align:center;">Windows ALT-Codes and Unicode Symbols</p></a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center">To type this symbol</th><th style="text-align: center">Press this on your keyboard</th><th style="text-align: center">Description</th></tr></thead><tbody>
+<tr><td style="text-align: center">™</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0153</kbd></td><td style="text-align: center">Trademark</td></tr>
+<tr><td style="text-align: center">©</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0169</kbd></td><td style="text-align: center">Copyright</td></tr>
+<tr><td style="text-align: center">®</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0174</kbd></td><td style="text-align: center">Registered</td></tr>
+<tr><td style="text-align: center">‰</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0137</kbd></td><td style="text-align: center">Per mille (per thousand)</td></tr>
+<tr><td style="text-align: center">±</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>241</kbd></td><td style="text-align: center">Plus or Minus</td></tr>
+<tr><td style="text-align: center">¼</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0188</kbd></td><td style="text-align: center">Quarter</td></tr>
+<tr><td style="text-align: center">½</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0189</kbd></td><td style="text-align: center">Half</td></tr>
+<tr><td style="text-align: center">¾</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0190</kbd></td><td style="text-align: center">Three quarters</td></tr>
+<tr><td style="text-align: center">≡</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>240</kbd></td><td style="text-align: center">Exactly Identical</td></tr>
+<tr><td style="text-align: center">≈</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>247</kbd></td><td style="text-align: center">Approximately equal</td></tr>
+<tr><td style="text-align: center">≥</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>242</kbd></td><td style="text-align: center">Greater than or equal</td></tr>
+<tr><td style="text-align: center">≤</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>243</kbd></td><td style="text-align: center">Less than or equal</td></tr>
+<tr><td style="text-align: center">√</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>251</kbd></td><td style="text-align: center">Square Root</td></tr>
+<tr><td style="text-align: center">ⁿ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>252</kbd></td><td style="text-align: center">Power n</td></tr>
+<tr><td style="text-align: center">¹</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0185</kbd></td><td style="text-align: center">To the power of 1</td></tr>
+<tr><td style="text-align: center">²</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0178</kbd></td><td style="text-align: center">Squared</td></tr>
+<tr><td style="text-align: center">³</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0179</kbd></td><td style="text-align: center">Cubed</td></tr>
+<tr><td style="text-align: center">π</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>227</kbd></td><td style="text-align: center">Pi</td></tr>
+<tr><td style="text-align: center">°</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>248</kbd></td><td style="text-align: center">Degree</td></tr>
+<tr><td style="text-align: center">∞</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>2368</kbd></td><td style="text-align: center">Infinity</td></tr>
+<tr><td style="text-align: center">µ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>230</kbd></td><td style="text-align: center">Micro</td></tr>
+<tr><td style="text-align: center">Σ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>228</kbd></td><td style="text-align: center">Sum</td></tr>
+<tr><td style="text-align: center">☺</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>1</kbd></td><td style="text-align: center">White Smiley</td></tr>
+<tr><td style="text-align: center">☻</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>2</kbd></td><td style="text-align: center">Black Smiley</td></tr>
+<tr><td style="text-align: center">•</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>7</kbd></td><td style="text-align: center">Bullet 1</td></tr>
+<tr><td style="text-align: center">○</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>9</kbd></td><td style="text-align: center">Bullet 2</td></tr>
+<tr><td style="text-align: center">♂</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>11</kbd></td><td style="text-align: center">Male Sign</td></tr>
+<tr><td style="text-align: center">♀</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>12</kbd></td><td style="text-align: center">Female Sign</td></tr>
+<tr><td style="text-align: center">↨</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>23</kbd></td><td style="text-align: center">Up/Down Arrow</td></tr>
+<tr><td style="text-align: center">↑</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>24</kbd></td><td style="text-align: center">Up Arrow</td></tr>
+<tr><td style="text-align: center">↓</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>25</kbd></td><td style="text-align: center">Down Arrow</td></tr>
+<tr><td style="text-align: center">→</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>26</kbd></td><td style="text-align: center">Right Arrow</td></tr>
+<tr><td style="text-align: center">←</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>27</kbd></td><td style="text-align: center">Left Arrow</td></tr>
+<tr><td style="text-align: center">↔</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>29</kbd></td><td style="text-align: center">Right/Left Arrow</td></tr>
+<tr><td style="text-align: center">£</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>156</kbd></td><td style="text-align: center">Pound</td></tr>
+<tr><td style="text-align: center">€</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0128</kbd></td><td style="text-align: center">Euro</td></tr>
+<tr><td style="text-align: center">$</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>36</kbd></td><td style="text-align: center">Dollar Sign</td></tr>
+<tr><td style="text-align: center">¢</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>155</kbd></td><td style="text-align: center">Cent</td></tr>
+<tr><td style="text-align: center">¥</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>157</kbd></td><td style="text-align: center">Yen</td></tr>
+<tr><td style="text-align: center">ƒ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>159</kbd></td><td style="text-align: center">Frank</td></tr>
+<tr><td style="text-align: center">₧</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>158</kbd></td><td style="text-align: center">Peseta</td></tr>
+<tr><td style="text-align: center">ß</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>225</kbd></td><td style="text-align: center">Beta</td></tr>
+<tr><td style="text-align: center">α</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>224</kbd></td><td style="text-align: center">Alpha</td></tr>
+<tr><td style="text-align: center">δ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>235</kbd></td><td style="text-align: center">Delta</td></tr>
+<tr><td style="text-align: center">Ω</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>234</kbd></td><td style="text-align: center">Omega</td></tr>
+<tr><td style="text-align: center">►</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>16</kbd></td><td style="text-align: center">Point Right</td></tr>
+<tr><td style="text-align: center">◄</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>17</kbd></td><td style="text-align: center">Point Left</td></tr>
+<tr><td style="text-align: center">■</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>254</kbd></td><td style="text-align: center">Stop</td></tr>
+<tr><td style="text-align: center">▲</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>30</kbd></td><td style="text-align: center">Point Up</td></tr>
+<tr><td style="text-align: center">▼</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>31</kbd></td><td style="text-align: center">Point Down</td></tr>
+<tr><td style="text-align: center">§</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>21</kbd></td><td style="text-align: center">Section</td></tr>
+<tr><td style="text-align: center">¶</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>20</kbd></td><td style="text-align: center">Paragraph</td></tr>
+<tr><td style="text-align: center">“</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0147</kbd></td><td style="text-align: center">Curly double open quote</td></tr>
+<tr><td style="text-align: center">”</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0148</kbd></td><td style="text-align: center">Curly double close quote</td></tr>
+<tr><td style="text-align: center">«</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>174</kbd></td><td style="text-align: center">Quotation Mark</td></tr>
+<tr><td style="text-align: center">»</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>175</kbd></td><td style="text-align: center">Quotation Mark</td></tr>
+<tr><td style="text-align: center">♥</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>3</kbd></td><td style="text-align: center">Heart</td></tr>
+<tr><td style="text-align: center">º</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0176</kbd></td><td style="text-align: center">Degree symbol</td></tr>
+<tr><td style="text-align: center">œ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0156</kbd></td><td style="text-align: center">Latin small ligature oe</td></tr>
+<tr><td style="text-align: center">•</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0149</kbd></td><td style="text-align: center">Bullet</td></tr>
+<tr><td style="text-align: center">↻</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>8635</kbd></td><td style="text-align: center">Clockwise Open Circle Arrow</td></tr>
+<tr><td style="text-align: center">↺</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>31</kbd></td><td style="text-align: center">Counterclockwise Open Circle Arrow</td></tr>
+<tr><td style="text-align: center">Ø</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0216</kbd></td><td style="text-align: center">Diameter</td></tr>
+<tr><td style="text-align: center">Ñ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0209</kbd></td><td style="text-align: center">Enye</td></tr>
+</tbody></table>
+</div><style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="windows_key.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="markdown_syntax.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="windows_key.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="markdown_syntax.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/tabs.js"></script>
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+        <script src="custom-pagewidth.js"></script>
+
+
+    </div>
+    </body>
+</html>
