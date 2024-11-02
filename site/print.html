@@ -656,6 +656,25 @@ file 'file3.mp4'
 </style>
 <h1 id="vs-code"><a class="header" href="#vs-code">VS Code</a></h1>
 <h2 id="keyboard-settings"><a class="header" href="#keyboard-settings">Keyboard settings</a></h2>
+<ul>
+<li><a href="vscode.html#toggle-terminal-and-editor-focus">Toggle terminal and editor focus</a></li>
+<li><a href="vscode.html#adjust-font-size-on-terminal">Adjust font size on terminal</a></li>
+<li><a href="vscode.html#keyboard-shortcuts">Keyboard shortcuts</a>
+<ul>
+<li><a href="vscode.html#general">General</a></li>
+<li><a href="vscode.html#basic-editing">Basic editing</a></li>
+<li><a href="vscode.html#navigation">Navigation</a></li>
+<li><a href="vscode.html#search-and-replace">Search and Replace</a></li>
+<li><a href="vscode.html#multi-cursor-and-selection">Multi-cursor and selection</a></li>
+<li><a href="vscode.html#rich-languages-editing">Rich languages editing</a></li>
+<li><a href="vscode.html#editor-management">Editor management</a></li>
+<li><a href="vscode.html#file-management">File management</a></li>
+<li><a href="vscode.html#display">Display</a></li>
+<li><a href="vscode.html#debug">Debug</a></li>
+<li><a href="vscode.html#integrated-terminal">Integrated terminal</a></li>
+</ul>
+</li>
+</ul>
 <h3 id="toggle-terminal-and-editor-focus"><a class="header" href="#toggle-terminal-and-editor-focus">Toggle terminal and editor focus</a></h3>
 <p>Open Command Palette and find keyboard shortcuts (JSON)</p>
 <pre><code>{
@@ -681,8 +700,171 @@ file 'file3.mp4'
     }
 </code></pre>
 <h2 id="keyboard-shortcuts"><a class="header" href="#keyboard-shortcuts">Keyboard shortcuts</a></h2>
-<p><kbd>ALT</kbd> <kbd>+</kbd> <kbd>Enter</kbd> - Select all occurrences of Find match</p>
-<style>
+<h3 id="general"><a class="header" href="#general"><p style="text-align:center;">General</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">Ctrl+Shift+P, F1</td><td style="text-align: left">Show Command Palette</td></tr>
+<tr><td style="text-align: left">Ctrl+P</td><td style="text-align: left">Quick Open, Go to File…</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+N</td><td style="text-align: left">New window/instance</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+W</td><td style="text-align: left">Close window/instance</td></tr>
+<tr><td style="text-align: left">Ctrl+,</td><td style="text-align: left">User Settings</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+S</td><td style="text-align: left">Keyboard Shortcuts</td></tr>
+</tbody></table>
+</div>
+<h3 id="basic-editing"><a class="header" href="#basic-editing"><p style="text-align:center;">Basic editing</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">Ctrl+X</td><td style="text-align: left">Cut line (empty selection)</td></tr>
+<tr><td style="text-align: left">Ctrl+C</td><td style="text-align: left">Copy line (empty selection)</td></tr>
+<tr><td style="text-align: left">Alt+ ↑ / ↓</td><td style="text-align: left">Move line up/down</td></tr>
+<tr><td style="text-align: left">Shift+Alt + ↓ / ↑</td><td style="text-align: left">Copy line up/down</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+K</td><td style="text-align: left">Delete line</td></tr>
+<tr><td style="text-align: left">Ctrl+Enter</td><td style="text-align: left">Insert line below</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+Enter</td><td style="text-align: left">Insert line above</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+\</td><td style="text-align: left">Jump to matching bracket</td></tr>
+<tr><td style="text-align: left">Ctrl+] / [</td><td style="text-align: left">Indent/outdent line</td></tr>
+<tr><td style="text-align: left">Home / End</td><td style="text-align: left">Go to beginning/end of line</td></tr>
+<tr><td style="text-align: left">Ctrl+Home</td><td style="text-align: left">Go to beginning of file</td></tr>
+<tr><td style="text-align: left">Ctrl+End</td><td style="text-align: left">Go to end of file</td></tr>
+<tr><td style="text-align: left">Ctrl+↑ / ↓</td><td style="text-align: left">Scroll line up/down</td></tr>
+<tr><td style="text-align: left">Alt+PgUp / PgDn</td><td style="text-align: left">Scroll page up/down</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+[</td><td style="text-align: left">Fold (collapse) region</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+]</td><td style="text-align: left">Unfold (uncollapse) region</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+[</td><td style="text-align: left">Fold (collapse) all subregions</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+]</td><td style="text-align: left">Unfold (uncollapse) all subregions</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+0</td><td style="text-align: left">Fold (collapse) all regions</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+J</td><td style="text-align: left">Unfold (uncollapse) all regions</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+C</td><td style="text-align: left">Add line comment</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+U</td><td style="text-align: left">Remove line comment</td></tr>
+<tr><td style="text-align: left">Ctrl+/</td><td style="text-align: left">Toggle line comment</td></tr>
+<tr><td style="text-align: left">Shift+Alt+A</td><td style="text-align: left">Toggle block comment</td></tr>
+<tr><td style="text-align: left">Alt+Z</td><td style="text-align: left">Toggle word wrap</td></tr>
+</tbody></table>
+</div>
+<h3 id="navigation"><a class="header" href="#navigation"><p style="text-align:center;">Navigation</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">Ctrl+T</td><td style="text-align: left">Show all Symbols</td></tr>
+<tr><td style="text-align: left">Ctrl+G</td><td style="text-align: left">Go to Line...</td></tr>
+<tr><td style="text-align: left">Ctrl+P</td><td style="text-align: left">Go to File...</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+O</td><td style="text-align: left">Go to Symbol...</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+M</td><td style="text-align: left">Show Problems panel</td></tr>
+<tr><td style="text-align: left">F8</td><td style="text-align: left">Go to next error or warning</td></tr>
+<tr><td style="text-align: left">Shift+F8</td><td style="text-align: left">Go to previous error or warning</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+Tab</td><td style="text-align: left">Navigate editor group history</td></tr>
+<tr><td style="text-align: left">Alt+ ← / →</td><td style="text-align: left">Go back / forward</td></tr>
+<tr><td style="text-align: left">Ctrl+M</td><td style="text-align: left">Toggle Tab moves focus</td></tr>
+</tbody></table>
+</div>
+<h3 id="search-and-replace"><a class="header" href="#search-and-replace"><p style="text-align:center;">Search and Replace</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">Ctrl+F</td><td style="text-align: left">Find</td></tr>
+<tr><td style="text-align: left">Ctrl+H</td><td style="text-align: left">Replace</td></tr>
+<tr><td style="text-align: left">F3 / Shift+F3</td><td style="text-align: left">Find next/previous</td></tr>
+<tr><td style="text-align: left">Alt+Enter</td><td style="text-align: left">Select all occurences of Find match</td></tr>
+<tr><td style="text-align: left">Ctrl+D</td><td style="text-align: left">Add selection to next Find match</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+D</td><td style="text-align: left">Move last selection to next Find match</td></tr>
+<tr><td style="text-align: left">Alt+C / R / W</td><td style="text-align: left">Toggle case-sensitive / regex / whole word</td></tr>
+</tbody></table>
+</div>
+<h3 id="multi-cursor-and-selection"><a class="header" href="#multi-cursor-and-selection"><p style="text-align:center;">Multi-cursor and selection</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Keyboard shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">Alt+Click</td><td style="text-align: left">Insert cursor</td></tr>
+<tr><td style="text-align: left">Ctrl+Alt+ ↑ / ↓</td><td style="text-align: left">Insert cursor above / below</td></tr>
+<tr><td style="text-align: left">Ctrl+U Undo</td><td style="text-align: left">last cursor operation</td></tr>
+<tr><td style="text-align: left">Shift+Alt+I</td><td style="text-align: left">Insert cursor at end of each line selected</td></tr>
+<tr><td style="text-align: left">Ctrl+L</td><td style="text-align: left">Select current line</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+L</td><td style="text-align: left">Select all occurrences of current selection</td></tr>
+<tr><td style="text-align: left">Ctrl+F2</td><td style="text-align: left">Select all occurrences of current word</td></tr>
+<tr><td style="text-align: left">Shift+Alt+→</td><td style="text-align: left">Expand selection</td></tr>
+<tr><td style="text-align: left">Shift+Alt+← ^</td><td style="text-align: left">Shrink selection</td></tr>
+<tr><td style="text-align: left">Shift+Alt +(drag mouse)</td><td style="text-align: left">Column (box) selection</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+Alt+ (arrow key)</td><td style="text-align: left">Column (box) selection</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+Alt+PgUp/PgDn</td><td style="text-align: left">Column (box) selection page up/down</td></tr>
+</tbody></table>
+</div>
+<h3 id="rich-languages-editing"><a class="header" href="#rich-languages-editing"><p style="text-align:center;">Rich languages editing</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">Ctrl+Space, Ctrl+I</td><td style="text-align: left">Trigger suggestion</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+Space</td><td style="text-align: left">Trigger parameter hints</td></tr>
+<tr><td style="text-align: left">Shift+Alt+F</td><td style="text-align: left">Format document</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+F</td><td style="text-align: left">Format selection</td></tr>
+<tr><td style="text-align: left">F12</td><td style="text-align: left">Go to Definition</td></tr>
+<tr><td style="text-align: left">Alt+F12</td><td style="text-align: left">Peek Definition</td></tr>
+<tr><td style="text-align: left">Ctrl+K F12</td><td style="text-align: left">Open Definition to the side</td></tr>
+<tr><td style="text-align: left">Ctrl+.</td><td style="text-align: left">Quick Fix</td></tr>
+<tr><td style="text-align: left">Shift+F12</td><td style="text-align: left">Show References</td></tr>
+<tr><td style="text-align: left">F2</td><td style="text-align: left">Rename Symbol</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+X</td><td style="text-align: left">Trim trailing whitespace</td></tr>
+<tr><td style="text-align: left">Ctrl+K M</td><td style="text-align: left">Change file language</td></tr>
+</tbody></table>
+</div>
+<h3 id="editor-management"><a class="header" href="#editor-management"><p style="text-align:center;">Editor management</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">Ctrl+F4, Ctrl+W</td><td style="text-align: left">Close editor</td></tr>
+<tr><td style="text-align: left">Ctrl+K F</td><td style="text-align: left">Close folder</td></tr>
+<tr><td style="text-align: left">Ctrl+\</td><td style="text-align: left">Split editor</td></tr>
+<tr><td style="text-align: left">Ctrl+ 1 / 2 / 3</td><td style="text-align: left">Focus into 1st, 2nd or 3rd editor group</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+ ←/→</td><td style="text-align: left">Focus into previous/next editor group</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+PgUp / PgDn</td><td style="text-align: left">Move editor left/right</td></tr>
+<tr><td style="text-align: left">Ctrl+K ← / →</td><td style="text-align: left">Move active editor group</td></tr>
+</tbody></table>
+</div>
+<h3 id="file-management"><a class="header" href="#file-management"><p style="text-align:center;">File management</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">Ctrl+N</td><td style="text-align: left">New File</td></tr>
+<tr><td style="text-align: left">Ctrl+O</td><td style="text-align: left">Open File...</td></tr>
+<tr><td style="text-align: left">Ctrl+S</td><td style="text-align: left">Save</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+S</td><td style="text-align: left">Save As...</td></tr>
+<tr><td style="text-align: left">Ctrl+K S</td><td style="text-align: left">Save All</td></tr>
+<tr><td style="text-align: left">Ctrl+F4</td><td style="text-align: left">Close</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+W</td><td style="text-align: left">Close All</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+T</td><td style="text-align: left">Reopen closed editor</td></tr>
+<tr><td style="text-align: left">Ctrl+K Enter</td><td style="text-align: left">Keep preview mode editor open</td></tr>
+<tr><td style="text-align: left">Ctrl+Tab</td><td style="text-align: left">Open next</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+Tab</td><td style="text-align: left">Open previous</td></tr>
+<tr><td style="text-align: left">Ctrl+K P</td><td style="text-align: left">Copy path of active file</td></tr>
+<tr><td style="text-align: left">Ctrl+K R</td><td style="text-align: left">Reveal active file in Explorer</td></tr>
+<tr><td style="text-align: left">Ctrl+K O</td><td style="text-align: left">Show active file in new window/instance</td></tr>
+</tbody></table>
+</div>
+<h3 id="display"><a class="header" href="#display"><p style="text-align:center;">Display</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">F11</td><td style="text-align: left">Toggle full screen</td></tr>
+<tr><td style="text-align: left">Shift+Alt+0</td><td style="text-align: left">Toggle editor layout (horizontal/vertical)</td></tr>
+<tr><td style="text-align: left">Ctrl+ = / -</td><td style="text-align: left">Zoom in/out</td></tr>
+<tr><td style="text-align: left">Ctrl+B</td><td style="text-align: left">Toggle Sidebar visibility</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+E</td><td style="text-align: left">Show Explorer / Toggle focus</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+F</td><td style="text-align: left">Show Search</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+G</td><td style="text-align: left">Show Source Control</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+D</td><td style="text-align: left">Show Debug</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+X</td><td style="text-align: left">Show Extensions</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+H</td><td style="text-align: left">Replace in files</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+J</td><td style="text-align: left">Toggle Search details</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+U</td><td style="text-align: left">Show Output panel</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+V</td><td style="text-align: left">Open Markdown preview</td></tr>
+<tr><td style="text-align: left">Ctrl+K V</td><td style="text-align: left">Open Markdown preview to the side</td></tr>
+<tr><td style="text-align: left">Ctrl+K Z</td><td style="text-align: left">Zen Mode (Esc Esc to exit)</td></tr>
+</tbody></table>
+</div>
+<h3 id="debug"><a class="header" href="#debug"><p style="text-align:center;">Debug</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">F9</td><td style="text-align: left">Toggle breakpoint</td></tr>
+<tr><td style="text-align: left">F5</td><td style="text-align: left">Start/Continue</td></tr>
+<tr><td style="text-align: left">Shift+F5</td><td style="text-align: left">Stop</td></tr>
+<tr><td style="text-align: left">F11 / Shift+F11</td><td style="text-align: left">Step into/out</td></tr>
+<tr><td style="text-align: left">F10</td><td style="text-align: left">Step over</td></tr>
+<tr><td style="text-align: left">Ctrl+K Ctrl+I</td><td style="text-align: left">Show hover</td></tr>
+</tbody></table>
+</div>
+<h3 id="integrated-terminal"><a class="header" href="#integrated-terminal"><p style="text-align:center;">Integrated terminal</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
+<tr><td style="text-align: left">Ctrl+`</td><td style="text-align: left">Show integrated terminal</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+`</td><td style="text-align: left">Create new terminal</td></tr>
+<tr><td style="text-align: left">Ctrl+C</td><td style="text-align: left">Copy selection</td></tr>
+<tr><td style="text-align: left">Ctrl+V</td><td style="text-align: left">Paste into active terminal</td></tr>
+<tr><td style="text-align: left">Ctrl+↑ / ↓</td><td style="text-align: left">Scroll up/down</td></tr>
+<tr><td style="text-align: left">Shift+PgUp / PgDn</td><td style="text-align: left">Scroll page up/down</td></tr>
+<tr><td style="text-align: left">Ctrl+Home /</td><td style="text-align: left">End Scroll to top/bottom</td></tr>
+</tbody></table>
+</div><style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
@@ -930,7 +1112,7 @@ file 'file3.mp4'
 <tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Shift</kbd> +<kbd> Esc</kbd></td><td style="text-align: left">Open Task Manager.</td></tr>
 <tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Shift</kbd></td><td style="text-align: left">Switch keyboard layout.</td></tr>
 <tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>F4</kbd></td><td style="text-align: left">Close active window. (If no active window is present, a shutdown box appears.)</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>F5</kbd> (or <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>R</kbd>)</td><td style="text-align: left">Refresh current window.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>F5</kbd> or <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>R</kbd></td><td style="text-align: left">Refresh current window.</td></tr>
 <tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Alt</kbd> <kbd>+</kbd> <kbd>Tab</kbd></td><td style="text-align: left">View open apps.</td></tr>
 <tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> and either one of <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd>; <kbd>+</kbd> <kbd>Space</kbd></td><td style="text-align: left">Select multiple items on desktop or File Explorer.</td></tr>
 <tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> and an <u>underlined</u> letter</td><td style="text-align: left">Runs command for the underlined letter in apps.</td></tr>
@@ -955,14 +1137,14 @@ file 'file3.mp4'
 <tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Space</kbd></td><td style="text-align: left">Enable or disable Chinese IME.</td></tr>
 <tr><td style="text-align: left"><kbd>Shift</kbd> <kbd>+</kbd> <kbd>F10</kbd></td><td style="text-align: left">Open context menu for selected item.</td></tr>
 <tr><td style="text-align: left"><kbd>F10</kbd></td><td style="text-align: left">Enable app menu bar.</td></tr>
-<tr><td style="text-align: left"><kbd>Shift +</kbd> and either one of <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td style="text-align: left">Select multiple items.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd>  Number (<kbd>0</kbd>-<kbd>9</kbd>)</td><td style="text-align: left">Open the app in number position from the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>Shift</kbd> <kbd>+</kbd> and either one of <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td style="text-align: left">Select multiple items.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd>  Number (<kbd>0</kbd> - <kbd>9</kbd>)</td><td style="text-align: left">Open the app in number position from the Taskbar.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> T</kbd></td><td style="text-align: left">Cycle through apps in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Alt</kbd></kbd> <kbd>+</kbd>  Number (<kbd>0</kbd>-<kbd>9</kbd>)</td><td style="text-align: left">Open Jump List of the app in number position from the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Alt</kbd></kbd> <kbd>+</kbd>  Number (<kbd>0</kbd> - <kbd>9</kbd>)</td><td style="text-align: left">Open Jump List of the app in number position from the Taskbar.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> X</kbd></td><td style="text-align: left">Open Quick Link menu.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> D</kbd></td><td style="text-align: left">Display and hide the desktop.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> M</kbd></td><td style="text-align: left">Minimize all windows.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> +<kbd> M</kbd></td><td style="text-align: left">Restore minimized windows on the desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> <kbd>+</kbd> <kbd> M</kbd></td><td style="text-align: left">Restore minimized windows on the desktop.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Home</kbd></td><td style="text-align: left">Minimize or maximize all but the active desktop window.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> <kbd>+</kbd> <kbd>↑ </kbd></td><td style="text-align: left">Stretch desktop window to the top and bottom of the screen.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> <kbd>+</kbd> <kbd>↓ </kbd></td><td style="text-align: left">Maximize or minimize active desktop windows vertically while maintaining width.</td></tr>
@@ -970,7 +1152,7 @@ file 'file3.mp4'
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> <kbd>+</kbd> <kbd>→</kbd></td><td style="text-align: left">Move active window to monitor on the right.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> ← </kbd></td><td style="text-align: left">Snap app or window left.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>  →</kbd></td><td style="text-align: left">Snap app or window right.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> S</kbd> (or <kbd>Q</kbd>)</td><td style="text-align: left">Open Search.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> S</kbd> or <kbd>Q</kbd></td><td style="text-align: left">Open Search.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Alt</kbd></kbd> <kbd>+</kbd>  <kbd>D</kbd></td><td style="text-align: left">Open date and time in the Taskbar.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Tab</kbd></td><td style="text-align: left">Open Task View.</td></tr>
 <tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Ctrl</kbd></kbd> <kbd>+</kbd></kbd> <kbd>D</kbd></td><td style="text-align: left">Create new virtual desktop.</td></tr>
