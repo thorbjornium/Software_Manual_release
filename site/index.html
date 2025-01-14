@@ -303,41 +303,63 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 </code></pre>
-<p>Use <kbd>CTRL</kbd> <kbd>+</kbd> <kbd>F</kbd> to search and preview files in colorized syntax.</p>
-<style>
-  .scroll-to-top {
-    font-size: 2.5rem;
-    width: 3.2rem;
-    height: 3.2rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 4rem;
-    right: calc(1.25rem + 90px + var(--page-padding));
-    z-index: 999;
-    cursor: pointer;
-    border: none;
-    color: var(--bg);
-    background: var(--fg);
-    border-radius: 50%;
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  .scroll-to-top i {
-    transform: translateY(-2px);
-  }
-  @media (min-width: 1080px) {
-    .scroll-to-top {
-      display: flex;
-    }
-  }
+<p>Use <kbd>CTRL</kbd> + <kbd>F</kbd> to search and preview files in colorized syntax.</p>
+<h2 id="commands"><a class="header" href="#commands">Commands</a></h2>
+<p>pwd - Prints the current working directory.</p>
+<p>ls - Lists the contents of the current directory.</p>
+<p>cd - Changes the current directory.</p>
+<p>mkdir - Creates a new directory.</p>
+<p>rm - Removes a file or directory.</p>
+<p>cp - Copies a file or directory.</p>
+<p>mv - Moves a file or directory.</p>
+<p>cat - Displays the contents of a file.</p>
+<p>tree - Lists the contents of a directory in a tree-like format.</p>
+<p>echo - Prints text to the console.</p>
+<p>read - Reads input from the user.</p>
+<p>cls - Clears the console.</p>
+<p>exit - Exits the current shell.</p>
+<p>help - Displays information about the built-in commands.</p>
+<p>get-help - Displays information about a specific command.</p>
+<p>get-childitem -path <path> -recurse -filter <filter></p>
+<p>get-childitem -path <path> -recurse -filter <filter> |  foreach-object { $_.fullname }</p>
+<p>get-childitem -path <path> -recurse -filter <filter> | foreach-object { $_.fullname } | fzf</p>
+<p>get-childitem -path <path> -recurse -filter <filter> | foreach-object { $<em>.fullname } | fzf | foreach-object { code $</em> }</p>
+<p>file - Displays information about a file.</p>
+<p>type - Displays the contents of a file.</p>
+<p>type -path <path> -literalpath <literalpath> | clip -no-cpy<style>
+.scroll-to-top {
+font-size: 2.5rem;
+width: 3.2rem;
+height: 3.2rem;
+display: none;
+align-items: center;
+justify-content: center;
+position: fixed;
+padding: 0.75rem;
+bottom: 4rem;
+right: calc(1.25rem + 90px + var(--page-padding));
+z-index: 999;
+cursor: pointer;
+border: none;
+color: var(--bg);
+background: var(--fg);
+border-radius: 50%;
+}
+.scroll-to-top.hidden {
+display: none;
+}
+.scroll-to-top i {
+transform: translateY(-2px);
+}
+@media (min-width: 1080px) {
+.scroll-to-top {
+display: flex;
+}
+}
 </style>
 <button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-  <i class="fa fa-angle-up"></i>
-</button>
+<i class="fa fa-angle-up"></i>
+</button></p>
 <script>
   const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
   window.addEventListener("scroll", () => {

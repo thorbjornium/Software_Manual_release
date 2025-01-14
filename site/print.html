@@ -304,41 +304,63 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 </code></pre>
-<p>Use <kbd>CTRL</kbd> <kbd>+</kbd> <kbd>F</kbd> to search and preview files in colorized syntax.</p>
-<style>
-  .scroll-to-top {
-    font-size: 2.5rem;
-    width: 3.2rem;
-    height: 3.2rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 4rem;
-    right: calc(1.25rem + 90px + var(--page-padding));
-    z-index: 999;
-    cursor: pointer;
-    border: none;
-    color: var(--bg);
-    background: var(--fg);
-    border-radius: 50%;
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  .scroll-to-top i {
-    transform: translateY(-2px);
-  }
-  @media (min-width: 1080px) {
-    .scroll-to-top {
-      display: flex;
-    }
-  }
+<p>Use <kbd>CTRL</kbd> + <kbd>F</kbd> to search and preview files in colorized syntax.</p>
+<h2 id="commands"><a class="header" href="#commands">Commands</a></h2>
+<p>pwd - Prints the current working directory.</p>
+<p>ls - Lists the contents of the current directory.</p>
+<p>cd - Changes the current directory.</p>
+<p>mkdir - Creates a new directory.</p>
+<p>rm - Removes a file or directory.</p>
+<p>cp - Copies a file or directory.</p>
+<p>mv - Moves a file or directory.</p>
+<p>cat - Displays the contents of a file.</p>
+<p>tree - Lists the contents of a directory in a tree-like format.</p>
+<p>echo - Prints text to the console.</p>
+<p>read - Reads input from the user.</p>
+<p>cls - Clears the console.</p>
+<p>exit - Exits the current shell.</p>
+<p>help - Displays information about the built-in commands.</p>
+<p>get-help - Displays information about a specific command.</p>
+<p>get-childitem -path <path> -recurse -filter <filter></p>
+<p>get-childitem -path <path> -recurse -filter <filter> |  foreach-object { $_.fullname }</p>
+<p>get-childitem -path <path> -recurse -filter <filter> | foreach-object { $_.fullname } | fzf</p>
+<p>get-childitem -path <path> -recurse -filter <filter> | foreach-object { $<em>.fullname } | fzf | foreach-object { code $</em> }</p>
+<p>file - Displays information about a file.</p>
+<p>type - Displays the contents of a file.</p>
+<p>type -path <path> -literalpath <literalpath> | clip -no-cpy<style>
+.scroll-to-top {
+font-size: 2.5rem;
+width: 3.2rem;
+height: 3.2rem;
+display: none;
+align-items: center;
+justify-content: center;
+position: fixed;
+padding: 0.75rem;
+bottom: 4rem;
+right: calc(1.25rem + 90px + var(--page-padding));
+z-index: 999;
+cursor: pointer;
+border: none;
+color: var(--bg);
+background: var(--fg);
+border-radius: 50%;
+}
+.scroll-to-top.hidden {
+display: none;
+}
+.scroll-to-top i {
+transform: translateY(-2px);
+}
+@media (min-width: 1080px) {
+.scroll-to-top {
+display: flex;
+}
+}
 </style>
 <button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-  <i class="fa fa-angle-up"></i>
-</button>
+<i class="fa fa-angle-up"></i>
+</button></p>
 <script>
   const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
   window.addEventListener("scroll", () => {
@@ -973,31 +995,31 @@ file 'file3.mp4'
 </style>
 <h1 id="essential-shortcuts"><a class="header" href="#essential-shortcuts"><p style="text-align:center;">Essential Shortcuts</p></a></h1>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Keyboard shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>A</kbd></td><td style="text-align: left">Select all content.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>C</kbd></td><td style="text-align: left">Copy selected items to clipboard.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>X</kbd></td><td style="text-align: left">Cut selected items to clipboard.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>V</kbd></td><td style="text-align: left">(or Shift + Insert) Paste content from clipboard.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Z</kbd></td><td style="text-align: left">Undo an action, including undelete files (limited).</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Y</kbd></td><td style="text-align: left">Redo an action.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>N</kbd></td><td style="text-align: left">Create new folder on desktop or File Explorer.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>F4</kbd></td><td style="text-align: left">Close active window. (If no active window is present, a shutdown box appears.)</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>D</kbd></td><td style="text-align: left">Delete selected item to the Recycle Bin.</td></tr>
-<tr><td style="text-align: left"><kbd>Shift</kbd> <kbd>+</kbd> <kbd>Del</kbd></td><td style="text-align: left">Delete the selected item permanently, skipping Recycle Bin.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>A</kbd></td><td style="text-align: left">Select all content.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>C</kbd></td><td style="text-align: left">Copy selected items to clipboard.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>X</kbd></td><td style="text-align: left">Cut selected items to clipboard.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>V</kbd></td><td style="text-align: left">(or Shift + Insert) Paste content from clipboard.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Z</kbd></td><td style="text-align: left">Undo an action, including undelete files (limited).</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Y</kbd></td><td style="text-align: left">Redo an action.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd></td><td style="text-align: left">Create new folder on desktop or File Explorer.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>F4</kbd></td><td style="text-align: left">Close active window. (If no active window is present, a shutdown box appears.)</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>D</kbd></td><td style="text-align: left">Delete selected item to the Recycle Bin.</td></tr>
+<tr><td style="text-align: left"><kbd>Shift</kbd> + <kbd>Del</kbd></td><td style="text-align: left">Delete the selected item permanently, skipping Recycle Bin.</td></tr>
 <tr><td style="text-align: left"><kbd>F2</kbd></td><td style="text-align: left">Rename selected item.</td></tr>
 <tr><td style="text-align: left"><kbd>Esc</kbd></td><td style="text-align: left">Close current task.</td></tr>
 <tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>Tab</kbd></td><td style="text-align: left">Switch between open apps.</td></tr>
 <tr><td style="text-align: left"><kbd>PrtScn</kbd></td><td style="text-align: left">Take a screenshot and stores it in the clipboard.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>E</kbd></td><td style="text-align: left">Open File Explorer.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>I</kbd></td><td style="text-align: left">Open Settings app.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>A</kbd></td><td style="text-align: left">Open Action center.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>D</kbd></td><td style="text-align: left">Display and hide the desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>L</kbd></td><td style="text-align: left">Lock device.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>V</kbd></td><td style="text-align: left">Open Clipboard bin.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>.</kbd></td><td style="text-align: left">Open emoji panel.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>PrtScn</kbd></td><td style="text-align: left">Capture a full screenshot in the "Screenshots" folder.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>S</kbd></td><td style="text-align: left">Capture part of the screen with Snip &amp; Sketch.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>←</kbd></td><td style="text-align: left">Snap app or window left.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>→</kbd></td><td style="text-align: left">Snap app or window right.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>E</kbd></td><td style="text-align: left">Open File Explorer.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>I</kbd></td><td style="text-align: left">Open Settings app.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>A</kbd></td><td style="text-align: left">Open Action center.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>D</kbd></td><td style="text-align: left">Display and hide the desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>L</kbd></td><td style="text-align: left">Lock device.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>V</kbd></td><td style="text-align: left">Open Clipboard bin.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>.</kbd></td><td style="text-align: left">Open emoji panel.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>PrtScn</kbd></td><td style="text-align: left">Capture a full screenshot in the "Screenshots" folder.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd></td><td style="text-align: left">Capture part of the screen with Snip &amp; Sketch.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>←</kbd></td><td style="text-align: left">Snap app or window left.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>→</kbd></td><td style="text-align: left">Snap app or window right.</td></tr>
 </tbody></table>
 </div><style>
   .scroll-to-top {
@@ -1108,60 +1130,60 @@ file 'file3.mp4'
 </style>
 <h1 id="desktop-shortcuts"><a class="header" href="#desktop-shortcuts"><p style="text-align:center;">Desktop Shortcuts</p></a></h1>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Keyboard shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Esc</kbd> or <kbd> ⊞</kbd></td><td style="text-align: left">Open Start menu.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Shift</kbd> +<kbd> Esc</kbd></td><td style="text-align: left">Open Task Manager.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Shift</kbd></td><td style="text-align: left">Switch keyboard layout.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>F4</kbd></td><td style="text-align: left">Close active window. (If no active window is present, a shutdown box appears.)</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>F5</kbd> or <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>R</kbd></td><td style="text-align: left">Refresh current window.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Alt</kbd> <kbd>+</kbd> <kbd>Tab</kbd></td><td style="text-align: left">View open apps.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd>; <kbd>+</kbd> <kbd>Space</kbd></td><td style="text-align: left">Select multiple items on desktop or File Explorer.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> and an <u>underlined</u> letter</td><td style="text-align: left">Runs command for the underlined letter in apps.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>Tab</kbd></td><td style="text-align: left">Switch between open apps while pressing Tab multiple times.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>←</kbd></td><td style="text-align: left">Go back.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>→</kbd></td><td style="text-align: left">Go forward.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>▲</kbd></td><td style="text-align: left">Move up one screen.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>▼</kbd></td><td style="text-align: left">Move down one screen.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>Esc</kbd></td><td style="text-align: left">Cycle through open windows.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>Space</kbd></td><td style="text-align: left">Open context menu for the active window.</td></tr>
-<tr><td style="text-align: left"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>F8</kbd></td><td style="text-align: left">Reveals typed password in Sign-in screen.</td></tr>
-<tr><td style="text-align: left"><kbd>Shift</kbd> <kbd>+</kbd> Click app button</td><td style="text-align: left">Open another instance of an app from the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Shift</kbd> +</kbd> Click app button</td><td style="text-align: left">Run app as administrator from the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>Shift</kbd> <kbd>+</kbd> Right-click app button</td><td style="text-align: left">Show window menu for the app from the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> Click a grouped app button</td><td style="text-align: left">Cycle through windows in the group from the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>Shift</kbd> <kbd>+</kbd> Right-click grouped app button</td><td style="text-align: left">Show window menu for the group from the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>←</kbd></td><td style="text-align: left">Move the cursor to the beginning of the previous word.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>→</kbd></td><td style="text-align: left">Move the cursor to the beginning of the next word.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>↑</kbd></td><td style="text-align: left">Move the cursor to the beginning of the previous paragraph</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>↓</kbd></td><td style="text-align: left">Move the cursor to the beginning of the next paragraph.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td style="text-align: left">Select block of text.</td></tr>
-<tr><td style="text-align: left"><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Space</kbd></td><td style="text-align: left">Enable or disable Chinese IME.</td></tr>
-<tr><td style="text-align: left"><kbd>Shift</kbd> <kbd>+</kbd> <kbd>F10</kbd></td><td style="text-align: left">Open context menu for selected item.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Esc</kbd> or <kbd> ⊞</kbd></td><td style="text-align: left">Open Start menu.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> +<kbd> Esc</kbd></td><td style="text-align: left">Open Task Manager.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Shift</kbd></td><td style="text-align: left">Switch keyboard layout.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>F4</kbd></td><td style="text-align: left">Close active window. (If no active window is present, a shutdown box appears.)</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>F5</kbd> or <kbd>Ctrl</kbd> + <kbd>R</kbd></td><td style="text-align: left">Refresh current window.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Tab</kbd></td><td style="text-align: left">View open apps.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> + <kbd>Space</kbd></td><td style="text-align: left">Select multiple items on desktop or File Explorer.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + and an <u>underlined</u> letter</td><td style="text-align: left">Runs command for the underlined letter in apps.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>Tab</kbd></td><td style="text-align: left">Switch between open apps while pressing Tab multiple times.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>←</kbd></td><td style="text-align: left">Go back.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>→</kbd></td><td style="text-align: left">Go forward.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>▲</kbd></td><td style="text-align: left">Move up one screen.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>▼</kbd></td><td style="text-align: left">Move down one screen.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>Esc</kbd></td><td style="text-align: left">Cycle through open windows.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>Space</kbd></td><td style="text-align: left">Open context menu for the active window.</td></tr>
+<tr><td style="text-align: left"><kbd>Alt</kbd> + <kbd>F8</kbd></td><td style="text-align: left">Reveals typed password in Sign-in screen.</td></tr>
+<tr><td style="text-align: left"><kbd>Shift</kbd> + Click app button</td><td style="text-align: left">Open another instance of an app from the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> +</kbd> Click app button</td><td style="text-align: left">Run app as administrator from the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>Shift</kbd> + Right-click app button</td><td style="text-align: left">Show window menu for the app from the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + Click a grouped app button</td><td style="text-align: left">Cycle through windows in the group from the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>Shift</kbd> + Right-click grouped app button</td><td style="text-align: left">Show window menu for the group from the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>←</kbd></td><td style="text-align: left">Move the cursor to the beginning of the previous word.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>→</kbd></td><td style="text-align: left">Move the cursor to the beginning of the next word.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>↑</kbd></td><td style="text-align: left">Move the cursor to the beginning of the previous paragraph</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>↓</kbd></td><td style="text-align: left">Move the cursor to the beginning of the next paragraph.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td style="text-align: left">Select block of text.</td></tr>
+<tr><td style="text-align: left"><kbd>Ctrl</kbd> + <kbd>Space</kbd></td><td style="text-align: left">Enable or disable Chinese IME.</td></tr>
+<tr><td style="text-align: left"><kbd>Shift</kbd> + <kbd>F10</kbd></td><td style="text-align: left">Open context menu for selected item.</td></tr>
 <tr><td style="text-align: left"><kbd>F10</kbd></td><td style="text-align: left">Enable app menu bar.</td></tr>
-<tr><td style="text-align: left"><kbd>Shift</kbd> <kbd>+</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td style="text-align: left">Select multiple items.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd>  Number <kbd>0-9</kbd></td><td style="text-align: left">Open the app in number position from the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> T</kbd></td><td style="text-align: left">Cycle through apps in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Alt</kbd></kbd> <kbd>+</kbd>  Number <kbd>0-9</kbd></td><td style="text-align: left">Open Jump List of the app in number position from the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> X</kbd></td><td style="text-align: left">Open Quick Link menu.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> D</kbd></td><td style="text-align: left">Display and hide the desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> M</kbd></td><td style="text-align: left">Minimize all windows.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> <kbd>+</kbd> <kbd> M</kbd></td><td style="text-align: left">Restore minimized windows on the desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Home</kbd></td><td style="text-align: left">Minimize or maximize all but the active desktop window.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> <kbd>+</kbd> <kbd>↑ </kbd></td><td style="text-align: left">Stretch desktop window to the top and bottom of the screen.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> <kbd>+</kbd> <kbd>↓ </kbd></td><td style="text-align: left">Maximize or minimize active desktop windows vertically while maintaining width.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> <kbd>+</kbd> <kbd>←</kbd></td><td style="text-align: left">Move active window to monitor on the left.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Shift</kbd> <kbd>+</kbd> <kbd>→</kbd></td><td style="text-align: left">Move active window to monitor on the right.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> ← </kbd></td><td style="text-align: left">Snap app or window left.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>  →</kbd></td><td style="text-align: left">Snap app or window right.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> S</kbd> or <kbd>Q</kbd></td><td style="text-align: left">Open Search.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Alt</kbd></kbd> <kbd>+</kbd>  <kbd>D</kbd></td><td style="text-align: left">Open date and time in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Tab</kbd></td><td style="text-align: left">Open Task View.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Ctrl</kbd></kbd> <kbd>+</kbd></kbd> <kbd>D</kbd></td><td style="text-align: left">Create new virtual desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Ctrl</kbd></kbd> <kbd>+</kbd></kbd> <kbd>F4</kbd></td><td style="text-align: left">Close active virtual desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Ctrl</kbd></kbd> <kbd>+</kbd></kbd> <kbd>→</kbd></td><td style="text-align: left">Switch to the virtual desktop on the right.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> Ctrl</kbd></kbd> <kbd>+</kbd></kbd> <kbd>←</kbd></td><td style="text-align: left">Switch to the virtual desktop on the left.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> P</kbd></td><td style="text-align: left">Open Project settings.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> A</kbd></td><td style="text-align: left">Open Action center.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd> I</kbd></td><td style="text-align: left">Open Settings app.</td></tr>
+<tr><td style="text-align: left"><kbd>Shift</kbd> + <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd></td><td style="text-align: left">Select multiple items.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> +  Number <kbd>0-9</kbd></td><td style="text-align: left">Open the app in number position from the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> T</kbd></td><td style="text-align: left">Cycle through apps in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Alt</kbd></kbd> +  Number <kbd>0-9</kbd></td><td style="text-align: left">Open Jump List of the app in number position from the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> X</kbd></td><td style="text-align: left">Open Quick Link menu.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> D</kbd></td><td style="text-align: left">Display and hide the desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> M</kbd></td><td style="text-align: left">Minimize all windows.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Shift</kbd> + <kbd> M</kbd></td><td style="text-align: left">Restore minimized windows on the desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Home</kbd></td><td style="text-align: left">Minimize or maximize all but the active desktop window.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Shift</kbd> + <kbd>↑ </kbd></td><td style="text-align: left">Stretch desktop window to the top and bottom of the screen.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Shift</kbd> + <kbd>↓ </kbd></td><td style="text-align: left">Maximize or minimize active desktop windows vertically while maintaining width.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Shift</kbd> + <kbd>←</kbd></td><td style="text-align: left">Move active window to monitor on the left.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Shift</kbd> + <kbd>→</kbd></td><td style="text-align: left">Move active window to monitor on the right.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> ← </kbd></td><td style="text-align: left">Snap app or window left.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>  →</kbd></td><td style="text-align: left">Snap app or window right.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> S</kbd> or <kbd>Q</kbd></td><td style="text-align: left">Open Search.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Alt</kbd></kbd> +  <kbd>D</kbd></td><td style="text-align: left">Open date and time in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Tab</kbd></td><td style="text-align: left">Open Task View.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Ctrl</kbd></kbd> +</kbd> <kbd>D</kbd></td><td style="text-align: left">Create new virtual desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Ctrl</kbd></kbd> +</kbd> <kbd>F4</kbd></td><td style="text-align: left">Close active virtual desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Ctrl</kbd></kbd> +</kbd> <kbd>→</kbd></td><td style="text-align: left">Switch to the virtual desktop on the right.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> Ctrl</kbd></kbd> +</kbd> <kbd>←</kbd></td><td style="text-align: left">Switch to the virtual desktop on the left.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> P</kbd></td><td style="text-align: left">Open Project settings.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> A</kbd></td><td style="text-align: left">Open Action center.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd> I</kbd></td><td style="text-align: left">Open Settings app.</td></tr>
 <tr><td style="text-align: left"><kbd>Backspace</td><td style="text-align: left">Return to the Settings app home page.</td></tr>
 </tbody></table>
 </div><style>
@@ -1274,67 +1296,67 @@ file 'file3.mp4'
 <h1 id="windows-key"><a class="header" href="#windows-key"><p style="text-align:center;">Windows Key</p></a></h1>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Keyboard shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
 <tr><td style="text-align: left"><kbd>⊞</kbd></td><td style="text-align: left">Open Start menu.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>A</kbd></td><td style="text-align: left">Open Action center.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>S</kbd> or <kbd>Q</kbd></td><td style="text-align: left">Open Search.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>D</kbd></td><td style="text-align: left">Display and hide the desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>L</kbd></td><td style="text-align: left">Locks computer.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>M</kbd></td><td style="text-align: left">Minimize all windows.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>B</kbd></td><td style="text-align: left">Set focus notification area in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>C</kbd></td><td style="text-align: left">Launch Cortana app.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>F</kbd></td><td style="text-align: left">Launch Feedback Hub app.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>G</kbd></td><td style="text-align: left">Launch Game bar app.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Y</kbd></td><td style="text-align: left">Change input between desktop and Mixed Reality.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>O</kbd></td><td style="text-align: left">Lock device orientation.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>T</kbd></td><td style="text-align: left">Cycle through apps in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Z</kbd></td><td style="text-align: left">Switch input between the desktop experience and Windows Mixed Reality.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>J</kbd></td><td style="text-align: left">Set focus on a tip for Windows 10 when applicable.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>H</kbd></td><td style="text-align: left">Open dictation feature.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>E</kbd></td><td style="text-align: left">Open File Explorer.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>I</kbd></td><td style="text-align: left">Open Settings.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>R</kbd></td><td style="text-align: left">Open Run command.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>K</kbd></td><td style="text-align: left">Open Connect settings.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>X</kbd></td><td style="text-align: left">Open Quick Link menu.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>V</kbd></td><td style="text-align: left">Open Clipboard bin.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>W</kbd></td><td style="text-align: left">Open the Windows Ink Workspace.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>U</kbd></td><td style="text-align: left">Open Ease of Access settings.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>P</kbd></td><td style="text-align: left">Open Project settings.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Enter</kbd></td><td style="text-align: left">Open Narrator.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>+</kbd> (Plus)</td><td style="text-align: left">Zoom in using the magnifier.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>-</kbd> (Minus)</td><td style="text-align: left">Zoom out using the magnifier.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Esc</kbd></td><td style="text-align: left">Exit magnifier.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>/</kbd></td><td style="text-align: left">Start IME reconversion.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>,</kbd> (Comma)</td><td style="text-align: left">Temporarily peek at the desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>↑</kbd></td><td style="text-align: left">Maximize app windows.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>↓</kbd></td><td style="text-align: left">Minimize app windows.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Home</kbd></td><td style="text-align: left">Minimize or maximize all but the active desktop window.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>M</kbd></td><td style="text-align: left">Restore minimized windows on the desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>↑</kbd></td><td style="text-align: left">Stretch desktop window to the top and bottom of the screen.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>↓</kbd></td><td style="text-align: left">Maximize or minimize active windows vertically while maintaining width.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>←</kbd></td><td style="text-align: left">Move active window to monitor on the left.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>→</kbd></td><td style="text-align: left">Move active window to monitor on the right.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>←</kbd></td><td style="text-align: left">Snap app or window left.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>→</kbd></td><td style="text-align: left">Snap app or window right.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>0-9</kbd></td><td style="text-align: left">Open the app in number position in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>0-9</kbd></td><td style="text-align: left">Open another app instance in the number position in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>0-9</kbd></td><td style="text-align: left">Switch to the last active window of the app in the number position in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Alt</kbd> <kbd>+</kbd> <kbd>0-9</kbd></td><td style="text-align: left">Open Jump List of the app in number position in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd>  <kbd>Shift</kbd> + <kbd>0-9</kbd></td><td style="text-align: left">Open another instance as an administrator of the app in the number position in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Space</kbd></td><td style="text-align: left">Change previous selected input option.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Space</kbd></td><td style="text-align: left">Change keyboard layout and input language.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Tab</kbd></td><td style="text-align: left">Open Task View.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>D</kbd></td><td style="text-align: left">Create a virtual desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>F4</kbd></td><td style="text-align: left">Close active virtual desktop.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>→</kbd></td><td style="text-align: left">Switch to the virtual desktop on the right.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>←</kbd></td><td style="text-align: left">Switch to the virtual desktop on the left.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>B</kbd></td><td style="text-align: left">Wake up the device when black or a blank screen.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>PrtScn</kbd></td><td style="text-align: left">Capture a full screenshot in the "Screenshots" folder.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>S</kbd></td><td style="text-align: left">Create part of the screen screenshot.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Shift</kbd> <kbd>+</kbd> <kbd>V</kbd></td><td style="text-align: left">Cycle through notifications.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>F</kbd></td><td style="text-align: left">Open search for the device on a domain network.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Q</kbd></td><td style="text-align: left">Open Quick Assist.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Alt</kbd> <kbd>+</kbd> <kbd>D</kbd></td><td style="text-align: left">Open date and time in the Taskbar.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>.</kbd> or <kbd>;</kbd></td><td style="text-align: left">Open emoji panel.</td></tr>
-<tr><td style="text-align: left"><kbd>⊞</kbd> <kbd>+</kbd> <kbd>Pause</kbd></td><td style="text-align: left">Show System Properties dialog box.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>A</kbd></td><td style="text-align: left">Open Action center.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>S</kbd> or <kbd>Q</kbd></td><td style="text-align: left">Open Search.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>D</kbd></td><td style="text-align: left">Display and hide the desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>L</kbd></td><td style="text-align: left">Locks computer.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>M</kbd></td><td style="text-align: left">Minimize all windows.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>B</kbd></td><td style="text-align: left">Set focus notification area in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>C</kbd></td><td style="text-align: left">Launch Cortana app.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>F</kbd></td><td style="text-align: left">Launch Feedback Hub app.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>G</kbd></td><td style="text-align: left">Launch Game bar app.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Y</kbd></td><td style="text-align: left">Change input between desktop and Mixed Reality.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>O</kbd></td><td style="text-align: left">Lock device orientation.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>T</kbd></td><td style="text-align: left">Cycle through apps in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Z</kbd></td><td style="text-align: left">Switch input between the desktop experience and Windows Mixed Reality.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>J</kbd></td><td style="text-align: left">Set focus on a tip for Windows 10 when applicable.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>H</kbd></td><td style="text-align: left">Open dictation feature.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>E</kbd></td><td style="text-align: left">Open File Explorer.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>I</kbd></td><td style="text-align: left">Open Settings.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>R</kbd></td><td style="text-align: left">Open Run command.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>K</kbd></td><td style="text-align: left">Open Connect settings.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>X</kbd></td><td style="text-align: left">Open Quick Link menu.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>V</kbd></td><td style="text-align: left">Open Clipboard bin.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>W</kbd></td><td style="text-align: left">Open the Windows Ink Workspace.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>U</kbd></td><td style="text-align: left">Open Ease of Access settings.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>P</kbd></td><td style="text-align: left">Open Project settings.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td style="text-align: left">Open Narrator.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + + (Plus)</td><td style="text-align: left">Zoom in using the magnifier.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>-</kbd> (Minus)</td><td style="text-align: left">Zoom out using the magnifier.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Esc</kbd></td><td style="text-align: left">Exit magnifier.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>/</kbd></td><td style="text-align: left">Start IME reconversion.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>,</kbd> (Comma)</td><td style="text-align: left">Temporarily peek at the desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>↑</kbd></td><td style="text-align: left">Maximize app windows.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>↓</kbd></td><td style="text-align: left">Minimize app windows.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Home</kbd></td><td style="text-align: left">Minimize or maximize all but the active desktop window.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd></td><td style="text-align: left">Restore minimized windows on the desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Shift</kbd> + <kbd>↑</kbd></td><td style="text-align: left">Stretch desktop window to the top and bottom of the screen.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Shift</kbd> + <kbd>↓</kbd></td><td style="text-align: left">Maximize or minimize active windows vertically while maintaining width.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd></td><td style="text-align: left">Move active window to monitor on the left.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Shift</kbd> + <kbd>→</kbd></td><td style="text-align: left">Move active window to monitor on the right.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>←</kbd></td><td style="text-align: left">Snap app or window left.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>→</kbd></td><td style="text-align: left">Snap app or window right.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>0-9</kbd></td><td style="text-align: left">Open the app in number position in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Shift</kbd> + <kbd>0-9</kbd></td><td style="text-align: left">Open another app instance in the number position in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>0-9</kbd></td><td style="text-align: left">Switch to the last active window of the app in the number position in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Alt</kbd> + <kbd>0-9</kbd></td><td style="text-align: left">Open Jump List of the app in number position in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> +  <kbd>Shift</kbd> + <kbd>0-9</kbd></td><td style="text-align: left">Open another instance as an administrator of the app in the number position in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>Space</kbd></td><td style="text-align: left">Change previous selected input option.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Space</kbd></td><td style="text-align: left">Change keyboard layout and input language.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Tab</kbd></td><td style="text-align: left">Open Task View.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>D</kbd></td><td style="text-align: left">Create a virtual desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>F4</kbd></td><td style="text-align: left">Close active virtual desktop.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>→</kbd></td><td style="text-align: left">Switch to the virtual desktop on the right.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>←</kbd></td><td style="text-align: left">Switch to the virtual desktop on the left.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd></td><td style="text-align: left">Wake up the device when black or a blank screen.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>PrtScn</kbd></td><td style="text-align: left">Capture a full screenshot in the "Screenshots" folder.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd></td><td style="text-align: left">Create part of the screen screenshot.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd></td><td style="text-align: left">Cycle through notifications.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>F</kbd></td><td style="text-align: left">Open search for the device on a domain network.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Ctrl</kbd> + <kbd>Q</kbd></td><td style="text-align: left">Open Quick Assist.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Alt</kbd> + <kbd>D</kbd></td><td style="text-align: left">Open date and time in the Taskbar.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>.</kbd> or <kbd>;</kbd></td><td style="text-align: left">Open emoji panel.</td></tr>
+<tr><td style="text-align: left"><kbd>⊞</kbd> + <kbd>Pause</kbd></td><td style="text-align: left">Show System Properties dialog box.</td></tr>
 </tbody></table>
 </div><style>
   .scroll-to-top {
@@ -1515,70 +1537,70 @@ file 'file3.mp4'
 Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ</p>
 <h2 id="windows-alt-codes-and-unicode-symbols"><a class="header" href="#windows-alt-codes-and-unicode-symbols"><p style="text-align:center;">Windows ALT-Codes and Unicode Symbols</p></a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: center">To type this symbol</th><th style="text-align: center">Press this on your keyboard</th><th style="text-align: center">Description</th></tr></thead><tbody>
-<tr><td style="text-align: center">™</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0153</kbd></td><td style="text-align: center">Trademark</td></tr>
-<tr><td style="text-align: center">©</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0169</kbd></td><td style="text-align: center">Copyright</td></tr>
-<tr><td style="text-align: center">®</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0174</kbd></td><td style="text-align: center">Registered</td></tr>
-<tr><td style="text-align: center">‰</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0137</kbd></td><td style="text-align: center">Per mille (per thousand)</td></tr>
-<tr><td style="text-align: center">±</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>241</kbd></td><td style="text-align: center">Plus or Minus</td></tr>
-<tr><td style="text-align: center">¼</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0188</kbd></td><td style="text-align: center">Quarter</td></tr>
-<tr><td style="text-align: center">½</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0189</kbd></td><td style="text-align: center">Half</td></tr>
-<tr><td style="text-align: center">¾</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0190</kbd></td><td style="text-align: center">Three quarters</td></tr>
-<tr><td style="text-align: center">≡</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>240</kbd></td><td style="text-align: center">Exactly Identical</td></tr>
-<tr><td style="text-align: center">≈</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>247</kbd></td><td style="text-align: center">Approximately equal</td></tr>
-<tr><td style="text-align: center">≥</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>242</kbd></td><td style="text-align: center">Greater than or equal</td></tr>
-<tr><td style="text-align: center">≤</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>243</kbd></td><td style="text-align: center">Less than or equal</td></tr>
-<tr><td style="text-align: center">√</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>251</kbd></td><td style="text-align: center">Square Root</td></tr>
-<tr><td style="text-align: center">ⁿ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>252</kbd></td><td style="text-align: center">Power n</td></tr>
-<tr><td style="text-align: center">¹</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0185</kbd></td><td style="text-align: center">To the power of 1</td></tr>
-<tr><td style="text-align: center">²</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0178</kbd></td><td style="text-align: center">Squared</td></tr>
-<tr><td style="text-align: center">³</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0179</kbd></td><td style="text-align: center">Cubed</td></tr>
-<tr><td style="text-align: center">π</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>227</kbd></td><td style="text-align: center">Pi</td></tr>
-<tr><td style="text-align: center">°</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>248</kbd></td><td style="text-align: center">Degree</td></tr>
-<tr><td style="text-align: center">∞</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>2368</kbd></td><td style="text-align: center">Infinity</td></tr>
-<tr><td style="text-align: center">µ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>230</kbd></td><td style="text-align: center">Micro</td></tr>
-<tr><td style="text-align: center">Σ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>228</kbd></td><td style="text-align: center">Sum</td></tr>
-<tr><td style="text-align: center">☺</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>1</kbd></td><td style="text-align: center">White Smiley</td></tr>
-<tr><td style="text-align: center">☻</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>2</kbd></td><td style="text-align: center">Black Smiley</td></tr>
-<tr><td style="text-align: center">•</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>7</kbd></td><td style="text-align: center">Bullet 1</td></tr>
-<tr><td style="text-align: center">○</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>9</kbd></td><td style="text-align: center">Bullet 2</td></tr>
-<tr><td style="text-align: center">♂</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>11</kbd></td><td style="text-align: center">Male Sign</td></tr>
-<tr><td style="text-align: center">♀</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>12</kbd></td><td style="text-align: center">Female Sign</td></tr>
-<tr><td style="text-align: center">↨</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>23</kbd></td><td style="text-align: center">Up/Down Arrow</td></tr>
-<tr><td style="text-align: center">↑</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>24</kbd></td><td style="text-align: center">Up Arrow</td></tr>
-<tr><td style="text-align: center">↓</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>25</kbd></td><td style="text-align: center">Down Arrow</td></tr>
-<tr><td style="text-align: center">→</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>26</kbd></td><td style="text-align: center">Right Arrow</td></tr>
-<tr><td style="text-align: center">←</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>27</kbd></td><td style="text-align: center">Left Arrow</td></tr>
-<tr><td style="text-align: center">↔</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>29</kbd></td><td style="text-align: center">Right/Left Arrow</td></tr>
-<tr><td style="text-align: center">£</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>156</kbd></td><td style="text-align: center">Pound</td></tr>
-<tr><td style="text-align: center">€</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0128</kbd></td><td style="text-align: center">Euro</td></tr>
-<tr><td style="text-align: center">$</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>36</kbd></td><td style="text-align: center">Dollar Sign</td></tr>
-<tr><td style="text-align: center">¢</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>155</kbd></td><td style="text-align: center">Cent</td></tr>
-<tr><td style="text-align: center">¥</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>157</kbd></td><td style="text-align: center">Yen</td></tr>
-<tr><td style="text-align: center">ƒ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>159</kbd></td><td style="text-align: center">Frank</td></tr>
-<tr><td style="text-align: center">₧</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>158</kbd></td><td style="text-align: center">Peseta</td></tr>
-<tr><td style="text-align: center">ß</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>225</kbd></td><td style="text-align: center">Beta</td></tr>
-<tr><td style="text-align: center">α</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>224</kbd></td><td style="text-align: center">Alpha</td></tr>
-<tr><td style="text-align: center">δ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>235</kbd></td><td style="text-align: center">Delta</td></tr>
-<tr><td style="text-align: center">Ω</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>234</kbd></td><td style="text-align: center">Omega</td></tr>
-<tr><td style="text-align: center">►</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>16</kbd></td><td style="text-align: center">Point Right</td></tr>
-<tr><td style="text-align: center">◄</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>17</kbd></td><td style="text-align: center">Point Left</td></tr>
-<tr><td style="text-align: center">■</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>254</kbd></td><td style="text-align: center">Stop</td></tr>
-<tr><td style="text-align: center">▲</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>30</kbd></td><td style="text-align: center">Point Up</td></tr>
-<tr><td style="text-align: center">▼</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>31</kbd></td><td style="text-align: center">Point Down</td></tr>
-<tr><td style="text-align: center">§</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>21</kbd></td><td style="text-align: center">Section</td></tr>
-<tr><td style="text-align: center">¶</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>20</kbd></td><td style="text-align: center">Paragraph</td></tr>
-<tr><td style="text-align: center">“</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0147</kbd></td><td style="text-align: center">Curly double open quote</td></tr>
-<tr><td style="text-align: center">”</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0148</kbd></td><td style="text-align: center">Curly double close quote</td></tr>
-<tr><td style="text-align: center">«</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>174</kbd></td><td style="text-align: center">Quotation Mark</td></tr>
-<tr><td style="text-align: center">»</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>175</kbd></td><td style="text-align: center">Quotation Mark</td></tr>
-<tr><td style="text-align: center">♥</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>3</kbd></td><td style="text-align: center">Heart</td></tr>
-<tr><td style="text-align: center">º</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0176</kbd></td><td style="text-align: center">Degree symbol</td></tr>
-<tr><td style="text-align: center">œ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0156</kbd></td><td style="text-align: center">Latin small ligature oe</td></tr>
-<tr><td style="text-align: center">•</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0149</kbd></td><td style="text-align: center">Bullet</td></tr>
-<tr><td style="text-align: center">↻</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>8635</kbd></td><td style="text-align: center">Clockwise Open Circle Arrow</td></tr>
-<tr><td style="text-align: center">↺</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>31</kbd></td><td style="text-align: center">Counterclockwise Open Circle Arrow</td></tr>
-<tr><td style="text-align: center">Ø</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0216</kbd></td><td style="text-align: center">Diameter</td></tr>
-<tr><td style="text-align: center">Ñ</td><td style="text-align: center"><kbd>Alt</kbd> <kbd>+</kbd> <kbd>0209</kbd></td><td style="text-align: center">Enye</td></tr>
+<tr><td style="text-align: center">™</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0153</kbd></td><td style="text-align: center">Trademark</td></tr>
+<tr><td style="text-align: center">©</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0169</kbd></td><td style="text-align: center">Copyright</td></tr>
+<tr><td style="text-align: center">®</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0174</kbd></td><td style="text-align: center">Registered</td></tr>
+<tr><td style="text-align: center">‰</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0137</kbd></td><td style="text-align: center">Per mille (per thousand)</td></tr>
+<tr><td style="text-align: center">±</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>241</kbd></td><td style="text-align: center">Plus or Minus</td></tr>
+<tr><td style="text-align: center">¼</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0188</kbd></td><td style="text-align: center">Quarter</td></tr>
+<tr><td style="text-align: center">½</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0189</kbd></td><td style="text-align: center">Half</td></tr>
+<tr><td style="text-align: center">¾</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0190</kbd></td><td style="text-align: center">Three quarters</td></tr>
+<tr><td style="text-align: center">≡</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>240</kbd></td><td style="text-align: center">Exactly Identical</td></tr>
+<tr><td style="text-align: center">≈</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>247</kbd></td><td style="text-align: center">Approximately equal</td></tr>
+<tr><td style="text-align: center">≥</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>242</kbd></td><td style="text-align: center">Greater than or equal</td></tr>
+<tr><td style="text-align: center">≤</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>243</kbd></td><td style="text-align: center">Less than or equal</td></tr>
+<tr><td style="text-align: center">√</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>251</kbd></td><td style="text-align: center">Square Root</td></tr>
+<tr><td style="text-align: center">ⁿ</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>252</kbd></td><td style="text-align: center">Power n</td></tr>
+<tr><td style="text-align: center">¹</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0185</kbd></td><td style="text-align: center">To the power of 1</td></tr>
+<tr><td style="text-align: center">²</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0178</kbd></td><td style="text-align: center">Squared</td></tr>
+<tr><td style="text-align: center">³</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0179</kbd></td><td style="text-align: center">Cubed</td></tr>
+<tr><td style="text-align: center">π</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>227</kbd></td><td style="text-align: center">Pi</td></tr>
+<tr><td style="text-align: center">°</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>248</kbd></td><td style="text-align: center">Degree</td></tr>
+<tr><td style="text-align: center">∞</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>2368</kbd></td><td style="text-align: center">Infinity</td></tr>
+<tr><td style="text-align: center">µ</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>230</kbd></td><td style="text-align: center">Micro</td></tr>
+<tr><td style="text-align: center">Σ</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>228</kbd></td><td style="text-align: center">Sum</td></tr>
+<tr><td style="text-align: center">☺</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>1</kbd></td><td style="text-align: center">White Smiley</td></tr>
+<tr><td style="text-align: center">☻</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>2</kbd></td><td style="text-align: center">Black Smiley</td></tr>
+<tr><td style="text-align: center">•</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>7</kbd></td><td style="text-align: center">Bullet 1</td></tr>
+<tr><td style="text-align: center">○</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>9</kbd></td><td style="text-align: center">Bullet 2</td></tr>
+<tr><td style="text-align: center">♂</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>11</kbd></td><td style="text-align: center">Male Sign</td></tr>
+<tr><td style="text-align: center">♀</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>12</kbd></td><td style="text-align: center">Female Sign</td></tr>
+<tr><td style="text-align: center">↨</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>23</kbd></td><td style="text-align: center">Up/Down Arrow</td></tr>
+<tr><td style="text-align: center">↑</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>24</kbd></td><td style="text-align: center">Up Arrow</td></tr>
+<tr><td style="text-align: center">↓</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>25</kbd></td><td style="text-align: center">Down Arrow</td></tr>
+<tr><td style="text-align: center">→</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>26</kbd></td><td style="text-align: center">Right Arrow</td></tr>
+<tr><td style="text-align: center">←</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>27</kbd></td><td style="text-align: center">Left Arrow</td></tr>
+<tr><td style="text-align: center">↔</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>29</kbd></td><td style="text-align: center">Right/Left Arrow</td></tr>
+<tr><td style="text-align: center">£</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>156</kbd></td><td style="text-align: center">Pound</td></tr>
+<tr><td style="text-align: center">€</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0128</kbd></td><td style="text-align: center">Euro</td></tr>
+<tr><td style="text-align: center">$</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>36</kbd></td><td style="text-align: center">Dollar Sign</td></tr>
+<tr><td style="text-align: center">¢</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>155</kbd></td><td style="text-align: center">Cent</td></tr>
+<tr><td style="text-align: center">¥</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>157</kbd></td><td style="text-align: center">Yen</td></tr>
+<tr><td style="text-align: center">ƒ</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>159</kbd></td><td style="text-align: center">Frank</td></tr>
+<tr><td style="text-align: center">₧</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>158</kbd></td><td style="text-align: center">Peseta</td></tr>
+<tr><td style="text-align: center">ß</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>225</kbd></td><td style="text-align: center">Beta</td></tr>
+<tr><td style="text-align: center">α</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>224</kbd></td><td style="text-align: center">Alpha</td></tr>
+<tr><td style="text-align: center">δ</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>235</kbd></td><td style="text-align: center">Delta</td></tr>
+<tr><td style="text-align: center">Ω</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>234</kbd></td><td style="text-align: center">Omega</td></tr>
+<tr><td style="text-align: center">►</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>16</kbd></td><td style="text-align: center">Point Right</td></tr>
+<tr><td style="text-align: center">◄</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>17</kbd></td><td style="text-align: center">Point Left</td></tr>
+<tr><td style="text-align: center">■</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>254</kbd></td><td style="text-align: center">Stop</td></tr>
+<tr><td style="text-align: center">▲</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>30</kbd></td><td style="text-align: center">Point Up</td></tr>
+<tr><td style="text-align: center">▼</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>31</kbd></td><td style="text-align: center">Point Down</td></tr>
+<tr><td style="text-align: center">§</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>21</kbd></td><td style="text-align: center">Section</td></tr>
+<tr><td style="text-align: center">¶</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>20</kbd></td><td style="text-align: center">Paragraph</td></tr>
+<tr><td style="text-align: center">“</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0147</kbd></td><td style="text-align: center">Curly double open quote</td></tr>
+<tr><td style="text-align: center">”</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0148</kbd></td><td style="text-align: center">Curly double close quote</td></tr>
+<tr><td style="text-align: center">«</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>174</kbd></td><td style="text-align: center">Quotation Mark</td></tr>
+<tr><td style="text-align: center">»</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>175</kbd></td><td style="text-align: center">Quotation Mark</td></tr>
+<tr><td style="text-align: center">♥</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>3</kbd></td><td style="text-align: center">Heart</td></tr>
+<tr><td style="text-align: center">º</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0176</kbd></td><td style="text-align: center">Degree symbol</td></tr>
+<tr><td style="text-align: center">œ</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0156</kbd></td><td style="text-align: center">Latin small ligature oe</td></tr>
+<tr><td style="text-align: center">•</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0149</kbd></td><td style="text-align: center">Bullet</td></tr>
+<tr><td style="text-align: center">↻</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>8635</kbd></td><td style="text-align: center">Clockwise Open Circle Arrow</td></tr>
+<tr><td style="text-align: center">↺</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>31</kbd></td><td style="text-align: center">Counterclockwise Open Circle Arrow</td></tr>
+<tr><td style="text-align: center">Ø</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0216</kbd></td><td style="text-align: center">Diameter</td></tr>
+<tr><td style="text-align: center">Ñ</td><td style="text-align: center"><kbd>Alt</kbd> + <kbd>0209</kbd></td><td style="text-align: center">Enye</td></tr>
 </tbody></table>
 </div><style>
   .scroll-to-top {
@@ -2069,9 +2091,9 @@ You can add an image or a code block, too.
 </code></pre>
 <p style="text-align: center;">Text i mitten  
 <h3 id="keyboard"><a class="header" href="#keyboard">Keyboard</a></h3>
-<pre><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; &lt;kbd&gt;+&lt;/kbd&gt; &lt;kbd&gt;F&lt;/kbd&gt;
+<pre><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;F&lt;/kbd&gt;
 </code></pre>
-<p><kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>F</kbd></p>
+<p><kbd>Ctrl</kbd> + <kbd>F</kbd></p>
 <h3 id="embed-video"><a class="header" href="#embed-video">Embed video</a></h3>
 <h4 id="local-source"><a class="header" href="#local-source">Local source</a></h4>
 <pre><code>
