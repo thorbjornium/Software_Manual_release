@@ -250,20 +250,25 @@
 </style>
 <h1 id="powershell"><a class="header" href="#powershell">Powershell</a></h1>
 <p>Press <kbd>F2</kbd> to toggle prediction.</p>
-<p>Open Powershell profile in VScode.</p>
-<pre><code class="language-Powershell">code $profile   
+<p>Press <kbd>Tab</kbd> to move to or list the next suggestion.</p>
+<p>Press <kbd>Shift</kbd> + <kbd>Tab</kbd> to move to the previous suggestion.</p>
+<p>Press <kbd>→</kbd> to accept the suggestion.</p>
+<p>Press <kbd>Ctrl</kbd> + <kbd>Space</kbd> to list autocomplete suggestions.</p>
+<p>Open Powershell profile in notepad:</p>
+<pre><code class="language-Powershell">notepad $profile   
 </code></pre>
-<p>Go to home folder</p>
-<pre><code class="language-Powershell">cd ~   
+<p>Print the current PSReadLine key handlers:</p>
+<pre><code class="language-Powershell">Get-PSReadLineKeyHandler
 </code></pre>
-<h2 id="find-file"><a class="header" href="#find-file">Find-File</a></h2>
+<h2 id="software-and-a-script-to-enhance-powershell"><a class="header" href="#software-and-a-script-to-enhance-powershell">Software and a script to enhance Powershell</a></h2>
+<h3 id="find-file"><a class="header" href="#find-file">Find-File</a></h3>
 <p>Install the following software:</p>
 <pre><code class="language-Powershell">winget install junegunn.fzf
 winget install sharkdp.fd
 winget install sharkdp.bat
 </code></pre>
-<p>Open your profile in Powershell:</p>
-<pre><code class="language-Powershell">notepad $Profile 
+<p>Open your Powershell profile in VS Code:</p>
+<pre><code class="language-Powershell">code $Profile 
 </code></pre>
 <p>Add the following lines at the end of the file:</p>
 <pre><code class="language-Powershell">function Find-File {
@@ -303,63 +308,60 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 </code></pre>
-<p>Use <kbd>CTRL</kbd> + <kbd>F</kbd> to search and preview files in colorized syntax.</p>
-<h2 id="commands"><a class="header" href="#commands">Commands</a></h2>
-<p>pwd - Prints the current working directory.</p>
-<p>ls - Lists the contents of the current directory.</p>
-<p>cd - Changes the current directory.</p>
-<p>mkdir - Creates a new directory.</p>
-<p>rm - Removes a file or directory.</p>
-<p>cp - Copies a file or directory.</p>
-<p>mv - Moves a file or directory.</p>
-<p>cat - Displays the contents of a file.</p>
-<p>tree - Lists the contents of a directory in a tree-like format.</p>
-<p>echo - Prints text to the console.</p>
-<p>read - Reads input from the user.</p>
-<p>cls - Clears the console.</p>
-<p>exit - Exits the current shell.</p>
-<p>help - Displays information about the built-in commands.</p>
-<p>get-help - Displays information about a specific command.</p>
-<p>get-childitem -path <path> -recurse -filter <filter></p>
-<p>get-childitem -path <path> -recurse -filter <filter> |  foreach-object { $_.fullname }</p>
-<p>get-childitem -path <path> -recurse -filter <filter> | foreach-object { $_.fullname } | fzf</p>
-<p>get-childitem -path <path> -recurse -filter <filter> | foreach-object { $<em>.fullname } | fzf | foreach-object { code $</em> }</p>
-<p>file - Displays information about a file.</p>
-<p>type - Displays the contents of a file.</p>
-<p>type -path <path> -literalpath <literalpath> | clip -no-cpy<style>
-.scroll-to-top {
-font-size: 2.5rem;
-width: 3.2rem;
-height: 3.2rem;
-display: none;
-align-items: center;
-justify-content: center;
-position: fixed;
-padding: 0.75rem;
-bottom: 4rem;
-right: calc(1.25rem + 90px + var(--page-padding));
-z-index: 999;
-cursor: pointer;
-border: none;
-color: var(--bg);
-background: var(--fg);
-border-radius: 50%;
-}
-.scroll-to-top.hidden {
-display: none;
-}
-.scroll-to-top i {
-transform: translateY(-2px);
-}
-@media (min-width: 1080px) {
-.scroll-to-top {
-display: flex;
-}
-}
+<h2 id="basic-commands"><a class="header" href="#basic-commands">Basic Commands</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Command</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">pwd</td><td style="text-align: left">Prints the current working directory.</td></tr>
+<tr><td style="text-align: left">ls</td><td style="text-align: left">Lists the contents of the current directory.</td></tr>
+<tr><td style="text-align: left">cd</td><td style="text-align: left">Changes the current directory.</td></tr>
+<tr><td style="text-align: left">mkdir</td><td style="text-align: left">Creates a new directory.</td></tr>
+<tr><td style="text-align: left">rm</td><td style="text-align: left">Removes a file or directory.</td></tr>
+<tr><td style="text-align: left">cp</td><td style="text-align: left">Copies a file or directory.</td></tr>
+<tr><td style="text-align: left">mv</td><td style="text-align: left">Moves a file or directory.</td></tr>
+<tr><td style="text-align: left">cat</td><td style="text-align: left">Displays the contents of a file.</td></tr>
+<tr><td style="text-align: left">tree</td><td style="text-align: left">Lists the contents of a directory in a treelike format.</td></tr>
+<tr><td style="text-align: left">echo</td><td style="text-align: left">Prints text to the console.</td></tr>
+<tr><td style="text-align: left">read</td><td style="text-align: left">Reads input from the user.</td></tr>
+<tr><td style="text-align: left">cls</td><td style="text-align: left">Clears the console.</td></tr>
+<tr><td style="text-align: left">exit</td><td style="text-align: left">Exits the current shell.</td></tr>
+<tr><td style="text-align: left">help</td><td style="text-align: left">Displays information about the builtin commands.</td></tr>
+<tr><td style="text-align: left">get-help</td><td style="text-align: left">Displays information about a specific command.</td></tr>
+<tr><td style="text-align: left">file</td><td style="text-align: left">Displays information about a file.</td></tr>
+<tr><td style="text-align: left">type</td><td style="text-align: left">Displays the contents of a file.</td></tr>
+</tbody></table>
+</div><style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
 </style>
 <button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-<i class="fa fa-angle-up"></i>
-</button></p>
+  <i class="fa fa-angle-up"></i>
+</button>
 <script>
   const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
   window.addEventListener("scroll", () => {
