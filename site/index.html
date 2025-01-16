@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Powershell - Manual</title>
+        <title>Powershell 7 - Manual</title>
 
 
         <!-- Custom HTML head -->
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Guides & personal stuff</li><li class="chapter-item expanded "><a href="Powershell.html" class="active"><strong aria-hidden="true">1.</strong> Powershell</a></li><li class="chapter-item expanded "><a href="ffmpeg.html"><strong aria-hidden="true">2.</strong> FFMpeg</a></li><li class="chapter-item expanded "><a href="vscode.html"><strong aria-hidden="true">3.</strong> VS Code</a></li><li class="chapter-item expanded affix "><li class="part-title">Windows Shortcuts</li><li class="chapter-item expanded "><a href="essential_shortcuts.html"><strong aria-hidden="true">4.</strong> Essential Shortcuts</a></li><li class="chapter-item expanded "><a href="desktop_shortcuts.html"><strong aria-hidden="true">5.</strong> Desktop Shortcuts</a></li><li class="chapter-item expanded "><a href="windows_key.html"><strong aria-hidden="true">6.</strong> Windows Key</a></li><li class="chapter-item expanded "><a href="alt_codes_and_symbols.html"><strong aria-hidden="true">7.</strong> Alt Codes & Symbols</a></li><li class="chapter-item expanded affix "><li class="part-title">Markdown</li><li class="chapter-item expanded "><a href="markdown_syntax.html"><strong aria-hidden="true">8.</strong> Syntax</a></li><li class="chapter-item expanded "><a href="mdbook_syntax.html"><strong aria-hidden="true">9.</strong> mdBook Syntax</a></li><li class="chapter-item expanded affix "><li class="part-title">Spotify</li><li class="chapter-item expanded "><a href="Spotify_playlist_backup.html"><strong aria-hidden="true">10.</strong> Spotify Backup List</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Guides & personal stuff</li><li class="chapter-item expanded "><a href="Powershell.html" class="active"><strong aria-hidden="true">1.</strong> Powershell 7</a></li><li class="chapter-item expanded "><a href="ffmpeg.html"><strong aria-hidden="true">2.</strong> FFMpeg</a></li><li class="chapter-item expanded "><a href="vscode.html"><strong aria-hidden="true">3.</strong> VS Code</a></li><li class="chapter-item expanded affix "><li class="part-title">Windows Shortcuts</li><li class="chapter-item expanded "><a href="essential_shortcuts.html"><strong aria-hidden="true">4.</strong> Essential Shortcuts</a></li><li class="chapter-item expanded "><a href="desktop_shortcuts.html"><strong aria-hidden="true">5.</strong> Desktop Shortcuts</a></li><li class="chapter-item expanded "><a href="windows_key.html"><strong aria-hidden="true">6.</strong> Windows Key</a></li><li class="chapter-item expanded "><a href="alt_codes_and_symbols.html"><strong aria-hidden="true">7.</strong> Alt Codes & Symbols</a></li><li class="chapter-item expanded affix "><li class="part-title">Markdown</li><li class="chapter-item expanded "><a href="markdown_syntax.html"><strong aria-hidden="true">8.</strong> Syntax</a></li><li class="chapter-item expanded "><a href="mdbook_syntax.html"><strong aria-hidden="true">9.</strong> mdBook Syntax</a></li><li class="chapter-item expanded affix "><li class="part-title">Spotify</li><li class="chapter-item expanded "><a href="Spotify_playlist_backup.html"><strong aria-hidden="true">10.</strong> Spotify Backup List</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -251,7 +251,17 @@
 }
 
 </style>
-<h1 id="powershell"><a class="header" href="#powershell">Powershell</a></h1>
+<h1 id="powershell-7"><a class="header" href="#powershell-7">Powershell 7</a></h1>
+<ul>
+<li><a href="#scripts-and-tools-to-enhance-powershell">Scripts and tools to enhance Powershell</a>
+<ul>
+<li><a href="#find-file">Find-File</a></li>
+<li><a href="#other-must-have-tools-for-powershell">Other must have tools for Powershell</a></li>
+</ul>
+</li>
+<li><a href="#basic-commands">Basic Commands</a></li>
+</ul>
+<br>  
 <p>Press <kbd>F2</kbd> to toggle prediction.</p>
 <p>Press <kbd>Tab</kbd> to move to or list the next suggestion.</p>
 <p>Press <kbd>Shift</kbd> + <kbd>Tab</kbd> to move to the previous suggestion.</p>
@@ -264,8 +274,9 @@
 <pre><code class="language-Powershell">Get-PSReadLineKeyHandler
 </code></pre>
 <p>or press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>?</kbd></p>
-<h2 id="software-and-script-to-enhance-powershell"><a class="header" href="#software-and-script-to-enhance-powershell">Software and script to enhance Powershell</a></h2>
+<h2 id="scripts-and-tools-to-enhance-powershell"><a class="header" href="#scripts-and-tools-to-enhance-powershell">Scripts and tools to enhance Powershell</a></h2>
 <h3 id="find-file"><a class="header" href="#find-file">Find-File</a></h3>
+<p>File previewer script using fzf and bat.</p>
 <p>Install the following software:</p>
 <pre><code class="language-Powershell">winget install junegunn.fzf
 winget install sharkdp.fd
@@ -312,7 +323,13 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 </code></pre>
-<h2 id="basic-commands"><a class="header" href="#basic-commands">Basic Commands</a></h2>
+<p>You call <code>Find-File</code> from commandline or <kbd>Ctrl</kbd> + <kbd>F</kbd>. The preview is generated using bat and use colored output. Check out <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/junegunn/fzf">fzf</a> and <a href="https://github.com/sharkdp/fd">fd</a> for more details.</p>
+<h3 id="other-must-have-tools-for-powershell"><a class="header" href="#other-must-have-tools-for-powershell">Other must have tools for Powershell</a></h3>
+<p><a href="https://github.com/ajeetdsouza/zoxide">zoxide</a> can jump straight to directories.</p>
+<p><a href="https://github.com/lasantosr/intelli-shell">intelli-shell</a> bookmark commands.</p>
+<p><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> is a search tool for files.</p>
+<p><a href="https://github.com/konradsz/igrep">igrep</a> is an alternate grep tool.</p>
+<h2 id="basic-commands"><a class="header" href="#basic-commands"><p style="text-align:center;">Basic Commands</p></a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Command</th><th style="text-align: left">Description</th></tr></thead><tbody>
 <tr><td style="text-align: left">pwd</td><td style="text-align: left">Prints the current working directory.</td></tr>
 <tr><td style="text-align: left">ls</td><td style="text-align: left">Lists the contents of the current directory.</td></tr>
