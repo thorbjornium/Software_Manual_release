@@ -2120,12 +2120,15 @@ You can add an image or a code block, too.
 </code></pre>
 <p><video src="imgburn.mp4" width="100%" height="100%" controls></video></p>
 <h4 id="interweb-source"><a class="header" href="#interweb-source">Interweb source</a></h4>
-<p>This from Youtube</p>
+<pre><code>{% raw(loading=lazy) %}
+{% raw(id) %}  id of the video in this case: Osqf4oIK0E8
+</code></pre>
+<p>The script below has been modified with above lines to remove the lazy loading.</p>
 <pre><code>&lt;iframe
   allowfullscreen
   name="youtube"
-  loading="lazy"
-  src="https://www.youtube.com/embed/Osqf4oIK0E8"
+  loading="{% raw(loading=lazy) %}"
+  src="https://www.youtube.com/embed/{% raw(Osqf4oIK0E8) %}"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 &lt;/iframe&gt;
@@ -2252,11 +2255,11 @@ You can add an image or a code block, too.
 <pre><code>{{#title New &amp; improved}}
 </code></pre>
 <h2 id="embedify"><a class="header" href="#embedify">Embedify</a></h2>
-<p>Get <a href="https://github.com/MR-Addict/mdbook-embedify">mdBook-embedify</a> Embed videos. Include banners, scroll-to-top and footer options.</p>
+<p>Get <a href="https://github.com/MR-Addict/mdbook-embedify">mdBook-embedify</a> Embed videos, include banners, scroll-to-top and footer options.</p>
 <iframe
   allowfullscreen
   name="youtube"
-  loading="lazy"
+  loading="eager"
   src="https://www.youtube.com/embed/Osqf4oIK0E8"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
