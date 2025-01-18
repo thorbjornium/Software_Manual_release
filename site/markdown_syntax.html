@@ -634,25 +634,17 @@ You can add an image or a code block, too.
 <p><kbd>Ctrl</kbd> + <kbd>F</kbd></p>
 <h3 id="embed-video"><a class="header" href="#embed-video">Embed video</a></h3>
 <h4 id="local-source"><a class="header" href="#local-source">Local source</a></h4>
-<pre><code>
-&lt;video src="imgburn.mp4" width="100%" height="100%" controls&gt;&lt;/video&gt;
+<pre><code>&lt;video src="imgburn.mp4" width="100%" height="100%" controls&gt;&lt;/video&gt;
 </code></pre>
 <p><video src="imgburn.mp4" width="100%" height="100%" controls></video></p>
 <h4 id="interweb-source"><a class="header" href="#interweb-source">Interweb source</a></h4>
-<pre><code>{% raw(loading=lazy) %}
-{% raw(id) %}  id of the video in this case: Osqf4oIK0E8
+<pre><code>&lt;iframe width="100%" height="405px"
+src="https://www.youtube.com/embed/tgbNymZ7vqY"&gt;
+&lt;/iframe&gt;  
 </code></pre>
-<p>The script below has been modified with above lines to remove the lazy loading.</p>
-<pre><code>&lt;iframe
-  allowfullscreen
-  name="youtube"
-  loading="{% raw(loading=lazy) %}"
-  src="https://www.youtube.com/embed/{% raw(Osqf4oIK0E8) %}"
-  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-&lt;/iframe&gt;
-</code></pre>
-<p>Replace the video link with your own in the script above. Note: It might break something since not all editors support iframe.</p>
+<iframe width="100%" height="405px"
+src="https://www.youtube.com/embed/tgbNymZ7vqY">
+</iframe>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
