@@ -269,14 +269,14 @@
 <li><a href="#links">Links</a></li>
 </ul>
 <h2 id="remux-2160p-mkv-to-mp4"><a class="header" href="#remux-2160p-mkv-to-mp4">Remux 2160p .mkv to .mp4</a></h2>
-<pre><code class="language-Powershell">ffmpeg -y -i Input_File.mkv -strict experimental -loglevel error -stats -map 0:v? -map 0:a? -dn -map_chapters -1 -movflags +faststart -c:v copy -c:a copy -strict -2 Output_File.mp4
+<pre><code class="language-plaintext">ffmpeg -y -i Input_File.mkv -strict experimental -loglevel error -stats -map 0:v? -map 0:a? -dn -map_chapters -1 -movflags +faststart -c:v copy -c:a copy -strict -2 Output_File.mp4
 </code></pre>
 <h2 id="encode-gif-to-mp4--screentogif"><a class="header" href="#encode-gif-to-mp4--screentogif">Encode .gif to .mp4  (ScreenToGif)</a></h2>
-<pre><code class="language-Powershell">ffmpeg -i example.gif -movflags faststart -pix_fmt yuv420p -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4  
+<pre><code class="language-plaintext">ffmpeg -i example.gif -movflags faststart -pix_fmt yuv420p -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4  
 
 </code></pre>
 <h2 id="extract-and-convert-audio-from-media-file"><a class="header" href="#extract-and-convert-audio-from-media-file">Extract and convert audio from media file</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320k -f mp3 output.mp3
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320k -f mp3 output.mp3
 </code></pre>
 <p><code>-vn</code> - Indicates that we have disabled video recording in the output file.<br />
 <code>-ar</code> - Set the audio frequency of the output file. The common values used are  22050, 44100, 48000 Hz.<br />
@@ -284,22 +284,22 @@
 <code>-ab</code> - Indicates the audio bitrate.<br />
 <code>-f</code> - Output file format. In our case, it's mp3 format.</p>
 <h2 id="change-resolution-of-video-files"><a class="header" href="#change-resolution-of-video-files">Change resolution of video files</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4  
 </code></pre>
 <h2 id="removing-audio-stream-from-a-video-file"><a class="header" href="#removing-audio-stream-from-a-video-file">Removing audio stream from a video file</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -an output.mp4  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -an output.mp4  
 </code></pre>
 <h2 id="removing-video-stream-from-a-media-file"><a class="header" href="#removing-video-stream-from-a-media-file">Removing video stream from a media file</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -vn -ab 320k output.mp3  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ab 320k output.mp3  
 </code></pre>
 <h2 id="extracting-images-from-video"><a class="header" href="#extracting-images-from-video">Extracting images from video</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png  
 </code></pre>
 <p><code>-r</code> - Set the frame rate. I.e the number of frames to be extracted into images per second. The default value is 25.<br />
 <code>-f</code> - Indicates the output format i.e image format in our case.
 image-%2d.png - Indicates how we want to name the extracted images. In this case, the names should start like image-01.png, image-02.png, image-03.png and so on. If you use %3d, then the name of images will start like image-001.png, image-002.png and so on.</p>
 <h2 id="crop-video"><a class="header" href="#crop-video">Crop video</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
 </code></pre>
 <p><code>-filter:v</code> - Indicates the video filter.<br />
 <code>crop</code> - Indicates crop filter.<br />
@@ -308,10 +308,10 @@ image-%2d.png - Indicates how we want to name the extracted images. In this case
 <code>x</code> - x coordinate of the rectangle that we want to crop from the source video.<br />
 <code>y</code> - y coordinate of the rectangle.</p>
 <p>Let us say you want to a video with a width of 640 pixels and a height of 480 pixels, from the position (200,150), the command would be:</p>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -filter:v "crop=640:480:200:150" output.mp4`  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=640:480:200:150" output.mp4`  
 </code></pre>
 <h2 id="clip-sections-of-a-video"><a class="header" href="#clip-sections-of-a-video">Clip sections of a video</a></h2>
-<pre><code class="language-ps">ffmpeg -i input_file.mp4 -ss 00:01:30 -to 00:01:55 -c copy output.mp4
+<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -ss 00:01:30 -to 00:01:55 -c copy output.mp4
 </code></pre>
 <p><code>-i input_file.mp4</code> - Specifies the input video file<br />
 <code>-ss 00:01:30</code> - Sets the start time (1 minute and 30 seconds into the video)<br />
@@ -319,7 +319,7 @@ image-%2d.png - Indicates how we want to name the extracted images. In this case
 <code>-c copy</code> - Copies the streams without re-encoding (faster)<br />
 <code>output.mp4</code> - Name of the output file</p>
 <p>For a more accurate cut encoding can be used but will be slower.</p>
-<pre><code class="language-ps">ffmpeg -ss 00:01:30 -i input_file.mp4 -t 00:00:30 -c:v libx264 -c:a aac output.mp4  
+<pre><code class="language-plaintext">ffmpeg -ss 00:01:30 -i input_file.mp4 -t 00:00:30 -c:v libx264 -c:a aac output.mp4  
 </code></pre>
 <h2 id="stitch-multiple-videos-together"><a class="header" href="#stitch-multiple-videos-together">Stitch multiple videos together</a></h2>
 <p>First create a list of files.</p>
@@ -330,21 +330,21 @@ image-%2d.png - Indicates how we want to name the extracted images. In this case
 <pre><code class="language-Powershell">foreach ($i in Get-ChildItem .\*.mp4) {echo "file '$i'" &gt;&gt; files.txt}  
 </code></pre>
 <p>Bash:</p>
-<pre><code>for f in *.mp4; do echo "file '$f'" &gt;&gt; videos.txt; done
+<pre><code class="language-bash">for f in *.mp4; do echo "file '$f'" &gt;&gt; videos.txt; done
 </code></pre>
 <p>or</p>
-<pre><code>printf "file '%s'\n" * &gt; files.txt
+<pre><code class="language-bash">printf "file '%s'\n" * &gt; files.txt
 </code></pre>
 <p>Once your text file is ready it should contain all the names of files you want to concatenate in this format:</p>
-<pre><code>file 'file1.mp4'
-file 'file2.mp4'
+<pre><code class="language-plaintext">file 'file2.mp4'
 file 'file3.mp4'
+file 'file1.mp4'
 </code></pre>
 <p>Now you can enter the following command to concatenate the files:</p>
-<pre><code>ffmpeg -f concat -safe 0 -i files.txt -c copy output.mp4  
+<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i files.txt -c copy output.mp4  
 </code></pre>
 <p>With transcoding:</p>
-<pre><code>ffmpeg -f concat -safe 0 -i input.txt -c:v libx264 -c:a aac output.mp4  
+<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i input.txt -c:v libx264 -c:a aac output.mp4  
 </code></pre>
 <p><code>-f concat</code> - Specifies the concat format<br />
 <code>-safe 0</code> - Allows ffmpeg to read files in the current directory<br />
@@ -354,15 +354,15 @@ file 'file3.mp4'
 <code>-c:a aac</code> - uses the AAC audio encoder<br />
 <code>output.mp4</code> - Name of the output file</p>
 <p>Method 2: Using the concat filter</p>
-<pre><code>ffmpeg -i input_file.mp4 -i input2.mp4 -i input3.mp4 -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
+<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -i input2.mp4 -i input3.mp4 -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
 </code></pre>
 <p><code>-i input1.mp4 -i input2.mp4 -i input3.mp4</code> - Input video files<br />
 <code>-filter_complex</code> - Applies complex filtering<br />
 <code>concat=n=3:v=1:a=1</code> - Concatenates 3 inputs with 1 video and 1 audio stream each<br />
 <code>[outv][outa]</code> - Labels for the output video and audio streams<br />
-<code>-map "[outv]" -map "[outa]"</code> - Maps the labeled streams to the output</p>
+<code>-map "[outv]" -map "[outa]"</code> - Maplaintext the labeled streams to the output</p>
 <h2 id="set-aspect-ratio"><a class="header" href="#set-aspect-ratio">Set aspect ratio</a></h2>
-<pre><code>ffmpeg -i input.mp4 -aspect 16:9 output.mp4
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -aspect 16:9 output.mp4
 </code></pre>
 <p>The commonly used aspect ratios are:</p>
 <p>16:9<br />
@@ -373,19 +373,19 @@ file 'file3.mp4'
 2:35:1<br />
 2:39:1</p>
 <h2 id="loop-an-image-with-audio"><a class="header" href="#loop-an-image-with-audio">Loop an image with audio</a></h2>
-<pre><code>ffmpeg -loop 1 -i inputimage.jpg -i inputaudio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+<pre><code class="language-plaintext">ffmpeg -loop 1 -i inputimage.jpg -i inputaudio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
 </code></pre>
 <h2 id="scale-and-crop-an-image"><a class="header" href="#scale-and-crop-an-image">Scale and crop an image</a></h2>
 <p>Scaled and cropped to width: 3840 pixels and height: 2160 pixels</p>
-<pre><code>ffmpeg -i image_before.jpg -vf scale=3840:-1:flags=lanczos,crop=3840:2160 image_after.jpg
+<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=3840:-1:flags=lanczos,crop=3840:2160 image_after.jpg
 </code></pre>
 <p>Scaled and cropped to height: 2160 pixels and width: 3840 pixels</p>
-<pre><code>ffmpeg -i image_before.jpg -vf scale=-1:2160:flags=lanczos,crop=3840:2160 image_after.jpg
+<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=-1:2160:flags=lanczos,crop=3840:2160 image_after.jpg
 </code></pre>
 <h2 id="links"><a class="header" href="#links">Links</a></h2>
-<p><a href="https://ostechnix.com/20-ffmpeg-commands-beginners/">https://ostechnix.com/20-ffmpeg-commands-beginners/</a></p>
-<p><a href="https://www.ffmpeg.org/documentation.html">https://www.ffmpeg.org/documentation.html</a></p>
-<p><a href="https://github.com/NapoleonWils0n/ffmpeg-scripts">https://github.com/NapoleonWils0n/ffmpeg-scripts</a></p>
+<p><a href="httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/">httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/</a></p>
+<p><a href="httplaintext://www.ffmpeg.org/documentation.html">httplaintext://www.ffmpeg.org/documentation.html</a></p>
+<p><a href="httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts">httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts</a></p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;

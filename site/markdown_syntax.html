@@ -342,78 +342,78 @@
 </script>
 <br>
 <h2 id="heading"><a class="header" href="#heading">Heading</a></h2>
-<pre><code># H1
+<pre><code class="language-markdown"># H1
 </code></pre>
 <p style="font-size: 2em; font-weight: bold">H1</p>  
-<pre><code>## H2  
+<pre><code class="language-markdown">## H2  
 </code></pre>
 <p style="font-size: 1.5em; font-weight: bold">H2</p>  
-<pre><code>### H3
+<pre><code class="language-markdown">### H3
 </code></pre>
 <p style="font-size: 1.17em; font-weight: bold">H3</p>  
 <h2 id="heading-with-custom-id"><a class="header" href="#heading-with-custom-id">Heading with custom id</a></h2>
-<pre><code>## My Great Heading {#custom-id}
+<pre><code class="language-markdown">## My Great Heading {#custom-id}
 </code></pre>
 <h2 id="custom-id"><a class="header" href="#custom-id">My Great Heading</a></h2>
 <br>
 <h2 id="bold"><a class="header" href="#bold">Bold</a></h2>
-<pre><code>**bold text**
+<pre><code class="language-markdown">**bold text**
 </code></pre>
 <p><strong>bold text</strong></p>
 <h2 id="italic"><a class="header" href="#italic">Italic</a></h2>
-<pre><code>*italicized text* 
+<pre><code class="language-markdown">*italicized text* 
 </code></pre>
 <p><em>italicized text</em></p>
 <h2 id="bold-and-nested-italic"><a class="header" href="#bold-and-nested-italic">Bold and nested italic</a></h2>
-<pre><code>**This text is *extremely* important**
+<pre><code class="language-markdown">**This text is *extremely* important**
 </code></pre>
 <p><strong>This text is <em>extremely</em> important</strong></p>
 <h2 id="all-bold-and-italic"><a class="header" href="#all-bold-and-italic">All bold and italic</a></h2>
-<pre><code>***All this text is important***
+<pre><code class="language-markdown">***All this text is important***
 </code></pre>
 <p><em><strong>All this text is important</strong></em></p>
 <h2 id="strikethrough"><a class="header" href="#strikethrough">Strikethrough</a></h2>
-<pre><code>~~The world is flat.~~
+<pre><code class="language-markdown">~~The world is flat.~~
 </code></pre>
 <p><del>The world is flat.</del></p>
 <h2 id="emoji"><a class="header" href="#emoji">Emoji</a></h2>
-<pre><code>That is so funny! :joy: 
+<pre><code class="language-markdown">That is so funny! :joy: 
 </code></pre>
 <p>That is so funny! 😂</p>
 <p>Might need som additional software to work. <a href="https://github.com/blyxyas/mdbook-emojicodes">mdbook-emojicodes</a> works for mdBook.</p>
 <p><a href="https://gist.github.com/horbjorn/cb36d5e32b7b1310f567595acc1da615">Here's</a> a list of emojis.</p>
 <h2 id="highlight"><a class="header" href="#highlight">Highlight</a></h2>
-<pre><code>I need to highlight these ==very important words==.
+<pre><code class="language-markdown">I need to highlight these ==very important words==.
 </code></pre>
 <p>I need to highlight these ==very important words==</p>
 <p>Note: Might not work, else try :</p>
-<pre><code>I need to highlight these &lt;mark&gt;very important words&lt;/mark&gt;
+<pre><code class="language-html">I need to highlight these &lt;mark&gt;very important words&lt;/mark&gt;
 </code></pre>
 <p>I need to highlight these <mark>very important words</mark></p>
 <h2 id="subscript"><a class="header" href="#subscript">Subscript</a></h2>
-<pre><code>H~2~O
+<pre><code class="language-markdown">H~2~O
 </code></pre>
 <p>H~2~O</p>
 <p>Note: Might not work, else try :</p>
-<pre><code>H&lt;sub&gt;2&lt;/sub&gt;O
+<pre><code class="language-html">H&lt;sub&gt;2&lt;/sub&gt;O
 </code></pre>
 <p>H<sub>2</sub>O</p>
 <h2 id="superscript"><a class="header" href="#superscript">Superscript</a></h2>
-<pre><code>X^2^
+<pre><code class="language-markdown">X^2^
 </code></pre>
 <p>X^2^</p>
 <p>Note: Might not work, else try :</p>
-<pre><code>X&lt;sup&gt;2&lt;/sup&gt;
+<pre><code class="language-html">X&lt;sup&gt;2&lt;/sup&gt;
 </code></pre>
 <p>X<sup>2</sup></p>
 <h2 id="blockquote"><a class="header" href="#blockquote">Blockquote</a></h2>
-<pre><code>&gt; blockquote
+<pre><code class="language-markdown">&gt; blockquote
 </code></pre>
 <blockquote>
 <p>blockquote</p>
 </blockquote>
 <br>  
-<pre><code>&gt; blockquote
+<pre><code class="language-markdown">&gt; blockquote
 &gt;
 &gt; &gt; nested blockquote
 &gt;
@@ -427,7 +427,7 @@
 <br>
 <br>
 <h2 id="ordered-list"><a class="header" href="#ordered-list">Ordered List</a></h2>
-<pre><code>1. First item
+<pre><code class="language-markdown">1. First item
 1. Second item
 1. Third item
 </code></pre>
@@ -438,7 +438,7 @@
 </ol>
 <br>  
 <h2 id="unordered-list"><a class="header" href="#unordered-list">Unordered List</a></h2>
-<pre><code>- First item
+<pre><code class="language-markdown">- First item
 - Second item
 - Third item
 </code></pre>
@@ -448,7 +448,7 @@
 <li>Third item</li>
 </ul>
 <h2 id="nested-lists"><a class="header" href="#nested-lists">Nested lists</a></h2>
-<pre><code>1. First list item
+<pre><code class="language-markdown">1. First list item
    - First nested list item
      - Second nested list item
 </code></pre>
@@ -464,12 +464,12 @@
 </li>
 </ol>
 <h2 id="code"><a class="header" href="#code">Code</a></h2>
-<pre><code>`code` 
+<pre><code class="language-markdown">`code` 
 </code></pre>
 <p><code>code</code></p>
 <h2 id="fenced-code-block"><a class="header" href="#fenced-code-block">Fenced Code Block</a></h2>
 <p>Three backticks makes a fence. Using a tab or 4 blank spaces instead of backticks also works.</p>
-<pre><code class="language-sh">
+<pre><code>
 ```
 {
   "firstName": "John",
@@ -479,7 +479,7 @@
 ```
 
 </code></pre>
-<pre><code>{
+<pre><code class="language-markdown">{
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
@@ -498,40 +498,40 @@ puts .to_
 puts .to_
 </code></pre>
 <h2 id="horizontal-rule"><a class="header" href="#horizontal-rule">Horizontal Rule</a></h2>
-<pre><code>---
+<pre><code class="language-markdown">---
 </code></pre>
 <hr />
 <br>
 <h2 id="link"><a class="header" href="#link">Link</a></h2>
-<pre><code>[ Guide](https://www.guide.org)
+<pre><code class="language-markdown">[Guide](https://www.guide.org)
 </code></pre>
-<p><a href="https://www.guide.org"> Guide</a></p>
+<p><a href="https://www.guide.org">Guide</a></p>
 <br>
-<pre><code>[an example](http://example.com/ "Title")
+<pre><code class="language-markdown">[an example](http://example.com/ "Title")
 </code></pre>
 <p><a href="http://example.com/" title="Title">an example</a></p>
 <br>
-<pre><code>Try [Ubuntu][] for your server.
+<pre><code class="language-markdown">Try [Ubuntu][] for your server.
 
 [Ubuntu]: https://ubuntu.com/download/server "Ubuntu Server LTS"
 </code></pre>
 <p>Try <a href="https://ubuntu.com/download/server" title="Ubuntu Server LTS">Ubuntu</a> for your server.</p>
 <h2 id="image"><a class="header" href="#image">Image</a></h2>
-<pre><code>![alt text](https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cartoon-little-penguin-operating-a-plane-png-image_5567890.png "My image")
+<pre><code class="language-markdown">![alt text](https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cartoon-little-penguin-operating-a-plane-png-image_5567890.png "My image")
 </code></pre>
 <p><img src="https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cartoon-little-penguin-operating-a-plane-png-image_5567890.png" alt="alt text" title="My image" /></p>
 <br>
-<pre><code>![Logga][1]
+<pre><code class="language-markdown">![Logga][1]
 
 [1]: https://commonmark.org/help/images/favicon.png "Creative Commons licensed"
 </code></pre>
 <p><img src="https://commonmark.org/help/images/favicon.png" alt="Logga" title="Creative Commons licensed" /></p>
 <h3 id="linked-image"><a class="header" href="#linked-image">Linked image</a></h3>
-<pre><code>[![Markdown image](https://commonmark.org/help/images/favicon.png)](https://commonmark.org)
+<pre><code class="language-markdown">[![Markdown image](https://commonmark.org/help/images/favicon.png)](https://commonmark.org)
 </code></pre>
 <p><a href="https://commonmark.org"><img src="https://commonmark.org/help/images/favicon.png" alt="Markdown image" /></a></p>
 <h2 id="table"><a class="header" href="#table">Table</a></h2>
-<pre><code>| Item              | In Stock | Price |
+<pre><code class="language-markdown">| Item              | In Stock | Price |
 | :---------------- | :------: | ----: |
 | Python Hat        |   Truest | 3.99 |
 | SQL Hat           |   True   | 23.99 |
@@ -547,7 +547,7 @@ puts .to_
 </tbody></table>
 </div><br>
 <h2 id="footnote"><a class="header" href="#footnote">Footnote</a></h2>
-<pre><code>Here's a sentence with a footnote. [^1]
+<pre><code class="language-markdown">Here's a sentence with a footnote. [^1]
 
 [^1]: This is the footnote.
 </code></pre>
@@ -556,7 +556,7 @@ puts .to_
 <p>This is the footnote.</p>
 </div>
 <h2 id="task-list"><a class="header" href="#task-list">Task List</a></h2>
-<pre><code>- [x] Write the press release
+<pre><code class="language-markdown">- [x] Write the press release
 - [ ] Update the website
 - [ ] Contact the media
 </code></pre>
@@ -570,11 +570,11 @@ Contact the media</li>
 </ul>
 <h2 id="inline-html"><a class="header" href="#inline-html">Inline HTML</a></h2>
 <h3 id="underline"><a class="header" href="#underline">Underline</a></h3>
-<pre><code>&lt;u&gt; Text &lt;/u&gt; 
+<pre><code class="language-html">&lt;u&gt; Text &lt;/u&gt; 
 </code></pre>
 <p><u> Text </u></p>
 <h3 id="color"><a class="header" href="#color">Color</a></h3>
-<pre><code>&lt;span style="color: #FF69B4;"&gt;Why did the tomato turn red?&lt;/span&gt;
+<pre><code class="language-html">&lt;span style="color: #FF69B4;"&gt;Why did the tomato turn red?&lt;/span&gt;
 &lt;span style="color: #00FFFF;"&gt;Because it saw the salad dressing!&lt;/span&gt;
 &lt;span style="color:red;"&gt;your text here in red&lt;/span&gt;,
 &lt;span style="color:#520099;"&gt;or make it blue&lt;/span&gt;
@@ -584,12 +584,12 @@ Contact the media</li>
 <span style="color:red;">your text here in red</span>,
 <span style="color:#520099;">or make it blue</span></p>
 <h3 id="commentary"><a class="header" href="#commentary">Commentary</a></h3>
-<pre><code>&lt;!-- ingen kommentar --&gt;  
+<pre><code class="language-html">&lt;!-- ingen kommentar --&gt;  
 </code></pre>
 <p>ingen kommentar</p>
 <br>  
 <h3 id="collapsed-section"><a class="header" href="#collapsed-section">Collapsed section</a></h3>
-<pre><code>&lt;details&gt;
+<pre><code class="language-html">&lt;details&gt;
 
 &lt;summary&gt;Tips for collapsed sections&lt;/summary&gt;
 
@@ -612,33 +612,33 @@ You can add an image or a code block, too.
 </details>
 <br>  
 <h3 id="align"><a class="header" href="#align">Align</a></h3>
-<pre><code>&amp;emsp; &amp;emsp;Centrera
+<pre><code class="language-html">&amp;emsp; &amp;emsp;Centrera
 </code></pre>
 <p>   Centrera</p>
 <br>
-<pre><code>&amp;ensp; &amp;ensp; &amp;ensp;Centrera
+<pre><code class="language-html">&amp;ensp; &amp;ensp; &amp;ensp;Centrera
 </code></pre>
 <p>     Centrera</p>
 <br>
-<pre><code>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Centrera
+<pre><code class="language-html">&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Centrera
 </code></pre>
 <p>         Centrera</p>
 <br>
 <h3 id="center-align"><a class="header" href="#center-align">Center align</a></h3>
-<pre><code>&lt;p style="text-align: center;"&gt;Text i mitten 
+<pre><code class="language-html">&lt;p style="text-align: center;"&gt;Text i mitten 
 </code></pre>
 <p style="text-align: center;">Text i mitten  
 <h3 id="keyboard"><a class="header" href="#keyboard">Keyboard</a></h3>
-<pre><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;F&lt;/kbd&gt;
+<pre><code class="language-html">&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;F&lt;/kbd&gt;
 </code></pre>
 <p><kbd>Ctrl</kbd> + <kbd>F</kbd></p>
 <h3 id="embed-video"><a class="header" href="#embed-video">Embed video</a></h3>
 <h4 id="local-source"><a class="header" href="#local-source">Local source</a></h4>
-<pre><code>&lt;video src="imgburn.mp4" width="100%" height="100%" controls&gt;&lt;/video&gt;
+<pre><code class="language-html">&lt;video src="imgburn.mp4" width="100%" height="100%" controls&gt;&lt;/video&gt;
 </code></pre>
 <p><video src="imgburn.mp4" width="100%" height="100%" controls></video></p>
 <h4 id="interweb-source"><a class="header" href="#interweb-source">Interweb source</a></h4>
-<pre><code>&lt;iframe width="100%" height="100%"
+<pre><code class="language-html">&lt;iframe width="100%" height="100%"
 src="https://www.youtube.com/embed/tgbNymZ7vqY"&gt;
 &lt;/iframe&gt;  
 </code></pre>

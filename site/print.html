@@ -326,16 +326,16 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
 </code></pre>
 <p>You call <code>Find-File</code> from commandline or <kbd>Ctrl</kbd> + <kbd>F</kbd>. The preview is generated using bat and use colored output. Check out <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/junegunn/fzf">fzf</a> and <a href="https://github.com/sharkdp/fd">fd</a> for more details.</p>
 <h3 id="other-must-have-tools-for-powershell"><a class="header" href="#other-must-have-tools-for-powershell">Other must have tools for Powershell</a></h3>
-<p><a href="https://github.com/ajeetdsouza/zoxide">zoxide</a> can jump straight to directories.</p>
-<p><a href="https://github.com/lasantosr/intelli-shell">intelli-shell</a> bookmark commands.</p>
-<p><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> is a search tool for files.</p>
+<p><a href="https://github.com/ajeetdsouza/zoxide">zoxide</a> jumps straight to directories.</p>
+<p><a href="https://github.com/lasantosr/intelli-shell">intelli-shell</a> bookmark commands and includes <a href="https://github.com/tldr-pages/tldr">tldr</a>.</p>
+<p><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> is a file search tool.</p>
 <p><a href="https://github.com/konradsz/igrep">igrep</a> is an alternate grep tool.</p>
 <h2 id="basic-commands"><a class="header" href="#basic-commands"><p style="text-align:center;">Basic Commands</p></a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Command</th><th style="text-align: left">Description</th></tr></thead><tbody>
 <tr><td style="text-align: left">pwd</td><td style="text-align: left">Prints the current working directory.</td></tr>
 <tr><td style="text-align: left">ls</td><td style="text-align: left">Lists the contents of the current directory.</td></tr>
 <tr><td style="text-align: left">cd</td><td style="text-align: left">Changes the current directory.</td></tr>
-<tr><td style="text-align: left">mkdir</td><td style="text-align: left">Creates a new directory.</td></tr>
+<tr><td style="text-align: left">md</td><td style="text-align: left">Creates a new directory.</td></tr>
 <tr><td style="text-align: left">rm</td><td style="text-align: left">Removes a file or directory.</td></tr>
 <tr><td style="text-align: left">cp</td><td style="text-align: left">Copies a file or directory.</td></tr>
 <tr><td style="text-align: left">mv</td><td style="text-align: left">Moves a file or directory.</td></tr>
@@ -475,14 +475,14 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
 <li><a href="ffmpeg.html#links">Links</a></li>
 </ul>
 <h2 id="remux-2160p-mkv-to-mp4"><a class="header" href="#remux-2160p-mkv-to-mp4">Remux 2160p .mkv to .mp4</a></h2>
-<pre><code class="language-Powershell">ffmpeg -y -i Input_File.mkv -strict experimental -loglevel error -stats -map 0:v? -map 0:a? -dn -map_chapters -1 -movflags +faststart -c:v copy -c:a copy -strict -2 Output_File.mp4
+<pre><code class="language-plaintext">ffmpeg -y -i Input_File.mkv -strict experimental -loglevel error -stats -map 0:v? -map 0:a? -dn -map_chapters -1 -movflags +faststart -c:v copy -c:a copy -strict -2 Output_File.mp4
 </code></pre>
 <h2 id="encode-gif-to-mp4--screentogif"><a class="header" href="#encode-gif-to-mp4--screentogif">Encode .gif to .mp4  (ScreenToGif)</a></h2>
-<pre><code class="language-Powershell">ffmpeg -i example.gif -movflags faststart -pix_fmt yuv420p -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4  
+<pre><code class="language-plaintext">ffmpeg -i example.gif -movflags faststart -pix_fmt yuv420p -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4  
 
 </code></pre>
 <h2 id="extract-and-convert-audio-from-media-file"><a class="header" href="#extract-and-convert-audio-from-media-file">Extract and convert audio from media file</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320k -f mp3 output.mp3
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320k -f mp3 output.mp3
 </code></pre>
 <p><code>-vn</code> - Indicates that we have disabled video recording in the output file.<br />
 <code>-ar</code> - Set the audio frequency of the output file. The common values used are  22050, 44100, 48000 Hz.<br />
@@ -490,22 +490,22 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
 <code>-ab</code> - Indicates the audio bitrate.<br />
 <code>-f</code> - Output file format. In our case, it's mp3 format.</p>
 <h2 id="change-resolution-of-video-files"><a class="header" href="#change-resolution-of-video-files">Change resolution of video files</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4  
 </code></pre>
 <h2 id="removing-audio-stream-from-a-video-file"><a class="header" href="#removing-audio-stream-from-a-video-file">Removing audio stream from a video file</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -an output.mp4  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -an output.mp4  
 </code></pre>
 <h2 id="removing-video-stream-from-a-media-file"><a class="header" href="#removing-video-stream-from-a-media-file">Removing video stream from a media file</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -vn -ab 320k output.mp3  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ab 320k output.mp3  
 </code></pre>
 <h2 id="extracting-images-from-video"><a class="header" href="#extracting-images-from-video">Extracting images from video</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png  
 </code></pre>
 <p><code>-r</code> - Set the frame rate. I.e the number of frames to be extracted into images per second. The default value is 25.<br />
 <code>-f</code> - Indicates the output format i.e image format in our case.
 image-%2d.png - Indicates how we want to name the extracted images. In this case, the names should start like image-01.png, image-02.png, image-03.png and so on. If you use %3d, then the name of images will start like image-001.png, image-002.png and so on.</p>
 <h2 id="crop-video"><a class="header" href="#crop-video">Crop video</a></h2>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
 </code></pre>
 <p><code>-filter:v</code> - Indicates the video filter.<br />
 <code>crop</code> - Indicates crop filter.<br />
@@ -514,10 +514,10 @@ image-%2d.png - Indicates how we want to name the extracted images. In this case
 <code>x</code> - x coordinate of the rectangle that we want to crop from the source video.<br />
 <code>y</code> - y coordinate of the rectangle.</p>
 <p>Let us say you want to a video with a width of 640 pixels and a height of 480 pixels, from the position (200,150), the command would be:</p>
-<pre><code class="language-ps">ffmpeg -i input.mp4 -filter:v "crop=640:480:200:150" output.mp4`  
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=640:480:200:150" output.mp4`  
 </code></pre>
 <h2 id="clip-sections-of-a-video"><a class="header" href="#clip-sections-of-a-video">Clip sections of a video</a></h2>
-<pre><code class="language-ps">ffmpeg -i input_file.mp4 -ss 00:01:30 -to 00:01:55 -c copy output.mp4
+<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -ss 00:01:30 -to 00:01:55 -c copy output.mp4
 </code></pre>
 <p><code>-i input_file.mp4</code> - Specifies the input video file<br />
 <code>-ss 00:01:30</code> - Sets the start time (1 minute and 30 seconds into the video)<br />
@@ -525,7 +525,7 @@ image-%2d.png - Indicates how we want to name the extracted images. In this case
 <code>-c copy</code> - Copies the streams without re-encoding (faster)<br />
 <code>output.mp4</code> - Name of the output file</p>
 <p>For a more accurate cut encoding can be used but will be slower.</p>
-<pre><code class="language-ps">ffmpeg -ss 00:01:30 -i input_file.mp4 -t 00:00:30 -c:v libx264 -c:a aac output.mp4  
+<pre><code class="language-plaintext">ffmpeg -ss 00:01:30 -i input_file.mp4 -t 00:00:30 -c:v libx264 -c:a aac output.mp4  
 </code></pre>
 <h2 id="stitch-multiple-videos-together"><a class="header" href="#stitch-multiple-videos-together">Stitch multiple videos together</a></h2>
 <p>First create a list of files.</p>
@@ -536,21 +536,21 @@ image-%2d.png - Indicates how we want to name the extracted images. In this case
 <pre><code class="language-Powershell">foreach ($i in Get-ChildItem .\*.mp4) {echo "file '$i'" &gt;&gt; files.txt}  
 </code></pre>
 <p>Bash:</p>
-<pre><code>for f in *.mp4; do echo "file '$f'" &gt;&gt; videos.txt; done
+<pre><code class="language-bash">for f in *.mp4; do echo "file '$f'" &gt;&gt; videos.txt; done
 </code></pre>
 <p>or</p>
-<pre><code>printf "file '%s'\n" * &gt; files.txt
+<pre><code class="language-bash">printf "file '%s'\n" * &gt; files.txt
 </code></pre>
 <p>Once your text file is ready it should contain all the names of files you want to concatenate in this format:</p>
-<pre><code>file 'file1.mp4'
-file 'file2.mp4'
+<pre><code class="language-plaintext">file 'file2.mp4'
 file 'file3.mp4'
+file 'file1.mp4'
 </code></pre>
 <p>Now you can enter the following command to concatenate the files:</p>
-<pre><code>ffmpeg -f concat -safe 0 -i files.txt -c copy output.mp4  
+<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i files.txt -c copy output.mp4  
 </code></pre>
 <p>With transcoding:</p>
-<pre><code>ffmpeg -f concat -safe 0 -i input.txt -c:v libx264 -c:a aac output.mp4  
+<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i input.txt -c:v libx264 -c:a aac output.mp4  
 </code></pre>
 <p><code>-f concat</code> - Specifies the concat format<br />
 <code>-safe 0</code> - Allows ffmpeg to read files in the current directory<br />
@@ -560,15 +560,15 @@ file 'file3.mp4'
 <code>-c:a aac</code> - uses the AAC audio encoder<br />
 <code>output.mp4</code> - Name of the output file</p>
 <p>Method 2: Using the concat filter</p>
-<pre><code>ffmpeg -i input_file.mp4 -i input2.mp4 -i input3.mp4 -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
+<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -i input2.mp4 -i input3.mp4 -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
 </code></pre>
 <p><code>-i input1.mp4 -i input2.mp4 -i input3.mp4</code> - Input video files<br />
 <code>-filter_complex</code> - Applies complex filtering<br />
 <code>concat=n=3:v=1:a=1</code> - Concatenates 3 inputs with 1 video and 1 audio stream each<br />
 <code>[outv][outa]</code> - Labels for the output video and audio streams<br />
-<code>-map "[outv]" -map "[outa]"</code> - Maps the labeled streams to the output</p>
+<code>-map "[outv]" -map "[outa]"</code> - Maplaintext the labeled streams to the output</p>
 <h2 id="set-aspect-ratio"><a class="header" href="#set-aspect-ratio">Set aspect ratio</a></h2>
-<pre><code>ffmpeg -i input.mp4 -aspect 16:9 output.mp4
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -aspect 16:9 output.mp4
 </code></pre>
 <p>The commonly used aspect ratios are:</p>
 <p>16:9<br />
@@ -579,19 +579,19 @@ file 'file3.mp4'
 2:35:1<br />
 2:39:1</p>
 <h2 id="loop-an-image-with-audio"><a class="header" href="#loop-an-image-with-audio">Loop an image with audio</a></h2>
-<pre><code>ffmpeg -loop 1 -i inputimage.jpg -i inputaudio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+<pre><code class="language-plaintext">ffmpeg -loop 1 -i inputimage.jpg -i inputaudio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
 </code></pre>
 <h2 id="scale-and-crop-an-image"><a class="header" href="#scale-and-crop-an-image">Scale and crop an image</a></h2>
 <p>Scaled and cropped to width: 3840 pixels and height: 2160 pixels</p>
-<pre><code>ffmpeg -i image_before.jpg -vf scale=3840:-1:flags=lanczos,crop=3840:2160 image_after.jpg
+<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=3840:-1:flags=lanczos,crop=3840:2160 image_after.jpg
 </code></pre>
 <p>Scaled and cropped to height: 2160 pixels and width: 3840 pixels</p>
-<pre><code>ffmpeg -i image_before.jpg -vf scale=-1:2160:flags=lanczos,crop=3840:2160 image_after.jpg
+<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=-1:2160:flags=lanczos,crop=3840:2160 image_after.jpg
 </code></pre>
 <h2 id="links"><a class="header" href="#links">Links</a></h2>
-<p><a href="https://ostechnix.com/20-ffmpeg-commands-beginners/">https://ostechnix.com/20-ffmpeg-commands-beginners/</a></p>
-<p><a href="https://www.ffmpeg.org/documentation.html">https://www.ffmpeg.org/documentation.html</a></p>
-<p><a href="https://github.com/NapoleonWils0n/ffmpeg-scripts">https://github.com/NapoleonWils0n/ffmpeg-scripts</a></p>
+<p><a href="httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/">httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/</a></p>
+<p><a href="httplaintext://www.ffmpeg.org/documentation.html">httplaintext://www.ffmpeg.org/documentation.html</a></p>
+<p><a href="httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts">httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts</a></p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -721,8 +721,8 @@ file 'file3.mp4'
 </li>
 </ul>
 <h3 id="toggle-terminal-and-editor-focus"><a class="header" href="#toggle-terminal-and-editor-focus">Toggle terminal and editor focus</a></h3>
-<p>Open Command Palette and find keyboard shortcuts (JSON)</p>
-<pre><code>{
+<p>Open Command Palette and find keyboard shortcuts (JSON) and paste the following:</p>
+<pre><code class="language-json">{
     "key":     "ctrl+`",
     "command": "workbench.action.terminal.focus"
 },
@@ -733,7 +733,7 @@ file 'file3.mp4'
 }
 </code></pre>
 <h3 id="adjust-font-size-on-terminal"><a class="header" href="#adjust-font-size-on-terminal">Adjust font size on terminal</a></h3>
-<pre><code>    {
+<pre><code class="language-json">    {
         "key": "ctrl+=",
         "command": "workbench.action.terminal.fontZoomIn",
         "when": "terminalFocus"
@@ -744,7 +744,8 @@ file 'file3.mp4'
         "when": "terminalFocus"
     }
 </code></pre>
-<h2 id="keyboard-shortcuts"><a class="header" href="#keyboard-shortcuts">Keyboard shortcuts</a></h2>
+<br>
+<h2 id="keyboard-shortcuts"><a class="header" href="#keyboard-shortcuts"><p style="text-align:center;">Keyboard shortcuts</p></a></h2>
 <h3 id="general"><a class="header" href="#general"><p style="text-align:center;">General</p></a></h3>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
 <tr><td style="text-align: left">Ctrl+Shift+P, F1</td><td style="text-align: left">Show Command Palette</td></tr>
@@ -823,6 +824,7 @@ file 'file3.mp4'
 <tr><td style="text-align: left">Shift+Alt +(drag mouse)</td><td style="text-align: left">Column (box) selection</td></tr>
 <tr><td style="text-align: left">Ctrl+Shift+Alt+ (arrow key)</td><td style="text-align: left">Column (box) selection</td></tr>
 <tr><td style="text-align: left">Ctrl+Shift+Alt+PgUp/PgDn</td><td style="text-align: left">Column (box) selection page up/down</td></tr>
+<tr><td style="text-align: left">Ctrl+Shift+P</td><td style="text-align: left">Search 'toggle multi'. Switches Alt+Click to Ctrl+Click</td></tr>
 </tbody></table>
 </div>
 <h3 id="rich-languages-editing"><a class="header" href="#rich-languages-editing"><p style="text-align:center;">Rich languages editing</p></a></h3>
@@ -1823,78 +1825,78 @@ file 'file3.mp4'
 </script>
 <br>
 <h2 id="heading"><a class="header" href="#heading">Heading</a></h2>
-<pre><code># H1
+<pre><code class="language-markdown"># H1
 </code></pre>
 <p style="font-size: 2em; font-weight: bold">H1</p>  
-<pre><code>## H2  
+<pre><code class="language-markdown">## H2  
 </code></pre>
 <p style="font-size: 1.5em; font-weight: bold">H2</p>  
-<pre><code>### H3
+<pre><code class="language-markdown">### H3
 </code></pre>
 <p style="font-size: 1.17em; font-weight: bold">H3</p>  
 <h2 id="heading-with-custom-id"><a class="header" href="#heading-with-custom-id">Heading with custom id</a></h2>
-<pre><code>## My Great Heading {#custom-id}
+<pre><code class="language-markdown">## My Great Heading {#custom-id}
 </code></pre>
 <h2 id="custom-id"><a class="header" href="#custom-id">My Great Heading</a></h2>
 <br>
 <h2 id="bold"><a class="header" href="#bold">Bold</a></h2>
-<pre><code>**bold text**
+<pre><code class="language-markdown">**bold text**
 </code></pre>
 <p><strong>bold text</strong></p>
 <h2 id="italic"><a class="header" href="#italic">Italic</a></h2>
-<pre><code>*italicized text* 
+<pre><code class="language-markdown">*italicized text* 
 </code></pre>
 <p><em>italicized text</em></p>
 <h2 id="bold-and-nested-italic"><a class="header" href="#bold-and-nested-italic">Bold and nested italic</a></h2>
-<pre><code>**This text is *extremely* important**
+<pre><code class="language-markdown">**This text is *extremely* important**
 </code></pre>
 <p><strong>This text is <em>extremely</em> important</strong></p>
 <h2 id="all-bold-and-italic"><a class="header" href="#all-bold-and-italic">All bold and italic</a></h2>
-<pre><code>***All this text is important***
+<pre><code class="language-markdown">***All this text is important***
 </code></pre>
 <p><em><strong>All this text is important</strong></em></p>
 <h2 id="strikethrough"><a class="header" href="#strikethrough">Strikethrough</a></h2>
-<pre><code>~~The world is flat.~~
+<pre><code class="language-markdown">~~The world is flat.~~
 </code></pre>
 <p><del>The world is flat.</del></p>
 <h2 id="emoji"><a class="header" href="#emoji">Emoji</a></h2>
-<pre><code>That is so funny! :joy: 
+<pre><code class="language-markdown">That is so funny! :joy: 
 </code></pre>
 <p>That is so funny! 😂</p>
 <p>Might need som additional software to work. <a href="https://github.com/blyxyas/mdbook-emojicodes">mdbook-emojicodes</a> works for mdBook.</p>
 <p><a href="https://gist.github.com/horbjorn/cb36d5e32b7b1310f567595acc1da615">Here's</a> a list of emojis.</p>
 <h2 id="highlight"><a class="header" href="#highlight">Highlight</a></h2>
-<pre><code>I need to highlight these ==very important words==.
+<pre><code class="language-markdown">I need to highlight these ==very important words==.
 </code></pre>
 <p>I need to highlight these ==very important words==</p>
 <p>Note: Might not work, else try :</p>
-<pre><code>I need to highlight these &lt;mark&gt;very important words&lt;/mark&gt;
+<pre><code class="language-html">I need to highlight these &lt;mark&gt;very important words&lt;/mark&gt;
 </code></pre>
 <p>I need to highlight these <mark>very important words</mark></p>
 <h2 id="subscript"><a class="header" href="#subscript">Subscript</a></h2>
-<pre><code>H~2~O
+<pre><code class="language-markdown">H~2~O
 </code></pre>
 <p>H~2~O</p>
 <p>Note: Might not work, else try :</p>
-<pre><code>H&lt;sub&gt;2&lt;/sub&gt;O
+<pre><code class="language-html">H&lt;sub&gt;2&lt;/sub&gt;O
 </code></pre>
 <p>H<sub>2</sub>O</p>
 <h2 id="superscript"><a class="header" href="#superscript">Superscript</a></h2>
-<pre><code>X^2^
+<pre><code class="language-markdown">X^2^
 </code></pre>
 <p>X^2^</p>
 <p>Note: Might not work, else try :</p>
-<pre><code>X&lt;sup&gt;2&lt;/sup&gt;
+<pre><code class="language-html">X&lt;sup&gt;2&lt;/sup&gt;
 </code></pre>
 <p>X<sup>2</sup></p>
 <h2 id="blockquote"><a class="header" href="#blockquote">Blockquote</a></h2>
-<pre><code>&gt; blockquote
+<pre><code class="language-markdown">&gt; blockquote
 </code></pre>
 <blockquote>
 <p>blockquote</p>
 </blockquote>
 <br>  
-<pre><code>&gt; blockquote
+<pre><code class="language-markdown">&gt; blockquote
 &gt;
 &gt; &gt; nested blockquote
 &gt;
@@ -1908,7 +1910,7 @@ file 'file3.mp4'
 <br>
 <br>
 <h2 id="ordered-list"><a class="header" href="#ordered-list">Ordered List</a></h2>
-<pre><code>1. First item
+<pre><code class="language-markdown">1. First item
 1. Second item
 1. Third item
 </code></pre>
@@ -1919,7 +1921,7 @@ file 'file3.mp4'
 </ol>
 <br>  
 <h2 id="unordered-list"><a class="header" href="#unordered-list">Unordered List</a></h2>
-<pre><code>- First item
+<pre><code class="language-markdown">- First item
 - Second item
 - Third item
 </code></pre>
@@ -1929,7 +1931,7 @@ file 'file3.mp4'
 <li>Third item</li>
 </ul>
 <h2 id="nested-lists"><a class="header" href="#nested-lists">Nested lists</a></h2>
-<pre><code>1. First list item
+<pre><code class="language-markdown">1. First list item
    - First nested list item
      - Second nested list item
 </code></pre>
@@ -1945,12 +1947,12 @@ file 'file3.mp4'
 </li>
 </ol>
 <h2 id="code"><a class="header" href="#code">Code</a></h2>
-<pre><code>`code` 
+<pre><code class="language-markdown">`code` 
 </code></pre>
 <p><code>code</code></p>
 <h2 id="fenced-code-block"><a class="header" href="#fenced-code-block">Fenced Code Block</a></h2>
 <p>Three backticks makes a fence. Using a tab or 4 blank spaces instead of backticks also works.</p>
-<pre><code class="language-sh">
+<pre><code>
 ```
 {
   "firstName": "John",
@@ -1960,7 +1962,7 @@ file 'file3.mp4'
 ```
 
 </code></pre>
-<pre><code>{
+<pre><code class="language-markdown">{
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
@@ -1979,40 +1981,40 @@ puts .to_
 puts .to_
 </code></pre>
 <h2 id="horizontal-rule"><a class="header" href="#horizontal-rule">Horizontal Rule</a></h2>
-<pre><code>---
+<pre><code class="language-markdown">---
 </code></pre>
 <hr />
 <br>
 <h2 id="link"><a class="header" href="#link">Link</a></h2>
-<pre><code>[ Guide](https://www.guide.org)
+<pre><code class="language-markdown">[Guide](https://www.guide.org)
 </code></pre>
-<p><a href="https://www.guide.org"> Guide</a></p>
+<p><a href="https://www.guide.org">Guide</a></p>
 <br>
-<pre><code>[an example](http://example.com/ "Title")
+<pre><code class="language-markdown">[an example](http://example.com/ "Title")
 </code></pre>
 <p><a href="http://example.com/" title="Title">an example</a></p>
 <br>
-<pre><code>Try [Ubuntu][] for your server.
+<pre><code class="language-markdown">Try [Ubuntu][] for your server.
 
 [Ubuntu]: https://ubuntu.com/download/server "Ubuntu Server LTS"
 </code></pre>
 <p>Try <a href="https://ubuntu.com/download/server" title="Ubuntu Server LTS">Ubuntu</a> for your server.</p>
 <h2 id="image"><a class="header" href="#image">Image</a></h2>
-<pre><code>![alt text](https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cartoon-little-penguin-operating-a-plane-png-image_5567890.png "My image")
+<pre><code class="language-markdown">![alt text](https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cartoon-little-penguin-operating-a-plane-png-image_5567890.png "My image")
 </code></pre>
 <p><img src="https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-cartoon-little-penguin-operating-a-plane-png-image_5567890.png" alt="alt text" title="My image" /></p>
 <br>
-<pre><code>![Logga][1]
+<pre><code class="language-markdown">![Logga][1]
 
 [1]: https://commonmark.org/help/images/favicon.png "Creative Commons licensed"
 </code></pre>
 <p><img src="https://commonmark.org/help/images/favicon.png" alt="Logga" title="Creative Commons licensed" /></p>
 <h3 id="linked-image"><a class="header" href="#linked-image">Linked image</a></h3>
-<pre><code>[![Markdown image](https://commonmark.org/help/images/favicon.png)](https://commonmark.org)
+<pre><code class="language-markdown">[![Markdown image](https://commonmark.org/help/images/favicon.png)](https://commonmark.org)
 </code></pre>
 <p><a href="https://commonmark.org"><img src="https://commonmark.org/help/images/favicon.png" alt="Markdown image" /></a></p>
 <h2 id="table"><a class="header" href="#table">Table</a></h2>
-<pre><code>| Item              | In Stock | Price |
+<pre><code class="language-markdown">| Item              | In Stock | Price |
 | :---------------- | :------: | ----: |
 | Python Hat        |   Truest | 3.99 |
 | SQL Hat           |   True   | 23.99 |
@@ -2028,7 +2030,7 @@ puts .to_
 </tbody></table>
 </div><br>
 <h2 id="footnote"><a class="header" href="#footnote">Footnote</a></h2>
-<pre><code>Here's a sentence with a footnote. [^1]
+<pre><code class="language-markdown">Here's a sentence with a footnote. [^1]
 
 [^1]: This is the footnote.
 </code></pre>
@@ -2037,7 +2039,7 @@ puts .to_
 <p>This is the footnote.</p>
 </div>
 <h2 id="task-list"><a class="header" href="#task-list">Task List</a></h2>
-<pre><code>- [x] Write the press release
+<pre><code class="language-markdown">- [x] Write the press release
 - [ ] Update the website
 - [ ] Contact the media
 </code></pre>
@@ -2051,11 +2053,11 @@ Contact the media</li>
 </ul>
 <h2 id="inline-html"><a class="header" href="#inline-html">Inline HTML</a></h2>
 <h3 id="underline"><a class="header" href="#underline">Underline</a></h3>
-<pre><code>&lt;u&gt; Text &lt;/u&gt; 
+<pre><code class="language-html">&lt;u&gt; Text &lt;/u&gt; 
 </code></pre>
 <p><u> Text </u></p>
 <h3 id="color"><a class="header" href="#color">Color</a></h3>
-<pre><code>&lt;span style="color: #FF69B4;"&gt;Why did the tomato turn red?&lt;/span&gt;
+<pre><code class="language-html">&lt;span style="color: #FF69B4;"&gt;Why did the tomato turn red?&lt;/span&gt;
 &lt;span style="color: #00FFFF;"&gt;Because it saw the salad dressing!&lt;/span&gt;
 &lt;span style="color:red;"&gt;your text here in red&lt;/span&gt;,
 &lt;span style="color:#520099;"&gt;or make it blue&lt;/span&gt;
@@ -2065,12 +2067,12 @@ Contact the media</li>
 <span style="color:red;">your text here in red</span>,
 <span style="color:#520099;">or make it blue</span></p>
 <h3 id="commentary"><a class="header" href="#commentary">Commentary</a></h3>
-<pre><code>&lt;!-- ingen kommentar --&gt;  
+<pre><code class="language-html">&lt;!-- ingen kommentar --&gt;  
 </code></pre>
 <p>ingen kommentar</p>
 <br>  
 <h3 id="collapsed-section"><a class="header" href="#collapsed-section">Collapsed section</a></h3>
-<pre><code>&lt;details&gt;
+<pre><code class="language-html">&lt;details&gt;
 
 &lt;summary&gt;Tips for collapsed sections&lt;/summary&gt;
 
@@ -2093,33 +2095,33 @@ You can add an image or a code block, too.
 </details>
 <br>  
 <h3 id="align"><a class="header" href="#align">Align</a></h3>
-<pre><code>&amp;emsp; &amp;emsp;Centrera
+<pre><code class="language-html">&amp;emsp; &amp;emsp;Centrera
 </code></pre>
 <p>   Centrera</p>
 <br>
-<pre><code>&amp;ensp; &amp;ensp; &amp;ensp;Centrera
+<pre><code class="language-html">&amp;ensp; &amp;ensp; &amp;ensp;Centrera
 </code></pre>
 <p>     Centrera</p>
 <br>
-<pre><code>&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Centrera
+<pre><code class="language-html">&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Centrera
 </code></pre>
 <p>         Centrera</p>
 <br>
 <h3 id="center-align"><a class="header" href="#center-align">Center align</a></h3>
-<pre><code>&lt;p style="text-align: center;"&gt;Text i mitten 
+<pre><code class="language-html">&lt;p style="text-align: center;"&gt;Text i mitten 
 </code></pre>
 <p style="text-align: center;">Text i mitten  
 <h3 id="keyboard"><a class="header" href="#keyboard">Keyboard</a></h3>
-<pre><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;F&lt;/kbd&gt;
+<pre><code class="language-html">&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;F&lt;/kbd&gt;
 </code></pre>
 <p><kbd>Ctrl</kbd> + <kbd>F</kbd></p>
 <h3 id="embed-video"><a class="header" href="#embed-video">Embed video</a></h3>
 <h4 id="local-source"><a class="header" href="#local-source">Local source</a></h4>
-<pre><code>&lt;video src="imgburn.mp4" width="100%" height="100%" controls&gt;&lt;/video&gt;
+<pre><code class="language-html">&lt;video src="imgburn.mp4" width="100%" height="100%" controls&gt;&lt;/video&gt;
 </code></pre>
 <p><video src="imgburn.mp4" width="100%" height="100%" controls></video></p>
 <h4 id="interweb-source"><a class="header" href="#interweb-source">Interweb source</a></h4>
-<pre><code>&lt;iframe width="100%" height="100%"
+<pre><code class="language-html">&lt;iframe width="100%" height="100%"
 src="https://www.youtube.com/embed/tgbNymZ7vqY"&gt;
 &lt;/iframe&gt;  
 </code></pre>
@@ -2297,7 +2299,7 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
 </div>
 <br>
 <p>mdBook's builtin version in html:</p>
-<pre><code>&lt;div class="warning"&gt;
+<pre><code class="language-html">&lt;div class="warning"&gt;
 
 This is a bad thing that you should pay attention to.
 
@@ -2461,7 +2463,7 @@ style Test fill:#dfdfdf,color:#FFFFFF,stroke-opacity:0.2
 </pre>
 <details>
 <summary>Source code for above</summary>
-<pre><code>```mermaid
+<pre><code class="language-plaintext">```mermaid
 %%{
   init: {
     'theme': 'base',
@@ -2513,38 +2515,10 @@ style Test fill:#dfdfdf,color:#FFFFFF,stroke-opacity:0.2
 </details>
 <br>
 <br>
-<pre class="mermaid">graph LR
-    
-    subgraph Förfrågan
-    iVentoy--1.BOOTP--&gt;DHCP
-    end
-    subgraph Svar
-    Dator&lt;--2.PXE--&gt;iVentoy
-    end
-    
-    
-
-</pre>
-<details>
-<summary>Source code for above</summary>
-<pre><code>```mermaid
-graph LR
-    
-    subgraph Förfrågan
-    iVentoy--1.BOOTP--&gt;DHCP
-    end
-    subgraph Svar
-    Dator&lt;--2.PXE--&gt;iVentoy
-    end
-    
-    
-
-```
-</code></pre>
 </details>
 <h2 id="tabs"><a class="header" href="#tabs">Tabs</a></h2>
 <p>Get <a href="https://github.com/RustForWeb/mdbook-plugins/tree/main/packages/mdbook-tabs">mdbook-tabs</a></p>
-<pre><code>{{#tabs }}
+<pre><code class="language-plaintext">{{#tabs }}
 {{#tab name="Tab 1" }}
 **Tab content 1**
 {{#endtab }}
@@ -2573,7 +2547,7 @@ _Tab content 2_
 </div>
 </div>
 <br>
-<pre><code>{{#tabs global="example" }}
+<pre><code class="language-plaintext">{{#tabs global="example" }}
 {{#tab name="Tab 1" }}
 Some content.
 {{#endtab }}
@@ -2590,11 +2564,11 @@ Some content.
 <h2 id="admonish"><a class="header" href="#admonish">Admonish</a></h2>
 <p>Install <a href="https://github.com/tommilligan/mdbook-admonish">admonish</a></p>
 <p>Examples:</p>
-<pre><code>```admonish
+<pre><code class="language-plaintext">```admonish
 Some text
 ```
 </code></pre>
-<pre><code>```admonish example
+<pre><code class="language-plaintext">```admonish example
 example
 ```
 </code></pre>
@@ -2730,7 +2704,7 @@ example
 <p>quote, cite</p>
 </div>
 </div>
-<pre><code>```admonish quote collapsible=true, title='A title that really &lt;span style="color: #e70073"&gt;pops&lt;/span&gt;'
+<pre><code class="language-plaintext">```admonish quote collapsible=true, title='A title that really &lt;span style="color: #e70073"&gt;pops&lt;/span&gt;'
 To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt; your reader's attention.
 ```
 </code></pre>
