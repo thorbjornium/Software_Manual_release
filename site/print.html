@@ -31,10 +31,11 @@
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/tabs.css">
-        <link rel="stylesheet" href="./mdbook-admonish.css">
+        <link rel="stylesheet" href="mdbook-admonish.css">
         <link rel="stylesheet" href="theme/sun.css">
         <link rel="stylesheet" href="theme/catppuccin.css">
         <link rel="stylesheet" href="theme/catppuccin-admonish.css">
+        <link rel="stylesheet" href="theme/nordic.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -144,6 +145,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="nordic">Nordic</button></li>
                         </ul>
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
@@ -2010,7 +2012,7 @@ puts .to_
 </code></pre>
 <p><img src="https://commonmark.org/help/images/favicon.png" alt="Logga" title="Creative Commons licensed" /></p>
 <h3 id="linked-image"><a class="header" href="#linked-image">Linked image</a></h3>
-<pre><code class="language-markdown">[![Markdown image](https://commonmark.org/help/images/favicon.png)](https://commonmark.org)
+<pre><code class="language-markdown">[![Markdown image](https://commonmark.org/help/images/favicon.png)](https://commonmark.org)  
 </code></pre>
 <p><a href="https://commonmark.org"><img src="https://commonmark.org/help/images/favicon.png" alt="Markdown image" /></a></p>
 <h2 id="table"><a class="header" href="#table">Table</a></h2>
@@ -2365,7 +2367,8 @@ graph LR;
 </pre>
 <details>
 <summary>Source code for above</summary>
-<pre><code>```mermaid
+<pre><code>
+```mermaid
 %%{
   init: {
     'theme': 'base',
