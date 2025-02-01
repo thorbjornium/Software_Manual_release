@@ -340,9 +340,9 @@ function playground_text(playground, hidden = true) {
             ace_theme = "ace/theme/tomorrow_night";
         } else {
             stylesheets.ayuHighlight.disabled = true;
-            stylesheets.tomorrowNight.disabled = true;
-            stylesheets.highlight.disabled = false;
-            ace_theme = "ace/theme/dawn";
+            stylesheets.tomorrowNight.disabled = false;
+            stylesheets.highlight.disabled = true;
+            ace_theme = "ace/theme/tomorrow_night";
         }
 
         setTimeout(function () {

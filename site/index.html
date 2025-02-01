@@ -269,10 +269,11 @@
 <li><a href="#scripts-and-tools-to-enhance-powershell">Scripts and tools to enhance Powershell</a>
 <ul>
 <li><a href="#find-file">Find-File</a></li>
-<li><a href="#other-must-have-tools-for-powershell">Other must have tools for Powershell</a></li>
+<li><a href="#other-must-have-tools-for-powershell">Other must-have tools for Powershell</a></li>
 </ul>
 </li>
 <li><a href="#basic-commands">Basic Commands</a></li>
+<li><a href="#misc">Misc</a></li>
 </ul>
 <br>  
 <p>Press <kbd>F2</kbd> to toggle prediction.</p>
@@ -337,7 +338,7 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
 }
 </code></pre>
 <p>You call <code>Find-File</code> from commandline or <kbd>Ctrl</kbd> + <kbd>F</kbd>. The preview is generated using bat and use colored output. Check out <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/junegunn/fzf">fzf</a> and <a href="https://github.com/sharkdp/fd">fd</a> for more details.</p>
-<h3 id="other-must-have-tools-for-powershell"><a class="header" href="#other-must-have-tools-for-powershell">Other must have tools for Powershell</a></h3>
+<h3 id="other-must-have-tools-for-powershell"><a class="header" href="#other-must-have-tools-for-powershell">Other must-have tools for Powershell</a></h3>
 <p><a href="https://github.com/ajeetdsouza/zoxide">zoxide</a> jumps straight to directories.</p>
 <p><a href="https://github.com/lasantosr/intelli-shell">intelli-shell</a> bookmark commands and includes <a href="https://github.com/tldr-pages/tldr">tldr</a>.</p>
 <p><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> is a file search tool.</p>
@@ -362,7 +363,14 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
 <tr><td style="text-align: left">file</td><td style="text-align: left">Displays information about a file.</td></tr>
 <tr><td style="text-align: left">type</td><td style="text-align: left">Displays the contents of a file.</td></tr>
 </tbody></table>
-</div><style>
+</div>
+<h2 id="misc"><a class="header" href="#misc">Misc</a></h2>
+<p>Find the file location of the Powershell history file. Edit and remove inaccurate predictions.</p>
+<pre><code class="language-Powershell">Get-PSReadLineOption | select-Object -Property HistorySavePath
+# or
+(Get-PSReadLineOption).HistorySavePath
+</code></pre>
+<style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;

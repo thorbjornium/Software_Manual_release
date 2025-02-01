@@ -270,10 +270,11 @@
 <li><a href="Powershell.html#scripts-and-tools-to-enhance-powershell">Scripts and tools to enhance Powershell</a>
 <ul>
 <li><a href="Powershell.html#find-file">Find-File</a></li>
-<li><a href="Powershell.html#other-must-have-tools-for-powershell">Other must have tools for Powershell</a></li>
+<li><a href="Powershell.html#other-must-have-tools-for-powershell">Other must-have tools for Powershell</a></li>
 </ul>
 </li>
 <li><a href="Powershell.html#basic-commands">Basic Commands</a></li>
+<li><a href="Powershell.html#misc">Misc</a></li>
 </ul>
 <br>  
 <p>Press <kbd>F2</kbd> to toggle prediction.</p>
@@ -338,7 +339,7 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
 }
 </code></pre>
 <p>You call <code>Find-File</code> from commandline or <kbd>Ctrl</kbd> + <kbd>F</kbd>. The preview is generated using bat and use colored output. Check out <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/junegunn/fzf">fzf</a> and <a href="https://github.com/sharkdp/fd">fd</a> for more details.</p>
-<h3 id="other-must-have-tools-for-powershell"><a class="header" href="#other-must-have-tools-for-powershell">Other must have tools for Powershell</a></h3>
+<h3 id="other-must-have-tools-for-powershell"><a class="header" href="#other-must-have-tools-for-powershell">Other must-have tools for Powershell</a></h3>
 <p><a href="https://github.com/ajeetdsouza/zoxide">zoxide</a> jumps straight to directories.</p>
 <p><a href="https://github.com/lasantosr/intelli-shell">intelli-shell</a> bookmark commands and includes <a href="https://github.com/tldr-pages/tldr">tldr</a>.</p>
 <p><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> is a file search tool.</p>
@@ -363,7 +364,14 @@ Set-PSReadLineKeyHandler -chord "ctrl+f" -scriptblock {
 <tr><td style="text-align: left">file</td><td style="text-align: left">Displays information about a file.</td></tr>
 <tr><td style="text-align: left">type</td><td style="text-align: left">Displays the contents of a file.</td></tr>
 </tbody></table>
-</div><style>
+</div>
+<h2 id="misc"><a class="header" href="#misc">Misc</a></h2>
+<p>Find the file location of the Powershell history file. Edit and remove inaccurate predictions.</p>
+<pre><code class="language-Powershell">Get-PSReadLineOption | select-Object -Property HistorySavePath
+# or
+(Get-PSReadLineOption).HistorySavePath
+</code></pre>
+<style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
@@ -2006,47 +2014,6 @@ file 'file1.mp4'
 </ul>
 </li>
 </ul>
-<style>
-  .scroll-to-top {
-    font-size: 2.5rem;
-    width: 3.2rem;
-    height: 3.2rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 4rem;
-    right: calc(1.25rem + 90px + var(--page-padding));
-    z-index: 999;
-    cursor: pointer;
-    border: none;
-    color: var(--bg);
-    background: var(--fg);
-    border-radius: 50%;
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  .scroll-to-top i {
-    transform: translateY(-2px);
-  }
-  @media (min-width: 1080px) {
-    .scroll-to-top {
-      display: flex;
-    }
-  }
-</style>
-<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-  <i class="fa fa-angle-up"></i>
-</button>
-<script>
-  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
-  window.addEventListener("scroll", () => {
-    const button = document.querySelector(".scroll-to-top");
-    button.classList.toggle("hidden", window.scrollY < 200);
-  });
-</script>
 <br>
 <h2 id="heading"><a class="header" href="#heading">Heading</a></h2>
 <pre><code class="language-markdown"># H1
@@ -2637,7 +2604,7 @@ to work. Hopefully this limitation will be lifted soon.</p>
 </p>
 <p>Lugn..</p>
 </div>
-<p>example:</p>
+<p>Example:</p>
 <pre><code class="language-plaintext"> &gt; [!NOTERA]  
  &gt; Random text
 </code></pre>
