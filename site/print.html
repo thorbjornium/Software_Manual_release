@@ -2508,20 +2508,20 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
   --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
 }
 </style>
-<h1 id="mdbook-syntax"><a class="header" href="#mdbook-syntax">mdBook Syntax</a></h1>
+<h1 id="mdbook-options"><a class="header" href="#mdbook-options">mdBook Options</a></h1>
 <ul>
-<li><a href="mdbook_syntax.html#change-browser-tab-title">Change browser tab title</a></li>
-<li><a href="mdbook_syntax.html#rust-playground">Rust Playground</a></li>
-<li><a href="mdbook_syntax.html#mathjax-support">MathJax support</a></li>
-<li><a href="mdbook_syntax.html#embedify">Embedify</a></li>
-<li><a href="mdbook_syntax.html#alerts">Alerts</a></li>
-<li><a href="mdbook_syntax.html#mermaid">Mermaid</a></li>
-<li><a href="mdbook_syntax.html#tabs">Tabs</a>
+<li><a href="mdbook_options.html#change-browser-tab-title">Change browser tab title</a></li>
+<li><a href="mdbook_options.html#rust-playground">Rust Playground</a></li>
+<li><a href="mdbook_options.html#mathjax-support">MathJax support</a></li>
+<li><a href="mdbook_options.html#embedify">Embedify</a></li>
+<li><a href="mdbook_options.html#alerts">Alerts</a></li>
+<li><a href="mdbook_options.html#mermaid">Mermaid</a></li>
+<li><a href="mdbook_options.html#tabs">Tabs</a>
 <ul>
-<li><a href="mdbook_syntax.html#global-tabs">Global tabs</a></li>
+<li><a href="mdbook_options.html#global-tabs">Global tabs</a></li>
 </ul>
 </li>
-<li><a href="mdbook_syntax.html#admonish">Admonish</a></li>
+<li><a href="mdbook_options.html#admonish">Admonish</a></li>
 </ul>
 <br>
 <p>For more details see <a href="https://rust-lang.github.io/mdBook/">mdBook docs</a></p>
@@ -2529,6 +2529,8 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
 <pre><code class="language-plaintext">{{#title New &amp; improved}}
 </code></pre>
 <h2 id="rust-playground"><a class="header" href="#rust-playground">Rust Playground</a></h2>
+<p>Use <a href="https://play.rust-lang.org">Rust Playground</a> to run code in the browser.</p>
+<p>Produce editable code that runs in the browser.</p>
 <pre><code>```rust,editable
 fn main() {
     let number = 5;
@@ -2536,11 +2538,21 @@ fn main() {
 }
 ```
 </code></pre>
-<br>
-<pre><pre class="playground"><code class="language-rust editable">// Editable Rust code. Edit and run code in the browser.
-fn main() {
+<pre><pre class="playground"><code class="language-rust editable">fn main() {
     let number = 5;
     print!("{}", number);
+}</code></pre></pre>
+<p>Non-editable code. Runs in the browser.</p>
+<pre><code>```rust
+fn main() {
+    let x = "Rust";
+    print!("{}", x);
+}
+```
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let x = "Rust";
+    print!("{}", x);
 }</code></pre></pre>
 <h2 id="mathjax-support"><a class="header" href="#mathjax-support">MathJax support</a></h2>
 <pre><code class="language-plaintext">\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
@@ -2551,22 +2563,33 @@ fn main() {
   <span class="mdbook-alerts-icon"></span>
   note
 </p>
-<p>The usual delimiters MathJax uses are not yet supported. You can’t currently
+<p>From mdBook docs: "The usual delimiters MathJax uses are not yet supported. You can’t currently
 use <code>$$ ... $$</code> as delimiters and the <code>\[ ... \]</code> delimiters need an extra backslash
-to work. Hopefully this limitation will be lifted soon.</p>
+to work. Hopefully this limitation will be lifted soon."</p>
 </div>
 <br>
 <h2 id="embedify"><a class="header" href="#embedify">Embedify</a></h2>
-<p>Get <a href="https://github.com/MR-Addict/mdbook-embedify">mdBook-embedify</a> Embed videos, include banners, scroll-to-top and footer options.</p>
+<p>Get <a href="https://github.com/MR-Addict/mdbook-embedify">mdBook-embedify</a>. Embed videos, gists &amp; codepens. Option to include banners, scroll-to-top and footer options.</p>
 <iframe
   allowfullscreen
   name="youtube"
-  loading="eager"
+  loading="lazy"
   src="https://www.youtube.com/embed/Osqf4oIK0E8"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 ></iframe>
-</br>  
+<br>  
+<br>  
+<script src="https://gist.github.com/7fc39974980739135253e755b2fa1433.js"></script>
+<br>  
+<iframe
+  allowfullscreen
+  name="codepen"
+  loading="lazy"
+  height="600"
+  style="width: 100%; border: none; border-radius: 1rem; background: black"
+  src="https://codepen.io/TDJ/embed/wBwZaQG?default-tab=result&theme-id=dark"
+></iframe>
 <h2 id="alerts"><a class="header" href="#alerts">Alerts</a></h2>
 <p>Modified and translated version of mdBook-alerts. English and Swedish. See options: <a href="https://github.com/horbjorn/rs-mdbook-alerts">https://github.com/horbjorn/rs-mdbook-alerts</a></p>
 <div class="mdbook-alerts mdbook-alerts-notera">
@@ -2873,7 +2896,7 @@ example
 <div id="admonition-note-title">
 <p>Note</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-note"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-note"></a>
 </div>
 <div>
 <p>Some text</p>
@@ -2884,7 +2907,7 @@ example
 <div id="admonition-example-title">
 <p>Example</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-example"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-example"></a>
 </div>
 <div>
 <p>example</p>
@@ -2895,7 +2918,7 @@ example
 <div id="admonition-tldr-title">
 <p>TL;DR</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-tldr"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-tldr"></a>
 </div>
 <div>
 <p>abstract, summary, tldr</p>
@@ -2906,7 +2929,7 @@ example
 <div id="admonition-check-title">
 <p>Check</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-check"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-check"></a>
 </div>
 <div>
 <p>success, check, done</p>
@@ -2917,7 +2940,7 @@ example
 <div id="admonition-question-title">
 <p>Question</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-question"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-question"></a>
 </div>
 <div>
 <p>question, faq, help</p>
@@ -2928,7 +2951,7 @@ example
 <div id="admonition-info-title">
 <p>Info</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-info"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-info"></a>
 </div>
 <div>
 <p>info, todo</p>
@@ -2939,7 +2962,7 @@ example
 <div id="admonition-tip-title">
 <p>Tip</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-tip"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-tip"></a>
 </div>
 <div>
 <p>tip, hint, important</p>
@@ -2950,7 +2973,7 @@ example
 <div id="admonition-warning-title">
 <p>Warning</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-warning"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-warning"></a>
 </div>
 <div>
 <p>warning, caution, attention</p>
@@ -2961,7 +2984,7 @@ example
 <div id="admonition-fail-title">
 <p>Fail</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-fail"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-fail"></a>
 </div>
 <div>
 <p>failure, fail, missing</p>
@@ -2972,7 +2995,7 @@ example
 <div id="admonition-danger-title">
 <p>Danger</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-danger"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-danger"></a>
 </div>
 <div>
 <p>danger, error</p>
@@ -2983,7 +3006,7 @@ example
 <div id="admonition-bug-title">
 <p>Bug</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-bug"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-bug"></a>
 </div>
 <div>
 <p>bug</p>
@@ -2994,7 +3017,7 @@ example
 <div id="admonition-quote-title">
 <p>Quote</p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-quote"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-quote"></a>
 </div>
 <div>
 <p>quote, cite</p>
@@ -3009,13 +3032,273 @@ To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt
 <div id="admonition-a-title-that-really-pops-title">
 <p>A title that really <span style="color: #e70073">pops</span></p>
 </div>
-<a class="admonition-anchor-link" href="mdbook_syntax.html#admonition-a-title-that-really-pops"></a>
+<a class="admonition-anchor-link" href="mdbook_options.html#admonition-a-title-that-really-pops"></a>
 </summary>
 <div>
 <p>To really <b><span style="color: #e70073">grab</span></b> your reader's attention.</p>
 </div>
 </details>
 <style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+</style>
+<h1 id="git"><a class="header" href="#git">Git</a></h1>
+<ul>
+<li><a href="git.html#git-commands">Git Commands</a>
+<ul>
+<li><a href="git.html#git-configuration--setup">Git Configuration &amp; Setup</a></li>
+<li><a href="git.html#initializing-a-repository">Initializing a Repository</a></li>
+<li><a href="git.html#basic-git-commands">Basic Git Commands</a></li>
+<li><a href="git.html#git-commit-updated-commands">Git Commit (Updated Commands)</a></li>
+<li><a href="git.html#branching-and-merging">Branching and Merging</a></li>
+<li><a href="git.html#remote-repositories">Remote Repositories</a></li>
+<li><a href="git.html#git-comparison">Git Comparison</a></li>
+<li><a href="git.html#git-managing-history">Git Managing History</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="git-commands"><a class="header" href="#git-commands">Git Commands</a></h2>
+<p>Documentation can be found <a href="https://git-scm.com/docs" target="_blank">here</a></p></p>
+<h3 id="git-configuration--setup"><a class="header" href="#git-configuration--setup"><p style="text-align:center;">Git Configuration &amp; Setup</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git config –global user.name “Your Name”</td><td>Set your username globally.</td></tr>
+<tr><td>git config –global user.email “<a href="mailto:youremail@example.com">youremail@example.com</a>”</td><td>Set your email globally.</td></tr>
+<tr><td>git config –global color.ui auto –</td><td>Set to display colored output in the terminal</td></tr>
+<tr><td>git help</td><td>Display the main help documentation, showing a list of commonly used Git commands.</td></tr>
+</tbody></table>
+</div>
+<h3 id="initializing-a-repository"><a class="header" href="#initializing-a-repository"><p style="text-align:center;">Initializing a Repository</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git init</td><td>Initializes a new Git repository in the current directory.</td></tr>
+<tr><td>git init &lt;directory&gt;</td><td>Creates a new Git repository in the specified directory.</td></tr>
+<tr><td>git clone &lt;repository_url&gt;</td><td>this Clones a repository from a remote server to your local machine.</td></tr>
+<tr><td>git clone –branch &lt;branch_name&gt; &lt;repository_url&gt;</td><td>Clones a specific branch from a repository.</td></tr>
+</tbody></table>
+</div>
+<h3 id="basic-git-commands"><a class="header" href="#basic-git-commands"><p style="text-align:center;">Basic Git Commands</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git add &lt;file&gt;</td><td>Adds a specific file to the staging area.</td></tr>
+<tr><td>git add . or git add –all</td><td>Adds all modified and new files to the staging area.</td></tr>
+<tr><td>git status</td><td>Shows the current state of your repository, including tracked and untracked files, modified files, and branch information.</td></tr>
+<tr><td>git status –ignored</td><td>Displays ignored files in addition to the regular status output.</td></tr>
+<tr><td>git diff</td><td>Shows the changes between the working directory and the staging area (index).</td></tr>
+<tr><td>git diff &lt;commit1&gt; &lt;commit2&gt;</td><td>Displays the differences between two commits.</td></tr>
+<tr><td>git diff –staged or git diff –cached</td><td>Displays the changes between the staging area (index) and the last commit.</td></tr>
+<tr><td>git diff HEAD</td><td>Display the difference between the current directory and the last commit</td></tr>
+<tr><td>git commit</td><td>Creates a new commit with the changes in the staging area and opens the default text editor for adding a commit message.</td></tr>
+<tr><td>git commit -m “&lt;message&gt;” or git commit –message “&lt;message&gt;”</td><td>Creates a new commit with the changes in the staging area and specifies the commit message inline.</td></tr>
+<tr><td>git commit -a or git commit –all</td><td>Commits all modified and deleted files in the repository without explicitly using git add to stage the changes.</td></tr>
+<tr><td>git notes add</td><td>Creates a new note and associates it with an object (commit, tag, etc.).</td></tr>
+<tr><td>git restore &lt;file&gt;</td><td>Restores the file in the working directory to its state in the last commit.</td></tr>
+<tr><td>git reset &lt;commit&gt;</td><td>Moves the branch pointer to a specified commit, resetting the staging area and the working directory to match the specified commit.</td></tr>
+<tr><td>git reset –soft &lt;commit&gt;</td><td>Moves the branch pointer to a specified commit, preserving the changes in the staging area and the working directory.</td></tr>
+<tr><td>git reset –hard &lt;commit&gt;</td><td>Moves the branch pointer to a specified commit, discarding all changes in the staging area and the working directory, effectively resetting the repository to the specified commit.</td></tr>
+<tr><td>git rm &lt;file&gt;</td><td>Removes a file from both the working directory and the repository, staging the deletion.</td></tr>
+<tr><td>git mv</td><td>Moves or renames a file or directory in your Git repository.</td></tr>
+</tbody></table>
+</div>
+<h3 id="git-commit-updated-commands"><a class="header" href="#git-commit-updated-commands"><p style="text-align:center;">Git Commit (Updated Commands)</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git commit -m “feat: message”</td><td>Create a new commit in a Git repository with a specific message to indicate a new feature commit in the repository.</td></tr>
+<tr><td>git commit -m “fix: message”</td><td>Create a new commit in a Git repository with a specific message to fix the bugs in codebases</td></tr>
+<tr><td>git commit -m “chore: message”</td><td>Create a new commit in a Git repository with a specific message to show routine tasks or maintenance.</td></tr>
+<tr><td>git commit -m “refactor: message”</td><td>Create a new commit in a Git repository with a specific message to change the code base and improve the structure.</td></tr>
+<tr><td>git commit -m “docs: message”</td><td>Create a new commit in a Git repository with a specific message to change the documentation.</td></tr>
+<tr><td>git commit -m “style: message”</td><td>Create a new commit in a Git repository with a specific message to change the styling and formatting of the codebase.</td></tr>
+<tr><td>git commit -m “test: message”</td><td>Create a new commit in a Git repository with a specific message to indicate test-related changes.</td></tr>
+<tr><td>git commit -m “perf: message”</td><td>Create a new commit in a Git repository with a specific message to indicate performance-related changes.</td></tr>
+<tr><td>git commit -m “ci: message”</td><td>Create a new commit in a Git repository with a specific message to indicate the continuous integration (CI) system-related changes.</td></tr>
+<tr><td>git commit -m “build: message”</td><td>Create a new commit in a Git repository with a specific message to indicate the changes related to the build process.</td></tr>
+<tr><td>git commit -m “revert: message”</td><td>Create a new commit in a Git repository with a specific message to indicate the changes related to revert a previous commit.</td></tr>
+</tbody></table>
+</div>
+<h3 id="branching-and-merging"><a class="header" href="#branching-and-merging"><p style="text-align:center;">Branching and Merging</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git branch</td><td>Lists all branches in the repository.</td></tr>
+<tr><td>git branch &lt;branch-name&gt;</td><td>Creates a new branch with the specified name.</td></tr>
+<tr><td>git branch -d &lt;branch-name&gt;</td><td>Deletes the specified branch.</td></tr>
+<tr><td>git branch -a</td><td>Lists all local and remote branches.</td></tr>
+<tr><td>git branch -r</td><td>Lists all remote branches.</td></tr>
+<tr><td>git checkout &lt;branch-name&gt;</td><td>Switches to the specified branch.</td></tr>
+<tr><td>git checkout -b &lt;new-branch-name&gt;</td><td>Creates a new branch and switches to it.</td></tr>
+<tr><td>git checkout — &lt;file&gt;</td><td>Discards changes made to the specified file and revert it to the version in the last commit.</td></tr>
+<tr><td>git merge &lt;branch&gt;</td><td>Merges the specified branch into the current branch.</td></tr>
+<tr><td>git log</td><td>Displays the commit history of the current branch.</td></tr>
+<tr><td>git log &lt;branch-d</td><td>Displays the commit history of the specified branch.</td></tr>
+<tr><td>git log –follow &lt;file&gt;</td><td>Displays the commit history of a file, including its renames.</td></tr>
+<tr><td>git log –all</td><td>Displays the commit history of all branches.</td></tr>
+<tr><td>git stash</td><td>Stashes the changes in the working directory, allowing you to switch to a different branch or commit without committing the changes.</td></tr>
+<tr><td>git stash list</td><td>Lists all stashes in the repository.</td></tr>
+<tr><td>git stash pop</td><td>Applies and removes the most recent stash from the stash list.</td></tr>
+<tr><td>git stash drop</td><td>Removes the most recent stash from the stash list.</td></tr>
+<tr><td>git tag</td><td>Lists all tags in the repository.</td></tr>
+<tr><td>git tag &lt;tag-name&gt;</td><td>Creates a lightweight tag at the current commit.</td></tr>
+<tr><td>git tag &lt;tag-name&gt; &lt;commit&gt;</td><td>Creates a lightweight tag at the specified commit.</td></tr>
+<tr><td>git tag -a &lt;tag-name&gt; -m “&lt;message&gt;”</td><td>Creates an annotated tag at the current commit with a custom message.</td></tr>
+</tbody></table>
+</div>
+<h3 id="remote-repositories"><a class="header" href="#remote-repositories"><p style="text-align:center;">Remote Repositories</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git fetch</td><td>Retrieves change from a remote repository, including new branches and commit.</td></tr>
+<tr><td>git fetch &lt;remote&gt;</td><td>Retrieves change from the specified remote repository.</td></tr>
+<tr><td>git fetch –prune</td><td>Removes any remote-tracking branches that no longer exist on the remote repository.</td></tr>
+<tr><td>git pull</td><td>Fetches changes from the remote repository and merges them into the current branch.</td></tr>
+<tr><td>git pull &lt;remote&gt;</td><td>Fetches changes from the specified remote repository and merges them into the current branch.</td></tr>
+<tr><td>git pull –rebase</td><td>Fetches changes from the remote repository and rebases the current branch onto the updated branch.</td></tr>
+<tr><td>git push</td><td>Pushes local commits to the remote repository.</td></tr>
+<tr><td>git push &lt;remote&gt;</td><td>Pushes local commits to the specified remote repository.</td></tr>
+<tr><td>git push &lt;remote&gt; &lt;branch&gt;</td><td>Pushes local commits to the specified branch of the remote repository.</td></tr>
+<tr><td>git push –all</td><td>Pushes all branches to the remote repository.</td></tr>
+<tr><td>git remote</td><td>Lists all remote repositories.</td></tr>
+<tr><td>git remote add &lt;name&gt; &lt;url&gt;</td><td>Adds a new remote repository with the specified name and URL.</td></tr>
+</tbody></table>
+</div>
+<h3 id="git-comparison"><a class="header" href="#git-comparison"><p style="text-align:center;">Git Comparison</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git show</td><td>Shows the details of a specific commit, including its changes.</td></tr>
+<tr><td>git show &lt;commit&gt;</td><td>Shows the details of the specified commit, including its changes.</td></tr>
+</tbody></table>
+</div>
+<h3 id="git-managing-history"><a class="header" href="#git-managing-history"><p style="text-align:center;">Git Managing History</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git revert &lt;commit&gt;</td><td>Creates a new commit that undoes the changes introduced by the specified commit.</td></tr>
+<tr><td>git revert –no-commit &lt;commit&gt;</td><td>Undoes the changes introduced by the specified commit, but does not create a new commit.</td></tr>
+<tr><td>git rebase &lt;branch&gt;</td><td>Reapplies commits on the current branch onto the tip of the specified branch.</td></tr>
+</tbody></table>
+</div><style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;

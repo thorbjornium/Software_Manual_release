@@ -141,6 +141,9 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/mdbook_options.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
 
                     </div>
                 </div>
@@ -264,7 +267,7 @@
   --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
 }
 </style>
-<h1 id="mdbook-syntax"><a class="header" href="#mdbook-syntax">mdBook Syntax</a></h1>
+<h1 id="mdbook-options"><a class="header" href="#mdbook-options">mdBook Options</a></h1>
 <ul>
 <li><a href="#change-browser-tab-title">Change browser tab title</a></li>
 <li><a href="#rust-playground">Rust Playground</a></li>
@@ -285,6 +288,8 @@
 <pre><code class="language-plaintext">{{#title New &amp; improved}}
 </code></pre>
 <h2 id="rust-playground"><a class="header" href="#rust-playground">Rust Playground</a></h2>
+<p>Use <a href="https://play.rust-lang.org">Rust Playground</a> to run code in the browser.</p>
+<p>Produce editable code that runs in the browser.</p>
 <pre><code>```rust,editable
 fn main() {
     let number = 5;
@@ -292,11 +297,21 @@ fn main() {
 }
 ```
 </code></pre>
-<br>
-<pre><pre class="playground"><code class="language-rust editable">// Editable Rust code. Edit and run code in the browser.
-fn main() {
+<pre><pre class="playground"><code class="language-rust editable">fn main() {
     let number = 5;
     print!("{}", number);
+}</code></pre></pre>
+<p>Non-editable code. Runs in the browser.</p>
+<pre><code>```rust
+fn main() {
+    let x = "Rust";
+    print!("{}", x);
+}
+```
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let x = "Rust";
+    print!("{}", x);
 }</code></pre></pre>
 <h2 id="mathjax-support"><a class="header" href="#mathjax-support">MathJax support</a></h2>
 <pre><code class="language-plaintext">\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
@@ -307,22 +322,33 @@ fn main() {
   <span class="mdbook-alerts-icon"></span>
   note
 </p>
-<p>The usual delimiters MathJax uses are not yet supported. You can’t currently
+<p>From mdBook docs: "The usual delimiters MathJax uses are not yet supported. You can’t currently
 use <code>$$ ... $$</code> as delimiters and the <code>\[ ... \]</code> delimiters need an extra backslash
-to work. Hopefully this limitation will be lifted soon.</p>
+to work. Hopefully this limitation will be lifted soon."</p>
 </div>
 <br>
 <h2 id="embedify"><a class="header" href="#embedify">Embedify</a></h2>
-<p>Get <a href="https://github.com/MR-Addict/mdbook-embedify">mdBook-embedify</a> Embed videos, include banners, scroll-to-top and footer options.</p>
+<p>Get <a href="https://github.com/MR-Addict/mdbook-embedify">mdBook-embedify</a>. Embed videos, gists &amp; codepens. Option to include banners, scroll-to-top and footer options.</p>
 <iframe
   allowfullscreen
   name="youtube"
-  loading="eager"
+  loading="lazy"
   src="https://www.youtube.com/embed/Osqf4oIK0E8"
   style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 ></iframe>
-</br>  
+<br>  
+<br>  
+<script src="https://gist.github.com/7fc39974980739135253e755b2fa1433.js"></script>
+<br>  
+<iframe
+  allowfullscreen
+  name="codepen"
+  loading="lazy"
+  height="600"
+  style="width: 100%; border: none; border-radius: 1rem; background: black"
+  src="https://codepen.io/TDJ/embed/wBwZaQG?default-tab=result&theme-id=dark"
+></iframe>
 <h2 id="alerts"><a class="header" href="#alerts">Alerts</a></h2>
 <p>Modified and translated version of mdBook-alerts. English and Swedish. See options: <a href="https://github.com/horbjorn/rs-mdbook-alerts">https://github.com/horbjorn/rs-mdbook-alerts</a></p>
 <div class="mdbook-alerts mdbook-alerts-notera">
@@ -820,7 +846,7 @@ To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="spotify_playlist_backup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="git.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -834,7 +860,7 @@ To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="spotify_playlist_backup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="git.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

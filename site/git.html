@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>VS Code</title>
+        <title>Commands</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/vscode.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/git.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -267,217 +267,128 @@
   --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
 }
 </style>
-<h1 id="vs-code"><a class="header" href="#vs-code">VS Code</a></h1>
-<h2 id="keyboard-settings"><a class="header" href="#keyboard-settings">Keyboard settings</a></h2>
+<h1 id="git"><a class="header" href="#git">Git</a></h1>
 <ul>
-<li><a href="#toggle-terminal-and-editor-focus">Toggle terminal and editor focus</a></li>
-<li><a href="#adjust-font-size-on-terminal">Adjust font size on terminal</a></li>
-<li><a href="#keyboard-shortcuts">Keyboard shortcuts</a>
+<li><a href="#git-commands">Git Commands</a>
 <ul>
-<li><a href="#general">General</a></li>
-<li><a href="#basic-editing">Basic editing</a></li>
-<li><a href="#navigation">Navigation</a></li>
-<li><a href="#search-and-replace">Search and Replace</a></li>
-<li><a href="#multi-cursor-and-selection">Multi-cursor and selection</a></li>
-<li><a href="#rich-languages-editing">Rich languages editing</a></li>
-<li><a href="#editor-management">Editor management</a></li>
-<li><a href="#file-management">File management</a></li>
-<li><a href="#display">Display</a></li>
-<li><a href="#debug">Debug</a></li>
-<li><a href="#integrated-terminal">Integrated terminal</a></li>
+<li><a href="#git-configuration--setup">Git Configuration &amp; Setup</a></li>
+<li><a href="#initializing-a-repository">Initializing a Repository</a></li>
+<li><a href="#basic-git-commands">Basic Git Commands</a></li>
+<li><a href="#git-commit-updated-commands">Git Commit (Updated Commands)</a></li>
+<li><a href="#branching-and-merging">Branching and Merging</a></li>
+<li><a href="#remote-repositories">Remote Repositories</a></li>
+<li><a href="#git-comparison">Git Comparison</a></li>
+<li><a href="#git-managing-history">Git Managing History</a></li>
 </ul>
 </li>
 </ul>
-<h3 id="toggle-terminal-and-editor-focus"><a class="header" href="#toggle-terminal-and-editor-focus">Toggle terminal and editor focus</a></h3>
-<p>Open Command Palette and find keyboard shortcuts (JSON) and paste the following:</p>
-<pre><code class="language-json">{
-    "key":     "ctrl+`",
-    "command": "workbench.action.terminal.focus"
-},
-{
-    "key":     "ctrl+`",
-    "command": "workbench.action.focusActiveEditorGroup",
-    "when":    "terminalFocus"
-}
-</code></pre>
-<h3 id="adjust-font-size-on-terminal"><a class="header" href="#adjust-font-size-on-terminal">Adjust font size on terminal</a></h3>
-<pre><code class="language-json">    {
-        "key": "ctrl+=",
-        "command": "workbench.action.terminal.fontZoomIn",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+-",
-        "command": "workbench.action.terminal.fontZoomOut",
-        "when": "terminalFocus"
-    }
-</code></pre>
-<br>
-<h2 id="keyboard-shortcuts"><a class="header" href="#keyboard-shortcuts"><p style="text-align:center;">Keyboard shortcuts</p></a></h2>
-<h3 id="general"><a class="header" href="#general"><p style="text-align:center;">General</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">Ctrl+Shift+P, F1</td><td style="text-align: left">Show Command Palette</td></tr>
-<tr><td style="text-align: left">Ctrl+P</td><td style="text-align: left">Quick Open, Go to File…</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+N</td><td style="text-align: left">New window/instance</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+W</td><td style="text-align: left">Close window/instance</td></tr>
-<tr><td style="text-align: left">Ctrl+,</td><td style="text-align: left">User Settings</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+S</td><td style="text-align: left">Keyboard Shortcuts</td></tr>
+<h2 id="git-commands"><a class="header" href="#git-commands">Git Commands</a></h2>
+<p>Documentation can be found <a href="https://git-scm.com/docs" target="_blank">here</a></p></p>
+<h3 id="git-configuration--setup"><a class="header" href="#git-configuration--setup"><p style="text-align:center;">Git Configuration &amp; Setup</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git config –global user.name “Your Name”</td><td>Set your username globally.</td></tr>
+<tr><td>git config –global user.email “<a href="mailto:youremail@example.com">youremail@example.com</a>”</td><td>Set your email globally.</td></tr>
+<tr><td>git config –global color.ui auto –</td><td>Set to display colored output in the terminal</td></tr>
+<tr><td>git help</td><td>Display the main help documentation, showing a list of commonly used Git commands.</td></tr>
 </tbody></table>
 </div>
-<h3 id="basic-editing"><a class="header" href="#basic-editing"><p style="text-align:center;">Basic editing</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">Ctrl+X</td><td style="text-align: left">Cut line (empty selection)</td></tr>
-<tr><td style="text-align: left">Ctrl+C</td><td style="text-align: left">Copy line (empty selection)</td></tr>
-<tr><td style="text-align: left">Alt+ ↑ / ↓</td><td style="text-align: left">Move line up/down</td></tr>
-<tr><td style="text-align: left">Shift+Alt + ↓ / ↑</td><td style="text-align: left">Copy line up/down</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+K</td><td style="text-align: left">Delete line</td></tr>
-<tr><td style="text-align: left">Ctrl+Enter</td><td style="text-align: left">Insert line below</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+Enter</td><td style="text-align: left">Insert line above</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+\</td><td style="text-align: left">Jump to matching bracket</td></tr>
-<tr><td style="text-align: left">Ctrl+] / [</td><td style="text-align: left">Indent/outdent line</td></tr>
-<tr><td style="text-align: left">Home / End</td><td style="text-align: left">Go to beginning/end of line</td></tr>
-<tr><td style="text-align: left">Ctrl+Home</td><td style="text-align: left">Go to beginning of file</td></tr>
-<tr><td style="text-align: left">Ctrl+End</td><td style="text-align: left">Go to end of file</td></tr>
-<tr><td style="text-align: left">Ctrl+↑ / ↓</td><td style="text-align: left">Scroll line up/down</td></tr>
-<tr><td style="text-align: left">Alt+PgUp / PgDn</td><td style="text-align: left">Scroll page up/down</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+[</td><td style="text-align: left">Fold (collapse) region</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+]</td><td style="text-align: left">Unfold (uncollapse) region</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+[</td><td style="text-align: left">Fold (collapse) all subregions</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+]</td><td style="text-align: left">Unfold (uncollapse) all subregions</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+0</td><td style="text-align: left">Fold (collapse) all regions</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+J</td><td style="text-align: left">Unfold (uncollapse) all regions</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+C</td><td style="text-align: left">Add line comment</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+U</td><td style="text-align: left">Remove line comment</td></tr>
-<tr><td style="text-align: left">Ctrl+/</td><td style="text-align: left">Toggle line comment</td></tr>
-<tr><td style="text-align: left">Shift+Alt+A</td><td style="text-align: left">Toggle block comment</td></tr>
-<tr><td style="text-align: left">Alt+Z</td><td style="text-align: left">Toggle word wrap</td></tr>
+<h3 id="initializing-a-repository"><a class="header" href="#initializing-a-repository"><p style="text-align:center;">Initializing a Repository</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git init</td><td>Initializes a new Git repository in the current directory.</td></tr>
+<tr><td>git init &lt;directory&gt;</td><td>Creates a new Git repository in the specified directory.</td></tr>
+<tr><td>git clone &lt;repository_url&gt;</td><td>this Clones a repository from a remote server to your local machine.</td></tr>
+<tr><td>git clone –branch &lt;branch_name&gt; &lt;repository_url&gt;</td><td>Clones a specific branch from a repository.</td></tr>
 </tbody></table>
 </div>
-<h3 id="navigation"><a class="header" href="#navigation"><p style="text-align:center;">Navigation</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">Ctrl+T</td><td style="text-align: left">Show all Symbols</td></tr>
-<tr><td style="text-align: left">Ctrl+G</td><td style="text-align: left">Go to Line...</td></tr>
-<tr><td style="text-align: left">Ctrl+P</td><td style="text-align: left">Go to File...</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+O</td><td style="text-align: left">Go to Symbol...</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+M</td><td style="text-align: left">Show Problems panel</td></tr>
-<tr><td style="text-align: left">F8</td><td style="text-align: left">Go to next error or warning</td></tr>
-<tr><td style="text-align: left">Shift+F8</td><td style="text-align: left">Go to previous error or warning</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+Tab</td><td style="text-align: left">Navigate editor group history</td></tr>
-<tr><td style="text-align: left">Alt+ ← / →</td><td style="text-align: left">Go back / forward</td></tr>
-<tr><td style="text-align: left">Ctrl+M</td><td style="text-align: left">Toggle Tab moves focus</td></tr>
+<h3 id="basic-git-commands"><a class="header" href="#basic-git-commands"><p style="text-align:center;">Basic Git Commands</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git add &lt;file&gt;</td><td>Adds a specific file to the staging area.</td></tr>
+<tr><td>git add . or git add –all</td><td>Adds all modified and new files to the staging area.</td></tr>
+<tr><td>git status</td><td>Shows the current state of your repository, including tracked and untracked files, modified files, and branch information.</td></tr>
+<tr><td>git status –ignored</td><td>Displays ignored files in addition to the regular status output.</td></tr>
+<tr><td>git diff</td><td>Shows the changes between the working directory and the staging area (index).</td></tr>
+<tr><td>git diff &lt;commit1&gt; &lt;commit2&gt;</td><td>Displays the differences between two commits.</td></tr>
+<tr><td>git diff –staged or git diff –cached</td><td>Displays the changes between the staging area (index) and the last commit.</td></tr>
+<tr><td>git diff HEAD</td><td>Display the difference between the current directory and the last commit</td></tr>
+<tr><td>git commit</td><td>Creates a new commit with the changes in the staging area and opens the default text editor for adding a commit message.</td></tr>
+<tr><td>git commit -m “&lt;message&gt;” or git commit –message “&lt;message&gt;”</td><td>Creates a new commit with the changes in the staging area and specifies the commit message inline.</td></tr>
+<tr><td>git commit -a or git commit –all</td><td>Commits all modified and deleted files in the repository without explicitly using git add to stage the changes.</td></tr>
+<tr><td>git notes add</td><td>Creates a new note and associates it with an object (commit, tag, etc.).</td></tr>
+<tr><td>git restore &lt;file&gt;</td><td>Restores the file in the working directory to its state in the last commit.</td></tr>
+<tr><td>git reset &lt;commit&gt;</td><td>Moves the branch pointer to a specified commit, resetting the staging area and the working directory to match the specified commit.</td></tr>
+<tr><td>git reset –soft &lt;commit&gt;</td><td>Moves the branch pointer to a specified commit, preserving the changes in the staging area and the working directory.</td></tr>
+<tr><td>git reset –hard &lt;commit&gt;</td><td>Moves the branch pointer to a specified commit, discarding all changes in the staging area and the working directory, effectively resetting the repository to the specified commit.</td></tr>
+<tr><td>git rm &lt;file&gt;</td><td>Removes a file from both the working directory and the repository, staging the deletion.</td></tr>
+<tr><td>git mv</td><td>Moves or renames a file or directory in your Git repository.</td></tr>
 </tbody></table>
 </div>
-<h3 id="search-and-replace"><a class="header" href="#search-and-replace"><p style="text-align:center;">Search and Replace</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">Ctrl+F</td><td style="text-align: left">Find</td></tr>
-<tr><td style="text-align: left">Ctrl+H</td><td style="text-align: left">Replace</td></tr>
-<tr><td style="text-align: left">F3 / Shift+F3</td><td style="text-align: left">Find next/previous</td></tr>
-<tr><td style="text-align: left">Alt+Enter</td><td style="text-align: left">Select all occurences of Find match</td></tr>
-<tr><td style="text-align: left">Ctrl+D</td><td style="text-align: left">Add selection to next Find match</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+D</td><td style="text-align: left">Move last selection to next Find match</td></tr>
-<tr><td style="text-align: left">Alt+C / R / W</td><td style="text-align: left">Toggle case-sensitive / regex / whole word</td></tr>
+<h3 id="git-commit-updated-commands"><a class="header" href="#git-commit-updated-commands"><p style="text-align:center;">Git Commit (Updated Commands)</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git commit -m “feat: message”</td><td>Create a new commit in a Git repository with a specific message to indicate a new feature commit in the repository.</td></tr>
+<tr><td>git commit -m “fix: message”</td><td>Create a new commit in a Git repository with a specific message to fix the bugs in codebases</td></tr>
+<tr><td>git commit -m “chore: message”</td><td>Create a new commit in a Git repository with a specific message to show routine tasks or maintenance.</td></tr>
+<tr><td>git commit -m “refactor: message”</td><td>Create a new commit in a Git repository with a specific message to change the code base and improve the structure.</td></tr>
+<tr><td>git commit -m “docs: message”</td><td>Create a new commit in a Git repository with a specific message to change the documentation.</td></tr>
+<tr><td>git commit -m “style: message”</td><td>Create a new commit in a Git repository with a specific message to change the styling and formatting of the codebase.</td></tr>
+<tr><td>git commit -m “test: message”</td><td>Create a new commit in a Git repository with a specific message to indicate test-related changes.</td></tr>
+<tr><td>git commit -m “perf: message”</td><td>Create a new commit in a Git repository with a specific message to indicate performance-related changes.</td></tr>
+<tr><td>git commit -m “ci: message”</td><td>Create a new commit in a Git repository with a specific message to indicate the continuous integration (CI) system-related changes.</td></tr>
+<tr><td>git commit -m “build: message”</td><td>Create a new commit in a Git repository with a specific message to indicate the changes related to the build process.</td></tr>
+<tr><td>git commit -m “revert: message”</td><td>Create a new commit in a Git repository with a specific message to indicate the changes related to revert a previous commit.</td></tr>
 </tbody></table>
 </div>
-<h3 id="multi-cursor-and-selection"><a class="header" href="#multi-cursor-and-selection"><p style="text-align:center;">Multi-cursor and selection</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Keyboard shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">Alt+Click</td><td style="text-align: left">Insert cursor</td></tr>
-<tr><td style="text-align: left">Ctrl+Alt+ ↑ / ↓</td><td style="text-align: left">Insert cursor above / below</td></tr>
-<tr><td style="text-align: left">Ctrl+U Undo</td><td style="text-align: left">last cursor operation</td></tr>
-<tr><td style="text-align: left">Shift+Alt+I</td><td style="text-align: left">Insert cursor at end of each line selected</td></tr>
-<tr><td style="text-align: left">Ctrl+L</td><td style="text-align: left">Select current line</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+L</td><td style="text-align: left">Select all occurrences of current selection</td></tr>
-<tr><td style="text-align: left">Ctrl+F2</td><td style="text-align: left">Select all occurrences of current word</td></tr>
-<tr><td style="text-align: left">Shift+Alt+→</td><td style="text-align: left">Expand selection</td></tr>
-<tr><td style="text-align: left">Shift+Alt+← ^</td><td style="text-align: left">Shrink selection</td></tr>
-<tr><td style="text-align: left">Shift+Alt +(drag mouse)</td><td style="text-align: left">Column (box) selection</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+Alt+ (arrow key)</td><td style="text-align: left">Column (box) selection</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+Alt+PgUp/PgDn</td><td style="text-align: left">Column (box) selection page up/down</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+P</td><td style="text-align: left">Search 'toggle multi'. Switches Alt+Click to Ctrl+Click</td></tr>
+<h3 id="branching-and-merging"><a class="header" href="#branching-and-merging"><p style="text-align:center;">Branching and Merging</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git branch</td><td>Lists all branches in the repository.</td></tr>
+<tr><td>git branch &lt;branch-name&gt;</td><td>Creates a new branch with the specified name.</td></tr>
+<tr><td>git branch -d &lt;branch-name&gt;</td><td>Deletes the specified branch.</td></tr>
+<tr><td>git branch -a</td><td>Lists all local and remote branches.</td></tr>
+<tr><td>git branch -r</td><td>Lists all remote branches.</td></tr>
+<tr><td>git checkout &lt;branch-name&gt;</td><td>Switches to the specified branch.</td></tr>
+<tr><td>git checkout -b &lt;new-branch-name&gt;</td><td>Creates a new branch and switches to it.</td></tr>
+<tr><td>git checkout — &lt;file&gt;</td><td>Discards changes made to the specified file and revert it to the version in the last commit.</td></tr>
+<tr><td>git merge &lt;branch&gt;</td><td>Merges the specified branch into the current branch.</td></tr>
+<tr><td>git log</td><td>Displays the commit history of the current branch.</td></tr>
+<tr><td>git log &lt;branch-d</td><td>Displays the commit history of the specified branch.</td></tr>
+<tr><td>git log –follow &lt;file&gt;</td><td>Displays the commit history of a file, including its renames.</td></tr>
+<tr><td>git log –all</td><td>Displays the commit history of all branches.</td></tr>
+<tr><td>git stash</td><td>Stashes the changes in the working directory, allowing you to switch to a different branch or commit without committing the changes.</td></tr>
+<tr><td>git stash list</td><td>Lists all stashes in the repository.</td></tr>
+<tr><td>git stash pop</td><td>Applies and removes the most recent stash from the stash list.</td></tr>
+<tr><td>git stash drop</td><td>Removes the most recent stash from the stash list.</td></tr>
+<tr><td>git tag</td><td>Lists all tags in the repository.</td></tr>
+<tr><td>git tag &lt;tag-name&gt;</td><td>Creates a lightweight tag at the current commit.</td></tr>
+<tr><td>git tag &lt;tag-name&gt; &lt;commit&gt;</td><td>Creates a lightweight tag at the specified commit.</td></tr>
+<tr><td>git tag -a &lt;tag-name&gt; -m “&lt;message&gt;”</td><td>Creates an annotated tag at the current commit with a custom message.</td></tr>
 </tbody></table>
 </div>
-<h3 id="rich-languages-editing"><a class="header" href="#rich-languages-editing"><p style="text-align:center;">Rich languages editing</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">Ctrl+Space, Ctrl+I</td><td style="text-align: left">Trigger suggestion</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+Space</td><td style="text-align: left">Trigger parameter hints</td></tr>
-<tr><td style="text-align: left">Shift+Alt+F</td><td style="text-align: left">Format document</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+F</td><td style="text-align: left">Format selection</td></tr>
-<tr><td style="text-align: left">F12</td><td style="text-align: left">Go to Definition</td></tr>
-<tr><td style="text-align: left">Alt+F12</td><td style="text-align: left">Peek Definition</td></tr>
-<tr><td style="text-align: left">Ctrl+K F12</td><td style="text-align: left">Open Definition to the side</td></tr>
-<tr><td style="text-align: left">Ctrl+.</td><td style="text-align: left">Quick Fix</td></tr>
-<tr><td style="text-align: left">Shift+F12</td><td style="text-align: left">Show References</td></tr>
-<tr><td style="text-align: left">F2</td><td style="text-align: left">Rename Symbol</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+X</td><td style="text-align: left">Trim trailing whitespace</td></tr>
-<tr><td style="text-align: left">Ctrl+K M</td><td style="text-align: left">Change file language</td></tr>
+<h3 id="remote-repositories"><a class="header" href="#remote-repositories"><p style="text-align:center;">Remote Repositories</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git fetch</td><td>Retrieves change from a remote repository, including new branches and commit.</td></tr>
+<tr><td>git fetch &lt;remote&gt;</td><td>Retrieves change from the specified remote repository.</td></tr>
+<tr><td>git fetch –prune</td><td>Removes any remote-tracking branches that no longer exist on the remote repository.</td></tr>
+<tr><td>git pull</td><td>Fetches changes from the remote repository and merges them into the current branch.</td></tr>
+<tr><td>git pull &lt;remote&gt;</td><td>Fetches changes from the specified remote repository and merges them into the current branch.</td></tr>
+<tr><td>git pull –rebase</td><td>Fetches changes from the remote repository and rebases the current branch onto the updated branch.</td></tr>
+<tr><td>git push</td><td>Pushes local commits to the remote repository.</td></tr>
+<tr><td>git push &lt;remote&gt;</td><td>Pushes local commits to the specified remote repository.</td></tr>
+<tr><td>git push &lt;remote&gt; &lt;branch&gt;</td><td>Pushes local commits to the specified branch of the remote repository.</td></tr>
+<tr><td>git push –all</td><td>Pushes all branches to the remote repository.</td></tr>
+<tr><td>git remote</td><td>Lists all remote repositories.</td></tr>
+<tr><td>git remote add &lt;name&gt; &lt;url&gt;</td><td>Adds a new remote repository with the specified name and URL.</td></tr>
 </tbody></table>
 </div>
-<h3 id="editor-management"><a class="header" href="#editor-management"><p style="text-align:center;">Editor management</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">Ctrl+F4, Ctrl+W</td><td style="text-align: left">Close editor</td></tr>
-<tr><td style="text-align: left">Ctrl+K F</td><td style="text-align: left">Close folder</td></tr>
-<tr><td style="text-align: left">Ctrl+\</td><td style="text-align: left">Split editor</td></tr>
-<tr><td style="text-align: left">Ctrl+ 1 / 2 / 3</td><td style="text-align: left">Focus into 1st, 2nd or 3rd editor group</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+ ←/→</td><td style="text-align: left">Focus into previous/next editor group</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+PgUp / PgDn</td><td style="text-align: left">Move editor left/right</td></tr>
-<tr><td style="text-align: left">Ctrl+K ← / →</td><td style="text-align: left">Move active editor group</td></tr>
+<h3 id="git-comparison"><a class="header" href="#git-comparison"><p style="text-align:center;">Git Comparison</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git show</td><td>Shows the details of a specific commit, including its changes.</td></tr>
+<tr><td>git show &lt;commit&gt;</td><td>Shows the details of the specified commit, including its changes.</td></tr>
 </tbody></table>
 </div>
-<h3 id="file-management"><a class="header" href="#file-management"><p style="text-align:center;">File management</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">Ctrl+N</td><td style="text-align: left">New File</td></tr>
-<tr><td style="text-align: left">Ctrl+O</td><td style="text-align: left">Open File...</td></tr>
-<tr><td style="text-align: left">Ctrl+S</td><td style="text-align: left">Save</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+S</td><td style="text-align: left">Save As...</td></tr>
-<tr><td style="text-align: left">Ctrl+K S</td><td style="text-align: left">Save All</td></tr>
-<tr><td style="text-align: left">Ctrl+F4</td><td style="text-align: left">Close</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+W</td><td style="text-align: left">Close All</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+T</td><td style="text-align: left">Reopen closed editor</td></tr>
-<tr><td style="text-align: left">Ctrl+K Enter</td><td style="text-align: left">Keep preview mode editor open</td></tr>
-<tr><td style="text-align: left">Ctrl+Tab</td><td style="text-align: left">Open next</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+Tab</td><td style="text-align: left">Open previous</td></tr>
-<tr><td style="text-align: left">Ctrl+K P</td><td style="text-align: left">Copy path of active file</td></tr>
-<tr><td style="text-align: left">Ctrl+K R</td><td style="text-align: left">Reveal active file in Explorer</td></tr>
-<tr><td style="text-align: left">Ctrl+K O</td><td style="text-align: left">Show active file in new window/instance</td></tr>
-</tbody></table>
-</div>
-<h3 id="display"><a class="header" href="#display"><p style="text-align:center;">Display</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">F11</td><td style="text-align: left">Toggle full screen</td></tr>
-<tr><td style="text-align: left">Shift+Alt+0</td><td style="text-align: left">Toggle editor layout (horizontal/vertical)</td></tr>
-<tr><td style="text-align: left">Ctrl+ = / -</td><td style="text-align: left">Zoom in/out</td></tr>
-<tr><td style="text-align: left">Ctrl+B</td><td style="text-align: left">Toggle Sidebar visibility</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+E</td><td style="text-align: left">Show Explorer / Toggle focus</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+F</td><td style="text-align: left">Show Search</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+G</td><td style="text-align: left">Show Source Control</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+D</td><td style="text-align: left">Show Debug</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+X</td><td style="text-align: left">Show Extensions</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+H</td><td style="text-align: left">Replace in files</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+J</td><td style="text-align: left">Toggle Search details</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+U</td><td style="text-align: left">Show Output panel</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+V</td><td style="text-align: left">Open Markdown preview</td></tr>
-<tr><td style="text-align: left">Ctrl+K V</td><td style="text-align: left">Open Markdown preview to the side</td></tr>
-<tr><td style="text-align: left">Ctrl+K Z</td><td style="text-align: left">Zen Mode (Esc Esc to exit)</td></tr>
-</tbody></table>
-</div>
-<h3 id="debug"><a class="header" href="#debug"><p style="text-align:center;">Debug</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">F9</td><td style="text-align: left">Toggle breakpoint</td></tr>
-<tr><td style="text-align: left">F5</td><td style="text-align: left">Start/Continue</td></tr>
-<tr><td style="text-align: left">Shift+F5</td><td style="text-align: left">Stop</td></tr>
-<tr><td style="text-align: left">F11 / Shift+F11</td><td style="text-align: left">Step into/out</td></tr>
-<tr><td style="text-align: left">F10</td><td style="text-align: left">Step over</td></tr>
-<tr><td style="text-align: left">Ctrl+K Ctrl+I</td><td style="text-align: left">Show hover</td></tr>
-</tbody></table>
-</div>
-<h3 id="integrated-terminal"><a class="header" href="#integrated-terminal"><p style="text-align:center;">Integrated terminal</p></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Shortcut</th><th style="text-align: left">Action</th></tr></thead><tbody>
-<tr><td style="text-align: left">Ctrl+`</td><td style="text-align: left">Show integrated terminal</td></tr>
-<tr><td style="text-align: left">Ctrl+Shift+`</td><td style="text-align: left">Create new terminal</td></tr>
-<tr><td style="text-align: left">Ctrl+C</td><td style="text-align: left">Copy selection</td></tr>
-<tr><td style="text-align: left">Ctrl+V</td><td style="text-align: left">Paste into active terminal</td></tr>
-<tr><td style="text-align: left">Ctrl+↑ / ↓</td><td style="text-align: left">Scroll up/down</td></tr>
-<tr><td style="text-align: left">Shift+PgUp / PgDn</td><td style="text-align: left">Scroll page up/down</td></tr>
-<tr><td style="text-align: left">Ctrl+Home /</td><td style="text-align: left">End Scroll to top/bottom</td></tr>
+<h3 id="git-managing-history"><a class="header" href="#git-managing-history"><p style="text-align:center;">Git Managing History</p></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Commands</th><th>Description</th></tr></thead><tbody>
+<tr><td>git revert &lt;commit&gt;</td><td>Creates a new commit that undoes the changes introduced by the specified commit.</td></tr>
+<tr><td>git revert –no-commit &lt;commit&gt;</td><td>Undoes the changes introduced by the specified commit, but does not create a new commit.</td></tr>
+<tr><td>git rebase &lt;branch&gt;</td><td>Reapplies commits on the current branch onto the tip of the specified branch.</td></tr>
 </tbody></table>
 </div><style>
   .scroll-to-top {
@@ -524,11 +435,11 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ffmpeg.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="mdbook_options.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="essential_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="spotify_playlist_backup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -538,11 +449,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ffmpeg.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="mdbook_options.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="essential_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="spotify_playlist_backup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
