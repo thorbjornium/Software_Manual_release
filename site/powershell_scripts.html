@@ -276,14 +276,14 @@
 <li><a href="#disks">Disks</a></li>
 </ul>
 <br>  
-<p>Copy and Paste the scripts into your Powershell profile. To open your Powershell profile in VS Code type <code>code $Profile</code>.
+<p>Copy and Paste the scripts into your Powershell profile. To open your Powershell profile in VS Code type <code>code $Profile</code>.<br />
 Most scripts requires additional software. Install the following software if you do not have it already:</p>
 <pre><code class="language-Powershell">winget install junegunn.fzf
 winget install sharkdp.fd
 winget install sharkdp.bat
 winget install BurntSushi.ripgrep.MSVC
 </code></pre>
-<p>Detailed information about <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a> and <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> can be found by clicking the links.</p>
+<p>Detailed information can be found by clicking <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a> and <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>.</p>
 <h2 id="find-files-and-folders"><a class="header" href="#find-files-and-folders">Find files and folders</a></h2>
 <p>A script with options to view, delete or edit files with external tools.</p>
 <details>
@@ -474,7 +474,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>Press <kbd>Ctrl</kbd> + <kbd>r</kbd> to list previous commands. Search and hit <kbd>Enter</kbd> twice to execute the command.</p>
 <p>Tab completion works out of the box.</p>
 <h2 id="disks"><a class="header" href="#disks">Disks</a></h2>
-<details>   
+<details>  
 <summary><u>Script</u></summary>
 <pre><code class="language-Powershell">function disks {
     
