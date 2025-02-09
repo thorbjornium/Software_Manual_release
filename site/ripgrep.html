@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Tools</title>
+        <title>ripgrep</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/powershell_tools.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/ripgrep.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -267,47 +267,117 @@
   --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
 }
 </style>
-<h1 id="tools"><a class="header" href="#tools">Tools</a></h1>
-<p>Tools that I find useful for Powershell.</p>
-<p><a href="./yazi.html">yazi</a></p>
-<p>Tabbed file manager with preview supporting numerous file types.</p>
-<p><a href="./ripgrep.html">ripgrep</a></p>
-<p>A replacement for <code>grep</code>.</p>
-<p><a href="./eza.html">eza</a></p>
-<p>A replacement for <code>ls</code>.  <style>
-.scroll-to-top {
-font-size: 2.5rem;
-width: 3.2rem;
-height: 3.2rem;
-display: none;
-align-items: center;
-justify-content: center;
-position: fixed;
-padding: 0.75rem;
-bottom: 4rem;
-right: calc(1.25rem + 90px + var(--page-padding));
-z-index: 999;
-cursor: pointer;
-border: none;
-color: var(--bg);
-background: var(--fg);
-border-radius: 50%;
-}
-.scroll-to-top.hidden {
-display: none;
-}
-.scroll-to-top i {
-transform: translateY(-2px);
-}
-@media (min-width: 1080px) {
-.scroll-to-top {
-display: flex;
-}
-}
+<h1 id="ripgrep"><a class="header" href="#ripgrep">ripgrep</a></h1>
+<p>ripgrep is a line-oriented search tool that recursively searches the current directory for a regex pattern.</p>
+<p>Here are some examples of ripgrep usage:</p>
+<p><code>rg '// TODO'</code></p>
+<p>Searches for the string // TODO in the current directory.</p>
+<p><code>rg -i -w "error|warning"</code></p>
+<p>Searches for lines containing either error or warning ignoring case, and requiring it to be a whole word in the current directory.</p>
+<p><code>rg "^TODO"</code></p>
+<p>Searches for lines that start with <code>TODO</code> in the current directory.</p>
+<p><code>rg "\.jpg$"</code></p>
+<p>Searches for files ending with <code>.jpg</code> in the current directory.</p>
+<p><code>rg "\d+"</code></p>
+<p>Searches for lines containing numbers in the current directory.</p>
+<p><code>rg "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"</code></p>
+<p>Searches for lines containing email addresses in the current directory.</p>
+<p><code>rg "test.*"</code></p>
+<p>Searches for lines containing the string "test." followed by any characters in the current directory.</p>
+<p><code>rg "\b\w{5}\b"</code></p>
+<p>Searches for lines containing exactly 5 characters in the current directory.</p>
+<p><code>rg "[^a]+"</code></p>
+<p>Searches for lines containing characters other than <code>a</code> in the current directory.</p>
+<p><code>rg "\d+[a-zA-Z]"</code></p>
+<p>Searches for lines containing a number followed by a letter in the current directory.</p>
+<p><code>rg --type js --type py "function"</code></p>
+<p>Searches for lines containing the string "function" in files with the extension <code>.js</code> or <code>.py</code> in the current directory.</p>
+<h2 id="common-options-for-ripgrep"><a class="header" href="#common-options-for-ripgrep">Common options for ripgrep</a></h2>
+<ul>
+<li>
+<p><code>-i --ignore-case</code>: When searching for a pattern, ignore case differences. That is <code>rg -i fast</code> matches <code>fast</code>, <code>fASt</code>, <code>FAST</code>, etc.</p>
+</li>
+<li>
+<p><code>-S --smart-case</code>: This is similar to <code>--ignore-case</code>, but disables itself if the pattern contains any uppercase letters. Usually this flag is put into alias or a config file.</p>
+</li>
+<li>
+<p><code>-F --fixed-strings</code>: Disable regular expression matching and treat the pattern as a literal string.</p>
+</li>
+<li>
+<p><code>-w --word-regexp</code>: Require that all matches of the pattern be surrounded by word boundaries. That is, given <code>pattern</code>, the <code>--word-regexp</code> flag will cause ripgrep to behave as if <code>pattern</code> were actually <code>\b(?:pattern)\b</code>.</p>
+</li>
+<li>
+<p><code>-c --count</code>: Report a count of total matched lines.</p>
+</li>
+<li>
+<p><code>-l --files-with-matches</code>: Only print the names of files that contain matches.</p>
+</li>
+<li>
+<p><code>--files-without-match</code>: Only print the names of files that do not contain matches.</p>
+</li>
+<li>
+<p><code>--files</code>: Print the files that ripgrep <em>would</em> search, but don't actually search them.</p>
+</li>
+<li>
+<p><code>-a --text</code>: Search binary files as if they were plain text.</p>
+</li>
+<li>
+<p><code>-U --multiline</code>: Permit matches to span multiple lines.</p>
+</li>
+<li>
+<p><code>-z --search-zip</code>: Search compressed files (gzip, bzip2, lzma, xz, lz4, brotli, zstd). This is disabled by default.</p>
+</li>
+<li>
+<p><code>-C --context</code>: Show the lines surrounding a match.</p>
+</li>
+<li>
+<p><code>--sort path</code>: Force ripgrep to sort its output by file name. (This disables parallelism, so it might be slower.)</p>
+</li>
+<li>
+<p><code>-L --follow</code>: Follow symbolic links while recursively searching.</p>
+</li>
+<li>
+<p><code>-M --max-columns</code>: Limit the length of lines printed by ripgrep.</p>
+</li>
+<li>
+<p><code>--debug</code>: Shows ripgrep's debug output. This is useful for understanding why a particular file might be ignored from search, or what kinds of configuration ripgrep is loading from the environment.</p>
+</li>
+</ul>
+<p>More details can be found <a href="https://github.com/BurntSushi/ripgrep" target="blank">here</a></p>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
 </style>
 <button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-<i class="fa fa-angle-up"></i>
-</button></p>
+  <i class="fa fa-angle-up"></i>
+</button>
 <script>
   const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
   window.addEventListener("scroll", () => {
@@ -319,11 +389,11 @@ display: flex;
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="powershell_scripts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="yazi.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="yazi.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="eza.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -333,11 +403,11 @@ display: flex;
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="powershell_scripts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="yazi.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="yazi.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="eza.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

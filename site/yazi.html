@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Tools</title>
+        <title>yazi</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/powershell_tools.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/yazi.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -267,47 +267,180 @@
   --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
 }
 </style>
-<h1 id="tools"><a class="header" href="#tools">Tools</a></h1>
-<p>Tools that I find useful for Powershell.</p>
-<p><a href="./yazi.html">yazi</a></p>
+<h1 id="yazi"><a class="header" href="#yazi">Yazi</a></h1>
+<ul>
+<li><a href="#navigation">Navigation</a></li>
+<li><a href="#selection">Selection</a></li>
+<li><a href="#file-operations">File operations</a></li>
+<li><a href="#copy-paths">Copy paths</a></li>
+<li><a href="#filter-files">Filter files</a></li>
+<li><a href="#find-files">Find files</a></li>
+<li><a href="#search-files">Search files</a></li>
+<li><a href="#sorting">Sorting</a></li>
+<li><a href="#multi-tab">Multi-tab</a></li>
+</ul>
 <p>Tabbed file manager with preview supporting numerous file types.</p>
-<p><a href="./ripgrep.html">ripgrep</a></p>
-<p>A replacement for <code>grep</code>.</p>
-<p><a href="./eza.html">eza</a></p>
-<p>A replacement for <code>ls</code>.  <style>
-.scroll-to-top {
-font-size: 2.5rem;
-width: 3.2rem;
-height: 3.2rem;
-display: none;
-align-items: center;
-justify-content: center;
-position: fixed;
-padding: 0.75rem;
-bottom: 4rem;
-right: calc(1.25rem + 90px + var(--page-padding));
-z-index: 999;
-cursor: pointer;
-border: none;
-color: var(--bg);
-background: var(--fg);
-border-radius: 50%;
-}
-.scroll-to-top.hidden {
-display: none;
-}
-.scroll-to-top i {
-transform: translateY(-2px);
-}
-@media (min-width: 1080px) {
-.scroll-to-top {
-display: flex;
-}
-}
+<p>The install instructions are <a href="https://yazi-rs.github.io/docs/installation">here</a>. Don't forget to add the shell wrapper.  <a href="https://github.com/yazi-rs/plugins/tree/main">Plugins</a> are also available.</p>
+<p>Add a shortcut <code>!</code> to drop to the shell in current directory. Type <code>exit</code> to return to yazi. Add this keybinding to your keymap.toml file:</p>
+<pre><code class="language-toml">[[manager.prepend_keymap]]
+on   = "!"
+run  = 'shell "pwsh.exe" --block'
+desc = "Open PowerShell here"
+</code></pre>
+<p><a href="https://mpv.io/installation/">mpv</a> for video playback is recommended. Edit yazi.toml accordingly.</p>
+<p><img src="pics/yazi.jpg" alt="yazi" /></p>
+<h2 id="navigation"><a class="header" href="#navigation">Navigation</a></h2>
+<p>To navigate between files and directories you can use the arrow keys <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd> and <kbd>→</kbd> or Vim-like keys such as <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd>:</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Alternate key</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>k</kbd></td><td><kbd>↑</kbd></td><td>Move the cursor up</td></tr>
+<tr><td><kbd>j</kbd></td><td><kbd>↓</kbd></td><td>Move the cursor down</td></tr>
+<tr><td><kbd>l</kbd></td><td><kbd>→</kbd></td><td>Enter hovered directory</td></tr>
+<tr><td><kbd>h</kbd></td><td><kbd>←</kbd></td><td>Leave the current directory and into its parent</td></tr>
+</tbody></table>
+</div>
+<p>Further navigation commands can be found in the table below.</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>K</kbd></td><td>Seek up 5 units in the preview</td></tr>
+<tr><td><kbd>J</kbd></td><td>Seek down 5 units in the preview</td></tr>
+<tr><td><kbd>g</kbd> ⇒ <kbd>g</kbd></td><td>Move cursor to the top</td></tr>
+<tr><td><kbd>G</kbd></td><td>Move cursor to the bottom</td></tr>
+<tr><td><kbd>z</kbd></td><td>Jump to a directory using zoxide</td></tr>
+<tr><td><kbd>Z</kbd></td><td>Jump to a directory or reveal a file using fzf</td></tr>
+</tbody></table>
+</div>
+<h2 id="selection"><a class="header" href="#selection">Selection</a></h2>
+<p>To select files and directories, the following commands are available.</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>Space</kbd></td><td>Toggle selection of hovered file/directory</td></tr>
+<tr><td><kbd>v</kbd></td><td>Enter visual mode (selection mode)</td></tr>
+<tr><td><kbd>V</kbd></td><td>Enter visual mode (unset mode)</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>a</kbd></td><td>Select all files</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>r</kbd></td><td>Inverse selection of all files</td></tr>
+<tr><td><kbd>Esc</kbd></td><td>Cancel selection</td></tr>
+</tbody></table>
+</div>
+<h2 id="file-operations"><a class="header" href="#file-operations">File operations</a></h2>
+<p>To interact with selected files/directories use any of the commands below.</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>o</kbd></td><td>Open selected files</td></tr>
+<tr><td><kbd>O</kbd></td><td>Open selected files interactively</td></tr>
+<tr><td><kbd>Enter</kbd></td><td>Open selected files</td></tr>
+<tr><td><kbd>Shift</kbd> + <kbd>Enter</kbd></td><td>Open selected files interactively (some terminals don't support it yet)</td></tr>
+<tr><td><kbd>Tab</kbd></td><td>Show the file information</td></tr>
+<tr><td><kbd>y</kbd></td><td>Yank selected files (copy)</td></tr>
+<tr><td><kbd>x</kbd></td><td>Yank selected files (cut)</td></tr>
+<tr><td><kbd>p</kbd></td><td>Paste yanked files</td></tr>
+<tr><td><kbd>P</kbd></td><td>Paste yanked files (overwrite if the destination exists)</td></tr>
+<tr><td><kbd>Y</kbd> or <kbd>X</kbd></td><td>Cancel the yank status</td></tr>
+<tr><td><kbd>d</kbd></td><td>Trash selected files</td></tr>
+<tr><td><kbd>D</kbd></td><td>Permanently delete selected files</td></tr>
+<tr><td><kbd>a</kbd></td><td>Create a file (ends with / for directories)</td></tr>
+<tr><td><kbd>r</kbd></td><td>Rename selected file(s)</td></tr>
+<tr><td><kbd>.</kbd></td><td>Toggle the visibility of hidden files</td></tr>
+</tbody></table>
+</div>
+<p>Further file operation commands can be found in the table below.</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>;</kbd></td><td>Run a shell command</td></tr>
+<tr><td><kbd>:</kbd></td><td>Run a shell command (block until finishes)</td></tr>
+<tr><td><kbd>-</kbd></td><td>Symlink the absolute path of yanked files</td></tr>
+<tr><td><kbd>_</kbd></td><td>Symlink the relative path of yanked files</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>-</kbd></td><td>Hardlink yanked files</td></tr>
+</tbody></table>
+</div>
+<h2 id="copy-paths"><a class="header" href="#copy-paths">Copy paths</a></h2>
+<p>To copy paths, use any of the following commands below.</p>
+<p><em>Observation: <kbd>c</kbd> ⇒ <kbd>d</kbd> indicates pressing the <kbd>c</kbd> key followed by pressing the <kbd>d</kbd> key.</em></p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>c</kbd> ⇒ <kbd>c</kbd></td><td>Copy the file path</td></tr>
+<tr><td><kbd>c</kbd> ⇒ <kbd>d</kbd></td><td>Copy the directory path</td></tr>
+<tr><td><kbd>c</kbd> ⇒ <kbd>f</kbd></td><td>Copy the filename</td></tr>
+<tr><td><kbd>c</kbd> ⇒ <kbd>n</kbd></td><td>Copy the filename without extension</td></tr>
+</tbody></table>
+</div>
+<h2 id="filter-files"><a class="header" href="#filter-files">Filter files</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>f</kbd></td><td>Filter files</td></tr>
+</tbody></table>
+</div>
+<h2 id="find-files"><a class="header" href="#find-files">Find files</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>/</kbd></td><td>Find next file</td></tr>
+<tr><td><kbd>?</kbd></td><td>Find previous file</td></tr>
+<tr><td><kbd>n</kbd></td><td>Go to the next found</td></tr>
+<tr><td><kbd>N</kbd></td><td>Go to the previous found</td></tr>
+</tbody></table>
+</div>
+<h2 id="search-files"><a class="header" href="#search-files">Search files</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>s</kbd></td><td>Search files by name using <a href="https://github.com/sharkdp/fd">fd</a></td></tr>
+<tr><td><kbd>S</kbd></td><td>Search files by content using <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a></td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>s</kbd></td><td>Cancel the ongoing search</td></tr>
+</tbody></table>
+</div>
+<h2 id="sorting"><a class="header" href="#sorting">Sorting</a></h2>
+<p>To sort files/directories use the following commands.</p>
+<p><em>Observation: <kbd>,</kbd> ⇒ <kbd>a</kbd> indicates pressing the <kbd>,</kbd> key followed by pressing the <kbd>a</kbd> key.</em></p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>,</kbd> ⇒ <kbd>m</kbd></td><td>Sort by modified time</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>M</kbd></td><td>Sort by modified time (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>b</kbd></td><td>Sort by birth time</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>B</kbd></td><td>Sort by birth time (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>e</kbd></td><td>Sort by file extension</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>E</kbd></td><td>Sort by file extension (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>a</kbd></td><td>Sort alphabetically</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>A</kbd></td><td>Sort alphabetically (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>n</kbd></td><td>Sort naturally</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>N</kbd></td><td>Sort naturally (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>s</kbd></td><td>Sort by size</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>S</kbd></td><td>Sort by size (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>r</kbd></td><td>Sort randomly</td></tr>
+</tbody></table>
+</div>
+<h2 id="multi-tab"><a class="header" href="#multi-tab">Multi-tab</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>t</kbd></td><td>Create a new tab with CWD</td></tr>
+<tr><td><kbd>1</kbd>, <kbd>2</kbd>, ..., <kbd>9</kbd></td><td>Switch to the N-th tab</td></tr>
+<tr><td><kbd>[</kbd></td><td>Switch to the previous tab</td></tr>
+<tr><td><kbd>]</kbd></td><td>Switch to the next tab</td></tr>
+<tr><td><kbd>{</kbd></td><td>Swap current tab with previous tab</td></tr>
+<tr><td><kbd>}</kbd></td><td>Swap current tab with next tab</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>c</kbd></td><td>Close the current tab</td></tr>
+</tbody></table>
+</div><style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
 </style>
 <button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-<i class="fa fa-angle-up"></i>
-</button></p>
+  <i class="fa fa-angle-up"></i>
+</button>
 <script>
   const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
   window.addEventListener("scroll", () => {
@@ -319,11 +452,11 @@ display: flex;
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="powershell_scripts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="powershell_tools.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="yazi.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ripgrep.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -333,11 +466,11 @@ display: flex;
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="powershell_scripts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="powershell_tools.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="yazi.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ripgrep.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
