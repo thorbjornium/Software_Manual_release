@@ -1,0 +1,733 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sun sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Tools</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/tabs.css">
+        <link rel="stylesheet" href="mdbook-admonish.css">
+        <link rel="stylesheet" href="theme/sun.css">
+        <link rel="stylesheet" href="theme/catppuccin.css">
+        <link rel="stylesheet" href="theme/catppuccin-admonish.css">
+        <link rel="stylesheet" href="theme/nordic.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "nordic" : "sun";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('sun')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="sun">Sun</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="nordic">Nordic</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/powershell_tools.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+</style>
+<h1 id="tools"><a class="header" href="#tools">Tools</a></h1>
+<ul>
+<li><a href="#yazi">Yazi</a></li>
+<li><a href="#ripgrep">ripgrep</a></li>
+<li><a href="#eza">eza</a></li>
+</ul>
+<h2 id="yazi"><a class="header" href="#yazi">Yazi</a></h2>
+<p>Tabbed file manager with preview supporting numerous file types.</p>
+<p>The install instructions are <a href="https://yazi-rs.github.io/docs/installation">here</a>. Don't forget to add the shell wrapper.  <a href="https://github.com/yazi-rs/plugins/tree/main">Plugins</a> are also available.</p>
+<p>Add a shortcut <code>!</code> to drop to the shell in current directory. Type <code>exit</code> to return to yazi. Add this keybinding to your keymap.toml` file:</p>
+<pre><code class="language-toml">[[manager.prepend_keymap]]
+on   = "!"
+run  = 'shell "pwsh.exe" --block'
+desc = "Open PowerShell here"
+</code></pre>
+<p><a href="https://mpv.io/installation/">mpv</a> for video playback is recommended. Edit yazi.toml accordingly.</p>
+<p><img src="pics/yazi.jpg" alt="yazi" /></p>
+<details>  
+<summary><u>Shortcuts</u></summary>
+<p><strong>Navigation</strong></p>
+<p>To navigate between files and directories you can use the arrow keys <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd> and <kbd>→</kbd> or Vim-like keys such as <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd>:</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Alternate key</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>k</kbd></td><td><kbd>↑</kbd></td><td>Move the cursor up</td></tr>
+<tr><td><kbd>j</kbd></td><td><kbd>↓</kbd></td><td>Move the cursor down</td></tr>
+<tr><td><kbd>l</kbd></td><td><kbd>→</kbd></td><td>Enter hovered directory</td></tr>
+<tr><td><kbd>h</kbd></td><td><kbd>←</kbd></td><td>Leave the current directory and into its parent</td></tr>
+</tbody></table>
+</div>
+<p>Further navigation commands can be found in the table below.</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>K</kbd></td><td>Seek up 5 units in the preview</td></tr>
+<tr><td><kbd>J</kbd></td><td>Seek down 5 units in the preview</td></tr>
+<tr><td><kbd>g</kbd> ⇒ <kbd>g</kbd></td><td>Move cursor to the top</td></tr>
+<tr><td><kbd>G</kbd></td><td>Move cursor to the bottom</td></tr>
+<tr><td><kbd>z</kbd></td><td>Jump to a directory using zoxide</td></tr>
+<tr><td><kbd>Z</kbd></td><td>Jump to a directory or reveal a file using fzf</td></tr>
+</tbody></table>
+</div>
+<p><strong>Selection</strong></p>
+<p>To select files and directories, the following commands are available.</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>Space</kbd></td><td>Toggle selection of hovered file/directory</td></tr>
+<tr><td><kbd>v</kbd></td><td>Enter visual mode (selection mode)</td></tr>
+<tr><td><kbd>V</kbd></td><td>Enter visual mode (unset mode)</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>a</kbd></td><td>Select all files</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>r</kbd></td><td>Inverse selection of all files</td></tr>
+<tr><td><kbd>Esc</kbd></td><td>Cancel selection</td></tr>
+</tbody></table>
+</div>
+<p><strong>File operations</strong></p>
+<p>To interact with selected files/directories use any of the commands below.</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>o</kbd></td><td>Open selected files</td></tr>
+<tr><td><kbd>O</kbd></td><td>Open selected files interactively</td></tr>
+<tr><td><kbd>Enter</kbd></td><td>Open selected files</td></tr>
+<tr><td><kbd>Shift</kbd> + <kbd>Enter</kbd></td><td>Open selected files interactively (some terminals don't support it yet)</td></tr>
+<tr><td><kbd>Tab</kbd></td><td>Show the file information</td></tr>
+<tr><td><kbd>y</kbd></td><td>Yank selected files (copy)</td></tr>
+<tr><td><kbd>x</kbd></td><td>Yank selected files (cut)</td></tr>
+<tr><td><kbd>p</kbd></td><td>Paste yanked files</td></tr>
+<tr><td><kbd>P</kbd></td><td>Paste yanked files (overwrite if the destination exists)</td></tr>
+<tr><td><kbd>Y</kbd> or <kbd>X</kbd></td><td>Cancel the yank status</td></tr>
+<tr><td><kbd>d</kbd></td><td>Trash selected files</td></tr>
+<tr><td><kbd>D</kbd></td><td>Permanently delete selected files</td></tr>
+<tr><td><kbd>a</kbd></td><td>Create a file (ends with / for directories)</td></tr>
+<tr><td><kbd>r</kbd></td><td>Rename selected file(s)</td></tr>
+<tr><td><kbd>.</kbd></td><td>Toggle the visibility of hidden files</td></tr>
+</tbody></table>
+</div>
+<p>Further file operation commands can be found in the table below.</p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>;</kbd></td><td>Run a shell command</td></tr>
+<tr><td><kbd>:</kbd></td><td>Run a shell command (block until finishes)</td></tr>
+<tr><td><kbd>-</kbd></td><td>Symlink the absolute path of yanked files</td></tr>
+<tr><td><kbd>_</kbd></td><td>Symlink the relative path of yanked files</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>-</kbd></td><td>Hardlink yanked files</td></tr>
+</tbody></table>
+</div>
+<p><strong>Copy paths</strong></p>
+<p>To copy paths, use any of the following commands below.</p>
+<p><em>Observation: <kbd>c</kbd> ⇒ <kbd>d</kbd> indicates pressing the <kbd>c</kbd> key followed by pressing the <kbd>d</kbd> key.</em></p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>c</kbd> ⇒ <kbd>c</kbd></td><td>Copy the file path</td></tr>
+<tr><td><kbd>c</kbd> ⇒ <kbd>d</kbd></td><td>Copy the directory path</td></tr>
+<tr><td><kbd>c</kbd> ⇒ <kbd>f</kbd></td><td>Copy the filename</td></tr>
+<tr><td><kbd>c</kbd> ⇒ <kbd>n</kbd></td><td>Copy the filename without extension</td></tr>
+</tbody></table>
+</div>
+<p><strong>Filter files</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>f</kbd></td><td>Filter files</td></tr>
+</tbody></table>
+</div>
+<p><strong>Find files</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>/</kbd></td><td>Find next file</td></tr>
+<tr><td><kbd>?</kbd></td><td>Find previous file</td></tr>
+<tr><td><kbd>n</kbd></td><td>Go to the next found</td></tr>
+<tr><td><kbd>N</kbd></td><td>Go to the previous found</td></tr>
+</tbody></table>
+</div>
+<p><strong>Search files</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>s</kbd></td><td>Search files by name using <a href="https://github.com/sharkdp/fd">fd</a></td></tr>
+<tr><td><kbd>S</kbd></td><td>Search files by content using <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a></td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>s</kbd></td><td>Cancel the ongoing search</td></tr>
+</tbody></table>
+</div>
+<p><strong>Sorting</strong></p>
+<p>To sort files/directories use the following commands.</p>
+<p><em>Observation: <kbd>,</kbd> ⇒ <kbd>a</kbd> indicates pressing the <kbd>,</kbd> key followed by pressing the <kbd>a</kbd> key.</em></p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>,</kbd> ⇒ <kbd>m</kbd></td><td>Sort by modified time</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>M</kbd></td><td>Sort by modified time (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>b</kbd></td><td>Sort by birth time</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>B</kbd></td><td>Sort by birth time (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>e</kbd></td><td>Sort by file extension</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>E</kbd></td><td>Sort by file extension (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>a</kbd></td><td>Sort alphabetically</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>A</kbd></td><td>Sort alphabetically (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>n</kbd></td><td>Sort naturally</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>N</kbd></td><td>Sort naturally (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>s</kbd></td><td>Sort by size</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>S</kbd></td><td>Sort by size (reverse)</td></tr>
+<tr><td><kbd>,</kbd> ⇒ <kbd>r</kbd></td><td>Sort randomly</td></tr>
+</tbody></table>
+</div>
+<p><strong>Multi-tab</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
+<tr><td><kbd>t</kbd></td><td>Create a new tab with CWD</td></tr>
+<tr><td><kbd>1</kbd>, <kbd>2</kbd>, ..., <kbd>9</kbd></td><td>Switch to the N-th tab</td></tr>
+<tr><td><kbd>[</kbd></td><td>Switch to the previous tab</td></tr>
+<tr><td><kbd>]</kbd></td><td>Switch to the next tab</td></tr>
+<tr><td><kbd>{</kbd></td><td>Swap current tab with previous tab</td></tr>
+<tr><td><kbd>}</kbd></td><td>Swap current tab with next tab</td></tr>
+<tr><td><kbd>Ctrl</kbd> + <kbd>c</kbd></td><td>Close the current tab</td></tr>
+</tbody></table>
+</div></details>  
+<h2 id="ripgrep"><a class="header" href="#ripgrep">ripgrep</a></h2>
+<p>ripgrep is a line-oriented search tool that recursively searches the current directory for a regex pattern.</p>
+<p>Common options for ripgrep:</p>
+<details>
+<summary><u>Click to expand</u></summary>
+<ul>
+<li>
+<p><code>-i --ignore-case</code>: When searching for a pattern, ignore case differences. That is <code>rg -i fast</code> matches <code>fast</code>, <code>fASt</code>, <code>FAST</code>, etc.</p>
+</li>
+<li>
+<p><code>-S --smart-case</code>: This is similar to <code>--ignore-case</code>, but disables itself if the pattern contains any uppercase letters. Usually this flag is put into alias or a config file.</p>
+</li>
+<li>
+<p><code>-F --fixed-strings</code>: Disable regular expression matching and treat the pattern as a literal string.</p>
+</li>
+<li>
+<p><code>-w --word-regexp</code>: Require that all matches of the pattern be surrounded by word boundaries. That is, given <code>pattern</code>, the <code>--word-regexp</code> flag will cause ripgrep to behave as if <code>pattern</code> were actually <code>\b(?:pattern)\b</code>.</p>
+</li>
+<li>
+<p><code>-c --count</code>: Report a count of total matched lines.</p>
+</li>
+<li>
+<p><code>-l --files-with-matches</code>: Only print the names of files that contain matches.</p>
+</li>
+<li>
+<p><code>--files-without-match</code>: Only print the names of files that do not contain matches.</p>
+</li>
+<li>
+<p><code>--files</code>: Print the files that ripgrep <em>would</em> search, but don't actually search them.</p>
+</li>
+<li>
+<p><code>-a --text</code>: Search binary files as if they were plain text.</p>
+</li>
+<li>
+<p><code>-U --multiline</code>: Permit matches to span multiple lines.</p>
+</li>
+<li>
+<p><code>-z --search-zip</code>: Search compressed files (gzip, bzip2, lzma, xz, lz4, brotli, zstd). This is disabled by default.</p>
+</li>
+<li>
+<p><code>-C --context</code>: Show the lines surrounding a match.</p>
+</li>
+<li>
+<p><code>--sort path</code>: Force ripgrep to sort its output by file name. (This disables parallelism, so it might be slower.)</p>
+</li>
+<li>
+<p><code>-L --follow</code>: Follow symbolic links while recursively searching.</p>
+</li>
+<li>
+<p><code>-M --max-columns</code>: Limit the length of lines printed by ripgrep.</p>
+</li>
+<li>
+<p><code>--debug</code>: Shows ripgrep's debug output. This is useful for understanding why a particular file might be ignored from search, or what kinds of configuration ripgrep is loading from the environment.</p>
+</li>
+</ul>
+</details>  
+<p>More details can be found <a href="https://github.com/BurntSushi/ripgrep" target="blank">here</a></p>
+<h1 id="eza"><a class="header" href="#eza">eza</a></h1>
+<p>eza is a modern replacement for ls, with a focus on speed and ease of use.</p>
+<p><a href="https://github.com/eza-community/eza/tree/main/man">https://github.com/eza-community/eza/tree/main/man</a></p>
+<p><img src="./pics/eza.jpg" alt="eza" /></p>
+<details>
+<summary><u>Options</u></summary>
+<p>SYNOPSIS</p>
+<p><code>eza [options] [files...]</code></p>
+<p><strong>eza</strong> is a modern replacement for <code>ls</code>. It uses colours for information by default, helping you distinguish between many types of files, such as whether you are the owner, or in the owning group.</p>
+<p>It also has extra features not present in the original <code>ls</code>, such as viewing the Git status for a directory, or recursing into directories with a tree view.</p>
+<p>EXAMPLES</p>
+<p><code>eza</code> : Lists the contents of the current directory in a grid.</p>
+<p><code>eza --oneline --reverse --sort=size</code> : Displays a list of files with the largest at the top.</p>
+<p><code>eza --long --header --inode --git</code> : Displays a table of files with a header, showing each file’s metadata, inode, and Git status.</p>
+<p><code>eza --long --tree --level=3</code> : Displays a tree of files, three levels deep, as well as each file’s metadata.</p>
+<p>META OPTIONS</p>
+<p><code>--help</code> : Show list of command-line options.</p>
+<p><code>-v</code>, <code>--version</code> : Show version of eza.</p>
+<p>DISPLAY OPTIONS</p>
+<p><code>-1</code>, <code>--oneline</code> : Display one entry per line.</p>
+<p><code>-F</code>, <code>--classify=WHEN</code> : Display file kind indicators next to file names.</p>
+<p>Valid settings are ‘<code>always</code>’, ‘<code>automatic</code>’ (or ‘<code>auto</code>’ for short), and ‘<code>never</code>’. The default value is ‘<code>automatic</code>’.</p>
+<p>The default behavior (<code>automatic</code> or <code>auto</code>) will display file kind indicators only when the standard output is connected to a real terminal. If <code>eza</code> is ran while in a <code>tty</code>, or the output of <code>eza</code> is either redirected to a file or piped into another program, file kind indicators will not be used. Setting this option to ‘<code>always</code>’ causes <code>eza</code> to always display file kind indicators, while ‘<code>never</code>’ disables the use of file kind indicators.</p>
+<p><code>-G</code>, <code>--grid</code> : Display entries as a grid (default).</p>
+<p><code>-l</code>, <code>--long</code> : Display extended file metadata as a table.</p>
+<p><code>-R</code>, <code>--recurse</code> : Recurse into directories.</p>
+<p><code>-T</code>, <code>--tree</code> : Recurse into directories as a tree.</p>
+<p><code>--follow-symlinks</code> : Drill down into symbolic links that point to directories.</p>
+<p><code>-X</code>, <code>--dereference</code> : Dereference symbolic links when displaying information.</p>
+<p><code>-x</code>, <code>--across</code> : Sort the grid across, rather than downwards.</p>
+<p><code>--color=WHEN</code>, <code>--colour=WHEN</code> : When to use terminal colours (using ANSI escape code to colorize the output).</p>
+<p>Valid settings are ‘<code>always</code>’, ‘<code>automatic</code>’ (or ‘<code>auto</code>’ for short), and ‘<code>never</code>’. The default value is ‘<code>automatic</code>’.</p>
+<p>The default behavior (‘<code>automatic</code>’ or ‘<code>auto</code>’) is to colorize the output only when the standard output is connected to a real terminal. If the output of <code>eza</code> is redirected to a file or piped into another program, terminal colors will not be used. Setting this option to ‘<code>always</code>’ causes <code>eza</code> to always output terminal color, while ‘<code>never</code>’ disables the use of terminal color.</p>
+<p>Manually setting this option overrides <code>NO_COLOR</code> environment.</p>
+<p><code>--color-scale</code>, <code>--colour-scale</code> : highlight levels of <code>field</code> distinctly. Use comma(,) separated list of all, age, size</p>
+<p><code>--color-scale-mode</code>, <code>--colour-scale-mode</code> : Use gradient or fixed colors in <code>--color-scale</code>.</p>
+<p>Valid options are <code>fixed</code> or <code>gradient</code>. The default value is <code>gradient</code>.</p>
+<p><code>--icons=WHEN</code> : Display icons next to file names.</p>
+<p>Valid settings are ‘<code>always</code>’, ‘<code>automatic</code>’ (‘<code>auto</code>’ for short), and ‘<code>never</code>’. The default value is ‘<code>automatic</code>’.</p>
+<p><code>automatic</code> or <code>auto</code> will display icons only when the standard output is connected to a real terminal. If <code>eza</code> is ran while in a <code>tty</code>, or the output of <code>eza</code> is either redirected to a file or piped into another program, icons will not be used. Setting this option to ‘<code>always</code>’ causes <code>eza</code> to always display icons, while ‘<code>never</code>’ disables the use of icons.</p>
+<p><code>--no-quotes</code> : Don't quote file names with spaces.</p>
+<p><code>--hyperlink</code> : Display entries as hyperlinks</p>
+<p><code>-w</code>, <code>--width=COLS</code> : Set screen width in columns.</p>
+<p>FILTERING AND SORTING OPTIONS</p>
+<p><code>-a</code>, <code>--all</code> : Show hidden and “dot” files. Use this twice to also show the ‘<code>.</code>’ and ‘<code>..</code>’ directories.</p>
+<p><code>-A</code>, <code>--almost-all</code> : Equivalent to --all; included for compatibility with <code>ls -A</code>.</p>
+<p><code>-d</code>, <code>--list-dirs</code> : List directories as regular files, rather than recursing and listing their contents.</p>
+<p><code>-L</code>, <code>--level=DEPTH</code> : Limit the depth of recursion.</p>
+<p><code>-r</code>, <code>--reverse</code> : Reverse the sort order.</p>
+<p><code>-s</code>, <code>--sort=SORT_FIELD</code> : Which field to sort by.</p>
+<p>Valid sort fields are ‘<code>name</code>’, ‘<code>Name</code>’, ‘<code>extension</code>’, ‘<code>Extension</code>’, ‘<code>size</code>’, ‘<code>modified</code>’, ‘<code>changed</code>’, ‘<code>accessed</code>’, ‘<code>created</code>’, ‘<code>inode</code>’, ‘<code>type</code>’, and ‘<code>none</code>’.</p>
+<p>The <code>modified</code> sort field has the aliases ‘<code>date</code>’, ‘<code>time</code>’, and ‘<code>newest</code>’, and its reverse order has the aliases ‘<code>age</code>’ and ‘<code>oldest</code>’.</p>
+<p>Sort fields starting with a capital letter will sort uppercase before lowercase: ‘A’ then ‘B’ then ‘a’ then ‘b’. Fields starting with a lowercase letter will mix them: ‘A’ then ‘a’ then ‘B’ then ‘b’.</p>
+<p><code>-I</code>, <code>--ignore-glob=GLOBS</code> : Glob patterns, pipe-separated, of files to ignore.</p>
+<p><code>--git-ignore</code> [if eza was built with git support] : Do not list files that are ignored by Git.</p>
+<p><code>--group-directories-first</code> : List directories before other files.</p>
+<p><code>--group-directories-last</code> : List directories after other files.</p>
+<p><code>-D</code>, <code>--only-dirs</code> : List only directories, not files.</p>
+<p><code>-f</code>, <code>--only-files</code> : List only files, not directories.</p>
+<p><code>--show-symlinks</code> : Explicitly show symbolic links (when used with <code>--only-files</code> | <code>--only-dirs</code>)</p>
+<p><code>--no-symlinks</code> : Do not show symbolic links</p>
+<p>LONG VIEW OPTIONS</p>
+<p>These options are available when running with <code>--long</code> (<code>-l</code>):</p>
+<p><code>-b</code>, <code>--binary</code> : List file sizes with binary prefixes.</p>
+<p><code>-B</code>, <code>--bytes</code> : List file sizes in bytes, without any prefixes.</p>
+<p><code>--changed</code> : Use the changed timestamp field.</p>
+<p><code>-g</code>, <code>--group</code> : List each file’s group.</p>
+<p><code>--smart-group</code> : Only show group if it has a different name from owner</p>
+<p><code>-h</code>, <code>--header</code> : Add a header row to each column.</p>
+<p><code>-H</code>, <code>--links</code> : List each file’s number of hard links.</p>
+<p><code>-i</code>, <code>--inode</code> : List each file’s inode number.</p>
+<p><code>-m</code>, <code>--modified</code> : Use the modified timestamp field.</p>
+<p><code>-M</code>, <code>--mounts</code> : Show mount details (Linux and Mac only)</p>
+<p><code>-n</code>, <code>--numeric</code> : List numeric user and group IDs.</p>
+<p><code>-O</code>, <code>--flags</code> : List file flags on Mac and BSD systems and file attributes on Windows systems. By default, Windows attributes are displayed in a long form. To display in attributes as single character set the environment variable <code>EZA_WINDOWS_ATTRIBUTES=short</code>. On BSD systems see chflags(1) for a list of file flags and their meanings.</p>
+<p><code>-S</code>, <code>--blocksize</code> : List each file’s size of allocated file system blocks.</p>
+<p><code>-t</code>, <code>--time=WORD</code> : Which timestamp field to list.</p>
+<p>: Valid timestamp fields are ‘<code>modified</code>’, ‘<code>changed</code>’, ‘<code>accessed</code>’, and ‘<code>created</code>’.</p>
+<p><code>--time-style=STYLE</code> : How to format timestamps.</p>
+<p>: Valid timestamp styles are ‘<code>default</code>’, ‘<code>iso</code>’, ‘<code>long-iso</code>’, ‘<code>full-iso</code>’, ‘<code>relative</code>’, or a custom style ‘<code>+&lt;FORMAT&gt;</code>’ (e.g., ‘<code>+%Y-%m-%d %H:%M</code>’ =&gt; ‘<code>2023-09-30 13:00</code>’).</p>
+<p><code>&lt;FORMAT&gt;</code> should be a chrono format string. For details on the chrono format syntax, please read: <a href="https://docs.rs/chrono/latest/chrono/format/strftime/index.html">https://docs.rs/chrono/latest/chrono/format/strftime/index.html</a> .</p>
+<p>Alternatively, <code>&lt;FORMAT&gt;</code> can be a two line string, the first line will be used for non-recent files and the second for recent files. E.g., if <code>&lt;FORMAT&gt;</code> is "<code>%Y-%m-%d %H&lt;newline&gt;--%m-%d %H:%M</code>", non-recent files =&gt; "<code>2022-12-30 13</code>", recent files =&gt; "<code>--09-30 13:34</code>".</p>
+<p><code>--total-size</code> : Show recursive directory size (unix only).</p>
+<p><code>-u</code>, <code>--accessed</code> : Use the accessed timestamp field.</p>
+<p><code>-U</code>, <code>--created</code> : Use the created timestamp field.</p>
+<p><code>--no-permissions</code> : Suppress the permissions field.</p>
+<p><code>-o</code>, <code>--octal-permissions</code> : List each file's permissions in octal format.</p>
+<p><code>--no-filesize</code> : Suppress the file size field.</p>
+<p><code>--no-user</code> : Suppress the user field.</p>
+<p><code>--no-time</code> : Suppress the time field.</p>
+<p><code>--stdin</code> : When you wish to pipe directories to eza/read from stdin. Separate one per line or define custom separation char in <code>EZA_STDIN_SEPARATOR</code> env variable.</p>
+<p><code>-@</code>, <code>--extended</code> : List each file’s extended attributes and sizes.</p>
+<p><code>-Z</code>, <code>--context</code> : List each file's security context.</p>
+<p><code>--git</code> [if eza was built with git support] : List each file’s Git status, if tracked. This adds a two-character column indicating the staged and unstaged statuses respectively. The status character can be ‘<code>-</code>’ for not modified, ‘<code>M</code>’ for a modified file, ‘<code>N</code>’ for a new file, ‘<code>D</code>’ for deleted, ‘<code>R</code>’ for renamed, ‘<code>T</code>’ for type-change, ‘<code>I</code>’ for ignored, and ‘<code>U</code>’ for conflicted. Directories will be shown to have the status of their contents, which is how ‘deleted’ is possible if a directory contains a file that has a certain status, it will be shown to have that status.</p>
+<p><code>--git-repos</code> [if eza was built with git support] : List each directory’s Git status, if tracked. Symbols shown are <code>|</code>= clean, <code>+</code>= dirty, and <code>~</code>= for unknown.</p>
+<p><code>--git-repos-no-status</code> [if eza was built with git support] : List if a directory is a Git repository, but not its status. All Git repository directories will be shown as (themed) <code>-</code> without status indicated.</p>
+<p><code>--no-git</code> : Don't show Git status (always overrides <code>--git</code>, <code>--git-repos</code>, <code>--git-repos-no-status</code>)</p>
+<p>ENVIRONMENT VARIABLES</p>
+<p>If an environment variable prefixed with <code>EZA_</code> is not set, for backward compatibility, it will default to its counterpart starting with <code>EXA_</code>.</p>
+<p>eza responds to the following environment variables:</p>
+<p><code>COLUMNS</code></p>
+<p>Overrides the width of the terminal, in characters, however, <code>-w</code> takes precedence.</p>
+<p>For example, ‘<code>COLUMNS=80 eza</code>’ will show a grid view with a maximum width of 80 characters.</p>
+<p>This option won’t do anything when eza’s output doesn’t wrap, such as when using the <code>--long</code> view.</p>
+<p><code>EZA_STRICT</code></p>
+<p>Enables <em>strict mode</em>, which will make eza error when two command-line options are incompatible.</p>
+<p>Usually, options can override each other going right-to-left on the command line, so that eza can be given aliases: creating an alias ‘<code>eza=eza --sort=ext</code>’ then running ‘<code>eza --sort=size</code>’ with that alias will run ‘<code>eza --sort=ext --sort=size</code>’, and the sorting specified by the user will override the sorting specified by the alias.</p>
+<p>In strict mode, the two options will not co-operate, and eza will error.</p>
+<p>This option is intended for use with automated scripts and other situations where you want to be certain you’re typing in the right command.</p>
+<p><code>EZA_GRID_ROWS</code></p>
+<p>Limits the grid-details view (‘<code>eza --grid --long</code>’) so it’s only activated when at least the given number of rows of output would be generated.</p>
+<p>With widescreen displays, it’s possible for the grid to look very wide and sparse, on just one or two lines with none of the columns lining up. By specifying a minimum number of rows, you can only use the view if it’s going to be worth using.</p>
+<p><code>EZA_ICON_SPACING</code></p>
+<p>Specifies the number of spaces to print between an icon (see the ‘<code>--icons</code>’ option) and its file name.</p>
+<p>Different terminals display icons differently, as they usually take up more than one character width on screen, so there’s no “standard” number of spaces that eza can use to separate an icon from text. One space may place the icon too close to the text, and two spaces may place it too far away. So the choice is left up to the user to configure depending on their terminal emulator.</p>
+<p><code>NO_COLOR</code></p>
+<p>Disables colours in the output (regardless of its value). Can be overridden by <code>--color</code> option.</p>
+<p>See <code>https://no-color.org/</code> for details.</p>
+<p><code>LS_COLORS</code>, <code>EZA_COLORS</code></p>
+<p>Specifies the colour scheme used to highlight files based on their name and kind, as well as highlighting metadata and parts of the UI.</p>
+<p>For more information on the format of these environment variables, see the <a href="https://github.com/eza-community/eza/blob/main/man/eza_colors.5.md">eza_colors.5.md</a> manual page.</p>
+<p><code>EZA_OVERRIDE_GIT</code></p>
+<p>Overrides any <code>--git</code> or <code>--git-repos</code> argument</p>
+<p><code>EZA_MIN_LUMINANCE</code></p>
+<p>Specifies the minimum luminance to use when color-scale is active. It's value can be between -100 to 100.</p>
+<p><code>EZA_ICONS_AUTO</code></p>
+<p>If set, automates the same behavior as using <code>--icons</code> or <code>--icons=auto</code>. Useful for if you always want to have icons enabled.</p>
+<p>Any explicit use of the <code>--icons=WHEN</code> flag overrides this behavior.</p>
+<p><code>EZA_STDIN_SEPARATOR</code></p>
+<p>Specifies the separator to use when file names are piped from stdin. Defaults to newline.</p>
+<p><code>EZA_CONFIG_DIR</code></p>
+<p>Specifies the directory where eza will look for its configuration and theme files. Defaults to <code>$XDG_CONFIG_HOME/eza</code> or <code>$HOME/.config/eza</code> if <code>XDG_CONFIG_HOME</code> is not set.</p>
+<p>EXIT STATUSES</p>
+<p>0 : If everything goes OK.</p>
+<p>1 : If there was an I/O error during operation.</p>
+<p>3 : If there was a problem with the command-line arguments.</p>
+<p>13 : If permission is denied to access a path.</p>
+</details>
+<p>Two examples to use in a Powershell profile:</p>
+<details>
+<summary><u>Script</u></summary>
+<pre><code class="language-Powershell">function ee {
+	eza `
+        --hyperlink `
+        --icons=always `
+        --group-directories-first `
+        --all `
+}
+
+function e {
+    eza `
+        --long `
+        --hyperlink `
+        --icons=always `
+        --git-repos `
+        --git `
+        --header `
+        --flags `
+        --created `
+        --time-style long-iso `
+        --group-directories-first `
+        --context `
+        --total-size `
+        --all `
+
+}
+</code></pre>
+</detail>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="powershell_scripts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="ffmpeg.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="powershell_scripts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="ffmpeg.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/tabs.js"></script>
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+        <script src="custom-pagewidth.js"></script>
+
+
+    </div>
+    </body>
+</html>

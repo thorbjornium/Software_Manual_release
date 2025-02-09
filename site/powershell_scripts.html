@@ -274,6 +274,7 @@
 <li><a href="#find-fza">Find fza</a></li>
 <li><a href="#psfzf">PSFzf</a></li>
 <li><a href="#disks">Disks</a></li>
+<li><a href="#google-search">Google search</a></li>
 </ul>
 <br>  
 <p>Copy and Paste the scripts into your Powershell profile. To open your Powershell profile in VS Code type <code>code $Profile</code>.<br />
@@ -484,6 +485,20 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 </details>  
 <p><img src="./pics/Disks.jpg" alt="Disks" /></p>
 <p>Type <code>disks</code> and hit <kbd>Enter</kbd> to display disk information in human readable format.</p>
+<h2 id="google-search"><a class="header" href="#google-search">Google search</a></h2>
+<p>Search Google from the command line. Alias is set as <code>glg</code></p>
+<details>  
+<summary><u>Script</u></summary>
+<pre><code class="language-Powershell">Function search-google {
+    $query = 'https://www.google.com/search?q='
+    $args | % { $query = $query + "$_+" }
+    $url = $query.Substring(0, $query.Length - 1)
+    start "$url"
+}
+
+Set-Alias glg search-google
+</code></pre>
+</details>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -533,7 +548,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="ffmpeg.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="powershell_tools.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -547,7 +562,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="ffmpeg.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="powershell_tools.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
