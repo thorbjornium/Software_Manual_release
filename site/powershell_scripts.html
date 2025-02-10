@@ -488,7 +488,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>Press <kbd>Shift</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd> to navigate the preview.</p>
 </details>  
 <h2 id="google-search"><a class="header" href="#google-search">Google search</a></h2>
-<p>Search Google from the command line. Alias is set as <code>glg</code></p>
+<p>Search Google from the command line. Type <code>glg</code> and search term and hit <kbd>Enter</kbd>.</p>
 <details>  
 <summary><u>Script</u></summary>
 <pre><code class="language-Powershell">Function search-google {
@@ -525,6 +525,10 @@ Set-Alias glg search-google
 </code></pre>
 </details>
 <h2 id="yt-dlp"><a class="header" href="#yt-dlp">yt-dlp</a></h2>
+<p>Requires <code>yt-dlp</code>. More information <a href="https://github.com/yt-dlp/yt-dlp">here</a>.</p>
+<p>Install:</p>
+<pre><code class="language-Powershell">winget install yt-dlp
+</code></pre>
 <p>Alias is set as <code>ytb</code></p>
 <details>
 <summary><u>Script</u></summary>
@@ -644,7 +648,6 @@ Set-Alias glg search-google
         <script src="theme/tabs.js"></script>
         <script src="mermaid.min.js"></script>
         <script src="mermaid-init.js"></script>
-        <script src="custom-pagewidth.js"></script>
 
 
     </div>
