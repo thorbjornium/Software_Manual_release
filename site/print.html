@@ -610,17 +610,41 @@
 <br>  
 <p>Copy and Paste the scripts into your Powershell profile. To open your Powershell profile in VS Code type <code>code $Profile</code>.<br />
 Most scripts requires additional software. Install the following software if you do not have it already:</p>
+<div class="mdbook-tabs-container" data-tabglobal="install">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
+<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Winget">
 <pre><code class="language-Powershell">winget install junegunn.fzf
 winget install sharkdp.fd
 winget install sharkdp.bat
 winget install BurntSushi.ripgrep.MSVC
 winget install eza-community.eza
 </code></pre>
-<p>Detailed information can be found by clicking <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a>^, <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> and <a href="https://github.com/eza-community/eza">eza</a>.</p>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Scoop">
+<pre><code class="language-Powershell">Scoop install fzf fd bat ripgrep eza
+</code></pre>
+</div>
+</div>
+<p>Detailed information can be found by clicking <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> and <a href="https://github.com/eza-community/eza">eza</a>.</p>
 <h2 id="psfzf"><a class="header" href="#psfzf">PSFzf</a></h2>
-<p>Install PSFzf from PSGallery. More details <a href="https://github.com/kelleyma49/PSFzf">here</a>.</p>
+<p>PSFzf installs from PSGallery. More details <a href="https://github.com/kelleyma49/PSFzf">here</a>.</p>
+<div class="mdbook-tabs-container" data-tabglobal="install">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
+<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Winget">
 <pre><code class="language-Powershell">Install-Module -Name PSFzf
 </code></pre>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Scoop">
+<pre><code class="language-Powershell">Scoop install PSFzf
+</code></pre>
+</div>
+</div>
 <p>Paste the following into your Powershell profile:</p>
 <pre><code class="language-Powershell">Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'  
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }  
@@ -855,9 +879,20 @@ Set-Alias glg search-google
 </details>
 <h2 id="yt-dlp"><a class="header" href="#yt-dlp">yt-dlp</a></h2>
 <p>Requires <code>yt-dlp</code>. More information <a href="https://github.com/yt-dlp/yt-dlp">here</a>.</p>
-<p>Install:</p>
+<div class="mdbook-tabs-container" data-tabglobal="install">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
+<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Winget">
 <pre><code class="language-Powershell">winget install yt-dlp
 </code></pre>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Scoop">
+<pre><code class="language-Powershell">Scoop install yt-dlp
+</code></pre>
+</div>
+</div>
 <p>Alias is set as <code>ytb</code></p>
 <details>
 <summary><u>Script</u></summary>
@@ -1666,7 +1701,6 @@ desc = "Open PowerShell here"
 <li><a href="eza.html#long-view-options">Long View Options</a></li>
 <li><a href="eza.html#environment-variables">Environment Variables</a></li>
 <li><a href="eza.html#exit-statuses">Exit Statuses</a></li>
-<li><a href="eza.html#script-for-powershell">Script for Powershell</a></li>
 </ul>
 <p>eza is a modern replacement for ls, with a focus on speed and ease of use.</p>
 <p><a href="https://github.com/eza-community/eza/tree/main/man">https://github.com/eza-community/eza/tree/main/man</a></p>
@@ -1802,33 +1836,6 @@ desc = "Open PowerShell here"
 <p>1 : If there was an I/O error during operation.</p>
 <p>3 : If there was a problem with the command-line arguments.</p>
 <p>13 : If permission is denied to access a path.</p>
-<h2 id="script-for-powershell"><a class="header" href="#script-for-powershell">Script for Powershell</a></h2>
-<pre><code class="language-Powershell">function ee {
-    eza `
-        --hyperlink `
-        --icons=always `
-        --group-directories-first `
-        --all `
-}
-
-function e {
-    eza `
-        --long `
-        --hyperlink `
-        --icons=always `
-        --git-repos `
-        --git `
-        --header `
-        --flags `
-        --created `
-        --time-style long-iso `
-        --group-directories-first `
-        --context `
-        --total-size `
-        --all `
-
-}
-</code></pre>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
