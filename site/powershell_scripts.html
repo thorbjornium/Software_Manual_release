@@ -275,6 +275,8 @@
 <li><a href="#find-fz">Find fz</a></li>
 <li><a href="#find-fza">Find fza</a></li>
 <li><a href="#google-search">Google search</a></li>
+<li><a href="#eza">eza</a></li>
+<li><a href="#yt-dlp">yt-dlp</a></li>
 </ul>
 <br>  
 <p>Copy and Paste the scripts into your Powershell profile. To open your Powershell profile in VS Code type <code>code $Profile</code>.<br />
@@ -283,8 +285,9 @@ Most scripts requires additional software. Install the following software if you
 winget install sharkdp.fd
 winget install sharkdp.bat
 winget install BurntSushi.ripgrep.MSVC
+winget install eza-community.eza
 </code></pre>
-<p>Detailed information can be found by clicking <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a> and <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>.</p>
+<p>Detailed information can be found by clicking <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a>^, <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> and <a href="https://github.com/eza-community/eza">eza</a>.</p>
 <h2 id="psfzf"><a class="header" href="#psfzf">PSFzf</a></h2>
 <p>Install PSFzf from PSGallery. More details <a href="https://github.com/kelleyma49/PSFzf">here</a>.</p>
 <pre><code class="language-Powershell">Install-Module -Name PSFzf
@@ -490,12 +493,60 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <summary><u>Script</u></summary>
 <pre><code class="language-Powershell">Function search-google {
     $query = 'https://www.google.com/search?q='
-    $args | % { $query = $query + "$_+" }
+    $args | ForEach-Object { $query = $query + "$_+" }
     $url = $query.Substring(0, $query.Length - 1)
-    start "$url"
+    Start-Process "$url"
 }
 
 Set-Alias glg search-google
+</code></pre>
+</details>
+<h2 id="eza"><a class="header" href="#eza">eza</a></h2>
+<p>List files with details using the <code>e</code> alias. Image and more information in the <a href="./eza.html">eza folder</a>.</p>
+<details>
+<summary><u>Script</u></summary>
+<pre><code class="language-Powershell">function e {
+    eza `
+        --long `
+        --hyperlink `
+        --icons=always `
+        --git-repos `
+        --git `
+        --header `
+        --flags `
+        --created `
+        --time-style long-iso `
+        --group-directories-first `
+        --context `
+        --total-size `
+        --all `
+
+}
+</code></pre>
+</details>
+<h2 id="yt-dlp"><a class="header" href="#yt-dlp">yt-dlp</a></h2>
+<p>Alias is set as <code>ytb</code></p>
+<details>
+<summary><u>Script</u></summary>
+<pre><code class="language-Powershell">Function ytb {
+    yt-dlp `
+        --progress `
+        --console-title `
+        --video-multistreams `
+        --audio-multistreams `
+        --format-sort "height:3840,fps" `
+        --format "bestvideo+bestaudio/best" `
+        --check-formats `
+        --merge-output-format "mp4/mkv" `
+        --recode-video "mp4/mkv" `
+        --embed-thumbnail `
+        --embed-metadata `
+        --embed-chapters `
+        --force-keyframes-at-cuts `
+        --sponsorblock-mark "all" `
+        --write-auto-subs --sub-lang "en.*" `
+        $args
+}
 </code></pre>
 </details>
 <style>

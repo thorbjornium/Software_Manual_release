@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>eza</title>
+        <title>glow</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/eza.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/glow.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -267,177 +267,24 @@
   --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
 }
 </style>
-<h1 id="eza"><a class="header" href="#eza">eza</a></h1>
-<ul>
-<li><a href="#examples">Examples</a></li>
-<li><a href="#meta-options">Meta Options</a></li>
-<li><a href="#display-options">Display Options</a></li>
-<li><a href="#filtering-and-sorting-options">Filtering And Sorting Options</a></li>
-<li><a href="#long-view-options">Long View Options</a></li>
-<li><a href="#environment-variables">Environment Variables</a></li>
-<li><a href="#exit-statuses">Exit Statuses</a></li>
-<li><a href="#script-for-powershell">Script for Powershell</a></li>
-</ul>
-<p>eza is a modern replacement for ls, with a focus on speed and ease of use.</p>
-<p><a href="https://github.com/eza-community/eza/tree/main/man">https://github.com/eza-community/eza/tree/main/man</a></p>
-<p><img src="./pics/eza.jpg" alt="eza" /></p>
-<p>A script for Powershell can be found <a href="./powershell_scripts.html#eza">here</a>.</p>
-<p><code>eza [options] [files...]</code></p>
-<p><strong>eza</strong> is a modern replacement for <code>ls</code>. It uses colours for information by default, helping you distinguish between many types of files, such as whether you are the owner, or in the owning group.</p>
-<p>It also has extra features not present in the original <code>ls</code>, such as viewing the Git status for a directory, or recursing into directories with a tree view.</p>
-<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
-<p><code>eza</code> : Lists the contents of the current directory in a grid.</p>
-<p><code>eza --oneline --reverse --sort=size</code> : Displays a list of files with the largest at the top.</p>
-<p><code>eza --long --header --inode --git</code> : Displays a table of files with a header, showing each file’s metadata, inode, and Git status.</p>
-<p><code>eza --long --tree --level=3</code> : Displays a tree of files, three levels deep, as well as each file’s metadata.</p>
-<h2 id="meta-options"><a class="header" href="#meta-options">Meta Options</a></h2>
-<p><code>--help</code> : Show list of command-line options.</p>
-<p><code>-v</code>, <code>--version</code> : Show version of eza.</p>
-<h2 id="display-options"><a class="header" href="#display-options">Display Options</a></h2>
-<p><code>-1</code>, <code>--oneline</code> : Display one entry per line.</p>
-<p><code>-F</code>, <code>--classify=WHEN</code> : Display file kind indicators next to file names.</p>
-<p>Valid settings are ‘<code>always</code>’, ‘<code>automatic</code>’ (or ‘<code>auto</code>’ for short), and ‘<code>never</code>’. The default value is ‘<code>automatic</code>’.</p>
-<p>The default behavior (<code>automatic</code> or <code>auto</code>) will display file kind indicators only when the standard output is connected to a real terminal. If <code>eza</code> is ran while in a <code>tty</code>, or the output of <code>eza</code> is either redirected to a file or piped into another program, file kind indicators will not be used. Setting this option to ‘<code>always</code>’ causes <code>eza</code> to always display file kind indicators, while ‘<code>never</code>’ disables the use of file kind indicators.</p>
-<p><code>-G</code>, <code>--grid</code> : Display entries as a grid (default).</p>
-<p><code>-l</code>, <code>--long</code> : Display extended file metadata as a table.</p>
-<p><code>-R</code>, <code>--recurse</code> : Recurse into directories.</p>
-<p><code>-T</code>, <code>--tree</code> : Recurse into directories as a tree.</p>
-<p><code>--follow-symlinks</code> : Drill down into symbolic links that point to directories.</p>
-<p><code>-X</code>, <code>--dereference</code> : Dereference symbolic links when displaying information.</p>
-<p><code>-x</code>, <code>--across</code> : Sort the grid across, rather than downwards.</p>
-<p><code>--color=WHEN</code>, <code>--colour=WHEN</code> : When to use terminal colours (using ANSI escape code to colorize the output).</p>
-<p>Valid settings are ‘<code>always</code>’, ‘<code>automatic</code>’ (or ‘<code>auto</code>’ for short), and ‘<code>never</code>’. The default value is ‘<code>automatic</code>’.</p>
-<p>The default behavior (‘<code>automatic</code>’ or ‘<code>auto</code>’) is to colorize the output only when the standard output is connected to a real terminal. If the output of <code>eza</code> is redirected to a file or piped into another program, terminal colors will not be used. Setting this option to ‘<code>always</code>’ causes <code>eza</code> to always output terminal color, while ‘<code>never</code>’ disables the use of terminal color.</p>
-<p>Manually setting this option overrides <code>NO_COLOR</code> environment.</p>
-<p><code>--color-scale</code>, <code>--colour-scale</code> : highlight levels of <code>field</code> distinctly. Use comma(,) separated list of all, age, size</p>
-<p><code>--color-scale-mode</code>, <code>--colour-scale-mode</code> : Use gradient or fixed colors in <code>--color-scale</code>.</p>
-<p>Valid options are <code>fixed</code> or <code>gradient</code>. The default value is <code>gradient</code>.</p>
-<p><code>--icons=WHEN</code> : Display icons next to file names.</p>
-<p>Valid settings are ‘<code>always</code>’, ‘<code>automatic</code>’ (‘<code>auto</code>’ for short), and ‘<code>never</code>’. The default value is ‘<code>automatic</code>’.</p>
-<p><code>automatic</code> or <code>auto</code> will display icons only when the standard output is connected to a real terminal. If <code>eza</code> is ran while in a <code>tty</code>, or the output of <code>eza</code> is either redirected to a file or piped into another program, icons will not be used. Setting this option to ‘<code>always</code>’ causes <code>eza</code> to always display icons, while ‘<code>never</code>’ disables the use of icons.</p>
-<p><code>--no-quotes</code> : Don't quote file names with spaces.</p>
-<p><code>--hyperlink</code> : Display entries as hyperlinks</p>
-<p><code>-w</code>, <code>--width=COLS</code> : Set screen width in columns.</p>
-<h2 id="filtering-and-sorting-options"><a class="header" href="#filtering-and-sorting-options">Filtering And Sorting Options</a></h2>
-<p><code>-a</code>, <code>--all</code> : Show hidden and “dot” files. Use this twice to also show the ‘<code>.</code>’ and ‘<code>..</code>’ directories.</p>
-<p><code>-A</code>, <code>--almost-all</code> : Equivalent to --all; included for compatibility with <code>ls -A</code>.</p>
-<p><code>-d</code>, <code>--list-dirs</code> : List directories as regular files, rather than recursing and listing their contents.</p>
-<p><code>-L</code>, <code>--level=DEPTH</code> : Limit the depth of recursion.</p>
-<p><code>-r</code>, <code>--reverse</code> : Reverse the sort order.</p>
-<p><code>-s</code>, <code>--sort=SORT_FIELD</code> : Which field to sort by.</p>
-<p>Valid sort fields are ‘<code>name</code>’, ‘<code>Name</code>’, ‘<code>extension</code>’, ‘<code>Extension</code>’, ‘<code>size</code>’, ‘<code>modified</code>’, ‘<code>changed</code>’, ‘<code>accessed</code>’, ‘<code>created</code>’, ‘<code>inode</code>’, ‘<code>type</code>’, and ‘<code>none</code>’.</p>
-<p>The <code>modified</code> sort field has the aliases ‘<code>date</code>’, ‘<code>time</code>’, and ‘<code>newest</code>’, and its reverse order has the aliases ‘<code>age</code>’ and ‘<code>oldest</code>’.</p>
-<p>Sort fields starting with a capital letter will sort uppercase before lowercase: ‘A’ then ‘B’ then ‘a’ then ‘b’. Fields starting with a lowercase letter will mix them: ‘A’ then ‘a’ then ‘B’ then ‘b’.</p>
-<p><code>-I</code>, <code>--ignore-glob=GLOBS</code> : Glob patterns, pipe-separated, of files to ignore.</p>
-<p><code>--git-ignore</code> [if eza was built with git support] : Do not list files that are ignored by Git.</p>
-<p><code>--group-directories-first</code> : List directories before other files.</p>
-<p><code>--group-directories-last</code> : List directories after other files.</p>
-<p><code>-D</code>, <code>--only-dirs</code> : List only directories, not files.</p>
-<p><code>-f</code>, <code>--only-files</code> : List only files, not directories.</p>
-<p><code>--show-symlinks</code> : Explicitly show symbolic links (when used with <code>--only-files</code> | <code>--only-dirs</code>)</p>
-<p><code>--no-symlinks</code> : Do not show symbolic links</p>
-<h2 id="long-view-options"><a class="header" href="#long-view-options">Long View Options</a></h2>
-<p>These options are available when running with <code>--long</code> (<code>-l</code>):</p>
-<p><code>-b</code>, <code>--binary</code> : List file sizes with binary prefixes.</p>
-<p><code>-B</code>, <code>--bytes</code> : List file sizes in bytes, without any prefixes.</p>
-<p><code>--changed</code> : Use the changed timestamp field.</p>
-<p><code>-g</code>, <code>--group</code> : List each file’s group.</p>
-<p><code>--smart-group</code> : Only show group if it has a different name from owner</p>
-<p><code>-h</code>, <code>--header</code> : Add a header row to each column.</p>
-<p><code>-H</code>, <code>--links</code> : List each file’s number of hard links.</p>
-<p><code>-i</code>, <code>--inode</code> : List each file’s inode number.</p>
-<p><code>-m</code>, <code>--modified</code> : Use the modified timestamp field.</p>
-<p><code>-M</code>, <code>--mounts</code> : Show mount details (Linux and Mac only)</p>
-<p><code>-n</code>, <code>--numeric</code> : List numeric user and group IDs.</p>
-<p><code>-O</code>, <code>--flags</code> : List file flags on Mac and BSD systems and file attributes on Windows systems. By default, Windows attributes are displayed in a long form. To display in attributes as single character set the environment variable <code>EZA_WINDOWS_ATTRIBUTES=short</code>. On BSD systems see chflags(1) for a list of file flags and their meanings.</p>
-<p><code>-S</code>, <code>--blocksize</code> : List each file’s size of allocated file system blocks.</p>
-<p><code>-t</code>, <code>--time=WORD</code> : Which timestamp field to list.</p>
-<p>: Valid timestamp fields are ‘<code>modified</code>’, ‘<code>changed</code>’, ‘<code>accessed</code>’, and ‘<code>created</code>’.</p>
-<p><code>--time-style=STYLE</code> : How to format timestamps.</p>
-<p>: Valid timestamp styles are ‘<code>default</code>’, ‘<code>iso</code>’, ‘<code>long-iso</code>’, ‘<code>full-iso</code>’, ‘<code>relative</code>’, or a custom style ‘<code>+&lt;FORMAT&gt;</code>’ (e.g., ‘<code>+%Y-%m-%d %H:%M</code>’ =&gt; ‘<code>2023-09-30 13:00</code>’).</p>
-<p><code>&lt;FORMAT&gt;</code> should be a chrono format string. For details on the chrono format syntax, please read: <a href="https://docs.rs/chrono/latest/chrono/format/strftime/index.html">https://docs.rs/chrono/latest/chrono/format/strftime/index.html</a> .</p>
-<p>Alternatively, <code>&lt;FORMAT&gt;</code> can be a two line string, the first line will be used for non-recent files and the second for recent files. E.g., if <code>&lt;FORMAT&gt;</code> is "<code>%Y-%m-%d %H&lt;newline&gt;--%m-%d %H:%M</code>", non-recent files =&gt; "<code>2022-12-30 13</code>", recent files =&gt; "<code>--09-30 13:34</code>".</p>
-<p><code>--total-size</code> : Show recursive directory size (unix only).</p>
-<p><code>-u</code>, <code>--accessed</code> : Use the accessed timestamp field.</p>
-<p><code>-U</code>, <code>--created</code> : Use the created timestamp field.</p>
-<p><code>--no-permissions</code> : Suppress the permissions field.</p>
-<p><code>-o</code>, <code>--octal-permissions</code> : List each file's permissions in octal format.</p>
-<p><code>--no-filesize</code> : Suppress the file size field.</p>
-<p><code>--no-user</code> : Suppress the user field.</p>
-<p><code>--no-time</code> : Suppress the time field.</p>
-<p><code>--stdin</code> : When you wish to pipe directories to eza/read from stdin. Separate one per line or define custom separation char in <code>EZA_STDIN_SEPARATOR</code> env variable.</p>
-<p><code>-@</code>, <code>--extended</code> : List each file’s extended attributes and sizes.</p>
-<p><code>-Z</code>, <code>--context</code> : List each file's security context.</p>
-<p><code>--git</code> [if eza was built with git support] : List each file’s Git status, if tracked. This adds a two-character column indicating the staged and unstaged statuses respectively. The status character can be ‘<code>-</code>’ for not modified, ‘<code>M</code>’ for a modified file, ‘<code>N</code>’ for a new file, ‘<code>D</code>’ for deleted, ‘<code>R</code>’ for renamed, ‘<code>T</code>’ for type-change, ‘<code>I</code>’ for ignored, and ‘<code>U</code>’ for conflicted. Directories will be shown to have the status of their contents, which is how ‘deleted’ is possible if a directory contains a file that has a certain status, it will be shown to have that status.</p>
-<p><code>--git-repos</code> [if eza was built with git support] : List each directory’s Git status, if tracked. Symbols shown are <code>|</code>= clean, <code>+</code>= dirty, and <code>~</code>= for unknown.</p>
-<p><code>--git-repos-no-status</code> [if eza was built with git support] : List if a directory is a Git repository, but not its status. All Git repository directories will be shown as (themed) <code>-</code> without status indicated.</p>
-<p><code>--no-git</code> : Don't show Git status (always overrides <code>--git</code>, <code>--git-repos</code>, <code>--git-repos-no-status</code>)</p>
-<h2 id="environment-variables"><a class="header" href="#environment-variables">Environment Variables</a></h2>
-<p>If an environment variable prefixed with <code>EZA_</code> is not set, for backward compatibility, it will default to its counterpart starting with <code>EXA_</code>.</p>
-<p>eza responds to the following environment variables:</p>
-<p><code>COLUMNS</code></p>
-<p>Overrides the width of the terminal, in characters, however, <code>-w</code> takes precedence.</p>
-<p>For example, ‘<code>COLUMNS=80 eza</code>’ will show a grid view with a maximum width of 80 characters.</p>
-<p>This option won’t do anything when eza’s output doesn’t wrap, such as when using the <code>--long</code> view.</p>
-<p><code>EZA_STRICT</code></p>
-<p>Enables <em>strict mode</em>, which will make eza error when two command-line options are incompatible.</p>
-<p>Usually, options can override each other going right-to-left on the command line, so that eza can be given aliases: creating an alias ‘<code>eza=eza --sort=ext</code>’ then running ‘<code>eza --sort=size</code>’ with that alias will run ‘<code>eza --sort=ext --sort=size</code>’, and the sorting specified by the user will override the sorting specified by the alias.</p>
-<p>In strict mode, the two options will not co-operate, and eza will error.</p>
-<p>This option is intended for use with automated scripts and other situations where you want to be certain you’re typing in the right command.</p>
-<p><code>EZA_GRID_ROWS</code></p>
-<p>Limits the grid-details view (‘<code>eza --grid --long</code>’) so it’s only activated when at least the given number of rows of output would be generated.</p>
-<p>With widescreen displays, it’s possible for the grid to look very wide and sparse, on just one or two lines with none of the columns lining up. By specifying a minimum number of rows, you can only use the view if it’s going to be worth using.</p>
-<p><code>EZA_ICON_SPACING</code></p>
-<p>Specifies the number of spaces to print between an icon (see the ‘<code>--icons</code>’ option) and its file name.</p>
-<p>Different terminals display icons differently, as they usually take up more than one character width on screen, so there’s no “standard” number of spaces that eza can use to separate an icon from text. One space may place the icon too close to the text, and two spaces may place it too far away. So the choice is left up to the user to configure depending on their terminal emulator.</p>
-<p><code>NO_COLOR</code></p>
-<p>Disables colours in the output (regardless of its value). Can be overridden by <code>--color</code> option.</p>
-<p>See <code>https://no-color.org/</code> for details.</p>
-<p><code>LS_COLORS</code>, <code>EZA_COLORS</code></p>
-<p>Specifies the colour scheme used to highlight files based on their name and kind, as well as highlighting metadata and parts of the UI.</p>
-<p>For more information on the format of these environment variables, see the <a href="https://github.com/eza-community/eza/blob/main/man/eza_colors.5.md">eza_colors.5.md</a> manual page.</p>
-<p><code>EZA_OVERRIDE_GIT</code></p>
-<p>Overrides any <code>--git</code> or <code>--git-repos</code> argument</p>
-<p><code>EZA_MIN_LUMINANCE</code></p>
-<p>Specifies the minimum luminance to use when color-scale is active. It's value can be between -100 to 100.</p>
-<p><code>EZA_ICONS_AUTO</code></p>
-<p>If set, automates the same behavior as using <code>--icons</code> or <code>--icons=auto</code>. Useful for if you always want to have icons enabled.</p>
-<p>Any explicit use of the <code>--icons=WHEN</code> flag overrides this behavior.</p>
-<p><code>EZA_STDIN_SEPARATOR</code></p>
-<p>Specifies the separator to use when file names are piped from stdin. Defaults to newline.</p>
-<p><code>EZA_CONFIG_DIR</code></p>
-<p>Specifies the directory where eza will look for its configuration and theme files. Defaults to <code>$XDG_CONFIG_HOME/eza</code> or <code>$HOME/.config/eza</code> if <code>XDG_CONFIG_HOME</code> is not set.</p>
-<h2 id="exit-statuses"><a class="header" href="#exit-statuses">Exit Statuses</a></h2>
-<p>0 : If everything goes OK.</p>
-<p>1 : If there was an I/O error during operation.</p>
-<p>3 : If there was a problem with the command-line arguments.</p>
-<p>13 : If permission is denied to access a path.</p>
-<h2 id="script-for-powershell"><a class="header" href="#script-for-powershell">Script for Powershell</a></h2>
-<pre><code class="language-Powershell">function ee {
-    eza `
-        --hyperlink `
-        --icons=always `
-        --group-directories-first `
-        --all `
-}
-
-function e {
-    eza `
-        --long `
-        --hyperlink `
-        --icons=always `
-        --git-repos `
-        --git `
-        --header `
-        --flags `
-        --created `
-        --time-style long-iso `
-        --group-directories-first `
-        --context `
-        --total-size `
-        --all `
-
-}
+<h1 id="glow"><a class="header" href="#glow">glow</a></h1>
+<h2 id="markdown-viewer"><a class="header" href="#markdown-viewer">Markdown viewer</a></h2>
+<p>Use it to discover markdown files, read documentation directly on the command line. Glow will find local markdown files in subdirectories or a local Git repository.</p>
+<p><img src=".%5Cpics%5Cglow.jpg" alt="Glow" /></p>
+<p>More info at <a href="https://github.com/charmbracelet/glow">glow</a></p>
+<p>Install:</p>
+<pre><code class="language-powershell">winget install charmbracelet.glow
+</code></pre>
+<p>Just type <code>glow</code> in the terminal and <code>?</code> to get help.</p>
+<p>A plugin for yazi can be found <a href="https://github.com/Reledia/glow.yazi">here</a></p>
+<p>Install it with</p>
+<pre><code class="language-powershell">ya pack -a Reledia/glow
+</code></pre>
+<p>and add this to yazi.toml:</p>
+<pre><code class="language-toml">[plugin]
+prepend_previewers = [
+  { name = "*.md", run = "glow" },
+]
 </code></pre>
 <style>
   .scroll-to-top {
@@ -484,11 +331,11 @@ function e {
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ripgrep.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="eza.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="glow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ffmpeg.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -498,11 +345,11 @@ function e {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ripgrep.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="eza.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="glow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ffmpeg.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
