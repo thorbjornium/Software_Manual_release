@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>yazi</title>
+        <title>Firefox Shortcuts</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/yazi.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/firefox_shortcuts.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,187 +279,251 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="yazi"><a class="header" href="#yazi">Yazi</a></h1>
+<h1 id="firefox-shortcuts"><a class="header" href="#firefox-shortcuts">Firefox Shortcuts</a></h1>
 <ul>
 <li><a href="#navigation">Navigation</a></li>
-<li><a href="#selection">Selection</a></li>
-<li><a href="#file-operations">File operations</a></li>
-<li><a href="#copy-paths">Copy paths</a></li>
-<li><a href="#filter-files">Filter files</a></li>
-<li><a href="#find-files">Find files</a></li>
-<li><a href="#search-files">Search files</a></li>
-<li><a href="#sorting">Sorting</a></li>
-<li><a href="#multi-tab">Multi-tab</a></li>
+<li><a href="#current-page">Current Page</a></li>
+<li><a href="#editing">Editing</a></li>
+<li><a href="#search">Search</a></li>
+<li><a href="#windows--tabs">Windows &amp; Tabs</a></li>
+<li><a href="#history">History</a></li>
+<li><a href="#bookmarks">Bookmarks</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#pdf-viewer">PDF Viewer</a></li>
+<li><a href="#miscellaneous">Miscellaneous</a></li>
+<li><a href="#media-shortcuts">Media shortcuts</a></li>
+<li><a href="#selection-of-multiple-tabs">Selection of Multiple Tabs</a></li>
+<li><a href="#developer-shortcuts">Developer shortcuts</a></li>
 </ul>
-<p>Tabbed file manager with preview supporting numerous file types.</p>
-<p>The install instructions are <a href="https://yazi-rs.github.io/docs/installation">here</a>. Don't forget to add the shell wrapper.  <a href="https://github.com/yazi-rs/plugins/tree/main">Plugins</a> are also available.</p>
-<p>Add a shortcut <code>!</code> to drop to the shell in current directory. Type <code>exit</code> to return to yazi. Add this keybinding to your keymap.toml file:</p>
-<pre><code class="language-toml">[[manager.prepend_keymap]]
-on   = "!"
-run  = 'shell "pwsh.exe" --block'
-desc = "Open PowerShell here"
-</code></pre>
-<p><a href="https://mpv.io/installation/">mpv</a> for video playback is recommended. Edit yazi.toml accordingly.</p>
-<p><img src="pics/yazi.jpg" alt="yazi" /></p>
-<div class="mdbook-alerts mdbook-alerts-tip">
-<p class="mdbook-alerts-title">
-  <span class="mdbook-alerts-icon"></span>
-  tip
-</p>
-<p>For all keybindings, see the default keymap.toml file.</p>
-</div>
-<h2 id="navigation"><a class="header" href="#navigation">Navigation</a></h2>
-<p>To navigate between files and directories you can use the arrow keys <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd> and <kbd>→</kbd> or Vim-like keys such as <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd>:</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Alternate key</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>k</kbd></td><td><kbd>↑</kbd></td><td>Move the cursor up</td></tr>
-<tr><td><kbd>j</kbd></td><td><kbd>↓</kbd></td><td>Move the cursor down</td></tr>
-<tr><td><kbd>l</kbd></td><td><kbd>→</kbd></td><td>Enter hovered directory</td></tr>
-<tr><td><kbd>h</kbd></td><td><kbd>←</kbd></td><td>Leave the current directory and into its parent</td></tr>
+<h1 id="navigation"><a class="header" href="#navigation">Navigation</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Back</td><td>Alt + ←  <br>Backspace when browser.backspaceaction is set to 0 (as in the <a href="https://support.mozilla.org/en-US/kb/about-config-editor-firefox">Configuration Editor</a>), which is not the default.</td></tr>
+<tr><td>Forward</td><td>Alt + →  <br>Shift + Backspace see above.</td></tr>
+<tr><td>Home</td><td>Alt + Home</td></tr>
+<tr><td>Open File</td><td>Ctrl + O</td></tr>
+<tr><td>Reload</td><td>F5 or Ctrl + R</td></tr>
+<tr><td>Reload (override cache)</td><td>Ctrl + F5 or Ctrl + Shift + R</td></tr>
+<tr><td>Stop</td><td>Esc</td></tr>
 </tbody></table>
 </div>
-<p>Further navigation commands can be found in the table below.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>K</kbd></td><td>Seek up 5 units in the preview</td></tr>
-<tr><td><kbd>J</kbd></td><td>Seek down 5 units in the preview</td></tr>
-<tr><td><kbd>g</kbd> ⇒ <kbd>g</kbd></td><td>Move cursor to the top</td></tr>
-<tr><td><kbd>G</kbd></td><td>Move cursor to the bottom</td></tr>
-<tr><td><kbd>z</kbd></td><td>Jump to a directory using zoxide</td></tr>
-<tr><td><kbd>Z</kbd></td><td>Jump to a directory or reveal a file using fzf</td></tr>
+<h1 id="current-page"><a class="header" href="#current-page">Current Page</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Focus Next Link or Input Field</td><td>Tab</td></tr>
+<tr><td>Focus Previous Link or Input Field</td><td>Shift + Tab</td></tr>
+<tr><td>Go Down a Screen</td><td>Page Down  <br>Space bar</td></tr>
+<tr><td>Go Up a Screen</td><td>Page Up  <br>Shift + Space bar</td></tr>
+<tr><td>Go to Bottom of Page</td><td>End  <br>Ctrl + ↓</td></tr>
+<tr><td>Go to Top of Page</td><td>Home  <br>Ctrl + ↑</td></tr>
+<tr><td>Move to Next Frame, Pop-Up</td><td>F6</td></tr>
+<tr><td>Move to Previous Frame, Pop-Up</td><td>Shift + F6</td></tr>
+<tr><td>Print</td><td>Ctrl + P</td></tr>
+<tr><td>Save Focused Link</td><td>Alt + Enter  <br> -when browser.altClickSave is set to true (as in the <a href="https://support.mozilla.org/en-US/kb/about-config-editor-firefox">Configuration Editor</a>), which is not the default.</td></tr>
+<tr><td>Save Page As</td><td>Ctrl + S</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/font-size-and-zoom-increase-size-of-web-pages">Zoom In</a></td><td>Ctrl + +</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/font-size-and-zoom-increase-size-of-web-pages">Zoom Out</a></td><td>Ctrl + -</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/font-size-and-zoom-increase-size-of-web-pages">Zoom Reset</a></td><td>Ctrl + 0</td></tr>
 </tbody></table>
 </div>
-<h2 id="selection"><a class="header" href="#selection">Selection</a></h2>
-<p>To select files and directories, the following commands are available.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>Space</kbd></td><td>Toggle selection of hovered file/directory</td></tr>
-<tr><td><kbd>v</kbd></td><td>Enter visual mode (selection mode)</td></tr>
-<tr><td><kbd>V</kbd></td><td>Enter visual mode (unset mode)</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>a</kbd></td><td>Select all files</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>r</kbd></td><td>Inverse selection of all files</td></tr>
-<tr><td><kbd>Esc</kbd></td><td>Cancel selection</td></tr>
+<h1 id="editing"><a class="header" href="#editing">Editing</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Copy</td><td>Ctrl + C</td></tr>
+<tr><td>Cut</td><td>Ctrl + X</td></tr>
+<tr><td>Delete</td><td>Del</td></tr>
+<tr><td>Delete Word to the Left</td><td>Ctrl + Backspace</td></tr>
+<tr><td>Delete Word to the Right</td><td>Ctrl + Del</td></tr>
+<tr><td>Go one Word to the Left</td><td>Ctrl + ←</td></tr>
+<tr><td>Go one Word to the Right</td><td>Ctrl + →</td></tr>
+<tr><td>Go to Beginning of Line</td><td>Home  <br>Ctrl + ↑</td></tr>
+<tr><td>Go to End of Line</td><td>End  <br>Ctrl + ↓</td></tr>
+<tr><td>Go to Beginning of Text</td><td>Ctrl + Home</td></tr>
+<tr><td>Go to End of Text</td><td>Ctrl + End</td></tr>
+<tr><td>Paste</td><td>Ctrl + V</td></tr>
+<tr><td>Paste (as plain text)</td><td>Ctrl + Shift + V</td></tr>
+<tr><td>Redo</td><td>Ctrl + Y  <br>Ctrl + Shift + Z</td></tr>
+<tr><td>Select All</td><td>Ctrl + A</td></tr>
+<tr><td>Undo</td><td>Ctrl + Z</td></tr>
+<tr><td>Select link text only</td><td>Alt + select link text</td></tr>
 </tbody></table>
 </div>
-<h2 id="file-operations"><a class="header" href="#file-operations">File operations</a></h2>
-<p>To interact with selected files/directories use any of the commands below.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>o</kbd></td><td>Open selected files</td></tr>
-<tr><td><kbd>O</kbd></td><td>Open selected files interactively</td></tr>
-<tr><td><kbd>Enter</kbd></td><td>Open selected files</td></tr>
-<tr><td><kbd>Shift</kbd> + <kbd>Enter</kbd></td><td>Open selected files interactively (some terminals don't support it yet)</td></tr>
-<tr><td><kbd>Tab</kbd></td><td>Show the file information</td></tr>
-<tr><td><kbd>y</kbd></td><td>Yank selected files (copy)</td></tr>
-<tr><td><kbd>x</kbd></td><td>Yank selected files (cut)</td></tr>
-<tr><td><kbd>p</kbd></td><td>Paste yanked files</td></tr>
-<tr><td><kbd>P</kbd></td><td>Paste yanked files (overwrite if the destination exists)</td></tr>
-<tr><td><kbd>Y</kbd> or <kbd>X</kbd></td><td>Cancel the yank status</td></tr>
-<tr><td><kbd>d</kbd></td><td>Trash selected files</td></tr>
-<tr><td><kbd>D</kbd></td><td>Permanently delete selected files</td></tr>
-<tr><td><kbd>a</kbd></td><td>Create a file (ends with / for directories)</td></tr>
-<tr><td><kbd>r</kbd></td><td>Rename selected file(s)</td></tr>
-<tr><td><kbd>.</kbd></td><td>Toggle the visibility of hidden files</td></tr>
+<h1 id="search"><a class="header" href="#search">Search</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th><th></th></tr></thead><tbody>
+<tr><td>Find in This Page</td><td>Ctrl + F</td><td></td></tr>
+<tr><td>Find Again</td><td>F3  <br>Ctrl + G</td><td></td></tr>
+<tr><td>Find Previous</td><td>Shift + F3  <br>Ctrl + Shift + G</td><td></td></tr>
+<tr><td>Quick Find within link-text only</td><td>'</td><td></td></tr>
+<tr><td>Quick Find</td><td>/</td><td></td></tr>
+<tr><td>Close the Find or Quick Find bar</td><td>Esc  <br> - when the Find or Quick Find bar is focused</td><td></td></tr>
+<tr><td>Switch Search Engine</td><td>Alt + ↓  <br>Alt + ↑  <br> - after you have written something (or pressed ↓) in the address bar</td><td></td></tr>
+<tr><td>Web Search with Default Search Engine</td><td>Type ? and a space (or only ?) into empty Address Bar</td><td></td></tr>
+<tr><td>Focus <a href="https://support.mozilla.org/en-US/kb/search-firefox-address-bar">Address bar</a> for Web Search with Default Search Engine</td><td>Ctrl + K  <br>Ctrl + E  <br>- if search bar is not shown</td><td></td></tr>
+<tr><td>Focus <a href="https://support.mozilla.org/en-US/kb/add-search-bar-firefox-toolbar">Search bar</a></td><td>Ctrl + K  <br>Ctrl + E  <br>- if search bar is shown</td><td></td></tr>
+<tr><td>Change the Default Search Engine</td><td>Ctrl + ↓  <br>Ctrl + ↑  <br> - in the <a href="https://support.mozilla.org/en-US/kb/add-search-bar-firefox-toolbar">Search bar</a> or the Search field of the <a href="https://support.mozilla.org/en-US/kb/about-new-tab-page">New Tab</a> page.</td><td></td></tr>
+<tr><td>View menu to switch, add or manage search engines</td><td>Alt + ↓  <br>Alt + ↑  <br>F4  <br> - when the <a href="https://support.mozilla.org/en-US/kb/add-search-bar-firefox-toolbar">Search bar</a> is focused</td><td></td></tr>
 </tbody></table>
 </div>
-<p>Further file operation commands can be found in the table below.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>;</kbd></td><td>Run a shell command</td></tr>
-<tr><td><kbd>:</kbd></td><td>Run a shell command (block until finishes)</td></tr>
-<tr><td><kbd>-</kbd></td><td>Symlink the absolute path of yanked files</td></tr>
-<tr><td><kbd>_</kbd></td><td>Symlink the relative path of yanked files</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>-</kbd></td><td>Hardlink yanked files</td></tr>
+<h1 id="windows--tabs"><a class="header" href="#windows--tabs">Windows &amp; Tabs</a></h1>
+<p>See also <a href="https://support.mozilla.org/en-US/kb/tabs-organize-websites-single-window">Use tabs to organize lots of websites in a single window</a>.</p>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Close Tab</td><td>Ctrl + W  <br>Ctrl + F4  <br>- except for <a href="https://support.mozilla.org/en-US/kb/pinned-tabs-keep-favorite-websites-open">Pinned Tabs</a></td></tr>
+<tr><td>Close Window</td><td>Ctrl + Shift + W  <br>Alt + F4</td></tr>
+<tr><td>Cycle through Tabs in Recently Used Order</td><td>Ctrl + Tab  <br>-if enabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Exit</td><td>Ctrl + Shift + Q</td></tr>
+<tr><td>Go one Tab to the Left</td><td>Ctrl + Page Up  <br>Ctrl + Shift + Tab <strong>see below</strong></td></tr>
+<tr><td>Go one Tab to the Right</td><td>Ctrl + Page Down  <br>Ctrl + Tab  <strong>Note:</strong> if the setting <em>Ctrl+Tab cycles through tabs in recently used order</em> is disabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Go to Tab 1 to 8</td><td>Ctrl + 1 to 8</td></tr>
+<tr><td>Go to Last Tab</td><td>Ctrl + 9</td></tr>
+<tr><td>Move Tab Left</td><td>Ctrl + Shift + Page Up</td></tr>
+<tr><td>Move Tab Right</td><td>Ctrl + Shift + Page Down</td></tr>
+<tr><td>Move Tab to start</td><td>Ctrl + Shift + Home  <br> - requires the currently selected tab to be "in focus" for instance, by hitting Alt + D to focus the address bar, and then Shift + Tab until you reach the browser tab bar.</td></tr>
+<tr><td>Move Tab to end</td><td>Ctrl + Shift + End  <br> - requires the currently selected tab to be "in focus" for instance, by hitting Alt + D to focus the address bar, and then Shift + Tab until you reach the browser tab bar.</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/mute-sound-firefox-tabs">Mute/Unmute Audio</a></td><td>Ctrl + M</td></tr>
+<tr><td>New Tab</td><td>Ctrl + T</td></tr>
+<tr><td>New Window</td><td>Ctrl + N</td></tr>
+<tr><td>New <a href="https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history">Private Window</a></td><td>Ctrl + Shift + P</td></tr>
+<tr><td>Open Address or Search in New Background Tab</td><td>Alt + Shift + Enter  <br> - from address bar</td></tr>
+<tr><td>Open Address or Search in New Foreground Tab</td><td>Alt + Enter  <br> - from address bar or Search bar</td></tr>
+<tr><td>Open Address or Search in New Window</td><td>Shift + Enter  <br> - from address bar or the Search field on the <a href="https://support.mozilla.org/en-US/kb/about-new-tab-page">New Tab</a> page</td></tr>
+<tr><td>Open Search in New Background Tab</td><td>Ctrl + Enter  <br> - from the Search field on the <a href="https://support.mozilla.org/en-US/kb/about-new-tab-page">New Tab</a> page.  <br>(see note, below)</td></tr>
+<tr><td>Open Search in New Foreground Tab</td><td>Ctrl + Shift + Enter  <br> - from the Search field on the <a href="https://support.mozilla.org/en-US/kb/about-new-tab-page">New Tab</a> page.  <br><strong>Note:</strong> The Foreground and Background Tab shortcuts are switched if the setting <em>When you open a link, image or media in a new tab, switch to it immediately</em> is enabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Open Focused Bookmark or Link in Current Tab</td><td>Enter</td></tr>
+<tr><td>Open Focused Bookmark in New Foreground Tab</td><td>Ctrl + Enter</td></tr>
+<tr><td>Open Focused Bookmark in New Background Tab</td><td>Ctrl + Shift + Enter</td></tr>
+<tr><td>Open Focused Link in New Background Tab</td><td>Ctrl + Enter  <br>(see note, below)</td></tr>
+<tr><td>Open Focused Link in New Foreground Tab</td><td>Ctrl + Shift + Enter  <br><strong>Note:</strong> The Foreground and Background Tab shortcuts are switched if the setting <em>When you open a link, image or media in a new tab, switch to it immediately</em> is enabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Open Focused Bookmark or Link in New Window</td><td>Shift + Enter</td></tr>
+<tr><td>Show All Tabs</td><td>Ctrl + Shift + Tab  <br>- if the setting <em>Ctrl+Tab cycles through tabs in recently used order</em> is enabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Reopen last closed tab or window</td><td>Ctrl + Shift + T  <br> <strong>Note:</strong> Reopens last closed tab or window, in the order closed. If there aren't any tabs or windows to reopen, this command restores the previous session.</td></tr>
+<tr><td>Reopen last closed window</td><td>Ctrl + Shift + N</td></tr>
+<tr><td>Moves the URL left or right (if cursor is in the address bar)</td><td>Ctrl + Shift + X</td></tr>
 </tbody></table>
 </div>
-<h2 id="copy-paths"><a class="header" href="#copy-paths">Copy paths</a></h2>
-<p>To copy paths, use any of the following commands below.</p>
-<p><em>Observation: <kbd>c</kbd> ⇒ <kbd>d</kbd> indicates pressing the <kbd>c</kbd> key followed by pressing the <kbd>d</kbd> key.</em></p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>c</kbd> ⇒ <kbd>c</kbd></td><td>Copy the file path</td></tr>
-<tr><td><kbd>c</kbd> ⇒ <kbd>d</kbd></td><td>Copy the directory path</td></tr>
-<tr><td><kbd>c</kbd> ⇒ <kbd>f</kbd></td><td>Copy the filename</td></tr>
-<tr><td><kbd>c</kbd> ⇒ <kbd>n</kbd></td><td>Copy the filename without extension</td></tr>
+<h1 id="history"><a class="header" href="#history">History</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>History sidebar</td><td>Ctrl + H</td></tr>
+<tr><td>Library window (History)</td><td>Ctrl + Shift + H</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/delete-browsing-search-download-history-firefox">Clear Recent History</a></td><td>Ctrl + Shift + Del</td></tr>
 </tbody></table>
 </div>
-<h2 id="filter-files"><a class="header" href="#filter-files">Filter files</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>f</kbd></td><td>Filter files</td></tr>
+<h1 id="bookmarks"><a class="header" href="#bookmarks">Bookmarks</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Bookmark All Tabs</td><td>Ctrl + Shift + D</td></tr>
+<tr><td>Bookmark This Page</td><td>Ctrl + D</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/bookmarks-firefox">Bookmarks</a> sidebar</td><td>Ctrl + B</td></tr>
+<tr><td>Show/hide the Bookmarks toolbar</td><td>Ctrl + Shift + B</td></tr>
+<tr><td>Show All Bookmarks (Library Window)</td><td>Ctrl + Shift + O</td></tr>
+<tr><td>Show List of All Bookmarks</td><td>Space  <br>- in Empty Search Field in Bookmarks Library Window or Sidebar.</td></tr>
+<tr><td>Focus Next Bookmark/Folder whose name (or sorted property) starts with a given character or character sequence</td><td>Type the character or quickly type the character sequence.  <br>- in Bookmarks Library, Bookmarks Toolbar, Bookmarks Menu, Bookmarks Sidebar</td></tr>
 </tbody></table>
 </div>
-<h2 id="find-files"><a class="header" href="#find-files">Find files</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>/</kbd></td><td>Find next file</td></tr>
-<tr><td><kbd>?</kbd></td><td>Find previous file</td></tr>
-<tr><td><kbd>n</kbd></td><td>Go to the next found</td></tr>
-<tr><td><kbd>N</kbd></td><td>Go to the previous found</td></tr>
+<h1 id="tools"><a class="header" href="#tools">Tools</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/where-find-and-manage-downloaded-files-firefox">Downloads</a></td><td>Ctrl + J</td></tr>
+<tr><td>Add-ons</td><td>Ctrl + Shift + A</td></tr>
+<tr><td>Toggle Developer Tools</td><td>F12  <br>Ctrl + Shift + I</td></tr>
+<tr><td>Web Console</td><td>Ctrl + Shift + K</td></tr>
+<tr><td>Inspector</td><td>Ctrl + Shift + C</td></tr>
+<tr><td>Take a screenshot</td><td>Ctrl + Shift + S</td></tr>
+<tr><td>Style Editor</td><td>Shift + F7</td></tr>
+<tr><td>Task Manager</td><td>Shift + Esc</td></tr>
+<tr><td>Profiler</td><td>Shift + F5</td></tr>
+<tr><td>Network</td><td>Ctrl + Shift + E</td></tr>
+<tr><td>Responsive Design View</td><td>Ctrl + Shift + M</td></tr>
+<tr><td>Page Source</td><td>Ctrl + U</td></tr>
+<tr><td>Browser Console</td><td>Ctrl + Shift + J</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/firefox-page-info-window">Page Info</a></td><td>Ctrl + I</td></tr>
 </tbody></table>
 </div>
-<h2 id="search-files"><a class="header" href="#search-files">Search files</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>s</kbd></td><td>Search files by name using <a href="https://github.com/sharkdp/fd">fd</a></td></tr>
-<tr><td><kbd>S</kbd></td><td>Search files by content using <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a></td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>s</kbd></td><td>Cancel the ongoing search</td></tr>
+<h1 id="pdf-viewer"><a class="header" href="#pdf-viewer">PDF Viewer</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Next page</td><td>N or J or →</td></tr>
+<tr><td>Previous page</td><td>P or K or ←</td></tr>
+<tr><td>Zoom in</td><td>Ctrl + +</td></tr>
+<tr><td>Zoom out</td><td>Ctrl + -</td></tr>
+<tr><td>Automatic Zoom</td><td>Ctrl + 0</td></tr>
+<tr><td>Rotate the document clockwise</td><td>R</td></tr>
+<tr><td>Rotate counterclockwise</td><td>Shift + R</td></tr>
+<tr><td>Switch to Presentation Mode</td><td>Ctrl + Alt + P</td></tr>
+<tr><td>Choose Text Selection Tool</td><td>S</td></tr>
+<tr><td>Choose Hand Tool</td><td>H</td></tr>
+<tr><td>Focus the Page Number input box</td><td>Ctrl + Alt + G</td></tr>
 </tbody></table>
 </div>
-<h2 id="sorting"><a class="header" href="#sorting">Sorting</a></h2>
-<p>To sort files/directories use the following commands.</p>
-<p><em>Observation: <kbd>,</kbd> ⇒ <kbd>a</kbd> indicates pressing the <kbd>,</kbd> key followed by pressing the <kbd>a</kbd> key.</em></p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>,</kbd> ⇒ <kbd>m</kbd></td><td>Sort by modified time</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>M</kbd></td><td>Sort by modified time (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>b</kbd></td><td>Sort by birth time</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>B</kbd></td><td>Sort by birth time (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>e</kbd></td><td>Sort by file extension</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>E</kbd></td><td>Sort by file extension (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>a</kbd></td><td>Sort alphabetically</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>A</kbd></td><td>Sort alphabetically (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>n</kbd></td><td>Sort naturally</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>N</kbd></td><td>Sort naturally (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>s</kbd></td><td>Sort by size</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>S</kbd></td><td>Sort by size (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>r</kbd></td><td>Sort randomly</td></tr>
+<h1 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Complete .com Address</td><td>Ctrl + Enter</td></tr>
+<tr><td>Delete Selected Autocomplete Entry</td><td>Shift + Del</td></tr>
+<tr><td>Toggle Full Screen</td><td>F11</td></tr>
+<tr><td>Toggle Menu Bar activation (showing it temporarily when hidden)</td><td>Alt or F10</td></tr>
+<tr><td>Toggle <a href="https://support.mozilla.org/en-US/kb/firefox-reader-view-clutter-free-web-pages">Reader Mode</a></td><td>F9</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/accessibility-features-firefox#w_using-a-keyboard-to-navigate-within-webpages">Caret Browsing</a></td><td>F7</td></tr>
+<tr><td>Focus Address Bar</td><td>F6  <br>Alt + D  <br>Ctrl + L</td></tr>
+<tr><td>Focus Search Field in Library</td><td>F6  <br>Ctrl + F</td></tr>
+<tr><td>Stop Autoscroll Mode</td><td>Esc</td></tr>
+<tr><td>Cancel Drag-and-Drop Operation</td><td>Esc</td></tr>
+<tr><td>Clear Search Field in Library or Sidebar</td><td>Esc</td></tr>
+<tr><td>Close a Menu</td><td>Esc  <br>Alt  <br>F10</td></tr>
+<tr><td>Toggle Context Menu</td><td>Shift + F10</td></tr>
 </tbody></table>
 </div>
-<h2 id="multi-tab"><a class="header" href="#multi-tab">Multi-tab</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>t</kbd></td><td>Create a new tab with CWD</td></tr>
-<tr><td><kbd>1</kbd>, <kbd>2</kbd>, ..., <kbd>9</kbd></td><td>Switch to the N-th tab</td></tr>
-<tr><td><kbd>[</kbd></td><td>Switch to the previous tab</td></tr>
-<tr><td><kbd>]</kbd></td><td>Switch to the next tab</td></tr>
-<tr><td><kbd>{</kbd></td><td>Swap current tab with previous tab</td></tr>
-<tr><td><kbd>}</kbd></td><td>Swap current tab with next tab</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>c</kbd></td><td>Close the current tab</td></tr>
+<h1 id="media-shortcuts"><a class="header" href="#media-shortcuts">Media shortcuts</a></h1>
+<p>See also <a href="https://support.mozilla.org/en-US/kb/html5-audio-and-video-firefox">HTML5 audio and video in Firefox</a> and the <a href="https://support.mozilla.org/en-US/kb/about-picture-picture-firefox#w_keyboard-shortcuts">list of Picture-in-Picture (PiP) shortcuts</a>.</p>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Toggle Play / Pause</td><td>Space bar</td></tr>
+<tr><td>Decrease volume</td><td>↓</td></tr>
+<tr><td>Increase volume</td><td>↑</td></tr>
+<tr><td>Mute audio</td><td>Ctrl + ↓</td></tr>
+<tr><td>Unmute audio</td><td>Ctrl + ↑</td></tr>
+<tr><td>Seek back 15 seconds</td><td>←</td></tr>
+<tr><td>Seek back 10 %</td><td>Ctrl + ←</td></tr>
+<tr><td>Seek forward 15 seconds</td><td>→</td></tr>
+<tr><td>Seek forward 10 %</td><td>Ctrl + →</td></tr>
+<tr><td>Seek to the beginning</td><td>Home</td></tr>
+<tr><td>Seek to the end</td><td>End</td></tr>
 </tbody></table>
-</div><style>
-  .scroll-to-top {
-    font-size: 2.5rem;
-    width: 3.2rem;
-    height: 3.2rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 4rem;
-    right: calc(1.25rem + 90px + var(--page-padding));
-    z-index: 999;
-    cursor: pointer;
-    border: none;
-    color: var(--bg);
-    background: var(--fg);
-    border-radius: 50%;
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  .scroll-to-top i {
-    transform: translateY(-2px);
-  }
-  @media (min-width: 1080px) {
-    .scroll-to-top {
-      display: flex;
-    }
-  }
+</div>
+<h1 id="selection-of-multiple-tabs"><a class="header" href="#selection-of-multiple-tabs">Selection of Multiple Tabs</a></h1>
+<p>These shortcuts require the tab bar to be “in focus”. Currently, the only way to do this is to focus an adjacent object and “tab into” the tab bar, for instance, by hitting Ctrl + L to focus the address bar, and then Shift + Tab repeatedly until the current tab gets a colored border.</p>
+<div class="table-wrapper"><table><thead><tr><th><strong>Command</strong></th><th><strong>Shortcut</strong></th></tr></thead><tbody>
+<tr><td>Select left, right, first or last tab. Deselect all other tabs.</td><td>Arrow Keys  <br>Home  <br>End</td></tr>
+<tr><td>Move the colored border to left, right, first or last tab.</td><td>Ctrl + Arrow Keys  <br>Ctrl + Home  <br>Ctrl + End</td></tr>
+<tr><td>Select or deselect the tab with the colored border. The other tabs stay selected or deselected.</td><td>Ctrl + Space</td></tr>
+</tbody></table>
+</div>
+<h1 id="developer-shortcuts"><a class="header" href="#developer-shortcuts">Developer shortcuts</a></h1>
+<p>You can also use keyboard shortcuts with developer tools in Firefox. See the <a href="https://firefox-source-docs.mozilla.org/devtools-user/keyboard_shortcuts/index.html">All keyboard shortcuts</a> <em>Firefox Source Docs</em> page.<style>
+.scroll-to-top {
+font-size: 2.5rem;
+width: 3.2rem;
+height: 3.2rem;
+display: none;
+align-items: center;
+justify-content: center;
+position: fixed;
+padding: 0.75rem;
+bottom: 4rem;
+right: calc(1.25rem + 90px + var(--page-padding));
+z-index: 999;
+cursor: pointer;
+border: none;
+color: var(--bg);
+background: var(--fg);
+border-radius: 50%;
+}
+.scroll-to-top.hidden {
+display: none;
+}
+.scroll-to-top i {
+transform: translateY(-2px);
+}
+@media (min-width: 1080px) {
+.scroll-to-top {
+display: flex;
+}
+}
 </style>
 <button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-  <i class="fa fa-angle-up"></i>
-</button>
+<i class="fa fa-angle-up"></i>
+</button></p>
 <script>
   const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
   window.addEventListener("scroll", () => {
@@ -471,11 +535,11 @@ desc = "Open PowerShell here"
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="bat.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="github_cli.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="fd.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="chrome_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -485,11 +549,11 @@ desc = "Open PowerShell here"
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="bat.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="github_cli.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="fd.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="chrome_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

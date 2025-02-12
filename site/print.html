@@ -581,14 +581,6 @@
 <p>Open the Powershell profile in notepad <code>notepad $profile</code></p>
 <p>Print the current PSReadLine key handlers <code>Get-PSReadLineKeyHandler</code></p>
 <p>or press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>?</kbd></p>
-<h2 id="must-have-tools-for-powershell"><a class="header" href="#must-have-tools-for-powershell">Must-have tools for Powershell</a></h2>
-<p><a href="https://github.com/ajeetdsouza/zoxide">zoxide</a> jumps straight to directories.</p>
-<p><a href="https://github.com/lasantosr/intelli-shell">intelli-shell</a> bookmark commands and includes <a href="https://github.com/tldr-pages/tldr">tldr</a>.</p>
-<p><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> - A fast file search tool.</p>
-<p><a href="https://github.com/konradsz/igrep">igrep</a> - An alternate grep tool.</p>
-<p><a href="https://github.com/junegunn/fzf">fzf</a> - A command-line fuzzy finder.</p>
-<p><a href="https://github.com/sharkdp/fd">fd</a> - A simple, fast and user-friendly alternative to find.</p>
-<p><a href="https://github.com/sharkdp/bat">bat</a> - A cat(1) clone with wings. Features colored output, syntax highlighting, grid view, and more.</p>
 <h2 id="vs-code-options"><a class="header" href="#vs-code-options">VS Code options</a></h2>
 <p><code>code -w</code> - Wait for the files to be closed before returning.</p>
 <p><code>code -n</code> - Force to open a new window.</p>
@@ -805,6 +797,7 @@ winget install eza-community.eza
 </code></pre>
 </div>
 </div>
+<p>Add  <code>Invoke-Expression (&amp; { (zoxide init powershell | Out-String) })</code> to your Powershell profile</p>
 <p>Detailed information can be found by clicking <a href="https://github.com/ajeetdsouza/zoxide">zoxide</a>, <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> and <a href="https://github.com/eza-community/eza">eza</a>.</p>
 <h2 id="psfzf"><a class="header" href="#psfzf">PSFzf</a></h2>
 <p>PSFzf installs from PSGallery. More details <a href="https://github.com/kelleyma49/PSFzf">here</a>.</p>
@@ -1252,14 +1245,822 @@ Set-Alias glg search-google
 </style>
 <h1 id="tools"><a class="header" href="#tools">Tools</a></h1>
 <h2 id="-that-i-find-useful-for-powershell"><a class="header" href="#-that-i-find-useful-for-powershell">.. that I find useful for Powershell.</a></h2>
-<p><a href="./yazi.html">yazi</a></p>
-<p>Tabbed file manager with preview supporting numerous file types.</p>
-<p><a href="./ripgrep.html">ripgrep</a></p>
-<p>A replacement for <code>grep</code>.</p>
-<p><a href="./eza.html">eza</a></p>
-<p>A replacement for <code>ls</code>.</p>
-<p><a href="./glow.html">glow</a></p>
-<p>A command line Markdown viewer.</p>
+<ul>
+<li>
+<p><a href="./intelli_shell.html">IntelliShell</a><br />
+Bookmarks commands and includes tldr pages.</p>
+</li>
+<li>
+<p><a href="./zoxide.html">zoxide</a><br />
+Jump straight to directories.</p>
+</li>
+<li>
+<p><a href="./fzf.html">fzf</a><br />
+A command-line fuzzy finder.</p>
+</li>
+<li>
+<p><a href="./bat.html">bat</a><br />
+Like cat but better.</p>
+</li>
+<li>
+<p><a href="./yazi.html">yazi</a><br />
+Tabbed file manager with preview supporting numerous file types.</p>
+</li>
+<li>
+<p><a href="./fd.html">fd</a><br />
+A simple, fast and user-friendly alternative to find.</p>
+</li>
+<li>
+<p><a href="./ripgrep.html">ripgrep</a><br />
+A fast file search tool.</p>
+</li>
+<li>
+<p><a href="./eza.html">eza</a><br />
+Like ls but better.</p>
+</li>
+<li>
+<p><a href="./glow.html">glow</a><br />
+A terminal-based Markdown viewer.</p>
+</li>
+</ul>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="intellishell"><a class="header" href="#intellishell">IntelliShell</a></h1>
+<ul>
+<li><a href="intelli_shell.html#hotkeys">Hotkeys</a></li>
+<li><a href="intelli_shell.html#help">Help</a></li>
+</ul>
+<p>IntelliShell bookmarks commands and includes tldr pages.</p>
+<p><img src="./pics/intelli_shell_list_commands.jpg" alt="IntelliShell Bookmarks" /></p>
+<p>Press <kbd>Ctrl</kbd> + <kbd>Space</kbd> to list bookmarked commands.</p>
+<br>
+<p><img src="./pics/intelli_shell_search_commands.jpg" alt="IntelliShell Search" /></p>
+<p>Type the beginning of the command, for example <code>docker</code> and intelli-shell will fetch
+a list of commands starting with <code>docker</code> from your bookmarked commands and tldr.<br />
+Navigate with <kbd>↑</kbd> or <kbd>↓</kbd>. Select with <kbd>Enter</kbd>.</p>
+<h2 id="hotkeys"><a class="header" href="#hotkeys">Hotkeys</a></h2>
+<p><kbd>ctrl</kbd> + <kbd>b</kbd> bookmark currently typed command</p>
+<p><kbd>ctrl</kbd> + <kbd>space</kbd> show suggestions for current line</p>
+<p><kbd>ctrl</kbd> + <kbd>l</kbd> replace labels of currently typed command (Linux)</p>
+<p><kbd>esc</kbd> clean current line, this binding can be skipped if INTELLI_SKIP_ESC_BIND=1</p>
+<p>Note: When navigating items, selected suggestion can be deleted with <kbd>ctrl</kbd> + <kbd>d</kbd> or
+edited with any of: <kbd>ctrl</kbd> + <kbd>e</kbd>, <kbd>ctrl</kbd> + <kbd>u</kbd> or <kbd>F2</kbd></p>
+<p>You can customize key bindings using environment variables: INTELLI_BOOKMARK_HOTKEY, INTELLI_SEARCH_HOTKEY and INTELLI_LABEL_HOTKEY</p>
+<h2 id="help"><a class="header" href="#help">Help</a></h2>
+<p>Usage: intelli-shell.exe [OPTIONS] <COMMAND></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Commands:</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">new</td><td style="text-align: left">Stores a new user command</td></tr>
+<tr><td style="text-align: left">search</td><td style="text-align: left">Opens a new search interface</td></tr>
+<tr><td style="text-align: left">label</td><td style="text-align: left">Opens a new label interface</td></tr>
+<tr><td style="text-align: left">export</td><td style="text-align: left">Exports stored user commands</td></tr>
+<tr><td style="text-align: left">import</td><td style="text-align: left">Imports user commands</td></tr>
+<tr><td style="text-align: left">fetch</td><td style="text-align: left">Fetches new commands from tldr</td></tr>
+<tr><td style="text-align: left">help</td><td style="text-align: left">Print this message or the help of the given subcommand(s)</td></tr>
+</tbody></table>
+</div><br>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Options:</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">-i, --inline</td><td style="text-align: left">Whether the UI should be rendered inline instead of taking full terminal</td></tr>
+<tr><td style="text-align: left">--inline-extra-line</td><td style="text-align: left">Whether an extra line should be rendered when inline</td></tr>
+<tr><td style="text-align: left">-f, --file-output &lt;FILE_OUTPUT&gt;</td><td style="text-align: left">Path of an existing file to write the output to (defaults to stdout)</td></tr>
+<tr><td style="text-align: left">-h, --help</td><td style="text-align: left">Print help</td></tr>
+<tr><td style="text-align: left">-V, --version</td><td style="text-align: left">Print version</td></tr>
+</tbody></table>
+</div>
+<p>More details on <a href="https://github.com/lasantosr/intelli-shell">IntelliShell</a> and <a href="https://github.com/tldr-pages/tldr">tldr</a>.</p>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="zoxide"><a class="header" href="#zoxide">zoxide</a></h1>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<pre><code class="language-Powershell">winget install ajeetdsouza.zoxide
+</code></pre>
+<p>Add this to the end of your $profile in PowerShell:</p>
+<pre><code class="language-PowerShell">Invoke-Expression (&amp; { (zoxide init powershell | Out-String) })
+</code></pre>
+<p>See the <a href="https://github.com/ajeetdsouza/zoxide">zoxide documentation</a> for more information</p>
+<h2 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Command</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">z foo</td><td style="text-align: left">cd into highest ranked directory matching foo</td></tr>
+<tr><td style="text-align: left">z foo bar</td><td style="text-align: left">cd into highest ranked directory matching foo and bar</td></tr>
+<tr><td style="text-align: left">z foo /</td><td style="text-align: left">cd into a subdirectory starting with foo</td></tr>
+<tr><td style="text-align: left">z ~/foo</td><td style="text-align: left">z also works like a regular cd command</td></tr>
+<tr><td style="text-align: left">z foo/</td><td style="text-align: left">cd into relative path</td></tr>
+<tr><td style="text-align: left">z ..</td><td style="text-align: left">cd one level up</td></tr>
+<tr><td style="text-align: left">z -</td><td style="text-align: left">cd into previous directory</td></tr>
+<tr><td style="text-align: left">zi foo</td><td style="text-align: left">cd with interactive selection (using fzf)</td></tr>
+<tr><td style="text-align: left">z foo <SPACE><TAB></td><td style="text-align: left">show interactive completions (zoxide v0.8.0+, bash 4.4+/fish/zsh only)</td></tr>
+</tbody></table>
+</div>
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
+<p>Configuration
+Flags</p>
+<p>When calling zoxide init, the following flags are available:</p>
+<pre><code>--cmd
+    Changes the prefix of the z and zi commands.
+    --cmd j would change the commands to (j, ji).
+    --cmd cd would replace the cd command.
+
+--hook &lt;HOOK&gt;
+
+    Changes how often zoxide increments a directory's score:
+    Hook    Description
+    none    Never
+    prompt  At every shell prompt
+    pwd (default)   Whenever the directory is changed
+
+--no-cmd
+    Prevents zoxide from defining the z and zi commands.
+    These functions will still be available in your shell as __zoxide_z 
+    and __zoxide_zi, should you choose to redefine them.
+</code></pre>
+<p>Environment variables</p>
+<p>Environment variables can be used for configuration. They must be set before zoxide init is called.</p>
+<pre><code>_ZO_DATA_DIR
+
+    Specifies the directory in which the database is stored.
+
+    The default value varies across OSes:
+    OS               Path               Example
+    Linux / BSD    $XDG_DATA_HOME or $HOME/.local/share     /home/alice/.local/share
+    macOS   $HOME/Library/Application Support   /Users/Alice/Library/Application Support
+    Windows    %LOCALAPPDATA%    C:\Users\Alice\AppData\Local
+
+_ZO_ECHO
+    When set to 1, z will print the matched directory before navigating to it.
+
+_ZO_EXCLUDE_DIRS
+
+    Excludes the specified directories from the database.
+
+    This is provided as a list of globs, separated by OS-specific characters:
+    OS      Separator     Example
+    Linux / macOS / BSD   :    $HOME:$HOME/private/*
+    Windows     ;    $HOME;$HOME/private/*
+
+    By default, this is set to "$HOME".
+
+_ZO_FZF_OPTS
+    Custom options to pass to fzf during interactive selection.
+    See man fzf for the list of options.
+
+_ZO_MAXAGE
+    Configures the aging algorithm, which limits the maximum number
+    of entries in the database.
+    By default, this is set to 10000.
+
+_ZO_RESOLVE_SYMLINKS
+    When set to 1, z will resolve symlinks before adding directories to the database.
+</code></pre>
+<h2 id="set-environment-variables"><a class="header" href="#set-environment-variables">Set environment variables</a></h2>
+<p>Assuming you want to set the _ZO_ECHO variable to 1:</p>
+<p>Add this to your $profile in PowerShell:</p>
+<p><code>env:_ZO_ECHO = '1'</code></p>
+<h2 id="help-1"><a class="header" href="#help-1">Help</a></h2>
+<p>Usage:
+<code>zoxide.exe &lt;COMMAND&gt;</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Commands</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">add</td><td style="text-align: left">Add a new directory or increment its rank</td></tr>
+<tr><td style="text-align: left">edit</td><td style="text-align: left">Edit the database</td></tr>
+<tr><td style="text-align: left">import</td><td style="text-align: left">Import entries from another application</td></tr>
+<tr><td style="text-align: left">init</td><td style="text-align: left">Generate shell configuration</td></tr>
+<tr><td style="text-align: left">query</td><td style="text-align: left">Search for a directory in the database</td></tr>
+<tr><td style="text-align: left">remove</td><td style="text-align: left">Remove a directory from the database</td></tr>
+</tbody></table>
+</div><br>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Options</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">-h, --help</td><td style="text-align: left">Print help</td></tr>
+<tr><td style="text-align: left">-V, --version</td><td style="text-align: left">Print version</td></tr>
+</tbody></table>
+</div><br>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Environment variables</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">_ZO_DATA_DIR</td><td style="text-align: left">Path for zoxide data files</td></tr>
+<tr><td style="text-align: left">_ZO_ECHO</td><td style="text-align: left">Print the matched directory before navigating to it when set to 1</td></tr>
+<tr><td style="text-align: left">_ZO_EXCLUDE_DIRS</td><td style="text-align: left">List of directory globs to be excluded</td></tr>
+<tr><td style="text-align: left">_ZO_FZF_OPTS</td><td style="text-align: left">Custom flags to pass to fzf</td></tr>
+<tr><td style="text-align: left">_ZO_MAXAGE</td><td style="text-align: left">Maximum total age after which entries start getting deleted</td></tr>
+<tr><td style="text-align: left">_ZO_RESOLVE_SYMLINKS</td><td style="text-align: left">Resolve symlinks when storing paths</td></tr>
+</tbody></table>
+</div><style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="fzf"><a class="header" href="#fzf">fzf</a></h1>
+<p>Install:</p>
+<div class="mdbook-tabs-container" data-tabglobal="install">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
+<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Winget">
+<pre><code class="language-Powershell">winget install junegunn.fzf
+</code></pre>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Scoop">
+<pre><code class="language-Powershell">Scoop install fzf 
+</code></pre>
+</div>
+</div>
+<p>Install <a href="https://github.com/kelleyma49/PSFzf?tab=readme-ov-file#psfzf">Psfzf</a> after fzf. Quick install
+instructions <a href="powershell_scripts.html#psfzf">here</a>.</p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<p>Use arrow keys <kbd>↑</kbd> and <kbd>↓</kbd> to move cursor up and down.
+<kbd>Enter</kbd> to select the item, <kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>Ctrl</kbd> + <kbd>G</kbd> / <kbd>Esc</kbd> to exit<br />
+On multi-select mode (-m), <kbd>TAB</kbd> and <kbd>Shift</kbd> + <kbd>TAB</kbd> to mark multiple items</p>
+<p>Mouse: scroll, click, double-click; shift-click and shift-scroll on multi-select mode</p>
+<p>Press <kbd>Ctrl</kbd> + <kbd>T</kbd> to start PSFzf to select provider paths.<br />
+Press <kbd>Ctrl</kbd> + <kbd>R</kbd> to start PSFzf to select a command in the command history saved by PSReadline.<br />
+PSFzf will insert the command into the current line, but it will not execute the command.</p>
+<p>Press <kbd>Alt</kbd> + <kbd>C</kbd> to start fzf in folder mode. Press <kbd>Enter</kbd> to cd into the selected directory.</p>
+<p>A few scripts are <a href="./powershell_scripts.html#find-files-and-folders">here</a></p>
+<p>More details <a href="https://github.com/junegunn/fzf">here</a></p>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="bat"><a class="header" href="#bat">bat</a></h1>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -1431,6 +2232,13 @@ desc = "Open PowerShell here"
 </code></pre>
 <p><a href="https://mpv.io/installation/">mpv</a> for video playback is recommended. Edit yazi.toml accordingly.</p>
 <p><img src="pics/yazi.jpg" alt="yazi" /></p>
+<div class="mdbook-alerts mdbook-alerts-tip">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  tip
+</p>
+<p>For all keybindings, see the default keymap.toml file.</p>
+</div>
 <h2 id="navigation"><a class="header" href="#navigation">Navigation</a></h2>
 <p>To navigate between files and directories you can use the arrow keys <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd> and <kbd>→</kbd> or Vim-like keys such as <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd>:</p>
 <div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Alternate key</th><th>Action</th></tr></thead><tbody>
@@ -1550,6 +2358,156 @@ desc = "Open PowerShell here"
 <tr><td><kbd>Ctrl</kbd> + <kbd>c</kbd></td><td>Close the current tab</td></tr>
 </tbody></table>
 </div><style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="fd"><a class="header" href="#fd">fd</a></h1>
+<style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
@@ -6748,6 +7706,660 @@ To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt
 </li>
 </ul>
 <style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="firefox-shortcuts"><a class="header" href="#firefox-shortcuts">Firefox Shortcuts</a></h1>
+<ul>
+<li><a href="firefox_shortcuts.html#navigation">Navigation</a></li>
+<li><a href="firefox_shortcuts.html#current-page">Current Page</a></li>
+<li><a href="firefox_shortcuts.html#editing">Editing</a></li>
+<li><a href="firefox_shortcuts.html#search">Search</a></li>
+<li><a href="firefox_shortcuts.html#windows--tabs">Windows &amp; Tabs</a></li>
+<li><a href="firefox_shortcuts.html#history">History</a></li>
+<li><a href="firefox_shortcuts.html#bookmarks">Bookmarks</a></li>
+<li><a href="firefox_shortcuts.html#tools">Tools</a></li>
+<li><a href="firefox_shortcuts.html#pdf-viewer">PDF Viewer</a></li>
+<li><a href="firefox_shortcuts.html#miscellaneous">Miscellaneous</a></li>
+<li><a href="firefox_shortcuts.html#media-shortcuts">Media shortcuts</a></li>
+<li><a href="firefox_shortcuts.html#selection-of-multiple-tabs">Selection of Multiple Tabs</a></li>
+<li><a href="firefox_shortcuts.html#developer-shortcuts">Developer shortcuts</a></li>
+</ul>
+<h1 id="navigation-2"><a class="header" href="#navigation-2">Navigation</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Back</td><td>Alt + ←  <br>Backspace when browser.backspaceaction is set to 0 (as in the <a href="https://support.mozilla.org/en-US/kb/about-config-editor-firefox">Configuration Editor</a>), which is not the default.</td></tr>
+<tr><td>Forward</td><td>Alt + →  <br>Shift + Backspace see above.</td></tr>
+<tr><td>Home</td><td>Alt + Home</td></tr>
+<tr><td>Open File</td><td>Ctrl + O</td></tr>
+<tr><td>Reload</td><td>F5 or Ctrl + R</td></tr>
+<tr><td>Reload (override cache)</td><td>Ctrl + F5 or Ctrl + Shift + R</td></tr>
+<tr><td>Stop</td><td>Esc</td></tr>
+</tbody></table>
+</div>
+<h1 id="current-page"><a class="header" href="#current-page">Current Page</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Focus Next Link or Input Field</td><td>Tab</td></tr>
+<tr><td>Focus Previous Link or Input Field</td><td>Shift + Tab</td></tr>
+<tr><td>Go Down a Screen</td><td>Page Down  <br>Space bar</td></tr>
+<tr><td>Go Up a Screen</td><td>Page Up  <br>Shift + Space bar</td></tr>
+<tr><td>Go to Bottom of Page</td><td>End  <br>Ctrl + ↓</td></tr>
+<tr><td>Go to Top of Page</td><td>Home  <br>Ctrl + ↑</td></tr>
+<tr><td>Move to Next Frame, Pop-Up</td><td>F6</td></tr>
+<tr><td>Move to Previous Frame, Pop-Up</td><td>Shift + F6</td></tr>
+<tr><td>Print</td><td>Ctrl + P</td></tr>
+<tr><td>Save Focused Link</td><td>Alt + Enter  <br> -when browser.altClickSave is set to true (as in the <a href="https://support.mozilla.org/en-US/kb/about-config-editor-firefox">Configuration Editor</a>), which is not the default.</td></tr>
+<tr><td>Save Page As</td><td>Ctrl + S</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/font-size-and-zoom-increase-size-of-web-pages">Zoom In</a></td><td>Ctrl + +</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/font-size-and-zoom-increase-size-of-web-pages">Zoom Out</a></td><td>Ctrl + -</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/font-size-and-zoom-increase-size-of-web-pages">Zoom Reset</a></td><td>Ctrl + 0</td></tr>
+</tbody></table>
+</div>
+<h1 id="editing"><a class="header" href="#editing">Editing</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Copy</td><td>Ctrl + C</td></tr>
+<tr><td>Cut</td><td>Ctrl + X</td></tr>
+<tr><td>Delete</td><td>Del</td></tr>
+<tr><td>Delete Word to the Left</td><td>Ctrl + Backspace</td></tr>
+<tr><td>Delete Word to the Right</td><td>Ctrl + Del</td></tr>
+<tr><td>Go one Word to the Left</td><td>Ctrl + ←</td></tr>
+<tr><td>Go one Word to the Right</td><td>Ctrl + →</td></tr>
+<tr><td>Go to Beginning of Line</td><td>Home  <br>Ctrl + ↑</td></tr>
+<tr><td>Go to End of Line</td><td>End  <br>Ctrl + ↓</td></tr>
+<tr><td>Go to Beginning of Text</td><td>Ctrl + Home</td></tr>
+<tr><td>Go to End of Text</td><td>Ctrl + End</td></tr>
+<tr><td>Paste</td><td>Ctrl + V</td></tr>
+<tr><td>Paste (as plain text)</td><td>Ctrl + Shift + V</td></tr>
+<tr><td>Redo</td><td>Ctrl + Y  <br>Ctrl + Shift + Z</td></tr>
+<tr><td>Select All</td><td>Ctrl + A</td></tr>
+<tr><td>Undo</td><td>Ctrl + Z</td></tr>
+<tr><td>Select link text only</td><td>Alt + select link text</td></tr>
+</tbody></table>
+</div>
+<h1 id="search-1"><a class="header" href="#search-1">Search</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th><th></th></tr></thead><tbody>
+<tr><td>Find in This Page</td><td>Ctrl + F</td><td></td></tr>
+<tr><td>Find Again</td><td>F3  <br>Ctrl + G</td><td></td></tr>
+<tr><td>Find Previous</td><td>Shift + F3  <br>Ctrl + Shift + G</td><td></td></tr>
+<tr><td>Quick Find within link-text only</td><td>'</td><td></td></tr>
+<tr><td>Quick Find</td><td>/</td><td></td></tr>
+<tr><td>Close the Find or Quick Find bar</td><td>Esc  <br> - when the Find or Quick Find bar is focused</td><td></td></tr>
+<tr><td>Switch Search Engine</td><td>Alt + ↓  <br>Alt + ↑  <br> - after you have written something (or pressed ↓) in the address bar</td><td></td></tr>
+<tr><td>Web Search with Default Search Engine</td><td>Type ? and a space (or only ?) into empty Address Bar</td><td></td></tr>
+<tr><td>Focus <a href="https://support.mozilla.org/en-US/kb/search-firefox-address-bar">Address bar</a> for Web Search with Default Search Engine</td><td>Ctrl + K  <br>Ctrl + E  <br>- if search bar is not shown</td><td></td></tr>
+<tr><td>Focus <a href="https://support.mozilla.org/en-US/kb/add-search-bar-firefox-toolbar">Search bar</a></td><td>Ctrl + K  <br>Ctrl + E  <br>- if search bar is shown</td><td></td></tr>
+<tr><td>Change the Default Search Engine</td><td>Ctrl + ↓  <br>Ctrl + ↑  <br> - in the <a href="https://support.mozilla.org/en-US/kb/add-search-bar-firefox-toolbar">Search bar</a> or the Search field of the <a href="https://support.mozilla.org/en-US/kb/about-new-tab-page">New Tab</a> page.</td><td></td></tr>
+<tr><td>View menu to switch, add or manage search engines</td><td>Alt + ↓  <br>Alt + ↑  <br>F4  <br> - when the <a href="https://support.mozilla.org/en-US/kb/add-search-bar-firefox-toolbar">Search bar</a> is focused</td><td></td></tr>
+</tbody></table>
+</div>
+<h1 id="windows--tabs"><a class="header" href="#windows--tabs">Windows &amp; Tabs</a></h1>
+<p>See also <a href="https://support.mozilla.org/en-US/kb/tabs-organize-websites-single-window">Use tabs to organize lots of websites in a single window</a>.</p>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Close Tab</td><td>Ctrl + W  <br>Ctrl + F4  <br>- except for <a href="https://support.mozilla.org/en-US/kb/pinned-tabs-keep-favorite-websites-open">Pinned Tabs</a></td></tr>
+<tr><td>Close Window</td><td>Ctrl + Shift + W  <br>Alt + F4</td></tr>
+<tr><td>Cycle through Tabs in Recently Used Order</td><td>Ctrl + Tab  <br>-if enabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Exit</td><td>Ctrl + Shift + Q</td></tr>
+<tr><td>Go one Tab to the Left</td><td>Ctrl + Page Up  <br>Ctrl + Shift + Tab <strong>see below</strong></td></tr>
+<tr><td>Go one Tab to the Right</td><td>Ctrl + Page Down  <br>Ctrl + Tab  <strong>Note:</strong> if the setting <em>Ctrl+Tab cycles through tabs in recently used order</em> is disabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Go to Tab 1 to 8</td><td>Ctrl + 1 to 8</td></tr>
+<tr><td>Go to Last Tab</td><td>Ctrl + 9</td></tr>
+<tr><td>Move Tab Left</td><td>Ctrl + Shift + Page Up</td></tr>
+<tr><td>Move Tab Right</td><td>Ctrl + Shift + Page Down</td></tr>
+<tr><td>Move Tab to start</td><td>Ctrl + Shift + Home  <br> - requires the currently selected tab to be "in focus" for instance, by hitting Alt + D to focus the address bar, and then Shift + Tab until you reach the browser tab bar.</td></tr>
+<tr><td>Move Tab to end</td><td>Ctrl + Shift + End  <br> - requires the currently selected tab to be "in focus" for instance, by hitting Alt + D to focus the address bar, and then Shift + Tab until you reach the browser tab bar.</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/mute-sound-firefox-tabs">Mute/Unmute Audio</a></td><td>Ctrl + M</td></tr>
+<tr><td>New Tab</td><td>Ctrl + T</td></tr>
+<tr><td>New Window</td><td>Ctrl + N</td></tr>
+<tr><td>New <a href="https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history">Private Window</a></td><td>Ctrl + Shift + P</td></tr>
+<tr><td>Open Address or Search in New Background Tab</td><td>Alt + Shift + Enter  <br> - from address bar</td></tr>
+<tr><td>Open Address or Search in New Foreground Tab</td><td>Alt + Enter  <br> - from address bar or Search bar</td></tr>
+<tr><td>Open Address or Search in New Window</td><td>Shift + Enter  <br> - from address bar or the Search field on the <a href="https://support.mozilla.org/en-US/kb/about-new-tab-page">New Tab</a> page</td></tr>
+<tr><td>Open Search in New Background Tab</td><td>Ctrl + Enter  <br> - from the Search field on the <a href="https://support.mozilla.org/en-US/kb/about-new-tab-page">New Tab</a> page.  <br>(see note, below)</td></tr>
+<tr><td>Open Search in New Foreground Tab</td><td>Ctrl + Shift + Enter  <br> - from the Search field on the <a href="https://support.mozilla.org/en-US/kb/about-new-tab-page">New Tab</a> page.  <br><strong>Note:</strong> The Foreground and Background Tab shortcuts are switched if the setting <em>When you open a link, image or media in a new tab, switch to it immediately</em> is enabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Open Focused Bookmark or Link in Current Tab</td><td>Enter</td></tr>
+<tr><td>Open Focused Bookmark in New Foreground Tab</td><td>Ctrl + Enter</td></tr>
+<tr><td>Open Focused Bookmark in New Background Tab</td><td>Ctrl + Shift + Enter</td></tr>
+<tr><td>Open Focused Link in New Background Tab</td><td>Ctrl + Enter  <br>(see note, below)</td></tr>
+<tr><td>Open Focused Link in New Foreground Tab</td><td>Ctrl + Shift + Enter  <br><strong>Note:</strong> The Foreground and Background Tab shortcuts are switched if the setting <em>When you open a link, image or media in a new tab, switch to it immediately</em> is enabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Open Focused Bookmark or Link in New Window</td><td>Shift + Enter</td></tr>
+<tr><td>Show All Tabs</td><td>Ctrl + Shift + Tab  <br>- if the setting <em>Ctrl+Tab cycles through tabs in recently used order</em> is enabled in <a href="https://support.mozilla.org/en-US/kb/tab-preferences-and-settings">Settings</a></td></tr>
+<tr><td>Reopen last closed tab or window</td><td>Ctrl + Shift + T  <br> <strong>Note:</strong> Reopens last closed tab or window, in the order closed. If there aren't any tabs or windows to reopen, this command restores the previous session.</td></tr>
+<tr><td>Reopen last closed window</td><td>Ctrl + Shift + N</td></tr>
+<tr><td>Moves the URL left or right (if cursor is in the address bar)</td><td>Ctrl + Shift + X</td></tr>
+</tbody></table>
+</div>
+<h1 id="history"><a class="header" href="#history">History</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>History sidebar</td><td>Ctrl + H</td></tr>
+<tr><td>Library window (History)</td><td>Ctrl + Shift + H</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/delete-browsing-search-download-history-firefox">Clear Recent History</a></td><td>Ctrl + Shift + Del</td></tr>
+</tbody></table>
+</div>
+<h1 id="bookmarks"><a class="header" href="#bookmarks">Bookmarks</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Bookmark All Tabs</td><td>Ctrl + Shift + D</td></tr>
+<tr><td>Bookmark This Page</td><td>Ctrl + D</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/bookmarks-firefox">Bookmarks</a> sidebar</td><td>Ctrl + B</td></tr>
+<tr><td>Show/hide the Bookmarks toolbar</td><td>Ctrl + Shift + B</td></tr>
+<tr><td>Show All Bookmarks (Library Window)</td><td>Ctrl + Shift + O</td></tr>
+<tr><td>Show List of All Bookmarks</td><td>Space  <br>- in Empty Search Field in Bookmarks Library Window or Sidebar.</td></tr>
+<tr><td>Focus Next Bookmark/Folder whose name (or sorted property) starts with a given character or character sequence</td><td>Type the character or quickly type the character sequence.  <br>- in Bookmarks Library, Bookmarks Toolbar, Bookmarks Menu, Bookmarks Sidebar</td></tr>
+</tbody></table>
+</div>
+<h1 id="tools-1"><a class="header" href="#tools-1">Tools</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/where-find-and-manage-downloaded-files-firefox">Downloads</a></td><td>Ctrl + J</td></tr>
+<tr><td>Add-ons</td><td>Ctrl + Shift + A</td></tr>
+<tr><td>Toggle Developer Tools</td><td>F12  <br>Ctrl + Shift + I</td></tr>
+<tr><td>Web Console</td><td>Ctrl + Shift + K</td></tr>
+<tr><td>Inspector</td><td>Ctrl + Shift + C</td></tr>
+<tr><td>Take a screenshot</td><td>Ctrl + Shift + S</td></tr>
+<tr><td>Style Editor</td><td>Shift + F7</td></tr>
+<tr><td>Task Manager</td><td>Shift + Esc</td></tr>
+<tr><td>Profiler</td><td>Shift + F5</td></tr>
+<tr><td>Network</td><td>Ctrl + Shift + E</td></tr>
+<tr><td>Responsive Design View</td><td>Ctrl + Shift + M</td></tr>
+<tr><td>Page Source</td><td>Ctrl + U</td></tr>
+<tr><td>Browser Console</td><td>Ctrl + Shift + J</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/firefox-page-info-window">Page Info</a></td><td>Ctrl + I</td></tr>
+</tbody></table>
+</div>
+<h1 id="pdf-viewer"><a class="header" href="#pdf-viewer">PDF Viewer</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Next page</td><td>N or J or →</td></tr>
+<tr><td>Previous page</td><td>P or K or ←</td></tr>
+<tr><td>Zoom in</td><td>Ctrl + +</td></tr>
+<tr><td>Zoom out</td><td>Ctrl + -</td></tr>
+<tr><td>Automatic Zoom</td><td>Ctrl + 0</td></tr>
+<tr><td>Rotate the document clockwise</td><td>R</td></tr>
+<tr><td>Rotate counterclockwise</td><td>Shift + R</td></tr>
+<tr><td>Switch to Presentation Mode</td><td>Ctrl + Alt + P</td></tr>
+<tr><td>Choose Text Selection Tool</td><td>S</td></tr>
+<tr><td>Choose Hand Tool</td><td>H</td></tr>
+<tr><td>Focus the Page Number input box</td><td>Ctrl + Alt + G</td></tr>
+</tbody></table>
+</div>
+<h1 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Complete .com Address</td><td>Ctrl + Enter</td></tr>
+<tr><td>Delete Selected Autocomplete Entry</td><td>Shift + Del</td></tr>
+<tr><td>Toggle Full Screen</td><td>F11</td></tr>
+<tr><td>Toggle Menu Bar activation (showing it temporarily when hidden)</td><td>Alt or F10</td></tr>
+<tr><td>Toggle <a href="https://support.mozilla.org/en-US/kb/firefox-reader-view-clutter-free-web-pages">Reader Mode</a></td><td>F9</td></tr>
+<tr><td><a href="https://support.mozilla.org/en-US/kb/accessibility-features-firefox#w_using-a-keyboard-to-navigate-within-webpages">Caret Browsing</a></td><td>F7</td></tr>
+<tr><td>Focus Address Bar</td><td>F6  <br>Alt + D  <br>Ctrl + L</td></tr>
+<tr><td>Focus Search Field in Library</td><td>F6  <br>Ctrl + F</td></tr>
+<tr><td>Stop Autoscroll Mode</td><td>Esc</td></tr>
+<tr><td>Cancel Drag-and-Drop Operation</td><td>Esc</td></tr>
+<tr><td>Clear Search Field in Library or Sidebar</td><td>Esc</td></tr>
+<tr><td>Close a Menu</td><td>Esc  <br>Alt  <br>F10</td></tr>
+<tr><td>Toggle Context Menu</td><td>Shift + F10</td></tr>
+</tbody></table>
+</div>
+<h1 id="media-shortcuts"><a class="header" href="#media-shortcuts">Media shortcuts</a></h1>
+<p>See also <a href="https://support.mozilla.org/en-US/kb/html5-audio-and-video-firefox">HTML5 audio and video in Firefox</a> and the <a href="https://support.mozilla.org/en-US/kb/about-picture-picture-firefox#w_keyboard-shortcuts">list of Picture-in-Picture (PiP) shortcuts</a>.</p>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
+<tr><td>Toggle Play / Pause</td><td>Space bar</td></tr>
+<tr><td>Decrease volume</td><td>↓</td></tr>
+<tr><td>Increase volume</td><td>↑</td></tr>
+<tr><td>Mute audio</td><td>Ctrl + ↓</td></tr>
+<tr><td>Unmute audio</td><td>Ctrl + ↑</td></tr>
+<tr><td>Seek back 15 seconds</td><td>←</td></tr>
+<tr><td>Seek back 10 %</td><td>Ctrl + ←</td></tr>
+<tr><td>Seek forward 15 seconds</td><td>→</td></tr>
+<tr><td>Seek forward 10 %</td><td>Ctrl + →</td></tr>
+<tr><td>Seek to the beginning</td><td>Home</td></tr>
+<tr><td>Seek to the end</td><td>End</td></tr>
+</tbody></table>
+</div>
+<h1 id="selection-of-multiple-tabs"><a class="header" href="#selection-of-multiple-tabs">Selection of Multiple Tabs</a></h1>
+<p>These shortcuts require the tab bar to be “in focus”. Currently, the only way to do this is to focus an adjacent object and “tab into” the tab bar, for instance, by hitting Ctrl + L to focus the address bar, and then Shift + Tab repeatedly until the current tab gets a colored border.</p>
+<div class="table-wrapper"><table><thead><tr><th><strong>Command</strong></th><th><strong>Shortcut</strong></th></tr></thead><tbody>
+<tr><td>Select left, right, first or last tab. Deselect all other tabs.</td><td>Arrow Keys  <br>Home  <br>End</td></tr>
+<tr><td>Move the colored border to left, right, first or last tab.</td><td>Ctrl + Arrow Keys  <br>Ctrl + Home  <br>Ctrl + End</td></tr>
+<tr><td>Select or deselect the tab with the colored border. The other tabs stay selected or deselected.</td><td>Ctrl + Space</td></tr>
+</tbody></table>
+</div>
+<h1 id="developer-shortcuts"><a class="header" href="#developer-shortcuts">Developer shortcuts</a></h1>
+<p>You can also use keyboard shortcuts with developer tools in Firefox. See the <a href="https://firefox-source-docs.mozilla.org/devtools-user/keyboard_shortcuts/index.html">All keyboard shortcuts</a> <em>Firefox Source Docs</em> page.<style>
+.scroll-to-top {
+font-size: 2.5rem;
+width: 3.2rem;
+height: 3.2rem;
+display: none;
+align-items: center;
+justify-content: center;
+position: fixed;
+padding: 0.75rem;
+bottom: 4rem;
+right: calc(1.25rem + 90px + var(--page-padding));
+z-index: 999;
+cursor: pointer;
+border: none;
+color: var(--bg);
+background: var(--fg);
+border-radius: 50%;
+}
+.scroll-to-top.hidden {
+display: none;
+}
+.scroll-to-top i {
+transform: translateY(-2px);
+}
+@media (min-width: 1080px) {
+.scroll-to-top {
+display: flex;
+}
+}
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+<i class="fa fa-angle-up"></i>
+</button></p>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="chrome-shortcuts"><a class="header" href="#chrome-shortcuts">Chrome Shortcuts</a></h1>
+<ul>
+<li><a href="chrome_shortcuts.html#windows--linux">Windows &amp; Linux</a></li>
+<li><a href="chrome_shortcuts.html#open-the-menu-for-tab-groups">Open the menu for tab groups</a></li>
+<li><a href="chrome_shortcuts.html#move-collapse-and-expand-tab-groups">Move, collapse and expand tab groups</a></li>
+<li><a href="chrome_shortcuts.html#google-chrome-feature-shortcuts">Google Chrome feature shortcuts</a></li>
+<li><a href="chrome_shortcuts.html#address-bar-shortcuts">Address bar shortcuts</a></li>
+<li><a href="chrome_shortcuts.html#webpage-shortcuts">Webpage shortcuts</a></li>
+<li><a href="chrome_shortcuts.html#mouse-shortcuts">Mouse shortcuts</a></li>
+</ul>
+<h2 id="windows--linux"><a class="header" href="#windows--linux">Windows &amp; Linux</a></h2>
+<p>Tab &amp; window shortcuts</p>
+<div class="table-wrapper"><table><thead><tr><th><strong>Action</strong></th><th><strong>Shortcut</strong></th></tr></thead><tbody>
+<tr><td>Open a new window</td><td><strong>Ctrl + n</strong></td></tr>
+<tr><td>Open a new window in Incognito mode</td><td><strong>Ctrl + Shift + n</strong></td></tr>
+<tr><td>Open a new tab, and jump to it</td><td><strong>Ctrl + t</strong></td></tr>
+<tr><td>Reopen previously closed tabs in the order they were closed</td><td><strong>Ctrl + Shift + t</strong></td></tr>
+<tr><td>Jump to the next open tab</td><td><strong>Ctrl + Tab</strong> or <strong>Ctrl + PgDn</strong></td></tr>
+<tr><td>Jump to the previous open tab</td><td><strong>Ctrl + Shift + Tab</strong> or <strong>Ctrl + PgUp</strong></td></tr>
+<tr><td>Jump to a specific tab</td><td><strong>Ctrl + 1</strong> through <strong>Ctrl + 8</strong></td></tr>
+<tr><td>Jump to the rightmost tab</td><td><strong>Ctrl + 9</strong></td></tr>
+<tr><td>Open your home page in the current tab</td><td><strong>Alt + Home</strong></td></tr>
+<tr><td>Open the previous page from your browsing history in the current tab</td><td><strong>Alt + Left arrow</strong></td></tr>
+<tr><td>Open the next page from your browsing history in the current tab</td><td><strong>Alt + Right arrow</strong></td></tr>
+<tr><td>Close the current tab</td><td><strong>Ctrl + w</strong> or <strong>Ctrl + F4</strong></td></tr>
+<tr><td>Close the current window</td><td><strong>Ctrl + Shift + w</strong> or <strong>Alt + F4</strong></td></tr>
+<tr><td>Minimize the current window</td><td><strong>Alt + Space</strong> then <strong>n</strong></td></tr>
+<tr><td>Maximize the current window</td><td><strong>Alt + Space</strong> then <strong>x</strong></td></tr>
+<tr><td>Quit Google Chrome</td><td><strong>Alt + f</strong> then <strong>x</strong></td></tr>
+<tr><td>Move tabs right or left</td><td><strong>Ctrl + Shift + PgUp</strong> or <strong>Ctrl + Shift + PgDn</strong></td></tr>
+<tr><td>Turn on full-screen mode</td><td><strong>F11</strong></td></tr>
+<tr><td>Turn off full-screen mode</td><td><strong>F11</strong> or press and hold <strong>Esc</strong></td></tr>
+</tbody></table>
+</div>
+<h2 id="open-the-menu-for-tab-groups"><a class="header" href="#open-the-menu-for-tab-groups">Open the menu for tab groups</a></h2>
+<ol>
+<li>On your Windows computer, open Chrome.</li>
+<li>To move to tab selection, press <strong>F6</strong> until your tabs are in focus.</li>
+<li>To switch focus to a specific tab, press <strong>Tab</strong> to move forward or <strong>Shift + Tab</strong> to move backward.</li>
+<li>To open the tab group menu, press <strong>Menu</strong>.</li>
+<li>To make a menu selection:
+<ul>
+<li>To move up or down, press Up arrow <img src="https://storage.googleapis.com/support-kms-prod/e0f2ef52-8dce-4677-8fa6-81c2ff9ea962" alt="Up arrow" /> or Down arrow <img src="https://storage.googleapis.com/support-kms-prod/fujKhWAJAeNq2zlcLsDkZgTqrUpifWaGrixA" alt="Down arrow" />.</li>
+<li>To move left or right, press Left arrow <img src="https://lh3.googleusercontent.com/iP-l1athBwI_TN6-Q_4IeaqOOMJ6KnCxuXJzz1ey7IOQjye74t2aziMbDzvxZukmo7E=h36" alt="Left chevron" /> or Right arrow <img src="https://storage.googleapis.com/support-kms-prod/EvyfSzUmOSvJpnS9MnsZOLbXfpUdmlu6yDU7" alt="Right arrow" />.</li>
+<li>To select a menu option, press <strong>Enter</strong>.</li>
+</ul>
+</li>
+</ol>
+<h2 id="move-collapse-and-expand-tab-groups"><a class="header" href="#move-collapse-and-expand-tab-groups">Move, collapse and expand tab groups</a></h2>
+<p>You can collapse a tab group so that only the group name or a colored circle shows. You can also expand a tab group so that all tabs show.</p>
+<p>To collapse or expand a tab group:</p>
+<ol>
+<li>Switch focus to the tab group header.</li>
+<li>Press <strong>Space bar</strong> or <strong>Enter</strong>.</li>
+</ol>
+<p><strong>Tip:</strong> When a tab group is collapsed, you can only select the group. You can't select individual tabs inside the group.</p>
+<p>To move a tab or tab group:</p>
+<ol>
+<li>Switch focus to the tab or tab group.</li>
+<li>Press <strong>Ctrl +</strong> Left arrow <img src="https://lh3.googleusercontent.com/iP-l1athBwI_TN6-Q_4IeaqOOMJ6KnCxuXJzz1ey7IOQjye74t2aziMbDzvxZukmo7E=h36" alt="Left chevron" /> or <strong>Ctrl +</strong> Right arrow <img src="https://storage.googleapis.com/support-kms-prod/EvyfSzUmOSvJpnS9MnsZOLbXfpUdmlu6yDU7" alt="Right arrow" />.</li>
+</ol>
+<h2 id="google-chrome-feature-shortcuts"><a class="header" href="#google-chrome-feature-shortcuts">Google Chrome feature shortcuts</a></h2>
+<div class="table-wrapper"><table><thead><tr><th><strong>Action</strong></th><th><strong>Shortcut</strong></th></tr></thead><tbody>
+<tr><td>Open the Chrome menu</td><td><strong>Alt + f</strong> or <strong>Alt + e</strong></td></tr>
+<tr><td>Show or hide the Bookmarks bar</td><td><strong>Ctrl + Shift + b</strong></td></tr>
+<tr><td>Open the Bookmarks Manager</td><td><strong>Ctrl + Shift + o</strong></td></tr>
+<tr><td>Open the History page in a new tab</td><td><strong>Ctrl + h</strong></td></tr>
+<tr><td>Open the Downloads page in a new tab</td><td><strong>Ctrl + j</strong></td></tr>
+<tr><td>Open the Chrome Task Manager</td><td><strong>Shift + Esc</strong></td></tr>
+<tr><td>Set focus on the first item in the Chrome toolbar</td><td><strong>Shift + Alt + t</strong></td></tr>
+<tr><td>Set focus on the rightmost item in the Chrome toolbar</td><td><strong>F10</strong></td></tr>
+<tr><td>Switch focus to unfocused dialog (if showing) and all toolbars</td><td><strong>F6</strong></td></tr>
+<tr><td>Open the Find Bar to search the current page</td><td><strong>Ctrl + f</strong> or <strong>F3</strong></td></tr>
+<tr><td>Jump to the next match to your Find Bar search</td><td><strong>Ctrl + g</strong></td></tr>
+<tr><td>Jump to the previous match to your Find Bar search</td><td><strong>Ctrl + Shift + g</strong></td></tr>
+<tr><td>Open Developer Tools</td><td><strong>Ctrl + Shift + j</strong> or <strong>F12</strong></td></tr>
+<tr><td>Open the Delete Browsing Data options</td><td><strong>Ctrl + Shift + Delete</strong></td></tr>
+<tr><td>Open the Chrome Help Center in a new tab</td><td><strong>F1</strong></td></tr>
+<tr><td>Log in a different user or browse as a Guest</td><td><strong>Ctrl + Shift + m</strong></td></tr>
+<tr><td>Open a feedback form</td><td><strong>Alt + Shift + i</strong></td></tr>
+<tr><td>Turn on caret browsing</td><td><strong>F7</strong></td></tr>
+<tr><td>Skip to web contents</td><td><strong>Ctrl + F6</strong></td></tr>
+<tr><td>Focus on inactive dialogs</td><td><strong>Alt + Shift + a</strong></td></tr>
+</tbody></table>
+</div>
+<h2 id="address-bar-shortcuts"><a class="header" href="#address-bar-shortcuts">Address bar shortcuts</a></h2>
+<p>Use the following shortcuts in the address bar:</p>
+<div class="table-wrapper"><table><thead><tr><th><strong>Action</strong></th><th><strong>Shortcut</strong></th></tr></thead><tbody>
+<tr><td>Search with your default search engine</td><td>Type a search term <strong>+</strong> <strong>Enter</strong></td></tr>
+<tr><td>Search using a different search engine</td><td>Type a search engine name and press <strong>Tab</strong></td></tr>
+<tr><td>Add <code>www.</code> and <code>.com</code> to a site name, and open it in the current tab</td><td>Type a site name <strong>+ Ctrl + Enter</strong></td></tr>
+<tr><td>Add <code>www.</code> and <code>.com</code> to a site name, and open it in a new window</td><td>Type a site name <strong>+</strong> <strong>Ctrl + Shift + Enter</strong></td></tr>
+<tr><td>Open a new tab and perform a Google search</td><td>Type a search term <strong>+</strong> <strong>Alt + Enter</strong></td></tr>
+<tr><td>Jump to the address bar</td><td><strong>Ctrl + l</strong> or <strong>Alt + d</strong> or <strong>F6</strong></td></tr>
+<tr><td>Search from anywhere on the page</td><td><strong>Ctrl + k</strong> or <strong>Ctrl + e</strong></td></tr>
+<tr><td>Remove predictions from your address bar</td><td><strong>Down arrow</strong> to highlight then <strong>Shift + Delete</strong></td></tr>
+<tr><td>Move cursor to the address bar</td><td><strong>Ctrl + F5</strong></td></tr>
+</tbody></table>
+</div>
+<h2 id="webpage-shortcuts"><a class="header" href="#webpage-shortcuts">Webpage shortcuts</a></h2>
+<div class="table-wrapper"><table><thead><tr><th><strong>Action</strong></th><th><strong>Shortcut</strong></th></tr></thead><tbody>
+<tr><td>Open options to print the current page</td><td><strong>Ctrl + p</strong></td></tr>
+<tr><td>Open options to save the current page</td><td><strong>Ctrl + s</strong></td></tr>
+<tr><td>Reload the current page</td><td><strong>F5</strong> or <strong>Ctrl + r</strong></td></tr>
+<tr><td>Reload the current page, ignoring cached content</td><td><strong>Shift + F5</strong> or <strong>Ctrl + Shift + r</strong></td></tr>
+<tr><td>Stop the page loading</td><td><strong>Esc</strong></td></tr>
+<tr><td>Browse clickable items moving forward</td><td><strong>Tab</strong></td></tr>
+<tr><td>Browse clickable items moving backward</td><td><strong>Shift + Tab</strong></td></tr>
+<tr><td>Open a file from your computer in Chrome</td><td><strong>Ctrl + o +</strong> Select a file</td></tr>
+<tr><td>Display non-editable HTML source code for the current page</td><td><strong>Ctrl + u</strong></td></tr>
+<tr><td>Save your current webpage as a bookmark</td><td><strong>Ctrl + d</strong></td></tr>
+<tr><td>Save all open tabs as bookmarks in a new folder</td><td><strong>Ctrl + Shift + d</strong></td></tr>
+<tr><td>Make everything on the page bigger</td><td><strong>Ctrl and +</strong></td></tr>
+<tr><td>Make everything on the page smaller</td><td><strong>Ctrl and -</strong></td></tr>
+<tr><td>Return everything on the page to default size</td><td><strong>Ctrl + 0</strong></td></tr>
+<tr><td>Scroll down a webpage, a screen at a time</td><td><strong>Space</strong> or <strong>PgDn</strong></td></tr>
+<tr><td>Scroll up a webpage, a screen at a time</td><td><strong>Shift + Space</strong> or <strong>PgUp</strong></td></tr>
+<tr><td>Go to the top of the page</td><td><strong>Home</strong></td></tr>
+<tr><td>Go to the bottom of the page</td><td><strong>End</strong></td></tr>
+<tr><td>Scroll horizontally on the page</td><td><strong>Shift +</strong> Scroll your mousewheel</td></tr>
+<tr><td>Move your cursor to the beginning of the previous word in a text field</td><td><strong>Ctrl + Left arrow</strong></td></tr>
+<tr><td>Move your cursor to the next word</td><td><strong>Ctrl + Right arrow</strong></td></tr>
+<tr><td>Delete the previous word in a text field</td><td><strong>Ctrl + Backspace</strong></td></tr>
+<tr><td>Open the Home page in the current tab</td><td><strong>Alt + Home</strong></td></tr>
+</tbody></table>
+</div>
+<h2 id="mouse-shortcuts"><a class="header" href="#mouse-shortcuts">Mouse shortcuts</a></h2>
+<p>The following shortcuts require you to use your mouse:</p>
+<div class="table-wrapper"><table><thead><tr><th><strong>Action</strong></th><th><strong>Shortcut</strong></th></tr></thead><tbody>
+<tr><td>Open a link in a current tab (mouse only)</td><td>Drag a link to a tab</td></tr>
+<tr><td>Open a link in new background tab</td><td><strong>Ctrl +</strong> Click a link</td></tr>
+<tr><td>Open a link, and jump to it</td><td><strong>Ctrl + Shift +</strong> Click a link</td></tr>
+<tr><td>Open a link, and jump to it (mouse only)</td><td>Drag a link to a blank area of the tab strip</td></tr>
+<tr><td>Open a link in a new window</td><td><strong>Shift +</strong> Click a link</td></tr>
+<tr><td>Open a tab in a new window (mouse only)</td><td>Drag the tab out of the tab strip</td></tr>
+<tr><td>Move a tab to a current window (mouse only)</td><td>Drag the tab into an existing window</td></tr>
+<tr><td>Return a tab to its original position</td><td>Press <strong>Esc</strong> while dragging</td></tr>
+<tr><td>Save the current webpage as a bookmark</td><td>Drag the web address to the Bookmarks Bar</td></tr>
+<tr><td>Scroll horizontally on the page</td><td><strong>Shift +</strong> Scroll your mousewheel</td></tr>
+<tr><td>Download the target of a link</td><td><strong>Alt +</strong> Click a link</td></tr>
+<tr><td>Display your browsing history</td><td>Right-click Back <img src="https://lh3.googleusercontent.com/u8GsV4Wm3XNjCmpc3qkbAIPf2Tmily1qNewCqzlV9L32bAeITAp7AWsD9IvYjJVjfx0=w36-h36" alt="Back" /> or click &amp; hold Back <img src="https://lh3.googleusercontent.com/u8GsV4Wm3XNjCmpc3qkbAIPf2Tmily1qNewCqzlV9L32bAeITAp7AWsD9IvYjJVjfx0=w36-h36" alt="Back" />   <br>Right-click Next <img src="https://lh3.googleusercontent.com/2XV3kvUf2fdl-UElXpPIVaqjdNC_fzLbBnWlPmj2_4BnsqX7pYcf-qF0n62Xo2ZxFg=w36-h36" alt="Next" /> or click &amp; hold Next <img src="https://lh3.googleusercontent.com/2XV3kvUf2fdl-UElXpPIVaqjdNC_fzLbBnWlPmj2_4BnsqX7pYcf-qF0n62Xo2ZxFg=w36-h36" alt="Next" /></td></tr>
+<tr><td>Switch between maximized and windowed modes</td><td>Double-click a blank area of the tab strip</td></tr>
+<tr><td>Make everything on the page bigger</td><td><strong>Ctrl +</strong> Scroll your mousewheel up</td></tr>
+<tr><td>Make everything on the page smaller</td><td><strong>Ctrl +</strong> Scroll your mousewheel down</td></tr>
+</tbody></table>
+</div><style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;

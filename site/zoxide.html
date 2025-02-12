@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>yazi</title>
+        <title>zoxide</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/yazi.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/zoxide.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,152 +279,115 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="yazi"><a class="header" href="#yazi">Yazi</a></h1>
-<ul>
-<li><a href="#navigation">Navigation</a></li>
-<li><a href="#selection">Selection</a></li>
-<li><a href="#file-operations">File operations</a></li>
-<li><a href="#copy-paths">Copy paths</a></li>
-<li><a href="#filter-files">Filter files</a></li>
-<li><a href="#find-files">Find files</a></li>
-<li><a href="#search-files">Search files</a></li>
-<li><a href="#sorting">Sorting</a></li>
-<li><a href="#multi-tab">Multi-tab</a></li>
-</ul>
-<p>Tabbed file manager with preview supporting numerous file types.</p>
-<p>The install instructions are <a href="https://yazi-rs.github.io/docs/installation">here</a>. Don't forget to add the shell wrapper.  <a href="https://github.com/yazi-rs/plugins/tree/main">Plugins</a> are also available.</p>
-<p>Add a shortcut <code>!</code> to drop to the shell in current directory. Type <code>exit</code> to return to yazi. Add this keybinding to your keymap.toml file:</p>
-<pre><code class="language-toml">[[manager.prepend_keymap]]
-on   = "!"
-run  = 'shell "pwsh.exe" --block'
-desc = "Open PowerShell here"
+<h1 id="zoxide"><a class="header" href="#zoxide">zoxide</a></h1>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<pre><code class="language-Powershell">winget install ajeetdsouza.zoxide
 </code></pre>
-<p><a href="https://mpv.io/installation/">mpv</a> for video playback is recommended. Edit yazi.toml accordingly.</p>
-<p><img src="pics/yazi.jpg" alt="yazi" /></p>
-<div class="mdbook-alerts mdbook-alerts-tip">
-<p class="mdbook-alerts-title">
-  <span class="mdbook-alerts-icon"></span>
-  tip
-</p>
-<p>For all keybindings, see the default keymap.toml file.</p>
-</div>
-<h2 id="navigation"><a class="header" href="#navigation">Navigation</a></h2>
-<p>To navigate between files and directories you can use the arrow keys <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd> and <kbd>→</kbd> or Vim-like keys such as <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd>:</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Alternate key</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>k</kbd></td><td><kbd>↑</kbd></td><td>Move the cursor up</td></tr>
-<tr><td><kbd>j</kbd></td><td><kbd>↓</kbd></td><td>Move the cursor down</td></tr>
-<tr><td><kbd>l</kbd></td><td><kbd>→</kbd></td><td>Enter hovered directory</td></tr>
-<tr><td><kbd>h</kbd></td><td><kbd>←</kbd></td><td>Leave the current directory and into its parent</td></tr>
+<p>Add this to the end of your $profile in PowerShell:</p>
+<pre><code class="language-PowerShell">Invoke-Expression (&amp; { (zoxide init powershell | Out-String) })
+</code></pre>
+<p>See the <a href="https://github.com/ajeetdsouza/zoxide">zoxide documentation</a> for more information</p>
+<h2 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Command</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">z foo</td><td style="text-align: left">cd into highest ranked directory matching foo</td></tr>
+<tr><td style="text-align: left">z foo bar</td><td style="text-align: left">cd into highest ranked directory matching foo and bar</td></tr>
+<tr><td style="text-align: left">z foo /</td><td style="text-align: left">cd into a subdirectory starting with foo</td></tr>
+<tr><td style="text-align: left">z ~/foo</td><td style="text-align: left">z also works like a regular cd command</td></tr>
+<tr><td style="text-align: left">z foo/</td><td style="text-align: left">cd into relative path</td></tr>
+<tr><td style="text-align: left">z ..</td><td style="text-align: left">cd one level up</td></tr>
+<tr><td style="text-align: left">z -</td><td style="text-align: left">cd into previous directory</td></tr>
+<tr><td style="text-align: left">zi foo</td><td style="text-align: left">cd with interactive selection (using fzf)</td></tr>
+<tr><td style="text-align: left">z foo <SPACE><TAB></td><td style="text-align: left">show interactive completions (zoxide v0.8.0+, bash 4.4+/fish/zsh only)</td></tr>
 </tbody></table>
 </div>
-<p>Further navigation commands can be found in the table below.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>K</kbd></td><td>Seek up 5 units in the preview</td></tr>
-<tr><td><kbd>J</kbd></td><td>Seek down 5 units in the preview</td></tr>
-<tr><td><kbd>g</kbd> ⇒ <kbd>g</kbd></td><td>Move cursor to the top</td></tr>
-<tr><td><kbd>G</kbd></td><td>Move cursor to the bottom</td></tr>
-<tr><td><kbd>z</kbd></td><td>Jump to a directory using zoxide</td></tr>
-<tr><td><kbd>Z</kbd></td><td>Jump to a directory or reveal a file using fzf</td></tr>
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
+<p>Configuration
+Flags</p>
+<p>When calling zoxide init, the following flags are available:</p>
+<pre><code>--cmd
+    Changes the prefix of the z and zi commands.
+    --cmd j would change the commands to (j, ji).
+    --cmd cd would replace the cd command.
+
+--hook &lt;HOOK&gt;
+
+    Changes how often zoxide increments a directory's score:
+    Hook    Description
+    none    Never
+    prompt  At every shell prompt
+    pwd (default)   Whenever the directory is changed
+
+--no-cmd
+    Prevents zoxide from defining the z and zi commands.
+    These functions will still be available in your shell as __zoxide_z 
+    and __zoxide_zi, should you choose to redefine them.
+</code></pre>
+<p>Environment variables</p>
+<p>Environment variables can be used for configuration. They must be set before zoxide init is called.</p>
+<pre><code>_ZO_DATA_DIR
+
+    Specifies the directory in which the database is stored.
+
+    The default value varies across OSes:
+    OS               Path               Example
+    Linux / BSD    $XDG_DATA_HOME or $HOME/.local/share     /home/alice/.local/share
+    macOS   $HOME/Library/Application Support   /Users/Alice/Library/Application Support
+    Windows    %LOCALAPPDATA%    C:\Users\Alice\AppData\Local
+
+_ZO_ECHO
+    When set to 1, z will print the matched directory before navigating to it.
+
+_ZO_EXCLUDE_DIRS
+
+    Excludes the specified directories from the database.
+
+    This is provided as a list of globs, separated by OS-specific characters:
+    OS      Separator     Example
+    Linux / macOS / BSD   :    $HOME:$HOME/private/*
+    Windows     ;    $HOME;$HOME/private/*
+
+    By default, this is set to "$HOME".
+
+_ZO_FZF_OPTS
+    Custom options to pass to fzf during interactive selection.
+    See man fzf for the list of options.
+
+_ZO_MAXAGE
+    Configures the aging algorithm, which limits the maximum number
+    of entries in the database.
+    By default, this is set to 10000.
+
+_ZO_RESOLVE_SYMLINKS
+    When set to 1, z will resolve symlinks before adding directories to the database.
+</code></pre>
+<h2 id="set-environment-variables"><a class="header" href="#set-environment-variables">Set environment variables</a></h2>
+<p>Assuming you want to set the _ZO_ECHO variable to 1:</p>
+<p>Add this to your $profile in PowerShell:</p>
+<p><code>env:_ZO_ECHO = '1'</code></p>
+<h2 id="help"><a class="header" href="#help">Help</a></h2>
+<p>Usage:
+<code>zoxide.exe &lt;COMMAND&gt;</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Commands</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">add</td><td style="text-align: left">Add a new directory or increment its rank</td></tr>
+<tr><td style="text-align: left">edit</td><td style="text-align: left">Edit the database</td></tr>
+<tr><td style="text-align: left">import</td><td style="text-align: left">Import entries from another application</td></tr>
+<tr><td style="text-align: left">init</td><td style="text-align: left">Generate shell configuration</td></tr>
+<tr><td style="text-align: left">query</td><td style="text-align: left">Search for a directory in the database</td></tr>
+<tr><td style="text-align: left">remove</td><td style="text-align: left">Remove a directory from the database</td></tr>
 </tbody></table>
-</div>
-<h2 id="selection"><a class="header" href="#selection">Selection</a></h2>
-<p>To select files and directories, the following commands are available.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>Space</kbd></td><td>Toggle selection of hovered file/directory</td></tr>
-<tr><td><kbd>v</kbd></td><td>Enter visual mode (selection mode)</td></tr>
-<tr><td><kbd>V</kbd></td><td>Enter visual mode (unset mode)</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>a</kbd></td><td>Select all files</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>r</kbd></td><td>Inverse selection of all files</td></tr>
-<tr><td><kbd>Esc</kbd></td><td>Cancel selection</td></tr>
+</div><br>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Options</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">-h, --help</td><td style="text-align: left">Print help</td></tr>
+<tr><td style="text-align: left">-V, --version</td><td style="text-align: left">Print version</td></tr>
 </tbody></table>
-</div>
-<h2 id="file-operations"><a class="header" href="#file-operations">File operations</a></h2>
-<p>To interact with selected files/directories use any of the commands below.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>o</kbd></td><td>Open selected files</td></tr>
-<tr><td><kbd>O</kbd></td><td>Open selected files interactively</td></tr>
-<tr><td><kbd>Enter</kbd></td><td>Open selected files</td></tr>
-<tr><td><kbd>Shift</kbd> + <kbd>Enter</kbd></td><td>Open selected files interactively (some terminals don't support it yet)</td></tr>
-<tr><td><kbd>Tab</kbd></td><td>Show the file information</td></tr>
-<tr><td><kbd>y</kbd></td><td>Yank selected files (copy)</td></tr>
-<tr><td><kbd>x</kbd></td><td>Yank selected files (cut)</td></tr>
-<tr><td><kbd>p</kbd></td><td>Paste yanked files</td></tr>
-<tr><td><kbd>P</kbd></td><td>Paste yanked files (overwrite if the destination exists)</td></tr>
-<tr><td><kbd>Y</kbd> or <kbd>X</kbd></td><td>Cancel the yank status</td></tr>
-<tr><td><kbd>d</kbd></td><td>Trash selected files</td></tr>
-<tr><td><kbd>D</kbd></td><td>Permanently delete selected files</td></tr>
-<tr><td><kbd>a</kbd></td><td>Create a file (ends with / for directories)</td></tr>
-<tr><td><kbd>r</kbd></td><td>Rename selected file(s)</td></tr>
-<tr><td><kbd>.</kbd></td><td>Toggle the visibility of hidden files</td></tr>
-</tbody></table>
-</div>
-<p>Further file operation commands can be found in the table below.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>;</kbd></td><td>Run a shell command</td></tr>
-<tr><td><kbd>:</kbd></td><td>Run a shell command (block until finishes)</td></tr>
-<tr><td><kbd>-</kbd></td><td>Symlink the absolute path of yanked files</td></tr>
-<tr><td><kbd>_</kbd></td><td>Symlink the relative path of yanked files</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>-</kbd></td><td>Hardlink yanked files</td></tr>
-</tbody></table>
-</div>
-<h2 id="copy-paths"><a class="header" href="#copy-paths">Copy paths</a></h2>
-<p>To copy paths, use any of the following commands below.</p>
-<p><em>Observation: <kbd>c</kbd> ⇒ <kbd>d</kbd> indicates pressing the <kbd>c</kbd> key followed by pressing the <kbd>d</kbd> key.</em></p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>c</kbd> ⇒ <kbd>c</kbd></td><td>Copy the file path</td></tr>
-<tr><td><kbd>c</kbd> ⇒ <kbd>d</kbd></td><td>Copy the directory path</td></tr>
-<tr><td><kbd>c</kbd> ⇒ <kbd>f</kbd></td><td>Copy the filename</td></tr>
-<tr><td><kbd>c</kbd> ⇒ <kbd>n</kbd></td><td>Copy the filename without extension</td></tr>
-</tbody></table>
-</div>
-<h2 id="filter-files"><a class="header" href="#filter-files">Filter files</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>f</kbd></td><td>Filter files</td></tr>
-</tbody></table>
-</div>
-<h2 id="find-files"><a class="header" href="#find-files">Find files</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>/</kbd></td><td>Find next file</td></tr>
-<tr><td><kbd>?</kbd></td><td>Find previous file</td></tr>
-<tr><td><kbd>n</kbd></td><td>Go to the next found</td></tr>
-<tr><td><kbd>N</kbd></td><td>Go to the previous found</td></tr>
-</tbody></table>
-</div>
-<h2 id="search-files"><a class="header" href="#search-files">Search files</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>s</kbd></td><td>Search files by name using <a href="https://github.com/sharkdp/fd">fd</a></td></tr>
-<tr><td><kbd>S</kbd></td><td>Search files by content using <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a></td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>s</kbd></td><td>Cancel the ongoing search</td></tr>
-</tbody></table>
-</div>
-<h2 id="sorting"><a class="header" href="#sorting">Sorting</a></h2>
-<p>To sort files/directories use the following commands.</p>
-<p><em>Observation: <kbd>,</kbd> ⇒ <kbd>a</kbd> indicates pressing the <kbd>,</kbd> key followed by pressing the <kbd>a</kbd> key.</em></p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>,</kbd> ⇒ <kbd>m</kbd></td><td>Sort by modified time</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>M</kbd></td><td>Sort by modified time (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>b</kbd></td><td>Sort by birth time</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>B</kbd></td><td>Sort by birth time (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>e</kbd></td><td>Sort by file extension</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>E</kbd></td><td>Sort by file extension (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>a</kbd></td><td>Sort alphabetically</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>A</kbd></td><td>Sort alphabetically (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>n</kbd></td><td>Sort naturally</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>N</kbd></td><td>Sort naturally (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>s</kbd></td><td>Sort by size</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>S</kbd></td><td>Sort by size (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>r</kbd></td><td>Sort randomly</td></tr>
-</tbody></table>
-</div>
-<h2 id="multi-tab"><a class="header" href="#multi-tab">Multi-tab</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>t</kbd></td><td>Create a new tab with CWD</td></tr>
-<tr><td><kbd>1</kbd>, <kbd>2</kbd>, ..., <kbd>9</kbd></td><td>Switch to the N-th tab</td></tr>
-<tr><td><kbd>[</kbd></td><td>Switch to the previous tab</td></tr>
-<tr><td><kbd>]</kbd></td><td>Switch to the next tab</td></tr>
-<tr><td><kbd>{</kbd></td><td>Swap current tab with previous tab</td></tr>
-<tr><td><kbd>}</kbd></td><td>Swap current tab with next tab</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>c</kbd></td><td>Close the current tab</td></tr>
+</div><br>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Environment variables</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">_ZO_DATA_DIR</td><td style="text-align: left">Path for zoxide data files</td></tr>
+<tr><td style="text-align: left">_ZO_ECHO</td><td style="text-align: left">Print the matched directory before navigating to it when set to 1</td></tr>
+<tr><td style="text-align: left">_ZO_EXCLUDE_DIRS</td><td style="text-align: left">List of directory globs to be excluded</td></tr>
+<tr><td style="text-align: left">_ZO_FZF_OPTS</td><td style="text-align: left">Custom flags to pass to fzf</td></tr>
+<tr><td style="text-align: left">_ZO_MAXAGE</td><td style="text-align: left">Maximum total age after which entries start getting deleted</td></tr>
+<tr><td style="text-align: left">_ZO_RESOLVE_SYMLINKS</td><td style="text-align: left">Resolve symlinks when storing paths</td></tr>
 </tbody></table>
 </div><style>
   .scroll-to-top {
@@ -471,11 +434,11 @@ desc = "Open PowerShell here"
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="bat.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="intelli_shell.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="fd.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="fzf.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -485,11 +448,11 @@ desc = "Open PowerShell here"
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="bat.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="intelli_shell.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="fd.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="fzf.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

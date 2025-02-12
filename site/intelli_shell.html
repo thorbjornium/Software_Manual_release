@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>yazi</title>
+        <title>IntelliShell</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/yazi.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/intelli_shell.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,154 +279,49 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="yazi"><a class="header" href="#yazi">Yazi</a></h1>
+<h1 id="intellishell"><a class="header" href="#intellishell">IntelliShell</a></h1>
 <ul>
-<li><a href="#navigation">Navigation</a></li>
-<li><a href="#selection">Selection</a></li>
-<li><a href="#file-operations">File operations</a></li>
-<li><a href="#copy-paths">Copy paths</a></li>
-<li><a href="#filter-files">Filter files</a></li>
-<li><a href="#find-files">Find files</a></li>
-<li><a href="#search-files">Search files</a></li>
-<li><a href="#sorting">Sorting</a></li>
-<li><a href="#multi-tab">Multi-tab</a></li>
+<li><a href="#hotkeys">Hotkeys</a></li>
+<li><a href="#help">Help</a></li>
 </ul>
-<p>Tabbed file manager with preview supporting numerous file types.</p>
-<p>The install instructions are <a href="https://yazi-rs.github.io/docs/installation">here</a>. Don't forget to add the shell wrapper.  <a href="https://github.com/yazi-rs/plugins/tree/main">Plugins</a> are also available.</p>
-<p>Add a shortcut <code>!</code> to drop to the shell in current directory. Type <code>exit</code> to return to yazi. Add this keybinding to your keymap.toml file:</p>
-<pre><code class="language-toml">[[manager.prepend_keymap]]
-on   = "!"
-run  = 'shell "pwsh.exe" --block'
-desc = "Open PowerShell here"
-</code></pre>
-<p><a href="https://mpv.io/installation/">mpv</a> for video playback is recommended. Edit yazi.toml accordingly.</p>
-<p><img src="pics/yazi.jpg" alt="yazi" /></p>
-<div class="mdbook-alerts mdbook-alerts-tip">
-<p class="mdbook-alerts-title">
-  <span class="mdbook-alerts-icon"></span>
-  tip
-</p>
-<p>For all keybindings, see the default keymap.toml file.</p>
-</div>
-<h2 id="navigation"><a class="header" href="#navigation">Navigation</a></h2>
-<p>To navigate between files and directories you can use the arrow keys <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd> and <kbd>→</kbd> or Vim-like keys such as <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd>:</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Alternate key</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>k</kbd></td><td><kbd>↑</kbd></td><td>Move the cursor up</td></tr>
-<tr><td><kbd>j</kbd></td><td><kbd>↓</kbd></td><td>Move the cursor down</td></tr>
-<tr><td><kbd>l</kbd></td><td><kbd>→</kbd></td><td>Enter hovered directory</td></tr>
-<tr><td><kbd>h</kbd></td><td><kbd>←</kbd></td><td>Leave the current directory and into its parent</td></tr>
+<p>IntelliShell bookmarks commands and includes tldr pages.</p>
+<p><img src="./pics/intelli_shell_list_commands.jpg" alt="IntelliShell Bookmarks" /></p>
+<p>Press <kbd>Ctrl</kbd> + <kbd>Space</kbd> to list bookmarked commands.</p>
+<br>
+<p><img src="./pics/intelli_shell_search_commands.jpg" alt="IntelliShell Search" /></p>
+<p>Type the beginning of the command, for example <code>docker</code> and intelli-shell will fetch
+a list of commands starting with <code>docker</code> from your bookmarked commands and tldr.<br />
+Navigate with <kbd>↑</kbd> or <kbd>↓</kbd>. Select with <kbd>Enter</kbd>.</p>
+<h2 id="hotkeys"><a class="header" href="#hotkeys">Hotkeys</a></h2>
+<p><kbd>ctrl</kbd> + <kbd>b</kbd> bookmark currently typed command</p>
+<p><kbd>ctrl</kbd> + <kbd>space</kbd> show suggestions for current line</p>
+<p><kbd>ctrl</kbd> + <kbd>l</kbd> replace labels of currently typed command (Linux)</p>
+<p><kbd>esc</kbd> clean current line, this binding can be skipped if INTELLI_SKIP_ESC_BIND=1</p>
+<p>Note: When navigating items, selected suggestion can be deleted with <kbd>ctrl</kbd> + <kbd>d</kbd> or
+edited with any of: <kbd>ctrl</kbd> + <kbd>e</kbd>, <kbd>ctrl</kbd> + <kbd>u</kbd> or <kbd>F2</kbd></p>
+<p>You can customize key bindings using environment variables: INTELLI_BOOKMARK_HOTKEY, INTELLI_SEARCH_HOTKEY and INTELLI_LABEL_HOTKEY</p>
+<h2 id="help"><a class="header" href="#help">Help</a></h2>
+<p>Usage: intelli-shell.exe [OPTIONS] <COMMAND></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Commands:</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">new</td><td style="text-align: left">Stores a new user command</td></tr>
+<tr><td style="text-align: left">search</td><td style="text-align: left">Opens a new search interface</td></tr>
+<tr><td style="text-align: left">label</td><td style="text-align: left">Opens a new label interface</td></tr>
+<tr><td style="text-align: left">export</td><td style="text-align: left">Exports stored user commands</td></tr>
+<tr><td style="text-align: left">import</td><td style="text-align: left">Imports user commands</td></tr>
+<tr><td style="text-align: left">fetch</td><td style="text-align: left">Fetches new commands from tldr</td></tr>
+<tr><td style="text-align: left">help</td><td style="text-align: left">Print this message or the help of the given subcommand(s)</td></tr>
+</tbody></table>
+</div><br>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Options:</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">-i, --inline</td><td style="text-align: left">Whether the UI should be rendered inline instead of taking full terminal</td></tr>
+<tr><td style="text-align: left">--inline-extra-line</td><td style="text-align: left">Whether an extra line should be rendered when inline</td></tr>
+<tr><td style="text-align: left">-f, --file-output &lt;FILE_OUTPUT&gt;</td><td style="text-align: left">Path of an existing file to write the output to (defaults to stdout)</td></tr>
+<tr><td style="text-align: left">-h, --help</td><td style="text-align: left">Print help</td></tr>
+<tr><td style="text-align: left">-V, --version</td><td style="text-align: left">Print version</td></tr>
 </tbody></table>
 </div>
-<p>Further navigation commands can be found in the table below.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>K</kbd></td><td>Seek up 5 units in the preview</td></tr>
-<tr><td><kbd>J</kbd></td><td>Seek down 5 units in the preview</td></tr>
-<tr><td><kbd>g</kbd> ⇒ <kbd>g</kbd></td><td>Move cursor to the top</td></tr>
-<tr><td><kbd>G</kbd></td><td>Move cursor to the bottom</td></tr>
-<tr><td><kbd>z</kbd></td><td>Jump to a directory using zoxide</td></tr>
-<tr><td><kbd>Z</kbd></td><td>Jump to a directory or reveal a file using fzf</td></tr>
-</tbody></table>
-</div>
-<h2 id="selection"><a class="header" href="#selection">Selection</a></h2>
-<p>To select files and directories, the following commands are available.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>Space</kbd></td><td>Toggle selection of hovered file/directory</td></tr>
-<tr><td><kbd>v</kbd></td><td>Enter visual mode (selection mode)</td></tr>
-<tr><td><kbd>V</kbd></td><td>Enter visual mode (unset mode)</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>a</kbd></td><td>Select all files</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>r</kbd></td><td>Inverse selection of all files</td></tr>
-<tr><td><kbd>Esc</kbd></td><td>Cancel selection</td></tr>
-</tbody></table>
-</div>
-<h2 id="file-operations"><a class="header" href="#file-operations">File operations</a></h2>
-<p>To interact with selected files/directories use any of the commands below.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>o</kbd></td><td>Open selected files</td></tr>
-<tr><td><kbd>O</kbd></td><td>Open selected files interactively</td></tr>
-<tr><td><kbd>Enter</kbd></td><td>Open selected files</td></tr>
-<tr><td><kbd>Shift</kbd> + <kbd>Enter</kbd></td><td>Open selected files interactively (some terminals don't support it yet)</td></tr>
-<tr><td><kbd>Tab</kbd></td><td>Show the file information</td></tr>
-<tr><td><kbd>y</kbd></td><td>Yank selected files (copy)</td></tr>
-<tr><td><kbd>x</kbd></td><td>Yank selected files (cut)</td></tr>
-<tr><td><kbd>p</kbd></td><td>Paste yanked files</td></tr>
-<tr><td><kbd>P</kbd></td><td>Paste yanked files (overwrite if the destination exists)</td></tr>
-<tr><td><kbd>Y</kbd> or <kbd>X</kbd></td><td>Cancel the yank status</td></tr>
-<tr><td><kbd>d</kbd></td><td>Trash selected files</td></tr>
-<tr><td><kbd>D</kbd></td><td>Permanently delete selected files</td></tr>
-<tr><td><kbd>a</kbd></td><td>Create a file (ends with / for directories)</td></tr>
-<tr><td><kbd>r</kbd></td><td>Rename selected file(s)</td></tr>
-<tr><td><kbd>.</kbd></td><td>Toggle the visibility of hidden files</td></tr>
-</tbody></table>
-</div>
-<p>Further file operation commands can be found in the table below.</p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>;</kbd></td><td>Run a shell command</td></tr>
-<tr><td><kbd>:</kbd></td><td>Run a shell command (block until finishes)</td></tr>
-<tr><td><kbd>-</kbd></td><td>Symlink the absolute path of yanked files</td></tr>
-<tr><td><kbd>_</kbd></td><td>Symlink the relative path of yanked files</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>-</kbd></td><td>Hardlink yanked files</td></tr>
-</tbody></table>
-</div>
-<h2 id="copy-paths"><a class="header" href="#copy-paths">Copy paths</a></h2>
-<p>To copy paths, use any of the following commands below.</p>
-<p><em>Observation: <kbd>c</kbd> ⇒ <kbd>d</kbd> indicates pressing the <kbd>c</kbd> key followed by pressing the <kbd>d</kbd> key.</em></p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>c</kbd> ⇒ <kbd>c</kbd></td><td>Copy the file path</td></tr>
-<tr><td><kbd>c</kbd> ⇒ <kbd>d</kbd></td><td>Copy the directory path</td></tr>
-<tr><td><kbd>c</kbd> ⇒ <kbd>f</kbd></td><td>Copy the filename</td></tr>
-<tr><td><kbd>c</kbd> ⇒ <kbd>n</kbd></td><td>Copy the filename without extension</td></tr>
-</tbody></table>
-</div>
-<h2 id="filter-files"><a class="header" href="#filter-files">Filter files</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>f</kbd></td><td>Filter files</td></tr>
-</tbody></table>
-</div>
-<h2 id="find-files"><a class="header" href="#find-files">Find files</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>/</kbd></td><td>Find next file</td></tr>
-<tr><td><kbd>?</kbd></td><td>Find previous file</td></tr>
-<tr><td><kbd>n</kbd></td><td>Go to the next found</td></tr>
-<tr><td><kbd>N</kbd></td><td>Go to the previous found</td></tr>
-</tbody></table>
-</div>
-<h2 id="search-files"><a class="header" href="#search-files">Search files</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>s</kbd></td><td>Search files by name using <a href="https://github.com/sharkdp/fd">fd</a></td></tr>
-<tr><td><kbd>S</kbd></td><td>Search files by content using <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a></td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>s</kbd></td><td>Cancel the ongoing search</td></tr>
-</tbody></table>
-</div>
-<h2 id="sorting"><a class="header" href="#sorting">Sorting</a></h2>
-<p>To sort files/directories use the following commands.</p>
-<p><em>Observation: <kbd>,</kbd> ⇒ <kbd>a</kbd> indicates pressing the <kbd>,</kbd> key followed by pressing the <kbd>a</kbd> key.</em></p>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>,</kbd> ⇒ <kbd>m</kbd></td><td>Sort by modified time</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>M</kbd></td><td>Sort by modified time (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>b</kbd></td><td>Sort by birth time</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>B</kbd></td><td>Sort by birth time (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>e</kbd></td><td>Sort by file extension</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>E</kbd></td><td>Sort by file extension (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>a</kbd></td><td>Sort alphabetically</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>A</kbd></td><td>Sort alphabetically (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>n</kbd></td><td>Sort naturally</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>N</kbd></td><td>Sort naturally (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>s</kbd></td><td>Sort by size</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>S</kbd></td><td>Sort by size (reverse)</td></tr>
-<tr><td><kbd>,</kbd> ⇒ <kbd>r</kbd></td><td>Sort randomly</td></tr>
-</tbody></table>
-</div>
-<h2 id="multi-tab"><a class="header" href="#multi-tab">Multi-tab</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Key binding</th><th>Action</th></tr></thead><tbody>
-<tr><td><kbd>t</kbd></td><td>Create a new tab with CWD</td></tr>
-<tr><td><kbd>1</kbd>, <kbd>2</kbd>, ..., <kbd>9</kbd></td><td>Switch to the N-th tab</td></tr>
-<tr><td><kbd>[</kbd></td><td>Switch to the previous tab</td></tr>
-<tr><td><kbd>]</kbd></td><td>Switch to the next tab</td></tr>
-<tr><td><kbd>{</kbd></td><td>Swap current tab with previous tab</td></tr>
-<tr><td><kbd>}</kbd></td><td>Swap current tab with next tab</td></tr>
-<tr><td><kbd>Ctrl</kbd> + <kbd>c</kbd></td><td>Close the current tab</td></tr>
-</tbody></table>
-</div><style>
+<p>More details on <a href="https://github.com/lasantosr/intelli-shell">IntelliShell</a> and <a href="https://github.com/tldr-pages/tldr">tldr</a>.</p>
+<style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
@@ -471,11 +366,11 @@ desc = "Open PowerShell here"
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="bat.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="powershell_tools.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="fd.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="zoxide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -485,11 +380,11 @@ desc = "Open PowerShell here"
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="bat.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="powershell_tools.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="fd.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="zoxide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
