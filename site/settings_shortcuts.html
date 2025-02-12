@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>VS Code</title>
+        <title>Settings Shortcuts</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/vscode.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/settings_shortcuts.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,281 +279,16 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="vs-code"><a class="header" href="#vs-code">VS Code</a></h1>
-<h2 id="keyboard-shortcuts"><a class="header" href="#keyboard-shortcuts">Keyboard shortcuts</a></h2>
-<ul>
-<li><a href="#basic-editing">Basic editing</a></li>
-<li><a href="#rich-languages-editing">Rich languages editing</a></li>
-<li><a href="#navigation">Navigation</a></li>
-<li><a href="#editorwindow-management">Editor/Window Management</a></li>
-<li><a href="#file-management">File Management</a></li>
-<li><a href="#display">Display</a></li>
-<li><a href="#search">Search</a></li>
-<li><a href="#search-editor">Search Editor</a></li>
-<li><a href="#preferences">Preferences</a></li>
-<li><a href="#debug">Debug</a></li>
-<li><a href="#tasks">Tasks</a></li>
-<li><a href="#extensions">Extensions</a></li>
-<li><a href="#customization">Customization</a>
-<ul>
-<li><a href="#keyboard">Keyboard</a></li>
-<li><a href="#settings">Settings</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="basic-editing"><a class="header" href="#basic-editing"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_basic-editing" target="_blank">Basic editing</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Command</th><th style="text-align: left">Key</th></tr></thead><tbody>
-<tr><td style="text-align: left">Cut line (empty selection)</td><td style="text-align: left">Ctrl+X</td></tr>
-<tr><td style="text-align: left">Copy line (empty selection)</td><td style="text-align: left">Ctrl+C</td></tr>
-<tr><td style="text-align: left">Paste</td><td style="text-align: left">Ctrl+V</td></tr>
-<tr><td style="text-align: left">Delete Line</td><td style="text-align: left">Ctrl+Shift+K</td></tr>
-<tr><td style="text-align: left">Insert Line Below</td><td style="text-align: left">Ctrl+Enter</td></tr>
-<tr><td style="text-align: left">Insert Line Above</td><td style="text-align: left">Ctrl+Shift+Enter</td></tr>
-<tr><td style="text-align: left">Move Line Down</td><td style="text-align: left">Alt+Down</td></tr>
-<tr><td style="text-align: left">Move Line Up</td><td style="text-align: left">Alt+Up</td></tr>
-<tr><td style="text-align: left">Copy Line Down</td><td style="text-align: left">Shift+Alt+Down</td></tr>
-<tr><td style="text-align: left">Copy Line Up</td><td style="text-align: left">Shift+Alt+Up</td></tr>
-<tr><td style="text-align: left">Undo</td><td style="text-align: left">Ctrl+Z</td></tr>
-<tr><td style="text-align: left">Redo</td><td style="text-align: left">Ctrl+Y</td></tr>
-<tr><td style="text-align: left">Add Selection To Next Find Match</td><td style="text-align: left">Ctrl+D</td></tr>
-<tr><td style="text-align: left">Move Last Selection To Next Find Match</td><td style="text-align: left">Ctrl+K Ctrl+D</td></tr>
-<tr><td style="text-align: left">Undo last cursor operation</td><td style="text-align: left">Ctrl+U</td></tr>
-<tr><td style="text-align: left">Insert cursor at end of each line selected</td><td style="text-align: left">Shift+Alt+I</td></tr>
-<tr><td style="text-align: left">Select all occurrences of current selection</td><td style="text-align: left">Ctrl+Shift+L</td></tr>
-<tr><td style="text-align: left">Select all occurrences of current word</td><td style="text-align: left">Ctrl+F2</td></tr>
-<tr><td style="text-align: left">Select current line</td><td style="text-align: left">Ctrl+L</td></tr>
-<tr><td style="text-align: left">Insert Cursor Below</td><td style="text-align: left">Ctrl+Alt+Down</td></tr>
-<tr><td style="text-align: left">Insert Cursor Above</td><td style="text-align: left">Ctrl+Alt+Up</td></tr>
-<tr><td style="text-align: left">Jump to matching bracket</td><td style="text-align: left">Ctrl+Shift+\</td></tr>
-<tr><td style="text-align: left">Indent Line</td><td style="text-align: left">Ctrl+]</td></tr>
-<tr><td style="text-align: left">Outdent Line</td><td style="text-align: left">Ctrl+[</td></tr>
-<tr><td style="text-align: left">Go to Beginning of Line</td><td style="text-align: left">Home</td></tr>
-<tr><td style="text-align: left">Go to End of Line</td><td style="text-align: left">End</td></tr>
-<tr><td style="text-align: left">Go to End of File</td><td style="text-align: left">Ctrl+End</td></tr>
-<tr><td style="text-align: left">Go to Beginning of File</td><td style="text-align: left">Ctrl+Home</td></tr>
-<tr><td style="text-align: left">Scroll Line Down</td><td style="text-align: left">Ctrl+Down</td></tr>
-<tr><td style="text-align: left">Scroll Line Up</td><td style="text-align: left">Ctrl+Up</td></tr>
-<tr><td style="text-align: left">Scroll Page Down</td><td style="text-align: left">Alt+PageDown</td></tr>
-<tr><td style="text-align: left">Scroll Page Up</td><td style="text-align: left">Alt+PageUp</td></tr>
-<tr><td style="text-align: left">Fold (collapse) region</td><td style="text-align: left">Ctrl+Shift+[</td></tr>
-<tr><td style="text-align: left">Unfold (uncollapse) region</td><td style="text-align: left">Ctrl+Shift+]</td></tr>
-<tr><td style="text-align: left">Toggle Fold region</td><td style="text-align: left">Ctrl+K Ctrl+L</td></tr>
-<tr><td style="text-align: left">Fold (collapse) all subregions</td><td style="text-align: left">Ctrl+K Ctrl+[</td></tr>
-<tr><td style="text-align: left">Unfold (uncollapse) all subregions</td><td style="text-align: left">Ctrl+K Ctrl+]</td></tr>
-<tr><td style="text-align: left">Fold (collapse) all regions</td><td style="text-align: left">Ctrl+K Ctrl+0</td></tr>
-<tr><td style="text-align: left">Unfold (uncollapse) all regions</td><td style="text-align: left">Ctrl+K Ctrl+J</td></tr>
-<tr><td style="text-align: left">Add Line Comment</td><td style="text-align: left">Ctrl+K Ctrl+C</td></tr>
-<tr><td style="text-align: left">Remove Line Comment</td><td style="text-align: left">Ctrl+K Ctrl+U</td></tr>
-<tr><td style="text-align: left">Toggle Line Comment</td><td style="text-align: left">Ctrl+/</td></tr>
-<tr><td style="text-align: left">Toggle Block Comment</td><td style="text-align: left">Shift+Alt+A</td></tr>
-<tr><td style="text-align: left">Find</td><td style="text-align: left">Ctrl+F</td></tr>
-<tr><td style="text-align: left">Replace</td><td style="text-align: left">Ctrl+H</td></tr>
-<tr><td style="text-align: left">Find Next</td><td style="text-align: left">Enter</td></tr>
-<tr><td style="text-align: left">Find Previous</td><td style="text-align: left">Shift+Enter</td></tr>
-<tr><td style="text-align: left">Select All Occurrences of Find Match</td><td style="text-align: left">Alt+Enter</td></tr>
-<tr><td style="text-align: left">Toggle Find Case Sensitive</td><td style="text-align: left">Alt+C</td></tr>
-<tr><td style="text-align: left">Toggle Find Regex</td><td style="text-align: left">Alt+R</td></tr>
-<tr><td style="text-align: left">Toggle Find Whole Word</td><td style="text-align: left">Alt+W</td></tr>
-<tr><td style="text-align: left">Toggle Use of Tab Key for Setting Focus</td><td style="text-align: left">Ctrl+M</td></tr>
-<tr><td style="text-align: left">Toggle Render Whitespace</td><td style="text-align: left">unassigned</td></tr>
-<tr><td style="text-align: left">Toggle Word Wrap</td><td style="text-align: left">Alt+Z</td></tr>
+<h1 id="settings-shortcuts"><a class="header" href="#settings-shortcuts"><p style="text-align: center">Settings Shortcuts</p></a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Press this key:</th><th style="text-align: left">To do this action:</th></tr></thead><tbody>
+<tr><td>Arrow keys</td><td style="text-align: left">Move focus through the currently selected region.<br><br>Scroll the page.</td></tr>
+<tr><td>Backspace</td><td style="text-align: left">Navigate backwards.</td></tr>
+<tr><td>Enter  <br>Spacebar</td><td style="text-align: left">Select the current item in focus.</td></tr>
+<tr><td>Shift + Tab</td><td style="text-align: left">Cycle backward through regions.</td></tr>
+<tr><td>Tab</td><td style="text-align: left">Cycle forward through regions.</td></tr>
+<tr><td>⊞ + I</td><td style="text-align: left">Open the Settings app.</td></tr>
 </tbody></table>
-</div>
-<h3 id="rich-languages-editing"><a class="header" href="#rich-languages-editing"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_rich-languages-editing" target="_blank">Rich languages editing</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>Trigger Suggest</td><td>Ctrl+Space</td></tr>
-<tr><td>Trigger Parameter Hints</td><td>Ctrl+Shift+Space</td></tr>
-<tr><td>Format Document</td><td>Shift+Alt+F</td></tr>
-<tr><td>Format Selection</td><td>Ctrl+K Ctrl+F</td></tr>
-<tr><td>Go to Definition</td><td>F12</td></tr>
-<tr><td>Show Hover</td><td>Ctrl+K Ctrl+I</td></tr>
-<tr><td>Peek Definition</td><td>Alt+F12</td></tr>
-<tr><td>Open Definition to the Side</td><td>Ctrl+K F12</td></tr>
-<tr><td>Quick Fix</td><td>Ctrl+.</td></tr>
-<tr><td>Go to References</td><td>Shift+F12</td></tr>
-<tr><td>Rename Symbol</td><td>F2</td></tr>
-<tr><td>Replace with Next Value</td><td>Ctrl+Shift+.</td></tr>
-<tr><td>Replace with Previous Value</td><td>Ctrl+Shift+,</td></tr>
-<tr><td>Expand AST Selection</td><td>Shift+Alt+Right</td></tr>
-<tr><td>Shrink AST Selection</td><td>Shift+Alt+Left</td></tr>
-<tr><td>Trim Trailing Whitespace</td><td>Ctrl+K Ctrl+X</td></tr>
-<tr><td>Change Language Mode</td><td>Ctrl+K M</td></tr>
-</tbody></table>
-</div>
-<h3 id="navigation"><a class="header" href="#navigation"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_navigation" target="_blank">Navigation</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>Show All Symbols</td><td>Ctrl+T</td></tr>
-<tr><td>Go to Line...</td><td>Ctrl+G</td></tr>
-<tr><td>Go to File..., Quick Open</td><td>Ctrl+P</td></tr>
-<tr><td>Go to Symbol...</td><td>Ctrl+Shift+O</td></tr>
-<tr><td>Show Problems</td><td>Ctrl+Shift+M</td></tr>
-<tr><td>Go to Next Error or Warning</td><td>F8</td></tr>
-<tr><td>Go to Previous Error or Warning</td><td>Shift+F8</td></tr>
-<tr><td>Show All Commands</td><td>Ctrl+Shift+P or F1</td></tr>
-<tr><td>Navigate Editor Group History</td><td>Ctrl+Tab</td></tr>
-<tr><td>Go Back</td><td>Alt+Left</td></tr>
-<tr><td>Go back in Quick Input</td><td>Alt+Left</td></tr>
-<tr><td>Go Forward</td><td>Alt+Right</td></tr>
-<tr><td>Focus Breadcrumbs</td><td>Ctrl+Shift+;</td></tr>
-<tr><td>Focus and Select Breadcrumbs</td><td>Ctrl+Shift+.</td></tr>
-</tbody></table>
-</div>
-<h3 id="editorwindow-management"><a class="header" href="#editorwindow-management"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_editorwindow-management" target="_blank">Editor/Window Management</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>New Window</td><td>Ctrl+Shift+N</td></tr>
-<tr><td>Close Window</td><td>Alt+F4</td></tr>
-<tr><td>Close Editor</td><td>Ctrl+F4</td></tr>
-<tr><td>Close Folder</td><td>Ctrl+K F</td></tr>
-<tr><td>Cycle Between Editor Groups</td><td>unassigned</td></tr>
-<tr><td>Split Editor</td><td>Ctrl+\</td></tr>
-<tr><td>Focus into First Editor Group</td><td>Ctrl+1</td></tr>
-<tr><td>Focus into Second Editor Group</td><td>Ctrl+2</td></tr>
-<tr><td>Focus into Third Editor Group</td><td>Ctrl+3</td></tr>
-<tr><td>Focus into Editor Group on the Left</td><td>unassigned</td></tr>
-<tr><td>Focus into Editor Group on the Right</td><td>unassigned</td></tr>
-<tr><td>Move Editor Left</td><td>Ctrl+Shift+PageUp</td></tr>
-<tr><td>Move Editor Right</td><td>Ctrl+Shift+PageDown</td></tr>
-<tr><td>Move Active Editor Group Left</td><td>Ctrl+K Left</td></tr>
-<tr><td>Move Active Editor Group Right</td><td>Ctrl+K Right</td></tr>
-<tr><td>Move Editor into Next Group</td><td>Ctrl+Alt+Right</td></tr>
-<tr><td>Move Editor into Previous Group</td><td>Ctrl+Alt+Left</td></tr>
-</tbody></table>
-</div>
-<h3 id="file-management"><a class="header" href="#file-management"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_file-management" target="_blank">File Management</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>New File</td><td>Ctrl+N</td></tr>
-<tr><td>Open File...</td><td>Ctrl+O</td></tr>
-<tr><td>Save</td><td>Ctrl+S</td></tr>
-<tr><td>Save All</td><td>Ctrl+K S</td></tr>
-<tr><td>Save As...</td><td>Ctrl+Shift+S</td></tr>
-<tr><td>Close</td><td>Ctrl+F4</td></tr>
-<tr><td>Close Others</td><td>unassigned</td></tr>
-<tr><td>Close Group</td><td>Ctrl+K W</td></tr>
-<tr><td>Close Other Groups</td><td>unassigned</td></tr>
-<tr><td>Close Group to Left</td><td>unassigned</td></tr>
-<tr><td>Close Group to Right</td><td>unassigned</td></tr>
-<tr><td>Close All</td><td>Ctrl+K Ctrl+W</td></tr>
-<tr><td>Reopen Closed Editor</td><td>Ctrl+Shift+T</td></tr>
-<tr><td>Keep Open</td><td>Ctrl+K Enter</td></tr>
-<tr><td>Copy Path of Active File</td><td>Ctrl+K P</td></tr>
-<tr><td>Reveal Active File in Windows</td><td>Ctrl+K R</td></tr>
-<tr><td>Show Opened File in New Window</td><td>unassigned</td></tr>
-<tr><td>Compare Opened File With</td><td>unassigned</td></tr>
-</tbody></table>
-</div>
-<h3 id="display"><a class="header" href="#display"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_display" target="_blank">Display</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>Toggle Full Screen</td><td>F11</td></tr>
-<tr><td>Toggle Zen Mode</td><td>Ctrl+K Z</td></tr>
-<tr><td>Leave Zen Mode</td><td>Escape Escape</td></tr>
-<tr><td>Zoom in</td><td>Ctrl+=</td></tr>
-<tr><td>Zoom out</td><td>Ctrl+-</td></tr>
-<tr><td>Reset Zoom</td><td>Ctrl+Numpad0</td></tr>
-<tr><td>Toggle Sidebar Visibility</td><td>Ctrl+B</td></tr>
-<tr><td>Show Explorer / Toggle Focus</td><td>Ctrl+Shift+E</td></tr>
-<tr><td>Show Search</td><td>Ctrl+Shift+F</td></tr>
-<tr><td>Show Source Control</td><td>Ctrl+Shift+G</td></tr>
-<tr><td>Show Run</td><td>Ctrl+Shift+D</td></tr>
-<tr><td>Show Extensions</td><td>Ctrl+Shift+X</td></tr>
-<tr><td>Show Output</td><td>Ctrl+Shift+U</td></tr>
-<tr><td>Quick Open View</td><td>Ctrl+Q</td></tr>
-<tr><td>Open New Command Prompt</td><td>Ctrl+Shift+C</td></tr>
-<tr><td>Toggle Markdown Preview</td><td>Ctrl+Shift+V</td></tr>
-<tr><td>Open Preview to the Side</td><td>Ctrl+K V</td></tr>
-<tr><td>Toggle Integrated Terminal</td><td>Ctrl+`</td></tr>
-<tr><td>Create New Terminal</td><td>Ctrl+Shift+`</td></tr>
-</tbody></table>
-</div>
-<h3 id="search"><a class="header" href="#search"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_search" target="_blank">Search</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>Show Search</td><td>Ctrl+Shift+F</td></tr>
-<tr><td>Replace in Files</td><td>Ctrl+Shift+H</td></tr>
-<tr><td>Toggle Match Case</td><td>Alt+C</td></tr>
-<tr><td>Toggle Match Whole Word</td><td>Alt+W</td></tr>
-<tr><td>Toggle Use Regular Expression</td><td>Alt+R</td></tr>
-<tr><td>Toggle Search Details</td><td>Ctrl+Shift+J</td></tr>
-<tr><td>Focus Next Search Result</td><td>F4</td></tr>
-<tr><td>Focus Previous Search Result</td><td>Shift+F4</td></tr>
-<tr><td>Show Next Search Term</td><td>Down</td></tr>
-<tr><td>Show Previous Search Term</td><td>Up</td></tr>
-</tbody></table>
-</div>
-<h3 id="search-editor"><a class="header" href="#search-editor"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_search-editor" target="_blank">Search Editor</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>Open Results In Editor</td><td>Alt+Enter</td></tr>
-<tr><td>Focus Search Editor Input</td><td>Escape</td></tr>
-<tr><td>Search Again</td><td>Ctrl+Shift+R</td></tr>
-<tr><td>Delete File Results</td><td>Ctrl+Shift+Backspace</td></tr>
-</tbody></table>
-</div>
-<h3 id="preferences"><a class="header" href="#preferences"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_preferences" target="_blank">Preferences</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>Open Settings</td><td>Ctrl+,</td></tr>
-<tr><td>Open Workspace Settings</td><td>unassigned</td></tr>
-<tr><td>Open Keyboard Shortcuts</td><td>Ctrl+K Ctrl+S</td></tr>
-<tr><td>Open User Snippets</td><td>unassigned</td></tr>
-<tr><td>Select Color Theme</td><td>Ctrl+K Ctrl+T</td></tr>
-<tr><td>Configure Display Language</td><td>unassigned</td></tr>
-</tbody></table>
-</div>
-<h3 id="debug"><a class="header" href="#debug"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_debug" target="_blank">Debug</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>Toggle Breakpoint</td><td>F9</td></tr>
-<tr><td>Start</td><td>F5</td></tr>
-<tr><td>Continue</td><td>F5</td></tr>
-<tr><td>Start (without debugging)</td><td>Ctrl+F5</td></tr>
-<tr><td>Pause</td><td>F6</td></tr>
-<tr><td>Step Into</td><td>F11</td></tr>
-</tbody></table>
-</div>
-<h3 id="tasks"><a class="header" href="#tasks"><a href="(https://code.visualstudio.com/docs/getstarted/keybindings#_tasks)" target="_blank">Tasks</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>Run Build Task</td><td>Ctrl+Shift+B</td></tr>
-<tr><td>Run Test Task</td><td>unassigned</td></tr>
-</tbody></table>
-</div>
-<h3 id="extensions"><a class="header" href="#extensions"><a href="(https://code.visualstudio.com/docs/getstarted/keybindings#_extensions)" target="_blank">Extensions</a></a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
-<tr><td>Install Extension</td><td>unassigned</td></tr>
-<tr><td>Show Installed Extensions</td><td>unassigned</td></tr>
-<tr><td>Show Outdated Extensions</td><td>unassigned</td></tr>
-<tr><td>Show Recommended Extensions</td><td>unassigned</td></tr>
-<tr><td>Show Popular Extensions</td><td>unassigned</td></tr>
-<tr><td>Update All Extensions</td><td>unassigned</td></tr>
-</tbody></table>
-</div>
-<h2 id="customization"><a class="header" href="#customization">Customization</a></h2>
-<h3 id="keyboard"><a class="header" href="#keyboard">Keyboard</a></h3>
-<p>Switch focus between terminal and editor.</p>
-<p><kbd>ctrl</kbd> + <kbd>`</kbd></p>
-<p>Open the command palette and find Preferences: Open keyboard shortcuts (JSON) and paste the following:</p>
-<pre><code class="language-json">{
-    "key":     "ctrl+`",
-    "command": "workbench.action.terminal.focus"
-},
-{
-    "key":     "ctrl+`",
-    "command": "workbench.action.focusActiveEditorGroup",
-    "when":    "terminalFocus"
-}
-</code></pre>
-<p>Adjust font size on terminal</p>
-<p><kbd>ctrl</kbd> + <kbd>+</kbd> / <kbd>ctrl</kbd> + <kbd>-</kbd></p>
-<pre><code class="language-json">    {
-        "key": "ctrl+=",
-        "command": "workbench.action.terminal.fontZoomIn",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+-",
-        "command": "workbench.action.terminal.fontZoomOut",
-        "when": "terminalFocus"
-    }
-</code></pre>
-<h3 id="settings"><a class="header" href="#settings">Settings</a></h3>
-<p>Open the command palette and find Preferences: Open Settings UI or press <kbd>Ctrl</kbd> + <kbd>,</kbd></p>
-<p>Paste "editor.find.autoFindInSelection" in search settings and choose 'multiline' to enable to search selected text.</p>
-<style>
+</div><style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
@@ -598,11 +333,11 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ffmpeg.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="taskbar_shortcuts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="essential_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="multiple_desktops_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -612,11 +347,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ffmpeg.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="taskbar_shortcuts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="essential_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="multiple_desktops_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
