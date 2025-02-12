@@ -280,6 +280,145 @@
 <h1 id="pre"><a class="header" href="#pre">pre</a></h1>
 <p>This site is for stuff I need to remember right now.</p>
 <style>
+  .announcement-banner {
+    z-index: 150;
+    color: var(--fg);
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 1rem 3.5rem;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--site-announcement-bar-stripe-color1),
+      var(--site-announcement-bar-stripe-color1) 20px,
+      var(--site-announcement-bar-stripe-color2) 10px,
+      var(--site-announcement-bar-stripe-color2) 40px
+    );
+  }
+  .announcement-banner {
+    --site-announcement-bar-stripe-color1: #e5e7eb;
+    --site-announcement-bar-stripe-color2: #d1d5db;
+    color:#191818
+  }
+  .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #86b2f9;
+    --site-announcement-bar-stripe-color2: #7298ea;
+    color: #0e0d0d; 
+  }
+  .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #97f5d6;
+    --site-announcement-bar-stripe-color2: #6de0bf;
+    color: #0e0d0d;
+  }
+  .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #fea3a3;
+    --site-announcement-bar-stripe-color2: #e57e7e;
+    color: #0e0d0d;
+  }
+
+  .announcement-banner[data-theme="construction"] {
+    --site-announcement-bar-stripe-color1: #fbbf24;
+    --site-announcement-bar-stripe-color2: #0e0d0d;
+    
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner {
+    --site-announcement-bar-stripe-color1: #1f2937;
+    --site-announcement-bar-stripe-color2: #111827;
+    color: var(--fg);
+  }
+  html:is(.navy, .coal, .ayu, .frappe, .mocha, .macchiato, .nordic) .announcement-banner[data-theme="ocean"] {
+    --site-announcement-bar-stripe-color1: #2563eb;
+    --site-announcement-bar-stripe-color2: #1d4ed8;
+    color:#0e0d0d;
+  }
+  html:is(.navy, .coal, .ayu, .frappe, .mocha, .macchiato, .nordic) .announcement-banner[data-theme="forest"] {
+    --site-announcement-bar-stripe-color1: #22d3a5;
+    --site-announcement-bar-stripe-color2: #0fbf8f;
+    color:#0e0d0d;
+  }
+  html:is(.navy, .coal, .ayu, .frappe, .mocha, .macchiato, .nordic) .announcement-banner[data-theme="lava"] {
+    --site-announcement-bar-stripe-color1: #f87171;
+    --site-announcement-bar-stripe-color2: #ef4444;
+    color:#0e0d0d;
+  }
+  html:is(.navy, .coal, .ayu) .announcement-banner[data-theme="construction"] {
+    --site-announcement-bar-stripe-color1: #fbbf24;
+    --site-announcement-bar-stripe-color2: #0e0d0d;
+  }
+
+  .announcement-banner[data-theme="construction"] p:first-of-type  {
+    color: #0e0d0d;
+    width: 25%; 
+    border-radius: 0.5rem;
+    border: #0e0d0d 0.25rem solid;
+    background-color: #fbbf24;
+    font-weight: bold;
+    display:inline-block;
+    }
+
+    .announcement-banner[data-theme="construction"] p button {
+    top: 50%;
+    right: 1rem;
+    color: #0e0d0d;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: #0e0d0d 0.25rem solid;
+    font-weight: 900;
+    border-radius: 25%;
+    display: inline-block;
+    background-color: #fbbf24;
+  }
+  .announcement-banner p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+  .announcement-banner button {
+    top: 50%;
+    right: 1rem;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer !important;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+</style>
+<div style="display: none" data-id="1" class="announcement-banner" data-theme="default">
+  <p>Site under construction</p>
+<p><button type="button">X</button></p>
+</div>
+<script>
+  (() => {
+    const banner = document.querySelector(".announcement-banner");
+    const id = banner.getAttribute("data-id");
+    const message = banner.querySelector("p").textContent;
+    const localData = JSON.parse(localStorage.getItem("mdbook-announcement-banner"));
+    if (!localData || localData.id !== id || localData.hide !== true) {
+      banner.style.display = "flex";
+      const page = document.querySelector(".page");
+      page.parentNode.insertBefore(banner, page);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.remove();
+        localStorage.setItem("mdbook-announcement-banner", JSON.stringify({ id, hide: true, message }));
+      });
+    }
+  })();
+</script>
+<style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
@@ -878,7 +1017,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>Press <kbd>Shift</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd> to navigate the preview.</p>
 </details>  
 <h2 id="google-search"><a class="header" href="#google-search">Google search</a></h2>
-<p>Search Google from the command line. Type <code>glg</code> and search term and hit <kbd>Enter</kbd>.</p>
+<p>Search Google from the command line. Type <code>glg</code> and a search term and hit <kbd>Enter</kbd>.</p>
 <details>  
 <summary><u>Script</u></summary>
 <pre><code class="language-Powershell">Function search-google {
@@ -930,16 +1069,23 @@ Set-Alias glg search-google
 </code></pre>
 </div>
 </div>
-<p>Alias is set as <code>ytb</code></p>
+<p>Type <code>ytm</code> and a link and hit <kbd>Enter</kbd>.</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>This script recodes the video to mp4/mkv.</p>
+</div>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">Function ytb {
+<pre><code class="language-Powershell">Function ytm {
     yt-dlp `
         --progress `
         --console-title `
         --video-multistreams `
         --audio-multistreams `
-        --format-sort "height:3840,fps" `
+        --format-sort "height:1080,fps" `
         --format "bestvideo+bestaudio/best" `
         --check-formats `
         --merge-output-format "mp4/mkv" `
@@ -4283,12 +4429,27 @@ require 'asciidoctor'
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h2 id="inline-html"><a class="header" href="#inline-html">Inline HTML</a></h2>
-<h3 id="underline"><a class="header" href="#underline">Underline</a></h3>
+<h1 id="inline-html"><a class="header" href="#inline-html">Inline HTML</a></h1>
+<ul>
+<li><a href="inline_html.html#underline">Underline</a></li>
+<li><a href="inline_html.html#color">Color</a></li>
+<li><a href="inline_html.html#commentary">Commentary</a></li>
+<li><a href="inline_html.html#collapsed-section">Collapsed section</a></li>
+<li><a href="inline_html.html#align">Align</a></li>
+<li><a href="inline_html.html#center-align">Center align</a></li>
+<li><a href="inline_html.html#keyboard">Keyboard</a></li>
+<li><a href="inline_html.html#embed-video">Embed video</a>
+<ul>
+<li><a href="inline_html.html#local-source">Local source</a></li>
+<li><a href="inline_html.html#interweb-source">Interweb source</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="underline"><a class="header" href="#underline">Underline</a></h2>
 <pre><code class="language-html">&lt;u&gt; Text &lt;/u&gt; 
 </code></pre>
 <p><u> Text </u></p>
-<h3 id="color"><a class="header" href="#color">Color</a></h3>
+<h2 id="color"><a class="header" href="#color">Color</a></h2>
 <pre><code class="language-html">&lt;span style="color: #FF69B4;"&gt;Why did the tomato turn red?&lt;/span&gt;
 &lt;span style="color: #00FFFF;"&gt;Because it saw the salad dressing!&lt;/span&gt;
 &lt;span style="color:red;"&gt;your text here in red&lt;/span&gt;,
@@ -4298,12 +4459,12 @@ require 'asciidoctor'
 <span style="color: #00FFFF;">Because it saw the salad dressing!</span>
 <span style="color:red;">your text here in red</span>,
 <span style="color:#520099;">or make it blue</span></p>
-<h3 id="commentary"><a class="header" href="#commentary">Commentary</a></h3>
+<h2 id="commentary"><a class="header" href="#commentary">Commentary</a></h2>
 <pre><code class="language-html">&lt;!-- ingen kommentar --&gt;  
 </code></pre>
 <p>ingen kommentar</p>
 <br>  
-<h3 id="collapsed-section"><a class="header" href="#collapsed-section">Collapsed section</a></h3>
+<h2 id="collapsed-section"><a class="header" href="#collapsed-section">Collapsed section</a></h2>
 <pre><code class="language-html">&lt;details&gt;
 
 &lt;summary&gt;Tips for collapsed sections&lt;/summary&gt;
@@ -4326,7 +4487,7 @@ You can add an image or a code block, too.
 </code></pre>
 </details>
 <br>  
-<h3 id="align"><a class="header" href="#align">Align</a></h3>
+<h2 id="align"><a class="header" href="#align">Align</a></h2>
 <pre><code class="language-html">&amp;emsp; &amp;emsp;Centrera
 </code></pre>
 <p>   Centrera</p>
@@ -4339,20 +4500,20 @@ You can add an image or a code block, too.
 </code></pre>
 <p>         Centrera</p>
 <br>
-<h3 id="center-align"><a class="header" href="#center-align">Center align</a></h3>
+<h2 id="center-align"><a class="header" href="#center-align">Center align</a></h2>
 <pre><code class="language-html">&lt;p style="text-align: center;"&gt;Text i mitten 
 </code></pre>
 <p style="text-align: center;">Text i mitten  
-<h3 id="keyboard-1"><a class="header" href="#keyboard-1">Keyboard</a></h3>
+<h2 id="keyboard-1"><a class="header" href="#keyboard-1">Keyboard</a></h2>
 <pre><code class="language-html">&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;F&lt;/kbd&gt;
 </code></pre>
 <p><kbd>Ctrl</kbd> + <kbd>F</kbd></p>
-<h3 id="embed-video"><a class="header" href="#embed-video">Embed video</a></h3>
-<h4 id="local-source"><a class="header" href="#local-source">Local source</a></h4>
+<h2 id="embed-video"><a class="header" href="#embed-video">Embed video</a></h2>
+<h3 id="local-source"><a class="header" href="#local-source">Local source</a></h3>
 <pre><code class="language-html">&lt;video src="imgburn.mp4" width="100%" height="100%" controls&gt;&lt;/video&gt;
 </code></pre>
 <p><video src="imgburn.mp4" width="100%" height="100%" controls></video></p>
-<h4 id="interweb-source"><a class="header" href="#interweb-source">Interweb source</a></h4>
+<h3 id="interweb-source"><a class="header" href="#interweb-source">Interweb source</a></h3>
 <pre><code class="language-html">&lt;iframe width="100%" height="100%"
 src="https://www.youtube.com/embed/tgbNymZ7vqY"&gt;
 &lt;/iframe&gt;  

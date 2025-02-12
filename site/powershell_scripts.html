@@ -525,7 +525,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>Press <kbd>Shift</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd> to navigate the preview.</p>
 </details>  
 <h2 id="google-search"><a class="header" href="#google-search">Google search</a></h2>
-<p>Search Google from the command line. Type <code>glg</code> and search term and hit <kbd>Enter</kbd>.</p>
+<p>Search Google from the command line. Type <code>glg</code> and a search term and hit <kbd>Enter</kbd>.</p>
 <details>  
 <summary><u>Script</u></summary>
 <pre><code class="language-Powershell">Function search-google {
@@ -577,16 +577,23 @@ Set-Alias glg search-google
 </code></pre>
 </div>
 </div>
-<p>Alias is set as <code>ytb</code></p>
+<p>Type <code>ytm</code> and a link and hit <kbd>Enter</kbd>.</p>
+<div class="mdbook-alerts mdbook-alerts-note">
+<p class="mdbook-alerts-title">
+  <span class="mdbook-alerts-icon"></span>
+  note
+</p>
+<p>This script recodes the video to mp4/mkv.</p>
+</div>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">Function ytb {
+<pre><code class="language-Powershell">Function ytm {
     yt-dlp `
         --progress `
         --console-title `
         --video-multistreams `
         --audio-multistreams `
-        --format-sort "height:3840,fps" `
+        --format-sort "height:1080,fps" `
         --format "bestvideo+bestaudio/best" `
         --check-formats `
         --merge-output-format "mp4/mkv" `
