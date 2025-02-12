@@ -790,15 +790,17 @@ winget install sharkdp.fd
 winget install sharkdp.bat
 winget install BurntSushi.ripgrep.MSVC
 winget install eza-community.eza
+winget install jftuga.less
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop install zoxide fzf fd bat ripgrep eza 
+<pre><code class="language-Powershell">Scoop install zoxide fzf fd bat ripgrep eza less
 </code></pre>
 </div>
 </div>
+<p>You will need to install the <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">Visual C++ Redistributable</a> package as well.</p>
 <p>Add  <code>Invoke-Expression (&amp; { (zoxide init powershell | Out-String) })</code> to your Powershell profile</p>
-<p>Detailed information can be found by clicking <a href="https://github.com/ajeetdsouza/zoxide">zoxide</a>, <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> and <a href="https://github.com/eza-community/eza">eza</a>.</p>
+<p>Detailed information can be found by clicking <a href="https://github.com/ajeetdsouza/zoxide">zoxide</a>, <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>, <a href="https://github.com/eza-community/eza">eza</a> and <a href="https://www.greenwoodsoftware.com/less/faq.html">less</a>.</p>
 <h2 id="psfzf"><a class="header" href="#psfzf">PSFzf</a></h2>
 <p>PSFzf installs from PSGallery. More details <a href="https://github.com/kelleyma49/PSFzf">here</a>.</p>
 <div class="mdbook-tabs-container" data-tabglobal="install">
@@ -1883,6 +1885,30 @@ _ZO_RESOLVE_SYMLINKS
 }
 </style>
 <h1 id="fzf"><a class="header" href="#fzf">fzf</a></h1>
+<ul>
+<li><a href="fzf.html#usage">Usage</a></li>
+<li><a href="fzf.html#help">Help</a>
+<ul>
+<li><a href="fzf.html#search">SEARCH</a></li>
+<li><a href="fzf.html#inputoutput">INPUT/OUTPUT</a></li>
+<li><a href="fzf.html#global-style">GLOBAL STYLE</a></li>
+<li><a href="fzf.html#display-mode">DISPLAY MODE</a></li>
+<li><a href="fzf.html#layout">LAYOUT</a></li>
+<li><a href="fzf.html#list-section">LIST SECTION</a></li>
+<li><a href="fzf.html#input-section">INPUT SECTION</a></li>
+<li><a href="fzf.html#preview-window">PREVIEW WINDOW</a></li>
+<li><a href="fzf.html#header">HEADER</a></li>
+<li><a href="fzf.html#scripting">SCRIPTING</a></li>
+<li><a href="fzf.html#keyevent-binding">KEY/EVENT BINDING</a></li>
+<li><a href="fzf.html#advanced">ADVANCED</a></li>
+<li><a href="fzf.html#directory-traversal">DIRECTORY TRAVERSAL</a></li>
+<li><a href="fzf.html#history">HISTORY</a></li>
+<li><a href="fzf.html#shell-integration">SHELL INTEGRATION</a></li>
+<li><a href="fzf.html#help-1">HELP</a></li>
+<li><a href="fzf.html#environment-variables">ENVIRONMENT VARIABLES</a></li>
+</ul>
+</li>
+</ul>
 <p>Install:</p>
 <div class="mdbook-tabs-container" data-tabglobal="install">
 <nav class="mdbook-tabs">
@@ -1911,6 +1937,128 @@ PSFzf will insert the command into the current line, but it will not execute the
 <p>Press <kbd>Alt</kbd> + <kbd>C</kbd> to start fzf in folder mode. Press <kbd>Enter</kbd> to cd into the selected directory.</p>
 <p>A few scripts are <a href="./powershell_scripts.html#find-files-and-folders">here</a></p>
 <p>More details <a href="https://github.com/junegunn/fzf">here</a></p>
+<h2 id="help-2"><a class="header" href="#help-2">Help</a></h2>
+<p><strong>fzf [options]</strong></p>
+<h3 id="search"><a class="header" href="#search">SEARCH</a></h3>
+<ul>
+<li><code>-e, --exact</code> - Enable exact-match</li>
+<li><code>+x, --no-extended</code> - Disable extended-search mode</li>
+<li><code>-i, --ignore-case</code> - Case-insensitive match</li>
+<li><code>+i, --no-ignore-case</code> - Case-sensitive match</li>
+<li><code>--smart-case</code> - Smart-case match (default)</li>
+<li><code>--scheme=SCHEME</code> - Scoring scheme <code>[default|path|history]</code></li>
+<li><code>-n, --nth=N[,..]</code> - Limit search scope using field index expressions</li>
+<li><code>--with-nth=N[,..]</code> - Transform line presentation using field index expressions</li>
+<li><code>-d, --delimiter=STR</code> - Field delimiter regex (default: AWK-style)</li>
+<li><code>+s, --no-sort</code> - Do not sort results</li>
+<li><code>--literal</code> - Do not normalize Latin script letters</li>
+<li><code>--tail=NUM</code> - Maximum number of items to keep in memory</li>
+<li><code>--disabled</code> - Disable search</li>
+<li><code>--tiebreak=CRI[,..]</code> - Sorting criteria when scores are tied
+<ul>
+<li><code>[length|chunk|pathname|begin|end|index]</code> (default: length)</li>
+</ul>
+</li>
+</ul>
+<h3 id="inputoutput"><a class="header" href="#inputoutput">INPUT/OUTPUT</a></h3>
+<ul>
+<li><code>--read0</code> - Read input delimited by ASCII NUL characters</li>
+<li><code>--print0</code> - Print output delimited by ASCII NUL characters</li>
+<li><code>--ansi</code> - Enable processing of ANSI color codes</li>
+<li><code>--sync</code> - Synchronous search for multi-staged filtering</li>
+</ul>
+<h3 id="global-style"><a class="header" href="#global-style">GLOBAL STYLE</a></h3>
+<ul>
+<li><code>--style=PRESET</code> - Apply a style preset <code>[default|minimal|full[:BORDER_STYLE]</code></li>
+<li><code>--color=COLSPEC</code> - Set base color scheme <code>[dark|light|16|bw]</code> and custom colors</li>
+<li><code>--no-color</code> - Disable colors</li>
+<li><code>--no-bold</code> - Disable bold text</li>
+</ul>
+<h3 id="display-mode"><a class="header" href="#display-mode">DISPLAY MODE</a></h3>
+<ul>
+<li><code>--height=[~]HEIGHT[%]</code> - Set window height (fullscreen by default)</li>
+<li><code>--min-height=HEIGHT[+]</code> - Minimum height when using percentages</li>
+<li><code>--tmux[=OPTS]</code> - Start <code>fzf</code> in a tmux popup (requires tmux 3.3+)</li>
+</ul>
+<h3 id="layout"><a class="header" href="#layout">LAYOUT</a></h3>
+<ul>
+<li><code>--layout=LAYOUT</code> - Choose layout <code>[default|reverse|reverse-list]</code></li>
+<li><code>--margin=MARGIN</code> - Set screen margin</li>
+<li><code>--padding=PADDING</code> - Set padding inside the border</li>
+<li><code>--border[=STYLE]</code> - Draw border <code>[rounded|sharp|bold|block|thinblock|double|horizontal|vertical|top|bottom|left|right|none]</code> (default: <code>rounded</code>)</li>
+<li><code>--border-label=LABEL</code> - Label for the border</li>
+<li><code>--border-label-pos=COL</code> - Border label position</li>
+</ul>
+<h3 id="list-section"><a class="header" href="#list-section">LIST SECTION</a></h3>
+<ul>
+<li><code>-m, --multi[=MAX]</code> - Enable multi-select</li>
+<li><code>--highlight-line</code> - Highlight the current line</li>
+<li><code>--cycle</code> - Enable cyclic scroll</li>
+<li><code>--wrap</code> - Enable line wrapping</li>
+<li><code>--gap[=N]</code> - Render empty lines between items</li>
+<li><code>--scroll-off=LINES</code> - Number of lines to keep above/below during scroll</li>
+</ul>
+<h3 id="input-section"><a class="header" href="#input-section">INPUT SECTION</a></h3>
+<ul>
+<li><code>--no-input</code> - Hide the input section</li>
+<li><code>--prompt=STR</code> - Set input prompt (default: <code>&gt; </code>)</li>
+<li><code>--info=STYLE</code> - Set finder info style <code>[default|right|hidden|inline[-right][:PREFIX]]</code></li>
+</ul>
+<h3 id="preview-window"><a class="header" href="#preview-window">PREVIEW WINDOW</a></h3>
+<ul>
+<li><code>--preview=COMMAND</code> - Command to preview highlighted line <code>{}</code></li>
+<li><code>--preview-window=OPT</code> - Preview window layout (default: <code>right:50%</code>)</li>
+</ul>
+<h3 id="header"><a class="header" href="#header">HEADER</a></h3>
+<ul>
+<li><code>--header=STR</code> - Print a header string</li>
+<li><code>--header-lines=N</code> - Treat the first <code>N</code> lines as a header</li>
+<li><code>--header-border[=STYLE]</code> - Border around the header section</li>
+</ul>
+<h3 id="scripting"><a class="header" href="#scripting">SCRIPTING</a></h3>
+<ul>
+<li><code>-q, --query=STR</code> - Start with the given query</li>
+<li><code>-1, --select-1</code> - Auto-select the only match</li>
+<li><code>-0, --exit-0</code> - Exit immediately if no match</li>
+</ul>
+<h3 id="keyevent-binding"><a class="header" href="#keyevent-binding">KEY/EVENT BINDING</a></h3>
+<ul>
+<li><code>--bind=BINDINGS</code> - Define custom key/event bindings</li>
+</ul>
+<h3 id="advanced"><a class="header" href="#advanced">ADVANCED</a></h3>
+<ul>
+<li><code>--with-shell=STR</code> - Specify shell command for child processes</li>
+<li><code>--listen[=[ADDR:]PORT]</code> - Start HTTP server for actions</li>
+</ul>
+<h3 id="directory-traversal"><a class="header" href="#directory-traversal">DIRECTORY TRAVERSAL</a></h3>
+<ul>
+<li><code>--walker=OPTS</code> - Set traversal options <code>[file][,dir][,follow][,hidden]</code></li>
+<li><code>--walker-root=DIR [...]</code> - Set root directories (default: <code>.</code>)</li>
+</ul>
+<h3 id="history"><a class="header" href="#history">HISTORY</a></h3>
+<ul>
+<li><code>--history=FILE</code> - Specify history file</li>
+<li><code>--history-size=N</code> - Max number of history entries (default: <code>1000</code>)</li>
+</ul>
+<h3 id="shell-integration"><a class="header" href="#shell-integration">SHELL INTEGRATION</a></h3>
+<ul>
+<li><code>--bash</code> - Setup script for Bash integration</li>
+<li><code>--zsh</code> - Setup script for Zsh integration</li>
+<li><code>--fish</code> - Setup script for Fish integration</li>
+</ul>
+<h3 id="help-3"><a class="header" href="#help-3">HELP</a></h3>
+<ul>
+<li><code>--version</code> - Display version information</li>
+<li><code>--help</code> - Show help message</li>
+<li><code>--man</code> - Show man page</li>
+</ul>
+<h3 id="environment-variables"><a class="header" href="#environment-variables">ENVIRONMENT VARIABLES</a></h3>
+<ul>
+<li><code>FZF_DEFAULT_COMMAND</code> - Default command when input is <code>tty</code></li>
+<li><code>FZF_DEFAULT_OPTS</code> - Default options (e.g. <code>'--layout=reverse --info=inline'</code>)</li>
+<li><code>FZF_DEFAULT_OPTS_FILE</code> - File to read default options from</li>
+<li><code>FZF_API_KEY</code> - API key for HTTP server (<code>--listen</code>)</li>
+</ul>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -2061,6 +2209,80 @@ PSFzf will insert the command into the current line, but it will not execute the
 }
 </style>
 <h1 id="bat"><a class="header" href="#bat">bat</a></h1>
+<p>A file previewer with syntax highlighting and git integration.<br />
+bat <a href="https://github.com/sharkdp/bat">homepage</a></p>
+<h2 id="install"><a class="header" href="#install">Install</a></h2>
+<div class="mdbook-tabs-container" data-tabglobal="install">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
+<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Winget">
+<pre><code class="language-Powershell">winget install sharkdp.bat
+winget install jftuga.less
+</code></pre>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Scoop">
+<pre><code class="language-Powershell">Scoop bat less
+</code></pre>
+</div>
+</div>
+<p><a href="https://www.greenwoodsoftware.com/less/faq.html">less</a> is a pager for text files that supports syntax highlighting.</p>
+<p>You will need to install the <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">Visual C++ Redistributable</a> package.</p>
+<p>Get shell completions by running <code>bat --completion ps1</code></p>
+<h2 id="usage-1"><a class="header" href="#usage-1">Usage</a></h2>
+<p>Display a single file on the terminal</p>
+<pre><code class="language-Powershell">bat README.md
+</code></pre>
+<p>Display multiple files at once</p>
+<pre><code class="language-Powershell">bat *.rs
+</code></pre>
+<p>Read from stdin, determine the syntax automatically (note, highlighting will only work if the syntax can be determined from the first line of the file, usually through a shebang such as #!/bin/sh)</p>
+<pre><code class="language-Powershell">curl -s https://sh.rustup.rs | bat
+</code></pre>
+<p>Read from stdin, specify the language explicitly</p>
+<pre><code class="language-Powershell">yaml2json .travis.yml | json_pp | bat -l json
+</code></pre>
+<p>Show and highlight non-printable characters:</p>
+<pre><code class="language-Powershell">bat -A 'c:\windows\system32\drivers\etc\hosts'
+</code></pre>
+<p>Use it as a cat replacement:</p>
+<pre><code class="language-Powershell">bat &gt; note.md  # quickly create a new file. Exit with Ctrl+C
+</code></pre>
+<pre><code class="language-Powershell">bat header.md content.md footer.md &gt; document.md # Concatenate (cat) files into one
+</code></pre>
+<pre><code class="language-Powershell">bat -n main.rs  # show line numbers (only)
+</code></pre>
+<p>Integration with other tools
+fzf
+You can use bat as a previewer for fzf. To do this, use <code>bat --color=always</code> option to force colorized output. You can also use <code>--line-range</code> option to restrict the load times for long files:</p>
+<pre><code class="language-powershell">fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
+</code></pre>
+<p>For more information, see fzf's README.</p>
+<p><code>find</code> or <code>fd</code>
+You can use the <code>-exec</code> option of find to preview all search results with bat:
+<code>find … -exec bat {} +</code>
+If you happen to use <code>fd</code>, you can use the <code>-X/--exec-batch</code> option to do the same:</p>
+<p><code>fd … -X bat</code></p>
+<p><code>bat</code> can be combined with <code>tail -f</code> to continuously monitor a given file with syntax highlighting.</p>
+<pre><code class="language-powershell">tail -f .\var\log\pacman.log | bat --paging=never -l log
+</code></pre>
+<p>Note that we have to switch off paging in order for this to work. We have also specified the syntax explicitly (-l log), as it can not be auto-detected in this case.</p>
+<p><strong>Git</strong><br />
+You can combine <code>bat</code> with <code>git show</code> to view an older version of a given file with proper syntax highlighting:</p>
+<pre><code class="language-powershell">git show v0.6.0:main.rs | bat -l rs
+</code></pre>
+<p><code>git diff</code><br />
+You can combine <code>bat</code> with <code>git diff</code> to view lines around code changes with proper syntax highlighting:</p>
+<pre><code class="language-powershell">function batdiff() {
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+</code></pre>
+<p><code>clip</code><br />
+The line numbers and Git modification markers in the output of bat can make it hard to copy the contents of a file. To prevent this, you can call bat with the -p/--plain option or simply pipe the output into clip:</p>
+<pre><code class="language-powershell">bat main.rs | clip
+</code></pre>
+<p>bat will detect that the output is being redirected and print the plain file contents.</p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -2986,7 +3208,7 @@ desc = "Open PowerShell here"
 <p><code>--git-repos</code> [if eza was built with git support] : List each directory’s Git status, if tracked. Symbols shown are <code>|</code>= clean, <code>+</code>= dirty, and <code>~</code>= for unknown.</p>
 <p><code>--git-repos-no-status</code> [if eza was built with git support] : List if a directory is a Git repository, but not its status. All Git repository directories will be shown as (themed) <code>-</code> without status indicated.</p>
 <p><code>--no-git</code> : Don't show Git status (always overrides <code>--git</code>, <code>--git-repos</code>, <code>--git-repos-no-status</code>)</p>
-<h2 id="environment-variables"><a class="header" href="#environment-variables">Environment Variables</a></h2>
+<h2 id="environment-variables-1"><a class="header" href="#environment-variables-1">Environment Variables</a></h2>
 <p>If an environment variable prefixed with <code>EZA_</code> is not set, for backward compatibility, it will default to its counterpart starting with <code>EXA_</code>.</p>
 <p>eza responds to the following environment variables:</p>
 <p><code>COLUMNS</code></p>
@@ -3522,7 +3744,7 @@ prepend_previewers = [
 <tr><td>Create New Terminal</td><td>Ctrl+Shift+`</td></tr>
 </tbody></table>
 </div>
-<h3 id="search"><a class="header" href="#search"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_search" target="_blank">Search</a></a></h3>
+<h3 id="search-1"><a class="header" href="#search-1"><a href="https://code.visualstudio.com/docs/getstarted/keybindings#_search" target="_blank">Search</a></a></h3>
 <div class="table-wrapper"><table><thead><tr><th>Command</th><th>Key</th></tr></thead><tbody>
 <tr><td>Show Search</td><td>Ctrl+Shift+F</td></tr>
 <tr><td>Replace in Files</td><td>Ctrl+Shift+H</td></tr>
@@ -7920,7 +8142,7 @@ To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt
 <tr><td>Select link text only</td><td>Alt + select link text</td></tr>
 </tbody></table>
 </div>
-<h1 id="search-1"><a class="header" href="#search-1">Search</a></h1>
+<h1 id="search-2"><a class="header" href="#search-2">Search</a></h1>
 <div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th><th></th></tr></thead><tbody>
 <tr><td>Find in This Page</td><td>Ctrl + F</td><td></td></tr>
 <tr><td>Find Again</td><td>F3  <br>Ctrl + G</td><td></td></tr>
@@ -7972,7 +8194,7 @@ To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt
 <tr><td>Moves the URL left or right (if cursor is in the address bar)</td><td>Ctrl + Shift + X</td></tr>
 </tbody></table>
 </div>
-<h1 id="history"><a class="header" href="#history">History</a></h1>
+<h1 id="history-1"><a class="header" href="#history-1">History</a></h1>
 <div class="table-wrapper"><table><thead><tr><th>Command</th><th>Shortcut</th></tr></thead><tbody>
 <tr><td>History sidebar</td><td>Ctrl + H</td></tr>
 <tr><td>Library window (History)</td><td>Ctrl + Shift + H</td></tr>

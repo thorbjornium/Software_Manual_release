@@ -280,6 +280,80 @@
 }
 </style>
 <h1 id="bat"><a class="header" href="#bat">bat</a></h1>
+<p>A file previewer with syntax highlighting and git integration.<br />
+bat <a href="https://github.com/sharkdp/bat">homepage</a></p>
+<h2 id="install"><a class="header" href="#install">Install</a></h2>
+<div class="mdbook-tabs-container" data-tabglobal="install">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
+<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Winget">
+<pre><code class="language-Powershell">winget install sharkdp.bat
+winget install jftuga.less
+</code></pre>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Scoop">
+<pre><code class="language-Powershell">Scoop bat less
+</code></pre>
+</div>
+</div>
+<p><a href="https://www.greenwoodsoftware.com/less/faq.html">less</a> is a pager for text files that supports syntax highlighting.</p>
+<p>You will need to install the <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">Visual C++ Redistributable</a> package.</p>
+<p>Get shell completions by running <code>bat --completion ps1</code></p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<p>Display a single file on the terminal</p>
+<pre><code class="language-Powershell">bat README.md
+</code></pre>
+<p>Display multiple files at once</p>
+<pre><code class="language-Powershell">bat *.rs
+</code></pre>
+<p>Read from stdin, determine the syntax automatically (note, highlighting will only work if the syntax can be determined from the first line of the file, usually through a shebang such as #!/bin/sh)</p>
+<pre><code class="language-Powershell">curl -s https://sh.rustup.rs | bat
+</code></pre>
+<p>Read from stdin, specify the language explicitly</p>
+<pre><code class="language-Powershell">yaml2json .travis.yml | json_pp | bat -l json
+</code></pre>
+<p>Show and highlight non-printable characters:</p>
+<pre><code class="language-Powershell">bat -A 'c:\windows\system32\drivers\etc\hosts'
+</code></pre>
+<p>Use it as a cat replacement:</p>
+<pre><code class="language-Powershell">bat &gt; note.md  # quickly create a new file. Exit with Ctrl+C
+</code></pre>
+<pre><code class="language-Powershell">bat header.md content.md footer.md &gt; document.md # Concatenate (cat) files into one
+</code></pre>
+<pre><code class="language-Powershell">bat -n main.rs  # show line numbers (only)
+</code></pre>
+<p>Integration with other tools
+fzf
+You can use bat as a previewer for fzf. To do this, use <code>bat --color=always</code> option to force colorized output. You can also use <code>--line-range</code> option to restrict the load times for long files:</p>
+<pre><code class="language-powershell">fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
+</code></pre>
+<p>For more information, see fzf's README.</p>
+<p><code>find</code> or <code>fd</code>
+You can use the <code>-exec</code> option of find to preview all search results with bat:
+<code>find … -exec bat {} +</code>
+If you happen to use <code>fd</code>, you can use the <code>-X/--exec-batch</code> option to do the same:</p>
+<p><code>fd … -X bat</code></p>
+<p><code>bat</code> can be combined with <code>tail -f</code> to continuously monitor a given file with syntax highlighting.</p>
+<pre><code class="language-powershell">tail -f .\var\log\pacman.log | bat --paging=never -l log
+</code></pre>
+<p>Note that we have to switch off paging in order for this to work. We have also specified the syntax explicitly (-l log), as it can not be auto-detected in this case.</p>
+<p><strong>Git</strong><br />
+You can combine <code>bat</code> with <code>git show</code> to view an older version of a given file with proper syntax highlighting:</p>
+<pre><code class="language-powershell">git show v0.6.0:main.rs | bat -l rs
+</code></pre>
+<p><code>git diff</code><br />
+You can combine <code>bat</code> with <code>git diff</code> to view lines around code changes with proper syntax highlighting:</p>
+<pre><code class="language-powershell">function batdiff() {
+    git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+</code></pre>
+<p><code>clip</code><br />
+The line numbers and Git modification markers in the output of bat can make it hard to copy the contents of a file. To prevent this, you can call bat with the -p/--plain option or simply pipe the output into clip:</p>
+<pre><code class="language-powershell">bat main.rs | clip
+</code></pre>
+<p>bat will detect that the output is being redirected and print the plain file contents.</p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
