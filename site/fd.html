@@ -280,7 +280,183 @@
 }
 </style>
 <h1 id="fd"><a class="header" href="#fd">fd</a></h1>
-<style>
+<ul>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<p>Install</p>
+<div class="mdbook-tabs-container" data-tabglobal="install">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
+<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Winget">
+<pre><code class="language-Powershell">winget install sharkdp.fd
+</code></pre>
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Scoop">
+<pre><code class="language-Powershell">Scoop fd
+</code></pre>
+</div>
+</div>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<p>How to use</p>
+<p>First, to get an overview of all available command line options, you can either run fd -h for a concise help message or fd --help for a more detailed version.
+Simple search</p>
+<p>fd is designed to find entries in your filesystem. The most basic search you can perform is to run fd with a single argument: the search pattern. For example, assume that you want to find an old script of yours (the name included netflix):</p>
+<p><code>fd netfl</code><br />
+Software/python/imdb-ratings/netflix-details.py</p>
+<p>If called with just a single argument like this, fd searches the current directory recursively for any entries that contain the pattern netfl.
+Regular expression search</p>
+<p>The search pattern is treated as a regular expression. Here, we search for entries that start with x and end with rc:</p>
+<p><code>cd \etc</code><br />
+<code>fd '^x.*rc$'</code><br />
+X11/xinit/xinitrc
+X11/xinit/xserverrc</p>
+<p>The regular expression syntax used by fd is documented here.
+Specifying the root directory</p>
+<p>If we want to search a specific directory, it can be given as a second argument to fd:</p>
+<p><code>fd passwd \etc</code><br />
+etc\default\passwd
+etc\pam.d\passwd
+etc\passwd</p>
+<p>List all files, recursively</p>
+<p>fd can be called with no arguments. This is very useful to get a quick overview of all entries in the current directory, recursively (similar to ls -R):</p>
+<p><code>cd fd\tests</code><br />
+<code>fd</code><br />
+testenv
+testenv/mod.rs
+tests.rs</p>
+<p>If you want to use this functionality to list all files in a given directory, you have to use a catch-all pattern such as . or ^:</p>
+<p><code>cd fd\tests</code><br />
+<code>fd .</code><br />
+testenv
+testenv/mod.rs
+tests.rs</p>
+<p>Searching for a particular file extension</p>
+<p>Often, we are interested in all files of a particular type. This can be done with the -e (or --extension) option. Here, we search for all Markdown files in the fd repository:</p>
+<p><code>cd fd</code><br />
+<code>fd -e md</code><br />
+CONTRIBUTING.md
+README.md</p>
+<p>The -e option can be used in combination with a search pattern:</p>
+<p><code>fd -e rs mod</code><br />
+src/fshelper/mod.rs
+src/lscolors/mod.rs
+tests/testenv/mod.rs</p>
+<p>Searching for a particular file name</p>
+<p>To find files with exactly the provided search pattern, use the -g (or --glob) option:</p>
+<p><code>fd -g libc.so /usr</code><br />
+/usr/lib32/libc.so
+/usr/lib/libc.so</p>
+<p>Hidden and ignored files</p>
+<p>By default, fd does not search hidden directories and does not show hidden files in the search results. To disable this behavior, we can use the -H (or --hidden) option:</p>
+<p><code>fd pre-commit</code><br />
+<code>fd -H pre-commit</code><br />
+.git/hooks/pre-commit.sample</p>
+<p>If we work in a directory that is a Git repository (or includes Git repositories), fd does not search folders (and does not show files) that match one of the .gitignore patterns. To disable this behavior, we can use the -I (or --no-ignore) option:</p>
+<p><code>fd num_cpu</code><br />
+<code>fd -I num_cpu</code><br />
+target/debug/deps/libnum_cpus-f5ce7ef99006aa05.rlib</p>
+<p>To really search all files and directories, simply combine the hidden and ignore features to show everything (-HI) or use -u/--unrestricted.
+Matching the full path</p>
+<p>By default, fd only matches the filename of each file. However, using the --full-path or -p option, you can match against the full path.</p>
+<p><code>fd -p -g '**/.git/config'</code><br />
+<code>fd -p '.*/lesson-\d+/[a-z]+.(jpg|png)'</code></p>
+<p>Command execution</p>
+<p>Instead of just showing the search results, you often want to do something with them. fd provides two ways to execute external commands for each of your search results:</p>
+<pre><code>The -x/--exec option runs an external command for each of the search results (in parallel).
+The -X/--exec-batch option launches the external command once, with all search results as arguments.
+</code></pre>
+<p>Examples</p>
+<p>Recursively find all zip archives and unpack them:</p>
+<p><code>fd -e zip -x unzip</code></p>
+<p>If there are two such files, file1.zip and backup/file2.zip, this would execute unzip file1.zip and unzip backup/file2.zip. The two unzip processes run in parallel (if the files are found fast enough).</p>
+<p>Find all *.h and *.cpp files and auto-format them inplace with clang-format -i:</p>
+<p><code>fd -e h -e cpp -x clang-format -i</code></p>
+<p>Note how the -i option to clang-format can be passed as a separate argument. This is why we put the -x option last.</p>
+<p>Find all test_*.py files and open them in your favorite editor:</p>
+<p><code>fd -g 'test_*.py' -X vim</code></p>
+<p>Note that we use capital -X here to open a single vim instance. If there are two such files, test_basic.py and lib/test_advanced.py, this will run vim test_basic.py lib/test_advanced.py.</p>
+<p>To see details like file permissions, owners, file sizes etc., you can tell fd to show them by running ls for each result:</p>
+<p><code>fd … -X ls -lhd --color=always</code></p>
+<p>This pattern is so useful that fd provides a shortcut. You can use the -l/--list-details option to execute ls in this way: <code>fd … -l</code></p>
+<p>The -X option is also useful when combining fd with ripgrep (rg) in order to search within a certain class of files, like all C++ source files:</p>
+<p><code>fd -e cpp -e cxx -e h -e hpp -X rg 'std::cout &lt;&lt;'</code></p>
+<p>Convert all *.jpg files to *.png files:</p>
+<p><code>fd -e jpg -x convert {} {.}.png</code></p>
+<p>Here, {} is a placeholder for the search result. {.} is the same, without the file extension. See below for more details on the placeholder syntax.</p>
+<p>The terminal output of commands run from parallel threads using -x will not be interlaced or garbled, so fd -x can be used to rudimentarily parallelize a task run over many files. An example of this is calculating the checksum of each individual file within a directory.</p>
+<p><code>fd -tf -x md5sum &gt; file_checksums.txt</code></p>
+<p>Placeholder syntax</p>
+<p>The -x and -X options take a command template as a series of arguments (instead of a single string). If you want to add additional options to fd after the command template, you can terminate it with a ;.</p>
+<p>The syntax for generating commands is similar to that of GNU Parallel:</p>
+<pre><code>{}: A placeholder token that will be replaced with the path of the search result (documents/images/party.jpg).
+{.}: Like {}, but without the file extension (documents/images/party).
+{/}: A placeholder that will be replaced by the basename of the search result (party.jpg).
+{//}: The parent of the discovered path (documents/images).
+{/.}: The basename, with the extension removed (party).
+</code></pre>
+<p>If you do not include a placeholder, fd automatically adds a {} at the end.
+Parallel vs. serial execution</p>
+<p>For -x/--exec, you can control the number of parallel jobs by using the -j/--threads option. Use --threads=1 for serial execution.
+Excluding specific files or directories</p>
+<p>Sometimes we want to ignore search results from a specific subdirectory. For example, we might want to search all hidden files and directories (-H) but exclude all matches from .git directories. We can use the -E (or --exclude) option for this. It takes an arbitrary glob pattern as an argument:</p>
+<p><code>fd -H -E .git …</code></p>
+<p>We can also use this to skip mounted directories:</p>
+<p><code>fd -E /mnt/external-drive …</code></p>
+<p>.. or to skip certain file types:</p>
+<p><code>fd -E '*.bak' …</code></p>
+<p>To make exclude-patterns like these permanent, you can create a .fdignore file. They work like .gitignore files, but are specific to fd. For example:</p>
+<p><code>cat ~/.fdignore</code><br />
+/mnt/external-drive
+*.bak</p>
+<p>Note</p>
+<p>fd also supports .ignore files that are used by other programs such as rg or ag.</p>
+<p>If you want fd to ignore these patterns globally, you can put them in fd's global ignore file. This is usually located in ~/.config/fd/ignore in macOS or Linux, and %APPDATA%\fd\ignore in Windows.</p>
+<p>You may wish to include .git/ in your fd/ignore file so that .git directories, and their contents are not included in output if you use the --hidden option.
+Deleting files</p>
+<p>You can use fd to remove all files and directories that are matched by your search pattern. If you only want to remove files, you can use the --exec-batch/-X option to call rm. For example, to recursively remove all .DS_Store files, run:</p>
+<p><code>fd -H '^\.DS_Store$' -tf -X rm</code></p>
+<p>If you are unsure, always call fd without -X rm first. Alternatively, use rms "interactive" option:</p>
+<p><code>fd -H '^\.DS_Store$' -tf -X rm -i</code></p>
+<p>If you also want to remove a certain class of directories, you can use the same technique. You will have to use rms --recursive/-r flag to remove directories.</p>
+<p>Note</p>
+<p>There are scenarios where using fd … -X rm -r can cause race conditions: if you have a path like …/foo/bar/foo/… and want to remove all directories named foo, you can end up in a situation where the outer foo directory is removed first, leading to (harmless) "'foo/bar/foo': No such file or directory" errors in the rm call.
+Command-line options</p>
+<p>This is the output of fd -h. To see the full set of command-line options, use fd --help which also includes a much more detailed help text.</p>
+<p>Usage: fd [OPTIONS] [pattern] [path]...</p>
+<p>Arguments:
+[pattern]  the search pattern (a regular expression, unless '--glob' is used; optional)
+[path]...  the root directories for the filesystem search (optional)</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Options</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left">-H, --hidden</td><td style="text-align: left">Search hidden files and directories</td></tr>
+<tr><td style="text-align: left">-I, --no-ignore</td><td style="text-align: left">Do not respect .(git|fd) ignore files</td></tr>
+<tr><td style="text-align: left">-s, --case-sensitive</td><td style="text-align: left">Case-sensitive search (default: smart case)</td></tr>
+<tr><td style="text-align: left">-i, --ignore-case</td><td style="text-align: left">Case-insensitive search (default: smart case)</td></tr>
+<tr><td style="text-align: left">-g, --glob</td><td style="text-align: left">Glob-based search (default: regular expression)</td></tr>
+<tr><td style="text-align: left">-a, --absolute-path</td><td style="text-align: left">Show absolute instead of relative paths</td></tr>
+<tr><td style="text-align: left">-l, --list-details</td><td style="text-align: left">Use a long listing format with file metadata</td></tr>
+<tr><td style="text-align: left">-L, --follow</td><td style="text-align: left">Follow symbolic links</td></tr>
+<tr><td style="text-align: left">-p, --full-path</td><td style="text-align: left">Search full abs. path (default: filename only)</td></tr>
+<tr><td style="text-align: left">-d, --max-depth <depth></td><td style="text-align: left">Set maximum search depth (default: none)</td></tr>
+<tr><td style="text-align: left">-E, --exclude <pattern></td><td style="text-align: left">Exclude entries that match the given glob pattern</td></tr>
+<tr><td style="text-align: left">-t, --type <filetype></td><td style="text-align: left">Filter by type: file (f), directory (d/dir), symlink (l),executable (x), empty (e), socket (s), pipe (p), char-device (c), block-device (b)</td></tr>
+<tr><td style="text-align: left">-e, --extension <ext></td><td style="text-align: left">Filter by file extension</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left">-S, --size <size></td><td style="text-align: left">Limit results based on the size of files</td></tr>
+<tr><td style="text-align: left">--changed-within &lt;date|dur&gt;</td><td style="text-align: left">Filter by file modification time (newer than)</td></tr>
+<tr><td style="text-align: left">--changed-before &lt;date|dur&gt;</td><td style="text-align: left">Filter by file modification time (older than)</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left">-o, --owner <a href="user:group">user:group</a></td><td style="text-align: left">Filter by owning user and/or group</td></tr>
+<tr><td style="text-align: left">--format <fmt></td><td style="text-align: left">Print results according to template</td></tr>
+<tr><td style="text-align: left">-x, --exec <cmd>...</td><td style="text-align: left">Execute a command for each search result</td></tr>
+<tr><td style="text-align: left">-X, --exec-batch <cmd>...</td><td style="text-align: left">Execute a command with all search results at once</td></tr>
+<tr><td style="text-align: left">-c, --color <when></td><td style="text-align: left">When to use colors [default: auto] [possible values: auto, always, never]</td></tr>
+<tr><td style="text-align: left">--hyperlink[=<when>]</td><td style="text-align: left">Add hyperlinks to output paths [default: never] [possible values: auto, always, never]</td></tr>
+<tr><td style="text-align: left">-h, --help</td><td style="text-align: left">Print help (see more with '--help')</td></tr>
+<tr><td style="text-align: left">-V, --version</td><td style="text-align: left">Print version</td></tr>
+</tbody></table>
+</div><style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
