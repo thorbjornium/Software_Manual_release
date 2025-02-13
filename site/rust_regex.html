@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>bat</title>
+        <title>Rust RegEx</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/bat.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/rust_regex.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,81 +279,203 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="bat"><a class="header" href="#bat">bat</a></h1>
-<p>A file previewer with syntax highlighting and git integration.<br />
-bat <a href="https://github.com/sharkdp/bat">homepage</a></p>
-<h2 id="install"><a class="header" href="#install">Install</a></h2>
-<div class="mdbook-tabs-container" data-tabglobal="install">
-<nav class="mdbook-tabs">
-<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
-<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
-</nav>
-<div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">winget install sharkdp.bat
-winget install jftuga.less
+<h1 id="rust-regex-syntax"><a class="header" href="#rust-regex-syntax">Rust RegEx syntax</a></h1>
+<h2 id="matching-one-character"><a class="header" href="#matching-one-character">Matching one character</a></h2>
+<pre><code>.             any character except new line (includes new line with s flag)
+[0-9]         any ASCII digit
+\d            digit (\p{Nd})
+\D            not digit
+\pX           Unicode character class identified by a one-letter name
+\p{Greek}     Unicode character class (general category or script)
+\PX           Negated Unicode character class identified by a one-letter name
+\P{Greek}     negated Unicode character class (general category or script)
 </code></pre>
-</div>
-<div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop bat less
+<h2 id="character-classes"><a class="header" href="#character-classes">Character classes</a></h2>
+<pre><code>[xyz]         A character class matching either x, y or z (union).
+[^xyz]        A character class matching any character except x, y and z.
+[a-z]         A character class matching any character in range a-z.
+[[:alpha:]]   ASCII character class ([A-Za-z])
+[[:^alpha:]]  Negated ASCII character class ([^A-Za-z])
+[x[^xyz]]     Nested/grouping character class (matching any character except y and z)
+[a-y&amp;&amp;xyz]    Intersection (matching x or y)
+[0-9&amp;&amp;[^4]]   Subtraction using intersection and negation (matching 0-9 except 4)
+[0-9--4]      Direct subtraction (matching 0-9 except 4)
+[a-g~~b-h]    Symmetric difference (matching `a` and `h` only)
+[\[\]]        Escaping in character classes (matching [ or ])
+[a&amp;&amp;b]        An empty character class matching nothing
 </code></pre>
-</div>
-</div>
-<p><a href="https://www.greenwoodsoftware.com/less/faq.html">less</a> is a pager for text files that supports syntax highlighting.</p>
-<p>You will need to install the <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">Visual C++ Redistributable</a> package.</p>
-<p>Get shell completions by running <code>bat --completion ps1</code></p>
-<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
-<p>Display a single file on the terminal</p>
-<pre><code class="language-Powershell">bat README.md
+<p>Any named character class may appear inside a bracketed <code>[...]</code> character class. For example, <code>[\p{Greek}[:digit:]]</code> matches any ASCII digit or any codepoint in the <code>Greek</code> script. <code>[\p{Greek}&amp;&amp;\pL]</code> matches Greek letters.</p>
+<p>Precedence in character classes, from most binding to least:</p>
+<ol>
+<li>Ranges: <code>[a-cd]</code> == <code>[[a-c]d]</code></li>
+<li>Union: <code>[ab&amp;&amp;bc]</code> == <code>[[ab]&amp;&amp;[bc]]</code></li>
+<li>Intersection, difference, symmetric difference. All three have equivalent precedence, and are evaluated in left-to-right order.
+For example, <code>[\pL--\p{Greek}&amp;&amp;\p{Uppercase}]</code> == <code>[[\pL--\p{Greek}]&amp;&amp;\p{Uppercase}]</code>.</li>
+<li>Negation: <code>[^a-z&amp;&amp;b]</code> == <code>[^[a-z&amp;&amp;b]]</code>.</li>
+</ol>
+<h2 id="composites"><a class="header" href="#composites">Composites</a></h2>
+<pre><code>xy concatenation (x followed by y)
+x|y alternation (x or y, prefer x) 
 </code></pre>
-<p>Display multiple files at once</p>
-<pre><code class="language-Powershell">bat *.rs
+<p>This example shows how an alternation works, and what it means to prefer a branch in the alternation over subsequent branches.</p>
+<pre><code class="language-Rust noplayground">use regex::Regex;
+
+let haystack = "samwise";
+// If 'samwise' comes first in our alternation, then it is
+// preferred as a match, even if the regex engine could
+// technically detect that 'sam' led to a match earlier.
+let re = Regex::new(r"samwise|sam").unwrap();
+assert_eq!("samwise", re.find(haystack).unwrap().as_str());
+// But if 'sam' comes first, then it will match instead.
+// In this case, it is impossible for 'samwise' to match
+// because 'sam' is a prefix of it.
+let re = Regex::new(r"sam|samwise").unwrap();
+assert_eq!("sam", re.find(haystack).unwrap().as_str());
 </code></pre>
-<p>Read from stdin, determine the syntax automatically (note, highlighting will only work if the syntax can be determined from the first line of the file, usually through a shebang such as #!/bin/sh)</p>
-<pre><code class="language-Powershell">curl -s https://sh.rustup.rs | bat
+<h2 id="repetitions"><a class="header" href="#repetitions">Repetitions</a></h2>
+<pre><code>x*zero or more of x (greedy)
+x+        one or more of x (greedy)
+x?        zero or one of x (greedy)
+x*?       zero or more of x (ungreedy/lazy)
+x+?       one or more of x (ungreedy/lazy)
+x??       zero or one of x (ungreedy/lazy)
+x{n,m}    at least n x and at most m x (greedy)
+x{n,}     at least n x (greedy)
+x{n}      exactly n x
+x{n,m}?   at least n x and at most m x (ungreedy/lazy)
+x{n,}?    at least n x (ungreedy/lazy)
+x{n}?     exactly n x
 </code></pre>
-<p>Read from stdin, specify the language explicitly</p>
-<pre><code class="language-Powershell">yaml2json .travis.yml | json_pp | bat -l json
+<h2 id="empty-matches"><a class="header" href="#empty-matches">Empty matches</a></h2>
+<pre><code>^               the beginning of a haystack (or start-of-line with multi-line mode)
+$               the end of a haystack (or end-of-line with multi-line mode)
+\A              only the beginning of a haystack (even with multi-line mode enabled)
+\z              only the end of a haystack (even with multi-line mode enabled)
+\b              a Unicode word boundary (\w on one side and \W, \A, or \z on other)
+\B              not a Unicode word boundary
+\b{start}, \&lt;   a Unicode start-of-word boundary (\W|\A on the left, \w on the right)
+\b{end}, \&gt;     a Unicode end-of-word boundary (\w on the left, \W|\z on the right))
+\b{start-half}  half of a Unicode start-of-word boundary (\W|\A on the left)
+\b{end-half}    half of a Unicode end-of-word boundary (\W|\z on the right)
 </code></pre>
-<p>Show and highlight non-printable characters:</p>
-<pre><code class="language-Powershell">bat -A 'c:\windows\system32\drivers\etc\hosts'
+<p>The empty regex is valid and matches the empty string. For example, the empty regex matches <code>abc</code> at positions <code>0</code>, <code>1</code>, <code>2</code> and <code>3</code>. When using the top-level <a href="https://docs.rs/regex/latest/regex/struct.Regex.html" title="struct regex::Regex"><code>Regex</code></a> on <code>&amp;str</code> haystacks, an empty match that splits a codepoint is guaranteed to never be returned. However, such matches are permitted when using a <a href="https://docs.rs/regex/latest/regex/bytes/struct.Regex.html" title="struct regex::bytes::Regex"><code>bytes::Regex</code></a>. For example:</p>
+<pre><code>^               the beginning of a haystack (or start-of-line with multi-line mode)
+$               the end of a haystack (or end-of-line with multi-line mode)
+\A              only the beginning of a haystack (even with multi-line mode enabled)
+\z              only the end of a haystack (even with multi-line mode enabled)
+\b              a Unicode word boundary (\w on one side and \W, \A, or \z on other)
+\B              not a Unicode word boundary
+\b{start}, \&lt;   a Unicode start-of-word boundary (\W|\A on the left, \w on the right)
+\b{end}, \&gt;     a Unicode end-of-word boundary (\w on the left, \W|\z on the right))
+\b{start-half}  half of a Unicode start-of-word boundary (\W|\A on the left)
+\b{end-half}    half of a Unicode end-of-word boundary (\W|\z on the right)
 </code></pre>
-<p>Use it as a cat replacement:</p>
-<pre><code class="language-Powershell">bat &gt; note.md  # quickly create a new file. Exit with Ctrl+C
+<p>Note that an empty regex is distinct from a regex that can never match. For example, the regex <code>[a&amp;&amp;b]</code> is a character class that represents the intersection of <code>a</code> and <code>b</code>. That intersection is empty, which means the character class is empty. Since nothing is in the empty set, <code>[a&amp;&amp;b]</code> matches nothing, not even the empty string.</p>
+<h2 id="grouping-and-flags"><a class="header" href="#grouping-and-flags">Grouping and flags</a></h2>
+<pre><code>(exp)          numbered capture group (indexed by opening parenthesis)
+(?P&lt;name&gt;exp)  named (also numbered) capture group (names must be alpha-numeric)
+(?&lt;name&gt;exp)   named (also numbered) capture group (names must be alpha-numeric)
+(?:exp)        non-capturing group
+(?flags)       set flags within current group
+(?flags:exp)   set flags for exp (non-capturing)
 </code></pre>
-<pre><code class="language-Powershell">bat header.md content.md footer.md &gt; document.md # Concatenate (cat) files into one
+<p>Capture group names must be any sequence of alpha-numeric Unicode codepoints, in addition to <code>.</code>, <code>_</code>, <code>[</code> and <code>]</code>. Names must start with either an <code>_</code> or an alphabetic codepoint. Alphabetic codepoints correspond to the <code>Alphabetic</code> Unicode property, while numeric codepoints correspond to the union of the <code>Decimal_Number</code>, <code>Letter_Number</code> and <code>Other_Number</code> general categories.</p>
+<p>Flags are each a single character. For example, <code>(?x)</code> sets the flag <code>x</code> and <code>(?-x)</code> clears the flag <code>x</code>. Multiple flags can be set or cleared at the same time: <code>(?xy)</code> sets both the <code>x</code> and <code>y</code> flags and <code>(?x-y)</code> sets the <code>x</code> flag and clears the <code>y</code> flag.</p>
+<p>All flags are by default disabled unless stated otherwise. They are:</p>
+<pre><code>i     case-insensitive: letters match both upper and lower case
+m     multi-line mode: ^ and $ match begin/end of line
+s     allow . to match \n
+R     enables CRLF mode: when multi-line mode is enabled, \r\n is used
+U     swap the meaning of x*and x*?
+u     Unicode support (enabled by default)
+x     verbose mode, ignores whitespace and allow line comments (starting with `#`)
 </code></pre>
-<pre><code class="language-Powershell">bat -n main.rs  # show line numbers (only)
+<p>Note that in verbose mode, whitespace is ignored everywhere, including within character classes. To insert whitespace, use its escaped form or a hex literal. For example, <code>\</code> or <code>\x20</code> for an ASCII space.</p>
+<p>Flags can be toggled within a pattern. Here’s an example that matches case-insensitively for the first part but case-sensitively for the second part:</p>
+<pre><code class="language-rust noplayground">use regex::Regex;
+
+let re = Regex::new(r"(?i)a+(?-i)b+").unwrap();
+let m = re.find("AaAaAbbBBBb").unwrap();
+assert_eq!(m.as_str(), "AaAaAbb");</code></pre>
+<p>Notice that the <code>a+</code> matches either <code>a</code> or <code>A</code>, but the <code>b+</code> only matches <code>b</code>.</p>
+<p>Multi-line mode means <code>^</code> and <code>$</code> no longer match just at the beginning/end of the input, but also at the beginning/end of lines:</p>
+<p>use regex::Regex;</p>
+<pre><code class="language-rust noplayground">let re = Regex::new(r"(?m)^line \d+").unwrap();
+let m = re.find("line one\nline 2\n").unwrap();
+assert_eq!(m.as_str(), "line 2");</code></pre>
+<p>Note that <code>^</code> matches after new lines, even at the end of input:</p>
+<pre><code class="language-rust noplayground">use regex::Regex;
+
+let re = Regex::new(r"(?m)^").unwrap();
+let m = re.find_iter("test\n").last().unwrap();
+assert_eq!((m.start(), m.end()), (5, 5));</code></pre>
+<p>When both CRLF mode and multi-line mode are enabled, then <code>^</code> and <code>$</code> will match either <code>\r</code> and <code>\n</code>, but never in the middle of a <code>\r\n</code>:</p>
+<pre><code class="language-rust noplayground">use regex::Regex;
+
+let re = Regex::new(r"(?mR)^foo$").unwrap();
+let m = re.find("\r\nfoo\r\n").unwrap();
+assert_eq!(m.as_str(), "foo");</code></pre>
+<p>Unicode mode can also be selectively disabled, although only when the result <em>would not</em> match invalid UTF-8. One good example of this is using an ASCII word boundary instead of a Unicode word boundary, which might make some regex searches run faster:</p>
+<pre><code class="language-rust noplayground">use regex::Regex;
+
+let re = Regex::new(r"(?-u:\b).+(?-u:\b)").unwrap();
+let m = re.find("$$abc$$").unwrap();
+assert_eq!(m.as_str(), "abc");</code></pre>
+<h2 id="escape-sequences"><a class="header" href="#escape-sequences">Escape sequences</a></h2>
+<p>Note that this includes all possible escape sequences, even ones that are documented elsewhere.</p>
+<pre><code>\*              literal *, applies to all ASCII except [0-9A-Za-z&lt;&gt;]
+\a              bell (\x07)
+\f              form feed (\x0C)
+\t              horizontal tab
+\n              new line
+\r              carriage return
+\v              vertical tab (\x0B)
+\A              matches at the beginning of a haystack
+\z              matches at the end of a haystack
+\b              word boundary assertion
+\B              negated word boundary assertion
+\b{start}, \&lt;   start-of-word boundary assertion
+\b{end}, \&gt;     end-of-word boundary assertion
+\b{start-half}  half of a start-of-word boundary assertion
+\b{end-half}    half of a end-of-word boundary assertion
+\123            octal character code, up to three digits (when enabled)
+\x7F            hex character code (exactly two digits)
+\x{10FFFF}      any hex character code corresponding to a Unicode code point
+\u007F          hex character code (exactly four digits)
+\u{7F}          any hex character code corresponding to a Unicode code point
+\U0000007F      hex character code (exactly eight digits)
+\U{7F}          any hex character code corresponding to a Unicode code point
+\p{Letter}      Unicode character class
+\P{Letter}      negated Unicode character class
+\d, \s, \w      Perl character class
+\D, \S, \W      negated Perl character class
 </code></pre>
-<p>Integration with other tools
-fzf
-You can use bat as a previewer for fzf. To do this, use <code>bat --color=always</code> option to force colorized output. You can also use <code>--line-range</code> option to restrict the load times for long files:</p>
-<pre><code class="language-powershell">fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
+<h2 id="perl-character-classes-unicode-friendly"><a class="header" href="#perl-character-classes-unicode-friendly">Perl character classes (Unicode friendly)</a></h2>
+<p>These classes are based on the definitions provided in <a href="https://www.unicode.org/reports/tr18/#Compatibility_Properties">UTS#18</a>:</p>
+<pre><code>\d     digit (\p{Nd})
+\D     not digit
+\s     whitespace (\p{White_Space})
+\S     not whitespace
+\w     word character (\p{Alphabetic} + \p{M} + \d + \p{Pc} + \p{Join_Control})
+\W     not word character
 </code></pre>
-<p>For more information, see fzf's README.</p>
-<p><code>find</code> or <code>fd</code>
-You can use the <code>-exec</code> option of find to preview all search results with bat:
-<code>find … -exec bat {} +</code>
-If you happen to use <code>fd</code>, you can use the <code>-X/--exec-batch</code> option to do the same:</p>
-<p><code>fd … -X bat</code></p>
-<p><code>bat</code> can be combined with <code>tail -f</code> to continuously monitor a given file with syntax highlighting.</p>
-<pre><code class="language-powershell">tail -f .\var\log\pacman.log | bat --paging=never -l log
+<h2 id="ascii-character-classes"><a class="header" href="#ascii-character-classes">ASCII character classes</a></h2>
+<p>These classes are based on the definitions provided in <a href="https://www.unicode.org/reports/tr18/#Compatibility_Properties">UTS#18</a>:</p>
+<pre><code>[[:alnum:]]    alphanumeric ([0-9A-Za-z])
+[[:alpha:]]    alphabetic ([A-Za-z])
+[[:ascii:]]    ASCII ([\x00-\x7F])
+[[:blank:]]    blank ([\t ])
+[[:cntrl:]]    control ([\x00-\x1F\x7F])
+[[:digit:]]    digits ([0-9])
+[[:graph:]]    graphical ([!-~])
+[[:lower:]]    lower case ([a-z])
+[[:print:]]    printable ([ -~])
+[[:punct:]]    punctuation ([!-/:-@\[-`{-~])
+[[:space:]]    whitespace ([\t\n\v\f\r ])
+[[:upper:]]    upper case ([A-Z])
+[[:word:]]     word characters ([0-9A-Za-z_])
+[[:xdigit:]]   hex digit ([0-9A-Fa-f])
 </code></pre>
-<p>Note that we have to switch off paging in order for this to work. We have also specified the syntax explicitly (-l log), as it can not be auto-detected in this case.</p>
-<p><strong>Git</strong><br />
-You can combine <code>bat</code> with <code>git show</code> to view an older version of a given file with proper syntax highlighting:</p>
-<pre><code class="language-powershell">git show v0.6.0:main.rs | bat -l rs
-</code></pre>
-<p><code>git diff</code><br />
-You can combine <code>bat</code> with <code>git diff</code> to view lines around code changes with proper syntax highlighting:</p>
-<pre><code class="language-powershell">function batdiff() {
-    git diff --name-only --relative --diff-filter=d | xargs bat --diff
-}
-</code></pre>
-<p><code>clip</code><br />
-The line numbers and Git modification markers in the output of bat can make it hard to copy the contents of a file. To prevent this, you can call bat with the -p/--plain option or simply pipe the output into clip:</p>
-<pre><code class="language-powershell">bat main.rs | clip
-</code></pre>
-<p>bat will detect that the output is being redirected and print the plain file contents.</p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -399,11 +521,11 @@ The line numbers and Git modification markers in the output of bat can make it h
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ripgrep.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="github_cli.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="yazi.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="firefox_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -413,11 +535,11 @@ The line numbers and Git modification markers in the output of bat can make it h
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ripgrep.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="github_cli.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="yazi.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="firefox_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
