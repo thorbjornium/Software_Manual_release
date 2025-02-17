@@ -282,25 +282,25 @@
 <h1 id="fzf"><a class="header" href="#fzf">fzf</a></h1>
 <ul>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#help">Help</a>
+<li><a href="#help-file">Help File</a>
 <ul>
-<li><a href="#search">SEARCH</a></li>
-<li><a href="#inputoutput">INPUT/OUTPUT</a></li>
-<li><a href="#global-style">GLOBAL STYLE</a></li>
-<li><a href="#display-mode">DISPLAY MODE</a></li>
-<li><a href="#layout">LAYOUT</a></li>
-<li><a href="#list-section">LIST SECTION</a></li>
-<li><a href="#input-section">INPUT SECTION</a></li>
-<li><a href="#preview-window">PREVIEW WINDOW</a></li>
-<li><a href="#header">HEADER</a></li>
-<li><a href="#scripting">SCRIPTING</a></li>
-<li><a href="#keyevent-binding">KEY/EVENT BINDING</a></li>
-<li><a href="#advanced">ADVANCED</a></li>
-<li><a href="#directory-traversal">DIRECTORY TRAVERSAL</a></li>
-<li><a href="#history">HISTORY</a></li>
-<li><a href="#shell-integration">SHELL INTEGRATION</a></li>
-<li><a href="#help-1">HELP</a></li>
-<li><a href="#environment-variables">ENVIRONMENT VARIABLES</a></li>
+<li><a href="#search">Search</a></li>
+<li><a href="#inputoutput">Input/Output</a></li>
+<li><a href="#global-style">Global Style</a></li>
+<li><a href="#display-mode">Display Mode</a></li>
+<li><a href="#layout">Layout</a></li>
+<li><a href="#list-section">List Section</a></li>
+<li><a href="#input-section">Input Section</a></li>
+<li><a href="#preview-window">Preview Window</a></li>
+<li><a href="#header">Header</a></li>
+<li><a href="#scripting">Scripting</a></li>
+<li><a href="#keyevent-binding">Key/Event Binding</a></li>
+<li><a href="#advanced">Advanced</a></li>
+<li><a href="#directory-traversal">Directory Traversal</a></li>
+<li><a href="#history">History</a></li>
+<li><a href="#shell-integration">Shell Integration</a></li>
+<li><a href="#help">Help</a></li>
+<li><a href="#environment-variables">Environment Variables</a></li>
 </ul>
 </li>
 </ul>
@@ -332,9 +332,9 @@ PSFzf will insert the command into the current line, but it will not execute the
 <p>Press <kbd>Alt</kbd> + <kbd>C</kbd> to start fzf in folder mode. Press <kbd>Enter</kbd> to cd into the selected directory.</p>
 <p>A few scripts are <a href="./powershell_scripts.html#find-files-and-folders">here</a></p>
 <p>More details <a href="https://github.com/junegunn/fzf">here</a></p>
-<h2 id="help"><a class="header" href="#help">Help</a></h2>
+<h2 id="help-file"><a class="header" href="#help-file">Help File</a></h2>
 <p><strong>fzf [options]</strong></p>
-<h3 id="search"><a class="header" href="#search">SEARCH</a></h3>
+<h3 id="search"><a class="header" href="#search">Search</a></h3>
 <ul>
 <li><code>-e, --exact</code> - Enable exact-match</li>
 <li><code>+x, --no-extended</code> - Disable extended-search mode</li>
@@ -355,27 +355,27 @@ PSFzf will insert the command into the current line, but it will not execute the
 </ul>
 </li>
 </ul>
-<h3 id="inputoutput"><a class="header" href="#inputoutput">INPUT/OUTPUT</a></h3>
+<h3 id="inputoutput"><a class="header" href="#inputoutput">Input/Output</a></h3>
 <ul>
 <li><code>--read0</code> - Read input delimited by ASCII NUL characters</li>
 <li><code>--print0</code> - Print output delimited by ASCII NUL characters</li>
 <li><code>--ansi</code> - Enable processing of ANSI color codes</li>
 <li><code>--sync</code> - Synchronous search for multi-staged filtering</li>
 </ul>
-<h3 id="global-style"><a class="header" href="#global-style">GLOBAL STYLE</a></h3>
+<h3 id="global-style"><a class="header" href="#global-style">Global Style</a></h3>
 <ul>
 <li><code>--style=PRESET</code> - Apply a style preset <code>[default|minimal|full[:BORDER_STYLE]</code></li>
 <li><code>--color=COLSPEC</code> - Set base color scheme <code>[dark|light|16|bw]</code> and custom colors</li>
 <li><code>--no-color</code> - Disable colors</li>
 <li><code>--no-bold</code> - Disable bold text</li>
 </ul>
-<h3 id="display-mode"><a class="header" href="#display-mode">DISPLAY MODE</a></h3>
+<h3 id="display-mode"><a class="header" href="#display-mode">Display Mode</a></h3>
 <ul>
 <li><code>--height=[~]HEIGHT[%]</code> - Set window height (fullscreen by default)</li>
 <li><code>--min-height=HEIGHT[+]</code> - Minimum height when using percentages</li>
 <li><code>--tmux[=OPTS]</code> - Start <code>fzf</code> in a tmux popup (requires tmux 3.3+)</li>
 </ul>
-<h3 id="layout"><a class="header" href="#layout">LAYOUT</a></h3>
+<h3 id="layout"><a class="header" href="#layout">Layout</a></h3>
 <ul>
 <li><code>--layout=LAYOUT</code> - Choose layout <code>[default|reverse|reverse-list]</code></li>
 <li><code>--margin=MARGIN</code> - Set screen margin</li>
@@ -384,7 +384,7 @@ PSFzf will insert the command into the current line, but it will not execute the
 <li><code>--border-label=LABEL</code> - Label for the border</li>
 <li><code>--border-label-pos=COL</code> - Border label position</li>
 </ul>
-<h3 id="list-section"><a class="header" href="#list-section">LIST SECTION</a></h3>
+<h3 id="list-section"><a class="header" href="#list-section">List Section</a></h3>
 <ul>
 <li><code>-m, --multi[=MAX]</code> - Enable multi-select</li>
 <li><code>--highlight-line</code> - Highlight the current line</li>
@@ -393,61 +393,61 @@ PSFzf will insert the command into the current line, but it will not execute the
 <li><code>--gap[=N]</code> - Render empty lines between items</li>
 <li><code>--scroll-off=LINES</code> - Number of lines to keep above/below during scroll</li>
 </ul>
-<h3 id="input-section"><a class="header" href="#input-section">INPUT SECTION</a></h3>
+<h3 id="input-section"><a class="header" href="#input-section">Input Section</a></h3>
 <ul>
 <li><code>--no-input</code> - Hide the input section</li>
-<li><code>--prompt=STR</code> - Set input prompt (default: <code>&gt; </code>)</li>
+<li><code>--prompt=STR</code> - Set input prompt (default: `&gt; `)</li>
 <li><code>--info=STYLE</code> - Set finder info style <code>[default|right|hidden|inline[-right][:PREFIX]]</code></li>
 </ul>
-<h3 id="preview-window"><a class="header" href="#preview-window">PREVIEW WINDOW</a></h3>
+<h3 id="preview-window"><a class="header" href="#preview-window">Preview Window</a></h3>
 <ul>
 <li><code>--preview=COMMAND</code> - Command to preview highlighted line <code>{}</code></li>
 <li><code>--preview-window=OPT</code> - Preview window layout (default: <code>right:50%</code>)</li>
 </ul>
-<h3 id="header"><a class="header" href="#header">HEADER</a></h3>
+<h3 id="header"><a class="header" href="#header">Header</a></h3>
 <ul>
 <li><code>--header=STR</code> - Print a header string</li>
 <li><code>--header-lines=N</code> - Treat the first <code>N</code> lines as a header</li>
 <li><code>--header-border[=STYLE]</code> - Border around the header section</li>
 </ul>
-<h3 id="scripting"><a class="header" href="#scripting">SCRIPTING</a></h3>
+<h3 id="scripting"><a class="header" href="#scripting">Scripting</a></h3>
 <ul>
 <li><code>-q, --query=STR</code> - Start with the given query</li>
 <li><code>-1, --select-1</code> - Auto-select the only match</li>
 <li><code>-0, --exit-0</code> - Exit immediately if no match</li>
 </ul>
-<h3 id="keyevent-binding"><a class="header" href="#keyevent-binding">KEY/EVENT BINDING</a></h3>
+<h3 id="keyevent-binding"><a class="header" href="#keyevent-binding">Key/Event Binding</a></h3>
 <ul>
 <li><code>--bind=BINDINGS</code> - Define custom key/event bindings</li>
 </ul>
-<h3 id="advanced"><a class="header" href="#advanced">ADVANCED</a></h3>
+<h3 id="advanced"><a class="header" href="#advanced">Advanced</a></h3>
 <ul>
 <li><code>--with-shell=STR</code> - Specify shell command for child processes</li>
 <li><code>--listen[=[ADDR:]PORT]</code> - Start HTTP server for actions</li>
 </ul>
-<h3 id="directory-traversal"><a class="header" href="#directory-traversal">DIRECTORY TRAVERSAL</a></h3>
+<h3 id="directory-traversal"><a class="header" href="#directory-traversal">Directory Traversal</a></h3>
 <ul>
 <li><code>--walker=OPTS</code> - Set traversal options <code>[file][,dir][,follow][,hidden]</code></li>
 <li><code>--walker-root=DIR [...]</code> - Set root directories (default: <code>.</code>)</li>
 </ul>
-<h3 id="history"><a class="header" href="#history">HISTORY</a></h3>
+<h3 id="history"><a class="header" href="#history">History</a></h3>
 <ul>
 <li><code>--history=FILE</code> - Specify history file</li>
 <li><code>--history-size=N</code> - Max number of history entries (default: <code>1000</code>)</li>
 </ul>
-<h3 id="shell-integration"><a class="header" href="#shell-integration">SHELL INTEGRATION</a></h3>
+<h3 id="shell-integration"><a class="header" href="#shell-integration">Shell Integration</a></h3>
 <ul>
 <li><code>--bash</code> - Setup script for Bash integration</li>
 <li><code>--zsh</code> - Setup script for Zsh integration</li>
 <li><code>--fish</code> - Setup script for Fish integration</li>
 </ul>
-<h3 id="help-1"><a class="header" href="#help-1">HELP</a></h3>
+<h3 id="help"><a class="header" href="#help">Help</a></h3>
 <ul>
 <li><code>--version</code> - Display version information</li>
 <li><code>--help</code> - Show help message</li>
 <li><code>--man</code> - Show man page</li>
 </ul>
-<h3 id="environment-variables"><a class="header" href="#environment-variables">ENVIRONMENT VARIABLES</a></h3>
+<h3 id="environment-variables"><a class="header" href="#environment-variables">Environment Variables</a></h3>
 <ul>
 <li><code>FZF_DEFAULT_COMMAND</code> - Default command when input is <code>tty</code></li>
 <li><code>FZF_DEFAULT_OPTS</code> - Default options (e.g. <code>'--layout=reverse --info=inline'</code>)</li>
