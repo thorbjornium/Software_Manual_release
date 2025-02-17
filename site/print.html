@@ -9576,6 +9576,8 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
 <ul>
 <li><a href="mdbook_options.html#change-browser-tab-title">Change browser tab title</a></li>
 <li><a href="mdbook_options.html#include-other-files">Include other files</a></li>
+<li><a href="mdbook_options.html#rust-playground">Rust Playground</a></li>
+<li><a href="mdbook_options.html#mathjax-support">MathJax support</a></li>
 <li><a href="mdbook_options.html#embedify">Embedify</a></li>
 <li><a href="mdbook_options.html#alerts">Alerts</a></li>
 <li><a href="mdbook_options.html#mermaid">Mermaid</a></li>
@@ -9591,57 +9593,49 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
 <h2 id="change-browser-tab-title"><a class="header" href="#change-browser-tab-title">Change browser tab title</a></h2>
 <pre><code class="language-plaintext">{{#title New &amp; improved}}
 </code></pre>
+<br>
 <h2 id="include-other-files"><a class="header" href="#include-other-files">Include other files</a></h2>
 <p>Include line 2-10 of the file rust.rs.</p>
 <pre><code>{{#include rust.rs:2:10}}
 </code></pre>
-<pre><code>fn do_things&lt;T&gt;(a: T, b: T)
+<pre><code>
+fn do_things&lt;T&gt;(a: T, b: T)
 where
     T: IntoIterator,
     T::Item: Display,
 {
     for (e, f) in a.into_iter().zip(b.into_iter()) {
         println!("{} {}", e, f);
-    }```  
-
-## Rust Playground  
-
-Use [Rust Playground](https://play.rust-lang.org) to run code in the browser.
-
-Produce editable code that runs in the browser.
-
+    }
+</code></pre>
+<h2 id="rust-playground"><a class="header" href="#rust-playground">Rust Playground</a></h2>
+<p>Use <a href="https://play.rust-lang.org">Rust Playground</a> to run code in the browser.</p>
+<p>Produce editable code that runs in the browser.</p>
+<pre><code>```rust,editable
+fn main() {
+    let number = 5;
+    print!("{}", number);
+}
+```
 </code></pre>
 <pre><pre class="playground"><code class="language-rust editable">fn main() {
     let number = 5;
     print!("{}", number);
 }</code></pre></pre>
-<pre><code>
-```rust,editable
+<p>Non-editable code. Runs in the browser.</p>
+<pre><code>```rust
 fn main() {
-    let number = 5;
-    print!("{}", number);
+    let x = "Rust";
+    print!("{}", x);
 }
 ```
-
-Non-editable code. Runs in the browser.
-
 </code></pre>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let x = "Rust";
     print!("{}", x);
 }</code></pre></pre>
-<pre><code>
-```rust
-fn main() {
-    let x = "Rust";
-    print!("{}", x);
-}
-```
-
-## MathJax support  
-
-````plaintext  
-\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
+<h2 id="mathjax-support"><a class="header" href="#mathjax-support">MathJax support</a></h2>
+<pre><code class="language-plaintext">\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
 </code></pre>
 <p>\[ \mu = \frac{1}{N} \sum_{i=0} x_i \]</p>
 <div class="mdbook-alerts mdbook-alerts-note">
