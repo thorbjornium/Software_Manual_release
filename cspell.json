@@ -1,0 +1,17 @@
+{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "Cpath",
+        "Csvg",
+        "Fsvg",
+        "Fwww",
+        "scrollbox",
+        "Shortkey"
+    ],
+    "ignoreWords": [],
+    "import": [],
+    "enabled": false
+}

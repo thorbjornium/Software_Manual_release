@@ -119,12 +119,12 @@
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
                             <li role="none"><button role="menuitem" class="theme" id="sun">Sun</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="nordic">Nordic</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
                             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                         </ul>
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
@@ -291,8 +291,8 @@
 <li><a href="#yt-dlp">yt-dlp</a></li>
 </ul>
 <br>  
-<p>Copy and Paste the scripts into your Powershell profile. To open your Powershell profile in VS Code type <code>code $Profile</code>.<br />
-Most scripts requires additional software. Install the following software if you do not have it already:</p>
+<p>Copy and Paste the scripts into your PowerShell profile. To open your PowerShell profile in VS Code type <code>code $Profile</code>.<br />
+Most scripts require additional software. Install the following software if you do not have it already:</p>
 <div class="mdbook-tabs-container" data-tabglobal="install">
 <nav class="mdbook-tabs">
 <button class="mdbook-tab active" data-tabname="Winget">Winget</button>
@@ -314,7 +314,7 @@ winget install jftuga.less
 </div>
 </div>
 <p>You will need to install the <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">Visual C++ Redistributable</a> package as well.</p>
-<p>Add  <code>Invoke-Expression (&amp; { (zoxide init powershell | Out-String) })</code> to your Powershell profile</p>
+<p>Add <code>Invoke-Expression (&amp; { (zoxide init powershell | Out-String) })</code> to your PowerShell profile</p>
 <p>Detailed information can be found by clicking <a href="https://github.com/ajeetdsouza/zoxide">zoxide</a>, <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>, <a href="https://github.com/eza-community/eza">eza</a> and <a href="https://www.greenwoodsoftware.com/less/faq.html">less</a>.</p>
 <h2 id="psfzf"><a class="header" href="#psfzf">PSFzf</a></h2>
 <p>PSFzf installs from PSGallery. More details <a href="https://github.com/kelleyma49/PSFzf">here</a>.</p>
@@ -332,7 +332,7 @@ winget install jftuga.less
 </code></pre>
 </div>
 </div>
-<p>Paste the following into your Powershell profile:</p>
+<p>Paste the following into your PowerShell profile:</p>
 <pre><code class="language-Powershell">Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'  
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }  
 </code></pre>
@@ -355,7 +355,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <h2 id="find-files-and-folders"><a class="header" href="#find-files-and-folders">Find files and folders</a></h2>
 <p>A script with options to view, delete or edit files with external tools.</p>
 <details>
-<summary>Script</summary>
+<summary><u>Script</u></summary>
 <pre><code class="language-Powershell">$env:FZF_DEFAULT_OPTS = @"
 --layout=reverse
 --cycle
@@ -452,7 +452,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
 </code></pre>
-</details>
+</details>  
 <p>There are two ways to get a file path.</p>
 <p><img src="./pics/Ripgrep-mode.jpg" alt="Ripgrep-mode.jpg" /></p>
 <p>Through ripgrep mode.</p>

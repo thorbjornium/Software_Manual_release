@@ -119,12 +119,12 @@
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
                             <li role="none"><button role="menuitem" class="theme" id="sun">Sun</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="nordic">Nordic</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
                             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                         </ul>
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
@@ -281,7 +281,7 @@
 </style>
 <h1 id="rust-regex-syntax"><a class="header" href="#rust-regex-syntax">Rust RegEx syntax</a></h1>
 <h2 id="matching-one-character"><a class="header" href="#matching-one-character">Matching one character</a></h2>
-<pre><code>.             any character except new line (includes new line with s flag)
+<pre><code class="language-plaintext">.             any character except new line (includes new line with s flag)
 [0-9]         any ASCII digit
 \d            digit (\p{Nd})
 \D            not digit
@@ -291,7 +291,7 @@
 \P{Greek}     negated Unicode character class (general category or script)
 </code></pre>
 <h2 id="character-classes"><a class="header" href="#character-classes">Character classes</a></h2>
-<pre><code>[xyz]         A character class matching either x, y or z (union).
+<pre><code class="language-plaintext">[xyz]         A character class matching either x, y or z (union).
 [^xyz]        A character class matching any character except x, y and z.
 [a-z]         A character class matching any character in range a-z.
 [[:alpha:]]   ASCII character class ([A-Za-z])
@@ -306,13 +306,12 @@
 </code></pre>
 <p>Any named character class may appear inside a bracketed <code>[...]</code> character class. For example, <code>[\p{Greek}[:digit:]]</code> matches any ASCII digit or any codepoint in the <code>Greek</code> script. <code>[\p{Greek}&amp;&amp;\pL]</code> matches Greek letters.</p>
 <p>Precedence in character classes, from most binding to least:</p>
-<ol>
-<li>Ranges: <code>[a-cd]</code> == <code>[[a-c]d]</code></li>
-<li>Union: <code>[ab&amp;&amp;bc]</code> == <code>[[ab]&amp;&amp;[bc]]</code></li>
-<li>Intersection, difference, symmetric difference. All three have equivalent precedence, and are evaluated in left-to-right order.
-For example, <code>[\pL--\p{Greek}&amp;&amp;\p{Uppercase}]</code> == <code>[[\pL--\p{Greek}]&amp;&amp;\p{Uppercase}]</code>.</li>
-<li>Negation: <code>[^a-z&amp;&amp;b]</code> == <code>[^[a-z&amp;&amp;b]]</code>.</li>
-</ol>
+<pre><code class="language-plaintext">1. Ranges: `[a-cd]` == `[[a-c]d]`
+2. Union: `[ab&amp;&amp;bc]` == `[[ab]&amp;&amp;[bc]]`
+3. Intersection, difference, symmetric difference. All three have equivalent precedence, and are evaluated in left-to-right order.
+        For example, `[\pL--\p{Greek}&amp;&amp;\p{Uppercase}]` == `[[\pL--\p{Greek}]&amp;&amp;\p{Uppercase}]`.
+4. Negation: `[^a-z&amp;&amp;b]` == `[^[a-z&amp;&amp;b]]`.
+</code></pre>
 <h2 id="composites"><a class="header" href="#composites">Composites</a></h2>
 <pre><code>xy concatenation (x followed by y)
 x|y alternation (x or y, prefer x) 
@@ -333,7 +332,7 @@ let re = Regex::new(r"sam|samwise").unwrap();
 assert_eq!("sam", re.find(haystack).unwrap().as_str());
 </code></pre>
 <h2 id="repetitions"><a class="header" href="#repetitions">Repetitions</a></h2>
-<pre><code>x*zero or more of x (greedy)
+<pre><code class="language-plaintext">x*zero or more of x (greedy)
 x+        one or more of x (greedy)
 x?        zero or one of x (greedy)
 x*?       zero or more of x (ungreedy/lazy)
@@ -347,7 +346,7 @@ x{n,}?    at least n x (ungreedy/lazy)
 x{n}?     exactly n x
 </code></pre>
 <h2 id="empty-matches"><a class="header" href="#empty-matches">Empty matches</a></h2>
-<pre><code>^               the beginning of a haystack (or start-of-line with multi-line mode)
+<pre><code class="language-plaintext">^               the beginning of a haystack (or start-of-line with multi-line mode)
 $               the end of a haystack (or end-of-line with multi-line mode)
 \A              only the beginning of a haystack (even with multi-line mode enabled)
 \z              only the end of a haystack (even with multi-line mode enabled)
@@ -359,7 +358,7 @@ $               the end of a haystack (or end-of-line with multi-line mode)
 \b{end-half}    half of a Unicode end-of-word boundary (\W|\z on the right)
 </code></pre>
 <p>The empty regex is valid and matches the empty string. For example, the empty regex matches <code>abc</code> at positions <code>0</code>, <code>1</code>, <code>2</code> and <code>3</code>. When using the top-level <a href="https://docs.rs/regex/latest/regex/struct.Regex.html" title="struct regex::Regex"><code>Regex</code></a> on <code>&amp;str</code> haystacks, an empty match that splits a codepoint is guaranteed to never be returned. However, such matches are permitted when using a <a href="https://docs.rs/regex/latest/regex/bytes/struct.Regex.html" title="struct regex::bytes::Regex"><code>bytes::Regex</code></a>. For example:</p>
-<pre><code>^               the beginning of a haystack (or start-of-line with multi-line mode)
+<pre><code class="language-plaintext">^               the beginning of a haystack (or start-of-line with multi-line mode)
 $               the end of a haystack (or end-of-line with multi-line mode)
 \A              only the beginning of a haystack (even with multi-line mode enabled)
 \z              only the end of a haystack (even with multi-line mode enabled)
@@ -372,17 +371,17 @@ $               the end of a haystack (or end-of-line with multi-line mode)
 </code></pre>
 <p>Note that an empty regex is distinct from a regex that can never match. For example, the regex <code>[a&amp;&amp;b]</code> is a character class that represents the intersection of <code>a</code> and <code>b</code>. That intersection is empty, which means the character class is empty. Since nothing is in the empty set, <code>[a&amp;&amp;b]</code> matches nothing, not even the empty string.</p>
 <h2 id="grouping-and-flags"><a class="header" href="#grouping-and-flags">Grouping and flags</a></h2>
-<pre><code>(exp)          numbered capture group (indexed by opening parenthesis)
+<pre><code class="language-plaintext">(exp)          numbered capture group (indexed by opening parenthesis)
 (?P&lt;name&gt;exp)  named (also numbered) capture group (names must be alpha-numeric)
 (?&lt;name&gt;exp)   named (also numbered) capture group (names must be alpha-numeric)
 (?:exp)        non-capturing group
 (?flags)       set flags within current group
 (?flags:exp)   set flags for exp (non-capturing)
 </code></pre>
-<p>Capture group names must be any sequence of alpha-numeric Unicode codepoints, in addition to <code>.</code>, <code>_</code>, <code>[</code> and <code>]</code>. Names must start with either an <code>_</code> or an alphabetic codepoint. Alphabetic codepoints correspond to the <code>Alphabetic</code> Unicode property, while numeric codepoints correspond to the union of the <code>Decimal_Number</code>, <code>Letter_Number</code> and <code>Other_Number</code> general categories.</p>
+<p>Capture group names must be any sequence of alphanumeric Unicode codepoints, in addition to <code>.</code>, <code>_</code>, <code>[</code> and <code>]</code>. Names must start with either an <code>_</code> or an alphabetic codepoint. Alphabetic codepoints correspond to the <code>Alphabetic</code> Unicode property, while numeric codepoints correspond to the union of the <code>Decimal_Number</code>, <code>Letter_Number</code> and <code>Other_Number</code> general categories.</p>
 <p>Flags are each a single character. For example, <code>(?x)</code> sets the flag <code>x</code> and <code>(?-x)</code> clears the flag <code>x</code>. Multiple flags can be set or cleared at the same time: <code>(?xy)</code> sets both the <code>x</code> and <code>y</code> flags and <code>(?x-y)</code> sets the <code>x</code> flag and clears the <code>y</code> flag.</p>
 <p>All flags are by default disabled unless stated otherwise. They are:</p>
-<pre><code>i     case-insensitive: letters match both upper and lower case
+<pre><code class="language-plaintext">i     case-insensitive: letters match both upper and lower case
 m     multi-line mode: ^ and $ match begin/end of line
 s     allow . to match \n
 R     enables CRLF mode: when multi-line mode is enabled, \r\n is used

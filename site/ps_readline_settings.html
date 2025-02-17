@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>fd</title>
+        <title>Settings</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/fd.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/ps_readline_settings.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,184 +279,118 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="fd"><a class="header" href="#fd">fd</a></h1>
+<h1 id="settings"><a class="header" href="#settings">Settings</a></h1>
+<h2 id="what-is-psreadline"><a class="header" href="#what-is-psreadline">What is PSReadLine?</a></h2>
+<p><code>PSReadLine</code> is a module that replaces the default PowerShell console line editor with a more feature-rich and user-friendly one. It significantly improves the command-line experience by providing:</p>
 <ul>
-<li><a href="#usage">Usage</a></li>
+<li><strong>Command History:</strong> Persistent and easily accessible command history.</li>
+<li><strong>Syntax Highlighting:</strong> Makes code easier to read and identify errors.</li>
+<li><strong>Tab Completion:</strong> Intelligent tab completion for commands, parameters, file paths, and more.</li>
+<li><strong>Vi Mode:</strong> An optional editing mode that emulates the Vi/Vim text editor.</li>
+<li><strong>Emacs Mode:</strong> An optional editing mode that emulates the Emacs text editor.</li>
+<li><strong>Windows Mode:</strong> The default editing mode.</li>
+<li><strong>Predictive IntelliSense:</strong> Suggests commands based on your history and other factors.</li>
+<li><strong>Key Bindings:</strong> Customizable key bindings for common actions.</li>
 </ul>
-<p>Install</p>
-<div class="mdbook-tabs-container" data-tabglobal="install">
-<nav class="mdbook-tabs">
-<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
-<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
-</nav>
-<div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">winget install sharkdp.fd
+<h2 id="psreadline"><a class="header" href="#psreadline">PSReadline</a></h2>
+<p>Windows Terminal has a "mark mode" that allows you to select text using the keyboard.</p>
+<p>Here's how to use it:</p>
+<ol>
+<li><strong>Enable Mark Mode:</strong> Press <code>Ctrl + Shift + M</code>. This puts the terminal into mark mode.</li>
+<li><strong>Select Text:</strong> Use the arrow keys (with <code>Shift</code> held down) to move the cursor and select the desired text. You can also use <code>Ctrl + A</code> to select all text in the terminal buffer.</li>
+<li><strong>Copy Text:</strong> Once the text is selected, press <code>Ctrl + Shift + C</code> to copy it to the clipboard.</li>
+</ol>
+<p>Some additional information about text selection in Windows Terminal:</p>
+<ul>
+<li><strong>Hyperlink Navigation:</strong> In mark mode, you can use <code>Tab</code> or <code>Shift + Tab</code> to navigate between hyperlinks in the buffer if hyperlink detection is enabled (<code>experimental.detectUrls</code>).</li>
+<li><strong>Block Selection:</strong> Use the <code>toggleBlockSelection</code> action to switch to block selection mode.</li>
+<li><strong>Copy on Select:</strong> You can enable the <code>copyOnSelect</code> setting so that text is automatically copied to the clipboard when you select it. If this setting is enabled, right-clicking the terminal will paste the selected text.</li>
+</ul>
+<h2 id="psreadline-history-features"><a class="header" href="#psreadline-history-features">PSReadLine History Features</a></h2>
+<p>The history features in <code>PSReadLine</code> are a major benefit. Here's a breakdown:</p>
+<ul>
+<li><strong>Persistent History:</strong> <code>PSReadLine</code> saves your command history to a file (by default, <code>~\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt</code>). This means your commands are remembered across PowerShell sessions. <strong>You can delete unwanted entries from this file.</strong></li>
+<li><strong>History Navigation:</strong>
+<ul>
+<li><strong>Up/Down Arrow Keys:</strong> Navigate through your command history.</li>
+<li><strong>Ctrl+R (Reverse Search):</strong> Start typing a command, and <code>PSReadLine</code> will search backward through your history for matching commands. Press <code>Ctrl+R</code> repeatedly to cycle through matches.</li>
+<li><strong>Ctrl+S (Forward Search):</strong> Similar to <code>Ctrl+R</code>, but searches forward. (Less commonly used).</li>
+<li><strong><code>Get-History</code> Cmdlet:</strong> Retrieves the command history from the current session. This is useful for scripting or further analysis.</li>
+<li><strong><code>Invoke-History</code> Cmdlet:</strong> Executes a command from the history by its ID (as shown by <code>Get-History</code>).</li>
+</ul>
+</li>
+<li><strong>History Duplicates:</strong> By default, <code>PSReadLine</code> prevents consecutive duplicate commands from being added to the history.</li>
+<li><strong>History Size:</strong> You can control the maximum number of commands saved in the history file and the maximum number of commands stored in the current session's history.</li>
+<li><strong>History Location:</strong> You can change the location of the history file.</li>
+</ul>
+<h2 id="key-cmdlets-for-managing-history"><a class="header" href="#key-cmdlets-for-managing-history">Key Cmdlets for Managing History</a></h2>
+<ul>
+<li><code>Get-History</code>: Gets the history of the current session.</li>
+<li><code>Get-History -Id &lt;ID&gt;</code>: Gets a specific history entry by its ID.</li>
+<li><code>Get-History -Count &lt;N&gt;</code>: Gets the last N history entries.</li>
+<li><code>Invoke-History</code>: Executes a command from the history.</li>
+<li><code>Invoke-History &lt;ID&gt;</code>: Executes the history entry with the specified ID. You can get the ID from <code>Get-History</code>.</li>
+<li><code>Add-History</code>: Adds a command to the history. (Less commonly used directly).</li>
+<li><code>Clear-History</code>: Clears the history of the current session.</li>
+<li><code>Clear-History -Newest &lt;N&gt;</code>: Deletes the newest N entries.</li>
+<li><code>Clear-History -Oldest &lt;N&gt;</code>: Deletes the oldest N entries.</li>
+</ul>
+<h2 id="configuration-and-customization"><a class="header" href="#configuration-and-customization">Configuration and Customization</a></h2>
+<p>You can customize <code>PSReadLine</code>'s behavior using the <code>Set-PSReadLineOption</code> cmdlet. Here are some common settings related to history:</p>
+<ul>
+<li><strong><code>HistorySavePath</code>:</strong> Specifies the path to the history file.</li>
+</ul>
+<pre><code class="language-powershell">Set-PSReadLineOption -HistorySavePath "C:\MyPowerShellHistory.txt"
 </code></pre>
-</div>
-<div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop fd
+<ul>
+<li><strong><code>MaximumHistoryCount</code>:</strong> Specifies the maximum number of commands to store in the <em>session</em> history.</li>
+</ul>
+<pre><code class="language-powershell">Set-PSReadLineOption -MaximumHistoryCount 4096
 </code></pre>
-</div>
-</div>
-<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
-<p>How to use</p>
-<p>First, to get an overview of all available command line options, you can either run fd -h for a concise help message or fd --help for a more detailed version.
-Simple search</p>
-<p>fd is designed to find entries in your filesystem. The most basic search you can perform is to run fd with a single argument: the search pattern. For example, assume that you want to find an old script of yours (the name included netflix):</p>
-<p><code>fd netfl</code><br />
-Software/python/imdb-ratings/netflix-details.py</p>
-<p>If called with just a single argument like this, fd searches the current directory recursively for any entries that contain the pattern netfl.
-Regular expression search</p>
-<p>The search pattern is treated as a regular expression. Here, we search for entries that start with x and end with rc:</p>
-<p><code>cd \etc</code><br />
-<code>fd '^x.*rc$'</code><br />
-X11/xinit/xinitrc
-X11/xinit/xserverrc</p>
-<p>The regular expression syntax used by fd is documented here.
-Specifying the root directory</p>
-<p>If we want to search a specific directory, it can be given as a second argument to fd:</p>
-<p><code>fd passwd \etc</code><br />
-etc\default\passwd
-etc\pam.d\passwd
-etc\passwd</p>
-<p>List all files, recursively</p>
-<p>fd can be called with no arguments. This is very useful to get a quick overview of all entries in the current directory, recursively (similar to ls -R):</p>
-<p><code>cd fd\tests</code><br />
-<code>fd</code><br />
-testenv
-testenv/mod.rs
-tests.rs</p>
-<p>If you want to use this functionality to list all files in a given directory, you have to use a catch-all pattern such as . or ^:</p>
-<p><code>cd fd\tests</code><br />
-<code>fd .</code><br />
-testenv
-testenv/mod.rs
-tests.rs</p>
-<p>Searching for a particular file extension</p>
-<p>Often, we are interested in all files of a particular type. This can be done with the -e (or --extension) option. Here, we search for all Markdown files in the fd repository:</p>
-<p><code>cd fd</code><br />
-<code>fd -e md</code><br />
-CONTRIBUTING.md
-README.md</p>
-<p>The -e option can be used in combination with a search pattern:</p>
-<p><code>fd -e rs mod</code><br />
-src/fshelper/mod.rs
-src/lscolors/mod.rs
-tests/testenv/mod.rs</p>
-<p>Searching for a particular file name</p>
-<p>To find files with exactly the provided search pattern, use the -g (or --glob) option:</p>
-<p><code>fd -g libc.so /usr</code><br />
-/usr/lib32/libc.so
-/usr/lib/libc.so</p>
-<p>Hidden and ignored files</p>
-<p>By default, fd does not search hidden directories and does not show hidden files in the search results. To disable this behavior, we can use the -H (or --hidden) option:</p>
-<p><code>fd pre-commit</code><br />
-<code>fd -H pre-commit</code><br />
-.git/hooks/pre-commit.sample</p>
-<p>If we work in a directory that is a Git repository (or includes Git repositories), fd does not search folders (and does not show files) that match one of the .gitignore patterns. To disable this behavior, we can use the -I (or --no-ignore) option:</p>
-<p><code>fd num_cpu</code><br />
-<code>fd -I num_cpu</code><br />
-target/debug/deps/libnum_cpus-f5ce7ef99006aa05.rlib</p>
-<p>To really search all files and directories, simply combine the hidden and ignore features to show everything (-HI) or use -u/--unrestricted.
-Matching the full path</p>
-<p>By default, fd only matches the filename of each file. However, using the --full-path or -p option, you can match against the full path.</p>
-<p><code>fd -p -g '**/.git/config'</code><br />
-<code>fd -p '.*/lesson-\d+/[a-z]+.(jpg|png)'</code></p>
-<p>Command execution</p>
-<p>Instead of just showing the search results, you often want to do something with them. fd provides two ways to execute external commands for each of your search results:</p>
-<pre><code>The -x/--exec option runs an external command for each of the search results (in parallel).
-The -X/--exec-batch option launches the external command once, with all search results as arguments.
+<ul>
+<li><strong><code>MaximumKillRingCount</code>:</strong> Specifies the maximum number of commands to store in the "kill ring" (used for cutting and pasting). This is less directly related to history but can affect your command editing experience.</li>
+</ul>
+<pre><code class="language-powershell">Set-PSReadLineOption -MaximumKillRingCount 10
 </code></pre>
-<p>Examples</p>
-<p>Recursively find all zip archives and unpack them:</p>
-<p><code>fd -e zip -x unzip</code></p>
-<p>If there are two such files, file1.zip and backup/file2.zip, this would execute unzip file1.zip and unzip backup/file2.zip. The two unzip processes run in parallel (if the files are found fast enough).</p>
-<p>Find all *.h and *.cpp files and auto-format them inplace with clang-format -i:</p>
-<p><code>fd -e h -e cpp -x clang-format -i</code></p>
-<p>Note how the -i option to clang-format can be passed as a separate argument. This is why we put the -x option last.</p>
-<p>Find all test_*.py files and open them in your favorite editor:</p>
-<p><code>fd -g 'test_*.py' -X vim</code></p>
-<p>Note that we use capital -X here to open a single vim instance. If there are two such files, test_basic.py and lib/test_advanced.py, this will run vim test_basic.py lib/test_advanced.py.</p>
-<p>To see details like file permissions, owners, file sizes etc., you can tell fd to show them by running ls for each result:</p>
-<p><code>fd … -X ls -lhd --color=always</code></p>
-<p>This pattern is so useful that fd provides a shortcut. You can use the -l/--list-details option to execute ls in this way: <code>fd … -l</code></p>
-<p>The -X option is also useful when combining fd with ripgrep (rg) in order to search within a certain class of files, like all C++ source files:</p>
-<p><code>fd -e cpp -e cxx -e h -e hpp -X rg 'std::cout &lt;&lt;'</code></p>
-<p>Convert all *.jpg files to *.png files:</p>
-<p><code>fd -e jpg -x convert {} {.}.png</code></p>
-<p>Here, {} is a placeholder for the search result. {.} is the same, without the file extension. See below for more details on the placeholder syntax.</p>
-<p>The terminal output of commands run from parallel threads using -x will not be interlaced or garbled, so fd -x can be used to rudimentarily parallelize a task run over many files. An example of this is calculating the checksum of each individual file within a directory.</p>
-<p><code>fd -tf -x md5sum &gt; file_checksums.txt</code></p>
-<p>Placeholder syntax</p>
-<p>The -x and -X options take a command template as a series of arguments (instead of a single string). If you want to add additional options to fd after the command template, you can terminate it with a ;.</p>
-<p>The syntax for generating commands is similar to that of GNU Parallel:</p>
-<pre><code>{}: A placeholder token that will be replaced with the path of the search result (documents/images/party.jpg).
-{.}: Like {}, but without the file extension (documents/images/party).
-{/}: A placeholder that will be replaced by the basename of the search result (party.jpg).
-{//}: The parent of the discovered path (documents/images).
-{/.}: The basename, with the extension removed (party).
+<ul>
+<li><strong><code>HistoryNoDuplicates</code>:</strong> Specifies whether to prevent consecutive duplicate commands from being added to the history. (Defaults to <code>$true</code>).</li>
+<li><strong><code>HistorySearchCaseSensitive</code>:</strong> Specifies whether history searches (<code>Ctrl+R</code>, <code>Ctrl+S</code>) are case-sensitive. (Defaults to <code>$false</code>).</li>
+<li><strong><code>HistorySaveStyle</code>:</strong> Specifies how the history is saved. The default is <code>SaveIncrementally</code>, which saves each command to the history file as it's executed.</li>
+</ul>
+<h2 id="example-configuring-psreadline-history"><a class="header" href="#example-configuring-psreadline-history">Example: Configuring PSReadLine History</a></h2>
+<p>To configure <code>PSReadLine</code> history, you typically add the <code>Set-PSReadLineOption</code> commands to your PowerShell profile. The profile is a script that runs automatically when PowerShell starts.</p>
+<p><strong>1. Find Your Profile:</strong></p>
+<pre><code class="language-powershell">$PROFILE
 </code></pre>
-<p>If you do not include a placeholder, fd automatically adds a {} at the end.
-Parallel vs. serial execution</p>
-<p>For -x/--exec, you can control the number of parallel jobs by using the -j/--threads option. Use --threads=1 for serial execution.
-Excluding specific files or directories</p>
-<p>Sometimes we want to ignore search results from a specific subdirectory. For example, we might want to search all hidden files and directories (-H) but exclude all matches from .git directories. We can use the -E (or --exclude) option for this. It takes an arbitrary glob pattern as an argument:</p>
-<p><code>fd -H -E .git …</code></p>
-<p>We can also use this to skip mounted directories:</p>
-<p><code>fd -E /mnt/external-drive …</code></p>
-<p>.. or to skip certain file types:</p>
-<p><code>fd -E '*.bak' …</code></p>
-<p>To make exclude-patterns like these permanent, you can create a .fdignore file. They work like .gitignore files, but are specific to fd. For example:</p>
-<p><code>cat ~/.fdignore</code><br />
-/mnt/external-drive
-*.bak</p>
-<p>Note</p>
-<p>fd also supports .ignore files that are used by other programs such as rg or ag.</p>
-<p>If you want fd to ignore these patterns globally, you can put them in fd's global ignore file. This is usually located in ~/.config/fd/ignore in macOS or Linux, and %APPDATA%\fd\ignore in Windows.</p>
-<p>You may wish to include .git/ in your fd/ignore file so that .git directories, and their contents are not included in output if you use the --hidden option.
-Deleting files</p>
-<p>You can use fd to remove all files and directories that are matched by your search pattern. If you only want to remove files, you can use the --exec-batch/-X option to call rm. For example, to recursively remove all .DS_Store files, run:</p>
-<p><code>fd -H '^\.DS_Store$' -tf -X rm</code></p>
-<p>If you are unsure, always call fd without -X rm first. Alternatively, use rms "interactive" option:</p>
-<p><code>fd -H '^\.DS_Store$' -tf -X rm -i</code></p>
-<p>If you also want to remove a certain class of directories, you can use the same technique. You will have to use rms --recursive/-r flag to remove directories.</p>
-<p>Note</p>
-<p>There are scenarios where using fd … -X rm -r can cause race conditions: if you have a path like …/foo/bar/foo/… and want to remove all directories named foo, you can end up in a situation where the outer foo directory is removed first, leading to (harmless) "'foo/bar/foo': No such file or directory" errors in the rm call.
-Command-line options</p>
-<p>This is the output of fd -h. To see the full set of command-line options, use fd --help which also includes a much more detailed help text.</p>
-<p>Usage: fd [OPTIONS] [pattern] [path]...</p>
-<p>Arguments:
-[pattern]  the search pattern (a regular expression, unless '--glob' is used; optional)
-[path]...  the root directories for the filesystem search (optional)</p>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Options</th><th style="text-align: left">Description</th></tr></thead><tbody>
-<tr><td style="text-align: left">-H, --hidden</td><td style="text-align: left">Search hidden files and directories</td></tr>
-<tr><td style="text-align: left">-I, --no-ignore</td><td style="text-align: left">Do not respect .(git|fd) ignore files</td></tr>
-<tr><td style="text-align: left">-s, --case-sensitive</td><td style="text-align: left">Case-sensitive search (default: smart case)</td></tr>
-<tr><td style="text-align: left">-i, --ignore-case</td><td style="text-align: left">Case-insensitive search (default: smart case)</td></tr>
-<tr><td style="text-align: left">-g, --glob</td><td style="text-align: left">Glob-based search (default: regular expression)</td></tr>
-<tr><td style="text-align: left">-a, --absolute-path</td><td style="text-align: left">Show absolute instead of relative paths</td></tr>
-<tr><td style="text-align: left">-l, --list-details</td><td style="text-align: left">Use a long listing format with file metadata</td></tr>
-<tr><td style="text-align: left">-L, --follow</td><td style="text-align: left">Follow symbolic links</td></tr>
-<tr><td style="text-align: left">-p, --full-path</td><td style="text-align: left">Search full abs. path (default: filename only)</td></tr>
-<tr><td style="text-align: left">-d, --max-depth &lt;depth&gt;</td><td style="text-align: left">Set maximum search depth (default: none)</td></tr>
-<tr><td style="text-align: left">-E, --exclude &lt;pattern&gt;</td><td style="text-align: left">Exclude entries that match the given glob pattern</td></tr>
-<tr><td style="text-align: left">-t, --type &lt;filetype&gt;</td><td style="text-align: left">Filter by type: file (f), directory (d/dir), symlink (l),executable (x), empty (e), socket (s), pipe (p), char-device (c), block-device (b)</td></tr>
-<tr><td style="text-align: left">-e, --extension &lt;ext&gt;</td><td style="text-align: left">Filter by file extension</td></tr>
-<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left">-S, --size &lt;size&gt;</td><td style="text-align: left">Limit results based on the size of files</td></tr>
-<tr><td style="text-align: left">--changed-within &lt;date|dur&gt;</td><td style="text-align: left">Filter by file modification time (newer than)</td></tr>
-<tr><td style="text-align: left">--changed-before &lt;date|dur&gt;</td><td style="text-align: left">Filter by file modification time (older than)</td></tr>
-<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left">-o, --owner <a href="user:group">user:group</a></td><td style="text-align: left">Filter by owning user and/or group</td></tr>
-<tr><td style="text-align: left">--format &lt;fmt&gt;</td><td style="text-align: left">Print results according to template</td></tr>
-<tr><td style="text-align: left">-x, --exec &lt;cmd&gt;...</td><td style="text-align: left">Execute a command for each search result</td></tr>
-<tr><td style="text-align: left">-X, --exec-batch &lt;cmd&gt;...</td><td style="text-align: left">Execute a command with all search results at once</td></tr>
-<tr><td style="text-align: left">-c, --color &lt;when&gt;</td><td style="text-align: left">When to use colors [default: auto] [possible values: auto, always, never]</td></tr>
-<tr><td style="text-align: left">--hyperlink[=&lt;when&gt;]</td><td style="text-align: left">Add hyperlinks to output paths [default: never] [possible values: auto, always, never]</td></tr>
-<tr><td style="text-align: left">-h, --help</td><td style="text-align: left">Print help (see more with '--help')</td></tr>
-<tr><td style="text-align: left">-V, --version</td><td style="text-align: left">Print version</td></tr>
-</tbody></table>
-</div><style>
+<p>This will show you the path to your current PowerShell profile. If the file doesn't exist, you can create it.</p>
+<p><strong>2. Edit Your Profile:</strong><br />
+Open the profile file in a text editor (like VS Code or Notepad).</p>
+<p><strong>3. Add Configuration:</strong><br />
+Add the <code>Set-PSReadLineOption</code> commands to the profile. For example:</p>
+<pre><code class="language-powershell">Set-PSReadLineOption -HistorySavePath "$env:USERPROFILE\.powershell\MyHistory.txt"
+Set-PSReadLineOption -MaximumHistoryCount 10000
+Set-PSReadLineOption -HistoryNoDuplicates $true
+</code></pre>
+<p><strong>4. Save and Restart:</strong><br />
+Save the profile file and restart PowerShell. Save the profile file and restart PowerShell.</p>
+<h2 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h2>
+<ul>
+<li><strong>History Not Saving:</strong>
+<ul>
+<li>Make sure <code>PSReadLine</code> is installed (<code>Get-Module PSReadLine -ListAvailable</code>). If not, install it: <code>Install-Module PSReadLine -Force</code>.</li>
+<li>Check that the <code>HistorySavePath</code> is valid and that PowerShell has permissions to write to that location.</li>
+<li>Ensure that <code>HistorySaveStyle</code> is set to <code>SaveIncrementally</code> (the default) or <code>SaveAtExit</code>.</li>
+</ul>
+</li>
+<li><strong>History Not Showing Up:</strong>
+<ul>
+<li>Verify that <code>MaximumHistoryCount</code> is set to a reasonable value.</li>
+<li>Make sure you're using the correct key bindings for history navigation (Up/Down arrows, Ctrl+R, Ctrl+S).</li>
+<li>If you've recently cleared the history, it will be empty.</li>
+</ul>
+</li>
+</ul>
+<style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
@@ -501,11 +435,11 @@ Command-line options</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="yazi.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="windows_terminal_settings.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="eza.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="vscode_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -515,11 +449,11 @@ Command-line options</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="yazi.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="windows_terminal_settings.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="eza.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="vscode_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

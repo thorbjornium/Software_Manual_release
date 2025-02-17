@@ -119,12 +119,12 @@
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
                             <li role="none"><button role="menuitem" class="theme" id="sun">Sun</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="nordic">Nordic</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
                             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                         </ul>
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
@@ -283,8 +283,6 @@
 <ul>
 <li><a href="#change-browser-tab-title">Change browser tab title</a></li>
 <li><a href="#include-other-files">Include other files</a></li>
-<li><a href="#rust-playground">Rust Playground</a></li>
-<li><a href="#mathjax-support">MathJax support</a></li>
 <li><a href="#embedify">Embedify</a></li>
 <li><a href="#alerts">Alerts</a></li>
 <li><a href="#mermaid">Mermaid</a></li>
@@ -304,42 +302,53 @@
 <p>Include line 2-10 of the file rust.rs.</p>
 <pre><code>{{#include rust.rs:2:10}}
 </code></pre>
-<pre><code>fn do_things&lt;T&gt;(a: T, b: T) where
+<pre><code>fn do_things&lt;T&gt;(a: T, b: T)
+where
     T: IntoIterator,
-    T::Item: Display {
-    for (e,f) in a.into_iter().zip(b.into_iter()) {
+    T::Item: Display,
+{
+    for (e, f) in a.into_iter().zip(b.into_iter()) {
         println!("{} {}", e, f);
-    }
-}
-</code></pre>
-<h2 id="rust-playground"><a class="header" href="#rust-playground">Rust Playground</a></h2>
-<p>Use <a href="https://play.rust-lang.org">Rust Playground</a> to run code in the browser.</p>
-<p>Produce editable code that runs in the browser.</p>
-<pre><code>```rust,editable
-fn main() {
-    let number = 5;
-    print!("{}", number);
-}
-```
+    }```  
+
+## Rust Playground  
+
+Use [Rust Playground](https://play.rust-lang.org) to run code in the browser.
+
+Produce editable code that runs in the browser.
+
 </code></pre>
 <pre><pre class="playground"><code class="language-rust editable">fn main() {
     let number = 5;
     print!("{}", number);
 }</code></pre></pre>
-<p>Non-editable code. Runs in the browser.</p>
-<pre><code>```rust
+<pre><code>
+```rust,editable
 fn main() {
-    let x = "Rust";
-    print!("{}", x);
+    let number = 5;
+    print!("{}", number);
 }
 ```
+
+Non-editable code. Runs in the browser.
+
 </code></pre>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let x = "Rust";
     print!("{}", x);
 }</code></pre></pre>
-<h2 id="mathjax-support"><a class="header" href="#mathjax-support">MathJax support</a></h2>
-<pre><code class="language-plaintext">\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
+<pre><code>
+```rust
+fn main() {
+    let x = "Rust";
+    print!("{}", x);
+}
+```
+
+## MathJax support  
+
+````plaintext  
+\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
 </code></pre>
 <p>\[ \mu = \frac{1}{N} \sum_{i=0} x_i \]</p>
 <div class="mdbook-alerts mdbook-alerts-note">

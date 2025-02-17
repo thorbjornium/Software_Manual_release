@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Customization</title>
+        <title>Settings</title>
 
 
         <!-- Custom HTML head -->
@@ -119,12 +119,12 @@
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
                             <li role="none"><button role="menuitem" class="theme" id="sun">Sun</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="nordic">Nordic</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
                             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                         </ul>
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/vscode_customization.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/windows_terminal_settings.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,41 +279,34 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="customize-settings"><a class="header" href="#customize-settings">Customize settings</a></h1>
+<h1 id="settings"><a class="header" href="#settings">Settings</a></h1>
 <ul>
-<li><a href="#via-json">Via JSON</a></li>
-<li><a href="#via-ui">Via UI</a></li>
+<li><a href="#terminal-icons">Terminal Icons</a></li>
 </ul>
-<h2 id="via-json"><a class="header" href="#via-json">Via JSON</a></h2>
-<p><strong>Open the command palette and find Preferences: Open keyboard shortcuts (JSON) and paste the following:</strong></p>
-<p>Switch focus between terminal and editor.</p>
-<p><kbd>ctrl</kbd> + <kbd>`</kbd></p>
-<pre><code class="language-json">{
-    "key":     "ctrl+`",
-    "command": "workbench.action.terminal.focus"
-},
-{
-    "key":     "ctrl+`",
-    "command": "workbench.action.focusActiveEditorGroup",
-    "when":    "terminalFocus"
-}
+<p>Open settings: <kbd>Ctrl</kbd> + <kbd>,</kbd></p>
+<p>To open command palette press: <kbd>Ctrl</kbd> + <kbd>,</kbd>
+All default keyboard shortcuts can be found in this menu. Some are not bound.
+Click on the JSON file in the lower left corner to edit bound and unbound shortcuts. To view all default
+settings <kbd>Alt</kbd> + click the JSON file.</p>
+<h2 id="terminal-icons"><a class="header" href="#terminal-icons">Terminal Icons</a></h2>
+<p>Install Terminal icons:</p>
+<div class="mdbook-tabs-container" data-tabglobal="install">
+<nav class="mdbook-tabs">
+<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
+<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
+</nav>
+<div class="mdbook-tab-content" data-tabname="Winget">
+<pre><code class="language-Powershell">Install-Module -Name Terminal-Icons -Repository PSGallery
 </code></pre>
-<p>Adjust font size on terminal</p>
-<p><kbd>ctrl</kbd> + <kbd>+</kbd> / <kbd>ctrl</kbd> + <kbd>-</kbd></p>
-<pre><code class="language-json">    {
-        "key": "ctrl+=",
-        "command": "workbench.action.terminal.fontZoomIn",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+-",
-        "command": "workbench.action.terminal.fontZoomOut",
-        "when": "terminalFocus"
-    }
+</div>
+<div class="mdbook-tab-content hidden" data-tabname="Scoop">
+<pre><code class="language-Powershell">scoop bucket add extras
+scoop install terminal-icons
 </code></pre>
-<h2 id="via-ui"><a class="header" href="#via-ui">Via UI</a></h2>
-<p><strong>Open the command palette and find Preferences: Open Settings UI or press <kbd>Ctrl</kbd> + <kbd>,</kbd></strong></p>
-<p>Paste "editor.find.autoFindInSelection" in search settings and choose 'multiline' to enable to search selected text.</p>
+</div>
+</div>
+<p>Add <code>Import-Module -Name Terminal-Icons</code> to your PowerShell profile.</p>
+<p>More info <a href="https://github.com/devblackops/Terminal-Icons">here</a></p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -359,11 +352,11 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="vscode_shortcuts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="windows_terminal_default_keyboard_shortcuts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="essential_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ps_readline_settings.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -373,11 +366,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="vscode_shortcuts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="windows_terminal_default_keyboard_shortcuts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="essential_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ps_readline_settings.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
