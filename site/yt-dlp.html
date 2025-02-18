@@ -339,7 +339,7 @@
 <pre><code class="language-powershell">yt-dlp "URL_OF_THE_VIDEO"
 </code></pre>
 <p>Replace <code>"URL_OF_THE_VIDEO"</code> with the actual URL of the YouTube video or other supported video site. For example:</p>
-<pre><code class="language-powershell">yt-dlp "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+<pre><code class="language-powershell">yt-dlp https://www.youtube.com/watch?v=dQw4w9WgXcQ
 </code></pre>
 <p>If you added yt-dlp to your PATH, you can run this command from any directory. Otherwise, you'll need to navigate to the directory where you saved <code>yt-dlp.exe</code> first.</p>
 <p>3 .Progress and Output: yt-dlp will display progress information in the console window as it downloads the video. The downloaded video file will be saved in the current directory by default.</p>
@@ -368,35 +368,35 @@
 </div>
 <h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
 <h3 id="downloading-the-best-available-video-and-audio"><a class="header" href="#downloading-the-best-available-video-and-audio">Downloading the Best Available Video and Audio</a></h3>
-<pre><code class="language-powershell"># yt-dlp "&lt;https://www.youtube.com/watch?v=dQw4w9WgXcQ&gt;"
+<pre><code class="language-powershell">yt-dlp https://www.youtube.com/watch?v=dQw4w9WgXcQ
 </code></pre>
 <h3 id="listing-available-formats"><a class="header" href="#listing-available-formats">Listing Available Formats</a></h3>
 <pre><code class="language-powershell">
-yt-dlp -F "&lt;https://www.youtube.com/watch?v=dQw4w9WgXcQ&gt;"
+yt-dlp -F https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 </code></pre>
 <h3 id="downloading-a-specific-format-video-and-audio-and-merging-with-ffmpeg"><a class="header" href="#downloading-a-specific-format-video-and-audio-and-merging-with-ffmpeg">Downloading a Specific Format (Video and Audio) and Merging with FFmpeg</a></h3>
 <p>First, list the formats to find the video and audio format codes. Then</p>
 <pre><code class="language-powershell">
-yt-dlp -f 137+140 --merge-output-format mp4 "&lt;https://www.youtube.com/watch?v=dQw4w9WgXcQ&gt;"
+yt-dlp -f 137+140 --merge-output-format mp4 https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 </code></pre>
 <p>This downloads format <code>137</code> (1080p video) and <code>140</code> (high-quality audio) and merges them into an MP4 file using FFmpeg</p>
 <h3 id="downloading-only-audio-in-mp3-format"><a class="header" href="#downloading-only-audio-in-mp3-format">Downloading Only Audio in MP3 Format</a></h3>
 <pre><code class="language-powershell">
-yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 "&lt;https://www.youtube.com/watch?v=dQw4w9WgXcQ&gt;"
+yt-dlp --extract-audio --audio-format mp3 --audio-quality 0 https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 </code></pre>
 <p>This extracts the audio as an MP3 file with the best available quality</p>
 <h3 id="downloading-subtitles"><a class="header" href="#downloading-subtitles">Downloading Subtitles</a></h3>
 <pre><code class="language-powershell">
-yt-dlp --write-sub --sub-lang en "&lt;https://www.youtube.com/watch?v=dQw4w9WgXcQ&gt;"
+yt-dlp --write-sub --sub-lang en https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 </code></pre>
 <p>This downloads English subtitles (if available)</p>
 <h3 id="setting-the-output-filename-and-directory"><a class="header" href="#setting-the-output-filename-and-directory">Setting the Output Filename and Directory</a></h3>
 <pre><code class="language-powershell">
-yt-dlp -o "%(title)s-%(id)s.%(ext)s" -P "C:\Downloads" "&lt;https://www.youtube.com/watch?v=dQw4w9WgXcQ&gt;"
+yt-dlp -o "%(title)s-%(id)s.%(ext)s" -P "C:\Downloads" https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 </code></pre>
 <p>This saves the video to <code>C:\Downloads</code> with a filename like <code>Video Title-dQw4w9WgXcQ.mp4</code></p>
@@ -443,7 +443,7 @@ yt-dlp -o "%(title)s-%(id)s.%(ext)s" -P "C:\Downloads" "&lt;https://www.youtube.
 
 # Use a proxy (replace with your proxy address)
 
- --proxy "&lt;http://127.0.0.1:8080&gt;"
+ --proxy "http://127.0.0.1:8080"
 </code></pre>
 <ul>
 <li>
