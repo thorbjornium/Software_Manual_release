@@ -342,7 +342,9 @@
 <pre><code class="language-powershell">yt-dlp https://www.youtube.com/watch?v=dQw4w9WgXcQ
 </code></pre>
 <p>If you added yt-dlp to your PATH, you can run this command from any directory. Otherwise, you'll need to navigate to the directory where you saved <code>yt-dlp.exe</code> first.</p>
-<p>3 .Progress and Output: yt-dlp will display progress information in the console window as it downloads the video. The downloaded video file will be saved in the current directory by default.</p>
+<ol start="3">
+<li>Progress and Output: yt-dlp will display progress information in the console window as it downloads the video. The downloaded video file will be saved in the current directory by default.</li>
+</ol>
 <h2 id="common-options"><a class="header" href="#common-options">Common Options</a></h2>
 <p>yt-dlp has many options to customize the download process. Here are some of the most common</p>
 <div class="table-wrapper"><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody>
@@ -402,7 +404,9 @@ yt-dlp -o "%(title)s-%(id)s.%(ext)s" -P "C:\Downloads" https://www.youtube.com/w
 <p>This saves the video to <code>C:\Downloads</code> with a filename like <code>Video Title-dQw4w9WgXcQ.mp4</code></p>
 <h3 id="configuration-file-yt-dlpconf"><a class="header" href="#configuration-file-yt-dlpconf">Configuration File (yt-dlp.conf)</a></h3>
 <p>yt-dlp can also be configured using a configuration file</p>
-<p>1.Location: The <code>yt-dlp.conf</code> file should be placed in one of the following locations (yt-dlp will search in this order)</p>
+<ol>
+<li>Location: The <code>yt-dlp.conf</code> file should be placed in one of the following locations (yt-dlp will search in this order)</li>
+</ol>
 <ul>
 <li>
 <p>The current working directory</p>
@@ -417,8 +421,14 @@ yt-dlp -o "%(title)s-%(id)s.%(ext)s" -P "C:\Downloads" https://www.youtube.com/w
 <p><code>~/.config/yt-dlp</code> (This is more relevant for Linux/macOS but might work in a Cygwin/MSYS2 environment)</p>
 </li>
 </ul>
-<p>2.Creating the File: Create a new text file named <code>yt-dlp.conf</code> in one of the above directories</p>
-<p>3.Example Configuration:</p>
+<ol start="2">
+<li>
+<p>Creating the File: Create a new text file named <code>yt-dlp.conf</code> in one of the above directories</p>
+</li>
+<li>
+<p>Example Configuration:</p>
+</li>
+</ol>
 <pre><code class="language-txt"># Always extract audio as mp3
 
 --extract-audio
@@ -443,14 +453,14 @@ yt-dlp -o "%(title)s-%(id)s.%(ext)s" -P "C:\Downloads" https://www.youtube.com/w
 
 # Use a proxy (replace with your proxy address)
 
- --proxy "http://127.0.0.1:8080"
+--proxy "http://127.0.0.1:8080"
 </code></pre>
 <ul>
-<li>
-<p>Uncomment the <code>--proxy</code> line and replace the address with your proxy server if needed</p>
-<p>4.Using the Configuration File: yt-dlp will automatically load the configuration file when it runs. You can still override options from the command line</p>
-</li>
+<li>Uncomment the <code>--proxy</code> line and replace the address with your proxy server if needed</li>
 </ul>
+<ol start="4">
+<li>Using the Configuration File: yt-dlp will automatically load the configuration file when it runs. You can still override options from the command line</li>
+</ol>
 <h2 id="updating-yt-dlp"><a class="header" href="#updating-yt-dlp">Updating yt-dlp</a></h2>
 <p>Use the <code>--update</code> option to update yt-dlp to the latest version</p>
 <pre><code class="language-powershell">
