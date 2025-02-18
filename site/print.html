@@ -5503,40 +5503,489 @@ prepend_previewers = [
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="hard-links-soft-links-and-junctions-in-powershell"><a class="header" href="#hard-links-soft-links-and-junctions-in-powershell">Hard Links, Soft Links, and Junctions in PowerShell</a></h1>
-<h2 id="hard-links"><a class="header" href="#hard-links">Hard Links</a></h2>
+<h1 id="ffmpeg"><a class="header" href="#ffmpeg">FFmpeg</a></h1>
 <ul>
-<li><strong>Definition</strong>: A hard link is a directory entry that associates a name with a file on a file system. It allows multiple names to refer to the same file data on disk.</li>
+<li><a href="ffmpeg.html#remux-2160p-mkv-to-mp4">Remux 2160p .mkv to .mp4</a></li>
+<li><a href="ffmpeg.html#encode-gif-to-mp4--screentogif">Encode .gif to .mp4  (ScreenToGif)</a></li>
+<li><a href="ffmpeg.html#extract-and-convert-audio-from-media-file">Extract and convert audio from media file</a></li>
+<li><a href="ffmpeg.html#change-resolution-of-video-files">Change resolution of video files</a></li>
+<li><a href="ffmpeg.html#removing-audio-stream-from-a-video-file">Removing audio stream from a video file</a></li>
+<li><a href="ffmpeg.html#removing-video-stream-from-a-media-file">Removing video stream from a media file</a></li>
+<li><a href="ffmpeg.html#extracting-images-from-video">Extracting images from video</a></li>
+<li><a href="ffmpeg.html#crop-video">Crop video</a></li>
+<li><a href="ffmpeg.html#clip-sections-of-a-video">Clip sections of a video</a></li>
+<li><a href="ffmpeg.html#stitch-multiple-videos-together">Stitch multiple videos together</a></li>
+<li><a href="ffmpeg.html#set-aspect-ratio">Set aspect ratio</a></li>
+<li><a href="ffmpeg.html#loop-an-image-with-audio">Loop an image with audio</a></li>
+<li><a href="ffmpeg.html#scale-and-crop-an-image">Scale and crop an image</a></li>
+<li><a href="ffmpeg.html#links">Links</a></li>
 </ul>
-<h3 id="creating-a-hard-link"><a class="header" href="#creating-a-hard-link">Creating a Hard Link</a></h3>
-<pre><code class="language-powershell">New-Item -ItemType HardLink -Path "C:\Path\To\HardLink.txt" -Target "C:\Path\To\OriginalFile.txt"
+<h2 id="remux-2160p-mkv-to-mp4"><a class="header" href="#remux-2160p-mkv-to-mp4">Remux 2160p .mkv to .mp4</a></h2>
+<pre><code class="language-plaintext">ffmpeg -y -i Input_File.mkv -strict experimental -loglevel error -stats -map 0:v? -map 0:a? -dn -map_chapters -1 -movflags +faststart -c:v copy -c:a copy -strict -2 Output_File.mp4
+</code></pre>
+<h2 id="encode-gif-to-mp4--screentogif"><a class="header" href="#encode-gif-to-mp4--screentogif">Encode .gif to .mp4  (ScreenToGif)</a></h2>
+<pre><code class="language-plaintext">ffmpeg -i example.gif -movflags faststart -pix_fmt yuv420p -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4  
+
+</code></pre>
+<h2 id="extract-and-convert-audio-from-media-file"><a class="header" href="#extract-and-convert-audio-from-media-file">Extract and convert audio from media file</a></h2>
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320k -f mp3 output.mp3
+</code></pre>
+<p><code>-vn</code> - Indicates that we have disabled video recording in the output file.<br />
+<code>-ar</code> - Set the audio frequency of the output file. The common values used are  22050, 44100, 48000 Hz.<br />
+<code>-ac</code> - Set the number of audio channels.<br />
+<code>-ab</code> - Indicates the audio bitrate.<br />
+<code>-f</code> - Output file format. In our case, it's mp3 format.</p>
+<h2 id="change-resolution-of-video-files"><a class="header" href="#change-resolution-of-video-files">Change resolution of video files</a></h2>
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4  
+</code></pre>
+<h2 id="removing-audio-stream-from-a-video-file"><a class="header" href="#removing-audio-stream-from-a-video-file">Removing audio stream from a video file</a></h2>
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -an output.mp4  
+</code></pre>
+<h2 id="removing-video-stream-from-a-media-file"><a class="header" href="#removing-video-stream-from-a-media-file">Removing video stream from a media file</a></h2>
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ab 320k output.mp3  
+</code></pre>
+<h2 id="extracting-images-from-video"><a class="header" href="#extracting-images-from-video">Extracting images from video</a></h2>
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png  
+</code></pre>
+<p><code>-r</code> - Set the frame rate. I.e the number of frames to be extracted into images per second. The default value is 25.<br />
+<code>-f</code> - Indicates the output format i.e image format in our case.
+image-%2d.png - Indicates how we want to name the extracted images. In this case, the names should start like image-01.png, image-02.png, image-03.png and so on. If you use %3d, then the name of images will start like image-001.png, image-002.png and so on.</p>
+<h2 id="crop-video"><a class="header" href="#crop-video">Crop video</a></h2>
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
+</code></pre>
+<p><code>-filter:v</code> - Indicates the video filter.<br />
+<code>crop</code> - Indicates crop filter.<br />
+<code>w</code> - Width of the rectangle that we want to crop from the source video.<br />
+<code>h</code> - Height of the rectangle.<br />
+<code>x</code> - x coordinate of the rectangle that we want to crop from the source video.<br />
+<code>y</code> - y coordinate of the rectangle.</p>
+<p>Let us say you want to a video with a width of 640 pixels and a height of 480 pixels, from the position (200,150), the command would be:</p>
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=640:480:200:150" output.mp4`  
+</code></pre>
+<h2 id="clip-sections-of-a-video"><a class="header" href="#clip-sections-of-a-video">Clip sections of a video</a></h2>
+<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -ss 00:01:30 -to 00:01:55 -c copy output.mp4
+</code></pre>
+<p><code>-i input_file.mp4</code> - Specifies the input video file<br />
+<code>-ss 00:01:30</code> - Sets the start time (1 minute and 30 seconds into the video)<br />
+<code>-to 00:01:55</code> - Sets the end time of the video<br />
+<code>-c copy</code> - Copies the streams without re-encoding (faster)<br />
+<code>output.mp4</code> - Name of the output file</p>
+<p>For a more accurate cut encoding can be used but will be slower.</p>
+<pre><code class="language-plaintext">ffmpeg -ss 00:01:30 -i input_file.mp4 -t 00:00:30 -c:v libx264 -c:a aac output.mp4  
+</code></pre>
+<h2 id="stitch-multiple-videos-together"><a class="header" href="#stitch-multiple-videos-together">Stitch multiple videos together</a></h2>
+<p>First create a list of files.</p>
+<p>cmd:</p>
+<pre><code class="language-cmd">(for %i in (*.mp4) do @echo file '%i') &gt; files.txt
+</code></pre>
+<p>Powershell:</p>
+<pre><code class="language-Powershell">foreach ($i in Get-ChildItem .\*.mp4) {echo "file '$i'" &gt;&gt; files.txt}  
+</code></pre>
+<p>Bash:</p>
+<pre><code class="language-bash">for f in *.mp4; do echo "file '$f'" &gt;&gt; videos.txt; done
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">printf "file '%s'\n" * &gt; files.txt
+</code></pre>
+<p>Once your text file is ready it should contain all the names of files you want to concatenate in this format:</p>
+<pre><code class="language-plaintext">file 'file2.mp4'
+file 'file3.mp4'
+file 'file1.mp4'
+</code></pre>
+<p>Now you can enter the following command to concatenate the files:</p>
+<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i files.txt -c copy output.mp4  
+</code></pre>
+<p>With transcoding:</p>
+<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i input.txt -c:v libx264 -c:a aac output.mp4  
+</code></pre>
+<p><code>-f concat</code> - Specifies the concat format<br />
+<code>-safe 0</code> - Allows ffmpeg to read files in the current directory<br />
+<code>-i input.txt</code> - Input file containing the list of videos<br />
+<code>-c copy</code> - Copies the codecs without re-encoding (faster)<br />
+<code>-c:v libx264</code> - uses the x264 (H.264) video encoder<br />
+<code>-c:a aac</code> - uses the AAC audio encoder<br />
+<code>output.mp4</code> - Name of the output file</p>
+<p>Method 2: Using the concat filter</p>
+<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -i input2.mp4 -i input3.mp4 -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
+</code></pre>
+<p><code>-i input1.mp4 -i input2.mp4 -i input3.mp4</code> - Input video files<br />
+<code>-filter_complex</code> - Applies complex filtering<br />
+<code>concat=n=3:v=1:a=1</code> - Concatenates 3 inputs with 1 video and 1 audio stream each<br />
+<code>[outv][outa]</code> - Labels for the output video and audio streams<br />
+<code>-map "[outv]" -map "[outa]"</code> - Maplaintext the labeled streams to the output</p>
+<h2 id="set-aspect-ratio"><a class="header" href="#set-aspect-ratio">Set aspect ratio</a></h2>
+<pre><code class="language-plaintext">ffmpeg -i input.mp4 -aspect 16:9 output.mp4
+</code></pre>
+<p>The commonly used aspect ratios are:</p>
+<p>16:9<br />
+4:3<br />
+16:10<br />
+5:4<br />
+2:21:1<br />
+2:35:1<br />
+2:39:1</p>
+<h2 id="loop-an-image-with-audio"><a class="header" href="#loop-an-image-with-audio">Loop an image with audio</a></h2>
+<pre><code class="language-plaintext">ffmpeg -loop 1 -i inputimage.jpg -i inputaudio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+</code></pre>
+<h2 id="scale-and-crop-an-image"><a class="header" href="#scale-and-crop-an-image">Scale and crop an image</a></h2>
+<p>Scaled and cropped to width: 3840 pixels and height: 2160 pixels</p>
+<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=3840:-1:flags=lanczos,crop=3840:2160 image_after.jpg
+</code></pre>
+<p>Scaled and cropped to height: 2160 pixels and width: 3840 pixels</p>
+<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=-1:2160:flags=lanczos,crop=3840:2160 image_after.jpg
+</code></pre>
+<h2 id="links"><a class="header" href="#links">Links</a></h2>
+<p><a href="httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/">httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/</a></p>
+<p><a href="httplaintext://www.ffmpeg.org/documentation.html">httplaintext://www.ffmpeg.org/documentation.html</a></p>
+<p><a href="httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts">httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts</a></p>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="hard-links-soft-links-symbolic-links-and-junctions-in-powershell"><a class="header" href="#hard-links-soft-links-symbolic-links-and-junctions-in-powershell">Hard Links, Soft Links (Symbolic Links), and Junctions in PowerShell</a></h1>
+<ul>
+<li><a href="powershell_links_and_junctions.html#understanding-the-concepts">Understanding the Concepts</a></li>
+<li><a href="powershell_links_and_junctions.html#hard-link">Hard Link</a></li>
+<li><a href="powershell_links_and_junctions.html#soft-link-symbolic-link">Soft Link (Symbolic Link)</a></li>
+<li><a href="powershell_links_and_junctions.html#junction">Junction</a></li>
+<li><a href="powershell_links_and_junctions.html#powershell-cmdlets">PowerShell Cmdlets</a></li>
+<li><a href="powershell_links_and_junctions.html#1-creating-hard-links">1. Creating Hard Links</a>
+<ul>
+<li><a href="powershell_links_and_junctions.html#syntax">Syntax</a></li>
+<li><a href="powershell_links_and_junctions.html#example">Example</a></li>
+</ul>
+</li>
+<li><a href="powershell_links_and_junctions.html#important-considerations-for-hard-links">Important Considerations for Hard Links</a></li>
+<li><a href="powershell_links_and_junctions.html#2-creating-soft-links-symbolic-links">2. Creating Soft Links (Symbolic Links)</a>
+<ul>
+<li><a href="powershell_links_and_junctions.html#syntax-1">Syntax</a></li>
+<li><a href="powershell_links_and_junctions.html#example-1">Example</a></li>
+</ul>
+</li>
+<li><a href="powershell_links_and_junctions.html#key-points-for-soft-links">Key Points for Soft Links:</a></li>
+<li><a href="powershell_links_and_junctions.html#3-creating-junctions">3. Creating Junctions</a>
+<ul>
+<li><a href="powershell_links_and_junctions.html#syntax-2">Syntax</a></li>
+<li><a href="powershell_links_and_junctions.html#example-2">Example</a></li>
+</ul>
+</li>
+<li><a href="powershell_links_and_junctions.html#important-details-for-junctions">Important Details for Junctions</a></li>
+<li><a href="powershell_links_and_junctions.html#checking-link-type">Checking Link Type</a></li>
+<li><a href="powershell_links_and_junctions.html#removing-links">Removing Links</a>
+<ul>
+<li><a href="powershell_links_and_junctions.html#use-remove-item-to-remove-any-of-these-links">Use <code>Remove-Item</code> to remove any of these links</a></li>
+</ul>
+</li>
+<li><a href="powershell_links_and_junctions.html#important-notes-on-removal">Important Notes on Removal</a></li>
+<li><a href="powershell_links_and_junctions.html#error-handling">Error Handling</a>
+<ul>
+<li><a href="powershell_links_and_junctions.html#its-a-good-practice-to-include-error-handling-when-creating-links">It's a good practice to include error handling when creating links</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="understanding-the-concepts"><a class="header" href="#understanding-the-concepts">Understanding the Concepts</a></h2>
+<h2 id="hard-link"><a class="header" href="#hard-link">Hard Link</a></h2>
+<p>A hard link is essentially another name for the same file.  Both the original file and the hard link point to the same data on the disk. If you modify one, the other reflects the changes immediately because they are the same data.  You can't create hard links across different volumes/partitions.  Deleting the original file doesn't delete the data as long as at least one hard link remains</p>
+<h2 id="soft-link-symbolic-link"><a class="header" href="#soft-link-symbolic-link">Soft Link (Symbolic Link)</a></h2>
+<p>A soft link is a pointer to another file or directory.  It acts as a shortcut. If you modify the original file, the changes are reflected when you access the soft link. However, if you delete the original file, the soft link becomes broken (it points to a non-existent location).  Soft links <em>can</em> cross volume boundaries</p>
+<h2 id="junction"><a class="header" href="#junction">Junction</a></h2>
+<p>A junction (also called a directory symbolic link) is similar to a soft link, but it works specifically for directories.  It points to another directory on the <em>same</em> volume.  Like hard links, junctions continue to work even if the original directory is moved within the same volume.  They are transparent to applications; an application accessing the junction thinks it's accessing a real directory.  Junctions cannot cross volume boundaries</p>
+<h2 id="powershell-cmdlets"><a class="header" href="#powershell-cmdlets">PowerShell Cmdlets</a></h2>
+<p>The primary cmdlet for creating links in PowerShell is <code>New-Item</code></p>
+<h2 id="1-creating-hard-links"><a class="header" href="#1-creating-hard-links">1. Creating Hard Links</a></h2>
+<h3 id="syntax"><a class="header" href="#syntax">Syntax</a></h3>
+<pre><code class="language-powershell">
+New-Item -ItemType HardLink -Path "&lt;link_path&gt;" -Target "&lt;target_file&gt;"
+
 </code></pre>
 <h3 id="example"><a class="header" href="#example">Example</a></h3>
-<pre><code class="language-powershell"># Create a hard link
-New-Item -ItemType HardLink -Path "C:\Links\HardLink.txt" -Target "C:\Original\MyFile.txt"
+<pre><code class="language-powershell"># Create a hard link named 'MyHardLink.txt' to the file 'OriginalFile.txt'
+
+New-Item -ItemType HardLink -Path ".\MyHardLink.txt" -Target ".\OriginalFile.txt"
+
 </code></pre>
-<h2 id="soft-links-symbolic-links"><a class="header" href="#soft-links-symbolic-links">Soft Links (Symbolic Links)</a></h2>
+<h2 id="important-considerations-for-hard-links"><a class="header" href="#important-considerations-for-hard-links">Important Considerations for Hard Links</a></h2>
 <ul>
-<li><strong>Definition</strong>: A soft link (or symbolic link) is a special type of file that points to another file or directory by its path.</li>
+<li>
+<p>The <code>-Path</code> specifies the name and location of the <em>new</em> hard link</p>
+</li>
+<li>
+<p>The <code>-Target</code> specifies the path to the <em>existing</em> file you want to create a hard link to</p>
+</li>
+<li>
+<p>Hard links can only be created to files, not directories</p>
+</li>
+<li>
+<p>Hard links must be on the same volume</p>
+</li>
 </ul>
-<h3 id="creating-a-soft-link"><a class="header" href="#creating-a-soft-link">Creating a Soft Link</a></h3>
-<pre><code class="language-powershell">New-Item -ItemType SymbolicLink -Path "C:\Path\To\SoftLink.txt" -Target "C:\Path\To\OriginalFile.txt"
+<h2 id="2-creating-soft-links-symbolic-links"><a class="header" href="#2-creating-soft-links-symbolic-links">2. Creating Soft Links (Symbolic Links)</a></h2>
+<h3 id="syntax-1"><a class="header" href="#syntax-1">Syntax</a></h3>
+<pre><code class="language-powershell">
+New-Item -ItemType SymbolicLink -Path "&lt;link_path&gt;" -Target "&lt;target_path&gt;"
+
 </code></pre>
 <h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
-<pre><code class="language-powershell"># Create a symbolic link
-New-Item -ItemType SymbolicLink -Path "C:\Links\SoftLink.txt" -Target "C:\Original\MyFile.txt"
+<pre><code class="language-powershell"># Create a symbolic link named 'MySoftLink.txt' to the file 'OriginalFile.txt'
+
+New-Item -ItemType SymbolicLink -Path ".\MySoftLink.txt" -Target ".\OriginalFile.txt"
+
+# Create a symbolic link named 'MyDirectoryLink' to the directory 'OriginalDirectory'
+
+New-Item -ItemType SymbolicLink -Path ".\MyDirectoryLink" -Target ".\OriginalDirectory"
+
 </code></pre>
-<h2 id="junctions"><a class="header" href="#junctions">Junctions</a></h2>
+<h2 id="key-points-for-soft-links"><a class="header" href="#key-points-for-soft-links">Key Points for Soft Links:</a></h2>
 <ul>
-<li><strong>Definition</strong>: A junction is a type of symbolic link specific to directories in NTFS file systems, used to create a link to another directory.</li>
+<li>
+<p><code>-Path</code>:  The path and name of the symbolic link</p>
+</li>
+<li>
+<p><code>-Target</code>: The path to the file or directory the link will point to</p>
+</li>
+<li>
+<p>Soft links can point to files or directories</p>
+</li>
+<li>
+<p>Soft links can cross volume boundaries</p>
+</li>
 </ul>
-<h3 id="creating-a-junction"><a class="header" href="#creating-a-junction">Creating a Junction</a></h3>
-<pre><code class="language-powershell">New-Item -ItemType Junction -Path "C:\Path\To\Junction" -Target "C:\Path\To\TargetDirectory"
+<h2 id="3-creating-junctions"><a class="header" href="#3-creating-junctions">3. Creating Junctions</a></h2>
+<h3 id="syntax-2"><a class="header" href="#syntax-2">Syntax</a></h3>
+<pre><code class="language-powershell">
+New-Item -ItemType Junction -Path "&lt;junction_path&gt;" -Target "&lt;target_directory&gt;"
+
 </code></pre>
 <h3 id="example-2"><a class="header" href="#example-2">Example</a></h3>
-<pre><code class="language-powershell"># Create a junction
-New-Item -ItemType Junction -Path "C:\Links\MyJunction" -Target "C:\Original\MyDirectory"
+<pre><code class="language-powershell"># Create a junction named 'MyJunction' that points to the directory 'OriginalDirectory'
+
+New-Item -ItemType Junction -Path ".\MyJunction" -Target ".\OriginalDirectory"
+
 </code></pre>
+<h2 id="important-details-for-junctions"><a class="header" href="#important-details-for-junctions">Important Details for Junctions</a></h2>
+<ul>
+<li>
+<p><code>-Path</code>: The path and name of the junction (which will be a directory)</p>
+</li>
+<li>
+<p><code>-Target</code>: The path to the <em>existing</em> directory the junction will point to</p>
+</li>
+<li>
+<p>Junctions can only point to directories</p>
+</li>
+<li>
+<p>Junctions must be on the same volume</p>
+</li>
+</ul>
+<h2 id="checking-link-type"><a class="header" href="#checking-link-type">Checking Link Type</a></h2>
+<p>You can use <code>Get-Item</code> to inspect the link and determine its type</p>
+<pre><code class="language-powershell">
+$item = Get-Item ".\MySoftLink.txt" # Replace with your link path
+
+$item.LinkType
+
+</code></pre>
+<p>The <code>$item.LinkType</code> property will return</p>
+<ul>
+<li>
+<p><code>HardLink</code></p>
+</li>
+<li>
+<p><code>SymbolicLink</code></p>
+</li>
+<li>
+<p><code>Junction</code></p>
+</li>
+<li>
+<p><code>NotALink</code> (if it's a regular file or directory)</p>
+</li>
+</ul>
+<h2 id="removing-links"><a class="header" href="#removing-links">Removing Links</a></h2>
+<h3 id="use-remove-item-to-remove-any-of-these-links"><a class="header" href="#use-remove-item-to-remove-any-of-these-links">Use <code>Remove-Item</code> to remove any of these links</a></h3>
+<pre><code class="language-powershell">
+Remove-Item ".\MyHardLink.txt"
+
+Remove-Item ".\MySoftLink.txt"
+
+Remove-Item ".\MyJunction"
+
+</code></pre>
+<h2 id="important-notes-on-removal"><a class="header" href="#important-notes-on-removal">Important Notes on Removal</a></h2>
+<ul>
+<li>
+<p>Removing a hard link <em>does not</em> delete the original file's data, unless it's the last hard link to that data</p>
+</li>
+<li>
+<p>Removing a soft link <em>does not</em> delete the original file or directory. It only removes the link itself</p>
+</li>
+<li>
+<p>Removing a junction <em>does not</em> delete the target directory or its contents. It only removes the junction point</p>
+</li>
+</ul>
+<h2 id="error-handling"><a class="header" href="#error-handling">Error Handling</a></h2>
+<h3 id="its-a-good-practice-to-include-error-handling-when-creating-links"><a class="header" href="#its-a-good-practice-to-include-error-handling-when-creating-links">It's a good practice to include error handling when creating links</a></h3>
+<pre><code class="language-powershell">
+try {
+
+New-Item -ItemType SymbolicLink -Path ".\MySoftLink.txt" -Target ".\NonExistentFile.txt" -ErrorAction Stop
+
+Write-Host "Symbolic link created successfully."
+
+}
+
+catch {
+
+Write-Host "Error creating symbolic link: $($_.Exception.Message)"
+
+}
+
+</code></pre>
+<p>The <code>-ErrorAction Stop</code> parameter will cause the script to stop immediately if an error occurs, and the <code>catch</code> block will handle the error</p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -11951,141 +12400,175 @@ display: flex;
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="ffmpeg"><a class="header" href="#ffmpeg">FFmpeg</a></h1>
+<h1 id="mpv-user-guide-windows---basic"><a class="header" href="#mpv-user-guide-windows---basic">mpv User Guide (Windows) - Basic</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>mpv is a free and open-source media player known for its flexibility, minimal GUI, and powerful command-line options. This guide covers basic usage on Windows. mpv relies heavily on keyboard shortcuts and configuration files for customization.</p>
+<h2 id="installation-1"><a class="header" href="#installation-1">Installation</a></h2>
+<ol>
+<li>
+<p>Download a Windows build of mpv from a reliable source. A common source is <a href="https://sourceforge.net/projects/mpv-player-windows/">https://sourceforge.net/projects/mpv-player-windows/</a> or <a href="https://github.com/shinchiro/mpv-winbuild/releases">https://github.com/shinchiro/mpv-winbuild/releases</a>.</p>
+</li>
+<li>
+<p>Extract the downloaded archive to a folder of your choice (e.g., <code>C:\mpv</code>).</p>
+</li>
+<li>
+<p><strong>Optional (but Recommended): Add mpv to your PATH.</strong> This allows you to run <code>mpv</code> from any command prompt or PowerShell window.</p>
 <ul>
-<li><a href="ffmpeg.html#remux-2160p-mkv-to-mp4">Remux 2160p .mkv to .mp4</a></li>
-<li><a href="ffmpeg.html#encode-gif-to-mp4--screentogif">Encode .gif to .mp4  (ScreenToGif)</a></li>
-<li><a href="ffmpeg.html#extract-and-convert-audio-from-media-file">Extract and convert audio from media file</a></li>
-<li><a href="ffmpeg.html#change-resolution-of-video-files">Change resolution of video files</a></li>
-<li><a href="ffmpeg.html#removing-audio-stream-from-a-video-file">Removing audio stream from a video file</a></li>
-<li><a href="ffmpeg.html#removing-video-stream-from-a-media-file">Removing video stream from a media file</a></li>
-<li><a href="ffmpeg.html#extracting-images-from-video">Extracting images from video</a></li>
-<li><a href="ffmpeg.html#crop-video">Crop video</a></li>
-<li><a href="ffmpeg.html#clip-sections-of-a-video">Clip sections of a video</a></li>
-<li><a href="ffmpeg.html#stitch-multiple-videos-together">Stitch multiple videos together</a></li>
-<li><a href="ffmpeg.html#set-aspect-ratio">Set aspect ratio</a></li>
-<li><a href="ffmpeg.html#loop-an-image-with-audio">Loop an image with audio</a></li>
-<li><a href="ffmpeg.html#scale-and-crop-an-image">Scale and crop an image</a></li>
-<li><a href="ffmpeg.html#links">Links</a></li>
+<li>Search for "Edit the system environment variables" in the Windows Start Menu.</li>
+<li>Click "Environment Variables...".</li>
+<li>Under "System variables", find the "Path" variable and click "Edit...".</li>
+<li>Click "New" and add the path to the mpv directory (e.g., <code>C:\mpv</code>).</li>
+<li>Click "OK" on all windows.</li>
 </ul>
-<h2 id="remux-2160p-mkv-to-mp4"><a class="header" href="#remux-2160p-mkv-to-mp4">Remux 2160p .mkv to .mp4</a></h2>
-<pre><code class="language-plaintext">ffmpeg -y -i Input_File.mkv -strict experimental -loglevel error -stats -map 0:v? -map 0:a? -dn -map_chapters -1 -movflags +faststart -c:v copy -c:a copy -strict -2 Output_File.mp4
+</li>
+</ol>
+<h2 id="basic-usage"><a class="header" href="#basic-usage">Basic Usage</a></h2>
+<h3 id="playing-media"><a class="header" href="#playing-media">Playing Media</a></h3>
+<ol>
+<li>
+<p><strong>Double-Click (Associate File Types):</strong> The easiest way is to associate common video file types (e.g., <code>.mp4</code>, <code>.mkv</code>, <code>.avi</code>) with <code>mpv.exe</code>. Right-click on a video file, select "Open with", choose "mpv", and check the box that says "Always use this app to open .[file extension] files".</p>
+</li>
+<li>
+<p><strong>Drag and Drop:</strong> Drag a video file onto the <code>mpv.exe</code> icon or a running mpv window.</p>
+</li>
+<li>
+<p><strong>Command Line/PowerShell:</strong> Open a command prompt or PowerShell window and type:</p>
+<pre><code class="language-powershell">mpv "path\to\your\video.mp4"
 </code></pre>
-<h2 id="encode-gif-to-mp4--screentogif"><a class="header" href="#encode-gif-to-mp4--screentogif">Encode .gif to .mp4  (ScreenToGif)</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i example.gif -movflags faststart -pix_fmt yuv420p -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4  
+<p>Replace <code>"path\to\your\video.mp4"</code> with the actual path to your video file. If you added mpv to your PATH, you can run this command from any directory. Otherwise, you'll need to navigate to the <code>mpv</code> directory first.</p>
+</li>
+</ol>
+<h3 id="basic-controls-keyboard-shortcuts"><a class="header" href="#basic-controls-keyboard-shortcuts">Basic Controls (Keyboard Shortcuts)</a></h3>
+<p>These are the most common and essential shortcuts</p>
+<div class="table-wrapper"><table><thead><tr><th>Key(s)</th><th>Action</th></tr></thead><tbody>
+<tr><td>Spacebar</td><td>Pause/Play</td></tr>
+<tr><td>Left Arrow</td><td>Seek backward 5 seconds</td></tr>
+<tr><td>Right Arrow</td><td>Seek forward 5 seconds</td></tr>
+<tr><td>Up Arrow</td><td>Volume up</td></tr>
+<tr><td>Down Arrow</td><td>Volume down</td></tr>
+<tr><td>q or Esc</td><td>Quit mpv</td></tr>
+<tr><td>f</td><td>Toggle fullscreen</td></tr>
+<tr><td>m</td><td>Mute/Unmute</td></tr>
+<tr><td>&gt; (Shift + .)</td><td>Next frame</td></tr>
+<tr><td>&lt; (Shift + ,)</td><td>Previous frame</td></tr>
+<tr><td>o</td><td>Show playback statistics (OSD)</td></tr>
+<tr><td>i</td><td>Show current filename (OSD)</td></tr>
+<tr><td>1</td><td>Cycle audio tracks</td></tr>
+<tr><td>j</td><td>Cycle subtitle tracks</td></tr>
+<tr><td>v</td><td>Toggle subtitle visibility</td></tr>
+<tr><td>9</td><td>Decrease subtitle delay</td></tr>
+<tr><td>0</td><td>Increase subtitle delay</td></tr>
+<tr><td>[</td><td>Decrease playback speed</td></tr>
+<tr><td>]</td><td>Increase playback speed</td></tr>
+<tr><td>\</td><td>Reset playback speed to normal (1.0x)</td></tr>
+<tr><td>Ctrl + +</td><td>Zoom in</td></tr>
+<tr><td>Ctrl + -</td><td>Zoom out</td></tr>
+<tr><td>Ctrl + 0</td><td>Reset zoom</td></tr>
+</tbody></table>
+</div>
+<h2 id="on-screen-display-osd"><a class="header" href="#on-screen-display-osd">On-Screen Display (OSD)</a></h2>
+<p>mpv has a minimal OSD that appears briefly when you perform actions like seeking or changing volume</p>
+<h2 id="configuration-file-mpvconf"><a class="header" href="#configuration-file-mpvconf">Configuration File (mpv.conf)</a></h2>
+<p>mpv is highly customizable through a configuration file named <code>mpv.conf</code></p>
+<ol>
+<li><strong>Location:</strong> The <code>mpv.conf</code> file should be placed in the following directory</li>
+</ol>
+<p><code>%APPDATA%\mpv</code> (usually <code>C:\Users\[Your Username]\AppData\Roaming\mpv</code>)</p>
+<p>Create the <code>mpv</code> directory if it doesn't exist</p>
+<p>2.<strong>Creating the File:</strong> Create a new text file named <code>mpv.conf</code> in the <code>%APPDATA%\mpv</code> directory</p>
+<p>3.<strong>Example Configuration:</strong> Here's a basic example</p>
+<h3 id="example-mpvconf"><a class="header" href="#example-mpvconf">Example <code>mpv.conf</code></a></h3>
+<pre><code class="language-txt">## Start in fullscreen
+fullscreen=yes
+
+## Volume at startup (0-100)
+volume=70
+
+### Prefer English audio tracks
+alang=en
+
+### Prefer English subtitles
+slang=en
+
+### Save position on exit (resumes playback)
+save-position-on-quit
+
+### Screenshot directory
+screenshot-directory="C:\\Users\\[Your Username]\\Pictures\\mpv_screenshots"
+
+### Example of rebinding a key
+W=add volume 5
 
 </code></pre>
-<h2 id="extract-and-convert-audio-from-media-file"><a class="header" href="#extract-and-convert-audio-from-media-file">Extract and convert audio from media file</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320k -f mp3 output.mp3
+<ul>
+<li>
+<p>Replace <code>[Your Username]</code> with your actual Windows username in the <code>screenshot-directory</code> line</p>
+</li>
+<li>
+<p>The <code>W=add volume 5</code> line rebinds the <code>W</code> key to increase the volume by 5%</p>
+<p>4.<strong>Restart mpv:</strong> Changes to <code>mpv.conf</code> take effect when you restart mpv</p>
+</li>
+</ul>
+<h3 id="common-command-line-options"><a class="header" href="#common-command-line-options">Common Command-Line Options</a></h3>
+<p>You can also use command-line options to control mpv's behavior. These options override settings in <code>mpv.conf</code></p>
+<pre><code class="language-powershell">
+mpv --fullscreen --volume=80 "path\to\your\video.mp4"
+
 </code></pre>
-<p><code>-vn</code> - Indicates that we have disabled video recording in the output file.<br />
-<code>-ar</code> - Set the audio frequency of the output file. The common values used are  22050, 44100, 48000 Hz.<br />
-<code>-ac</code> - Set the number of audio channels.<br />
-<code>-ab</code> - Indicates the audio bitrate.<br />
-<code>-f</code> - Output file format. In our case, it's mp3 format.</p>
-<h2 id="change-resolution-of-video-files"><a class="header" href="#change-resolution-of-video-files">Change resolution of video files</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4  
+<div class="table-wrapper"><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody>
+<tr><td>--fullscreen</td><td>Start in fullscreen mode.</td></tr>
+<tr><td>--volume=&lt;value&gt;</td><td>Set the initial volume (0-100).</td></tr>
+<tr><td>--loop</td><td>Loop the video indefinitely.</td></tr>
+<tr><td>--start=&lt;time&gt;</td><td>Start playback at a specific time (e.g., --start=01:30).</td></tr>
+<tr><td>--no-border</td><td>Remove window borders.</td></tr>
+<tr><td>--title=&lt;title&gt;</td><td>Set the window title.</td></tr>
+<tr><td>--audio-file=&lt;file&gt;</td><td>Play an external audio file.</td></tr>
+<tr><td>--sub-file=&lt;file&gt;</td><td>Load an external subtitle file.</td></tr>
+</tbody></table>
+</div>
+<h3 id="advanced-usage"><a class="header" href="#advanced-usage">Advanced Usage</a></h3>
+<p>mpv has many more advanced features, including</p>
+<ul>
+<li>
+<p><strong>Video and Audio Filters:</strong> Apply various filters to enhance or modify the video and audio output</p>
+</li>
+<li>
+<p><strong>Shaders:</strong> Use shaders for advanced video processing</p>
+</li>
+<li>
+<p><strong>Lua Scripting:</strong> Extend mpv's functionality with Lua scripts</p>
+</li>
+<li>
+<p><strong>Custom Keybindings:</strong> Rebind any key to any mpv command</p>
+</li>
+<li>
+<p><strong>OSD Customization:</strong> Customize the appearance of the OSD</p>
+</li>
+</ul>
+<h2 id="advanced-commands-configuration-file"><a class="header" href="#advanced-commands-configuration-file">Advanced Commands (Configuration File)</a></h2>
+<p>Many mpv settings are best configured in the <code>mpv.conf</code> file (location varies by OS). Here are some examples:</p>
+<ul>
+<li><strong><code>~/.config/mpv/mpv.conf</code> (Linux/macOS)</strong></li>
+<li><strong><code>%APPDATA%\mpv\mpv.conf</code> (Windows)</strong></li>
+</ul>
+<p><strong>Important Notes for Windows:</strong></p>
+<ul>
+<li><strong>Hardware Decoding:</strong> Experiment with different hardware decoding options in your <code>mpv.conf</code> file. Common options for Windows include <code>hwdec=d3d11va</code>, <code>hwdec=dxva2-copy</code>, or <code>hwdec=auto</code>. The best option depends on your graphics card and drivers.</li>
+<li><strong>File Paths:</strong> When using command-line arguments with file paths, be mindful of spaces in the path. Enclose the entire path in double quotes if it contains spaces (e.g., <code>mpv "C:\My Videos\movie.mp4"</code>).</li>
+<li><strong>Command Prompt/PowerShell:</strong> You can run MPV commands from the Command Prompt or PowerShell. Make sure MPV's directory is in your system's <code>PATH</code> environment variable, or specify the full path to <code>mpv.exe</code>.</li>
+</ul>
+<h2 id="command-line-examples-windows"><a class="header" href="#command-line-examples-windows">Command-Line Examples (Windows)</a></h2>
+<pre><code class="language-powershell">* `mpv file.mp4` - Play a file.
+* `mpv --loop file.mp4` - Play a file in a loop.
+* `mpv --start=1:30 file.mp4` - Start playback at 1 minute 30 seconds.
+* `mpv --playlist=movies.txt` - Play a playlist.  Ensure the playlist file uses Windows-style line endings (CRLF).
+* `mpv --volume=80 file.mp4` - Set the volume to 80%.
+* `mpv --speed=2.0 file.mp4` - Play at 2x speed.
+* `mpv --no-audio file.mp4` - Play without audio.
+* `mpv --no-video file.mp4` - Play without video (audio only).
+* `mpv --geometry=50%+50% file.mp4` - Position the window at 50% horizontal and vertical.
+* `mpv "C:\My Videos\movie with spaces.mp4"` - Play a file with spaces in the filename.
 </code></pre>
-<h2 id="removing-audio-stream-from-a-video-file"><a class="header" href="#removing-audio-stream-from-a-video-file">Removing audio stream from a video file</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -an output.mp4  
-</code></pre>
-<h2 id="removing-video-stream-from-a-media-file"><a class="header" href="#removing-video-stream-from-a-media-file">Removing video stream from a media file</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ab 320k output.mp3  
-</code></pre>
-<h2 id="extracting-images-from-video"><a class="header" href="#extracting-images-from-video">Extracting images from video</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png  
-</code></pre>
-<p><code>-r</code> - Set the frame rate. I.e the number of frames to be extracted into images per second. The default value is 25.<br />
-<code>-f</code> - Indicates the output format i.e image format in our case.
-image-%2d.png - Indicates how we want to name the extracted images. In this case, the names should start like image-01.png, image-02.png, image-03.png and so on. If you use %3d, then the name of images will start like image-001.png, image-002.png and so on.</p>
-<h2 id="crop-video"><a class="header" href="#crop-video">Crop video</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
-</code></pre>
-<p><code>-filter:v</code> - Indicates the video filter.<br />
-<code>crop</code> - Indicates crop filter.<br />
-<code>w</code> - Width of the rectangle that we want to crop from the source video.<br />
-<code>h</code> - Height of the rectangle.<br />
-<code>x</code> - x coordinate of the rectangle that we want to crop from the source video.<br />
-<code>y</code> - y coordinate of the rectangle.</p>
-<p>Let us say you want to a video with a width of 640 pixels and a height of 480 pixels, from the position (200,150), the command would be:</p>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=640:480:200:150" output.mp4`  
-</code></pre>
-<h2 id="clip-sections-of-a-video"><a class="header" href="#clip-sections-of-a-video">Clip sections of a video</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -ss 00:01:30 -to 00:01:55 -c copy output.mp4
-</code></pre>
-<p><code>-i input_file.mp4</code> - Specifies the input video file<br />
-<code>-ss 00:01:30</code> - Sets the start time (1 minute and 30 seconds into the video)<br />
-<code>-to 00:01:55</code> - Sets the end time of the video<br />
-<code>-c copy</code> - Copies the streams without re-encoding (faster)<br />
-<code>output.mp4</code> - Name of the output file</p>
-<p>For a more accurate cut encoding can be used but will be slower.</p>
-<pre><code class="language-plaintext">ffmpeg -ss 00:01:30 -i input_file.mp4 -t 00:00:30 -c:v libx264 -c:a aac output.mp4  
-</code></pre>
-<h2 id="stitch-multiple-videos-together"><a class="header" href="#stitch-multiple-videos-together">Stitch multiple videos together</a></h2>
-<p>First create a list of files.</p>
-<p>cmd:</p>
-<pre><code class="language-cmd">(for %i in (*.mp4) do @echo file '%i') &gt; files.txt
-</code></pre>
-<p>Powershell:</p>
-<pre><code class="language-Powershell">foreach ($i in Get-ChildItem .\*.mp4) {echo "file '$i'" &gt;&gt; files.txt}  
-</code></pre>
-<p>Bash:</p>
-<pre><code class="language-bash">for f in *.mp4; do echo "file '$f'" &gt;&gt; videos.txt; done
-</code></pre>
-<p>or</p>
-<pre><code class="language-bash">printf "file '%s'\n" * &gt; files.txt
-</code></pre>
-<p>Once your text file is ready it should contain all the names of files you want to concatenate in this format:</p>
-<pre><code class="language-plaintext">file 'file2.mp4'
-file 'file3.mp4'
-file 'file1.mp4'
-</code></pre>
-<p>Now you can enter the following command to concatenate the files:</p>
-<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i files.txt -c copy output.mp4  
-</code></pre>
-<p>With transcoding:</p>
-<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i input.txt -c:v libx264 -c:a aac output.mp4  
-</code></pre>
-<p><code>-f concat</code> - Specifies the concat format<br />
-<code>-safe 0</code> - Allows ffmpeg to read files in the current directory<br />
-<code>-i input.txt</code> - Input file containing the list of videos<br />
-<code>-c copy</code> - Copies the codecs without re-encoding (faster)<br />
-<code>-c:v libx264</code> - uses the x264 (H.264) video encoder<br />
-<code>-c:a aac</code> - uses the AAC audio encoder<br />
-<code>output.mp4</code> - Name of the output file</p>
-<p>Method 2: Using the concat filter</p>
-<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -i input2.mp4 -i input3.mp4 -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
-</code></pre>
-<p><code>-i input1.mp4 -i input2.mp4 -i input3.mp4</code> - Input video files<br />
-<code>-filter_complex</code> - Applies complex filtering<br />
-<code>concat=n=3:v=1:a=1</code> - Concatenates 3 inputs with 1 video and 1 audio stream each<br />
-<code>[outv][outa]</code> - Labels for the output video and audio streams<br />
-<code>-map "[outv]" -map "[outa]"</code> - Maplaintext the labeled streams to the output</p>
-<h2 id="set-aspect-ratio"><a class="header" href="#set-aspect-ratio">Set aspect ratio</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -aspect 16:9 output.mp4
-</code></pre>
-<p>The commonly used aspect ratios are:</p>
-<p>16:9<br />
-4:3<br />
-16:10<br />
-5:4<br />
-2:21:1<br />
-2:35:1<br />
-2:39:1</p>
-<h2 id="loop-an-image-with-audio"><a class="header" href="#loop-an-image-with-audio">Loop an image with audio</a></h2>
-<pre><code class="language-plaintext">ffmpeg -loop 1 -i inputimage.jpg -i inputaudio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
-</code></pre>
-<h2 id="scale-and-crop-an-image"><a class="header" href="#scale-and-crop-an-image">Scale and crop an image</a></h2>
-<p>Scaled and cropped to width: 3840 pixels and height: 2160 pixels</p>
-<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=3840:-1:flags=lanczos,crop=3840:2160 image_after.jpg
-</code></pre>
-<p>Scaled and cropped to height: 2160 pixels and width: 3840 pixels</p>
-<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=-1:2160:flags=lanczos,crop=3840:2160 image_after.jpg
-</code></pre>
-<h2 id="links"><a class="header" href="#links">Links</a></h2>
-<p><a href="httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/">httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/</a></p>
-<p><a href="httplaintext://www.ffmpeg.org/documentation.html">httplaintext://www.ffmpeg.org/documentation.html</a></p>
-<p><a href="httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts">httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts</a></p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
