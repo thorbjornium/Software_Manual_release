@@ -281,98 +281,239 @@
 </style>
 <h1 id="ffmpeg"><a class="header" href="#ffmpeg">FFmpeg</a></h1>
 <ul>
-<li><a href="#remux-2160p-mkv-to-mp4">Remux 2160p .mkv to .mp4</a></li>
-<li><a href="#encode-gif-to-mp4--screentogif">Encode .gif to .mp4  (ScreenToGif)</a></li>
-<li><a href="#extract-and-convert-audio-from-media-file">Extract and convert audio from media file</a></li>
-<li><a href="#change-resolution-of-video-files">Change resolution of video files</a></li>
-<li><a href="#removing-audio-stream-from-a-video-file">Removing audio stream from a video file</a></li>
-<li><a href="#removing-video-stream-from-a-media-file">Removing video stream from a media file</a></li>
-<li><a href="#extracting-images-from-video">Extracting images from video</a></li>
-<li><a href="#crop-video">Crop video</a></li>
-<li><a href="#clip-sections-of-a-video">Clip sections of a video</a></li>
+<li><a href="#an-example-with-an-explanation-of-switches">An example with an explanation of switches</a></li>
+<li><a href="#basic-examples">Basic Examples</a></li>
+<li><a href="#video-encoding-examples">Video Encoding Examples</a></li>
+<li><a href="#audio-encoding-examples">Audio Encoding Examples</a></li>
+<li><a href="#resizing-and-scaling-examples">Resizing and Scaling Examples</a></li>
+<li><a href="#padding-examples">Padding Examples</a></li>
+<li><a href="#rotation-and-flipping-examples">Rotation and Flipping Examples</a></li>
+<li><a href="#time-manipulation-examples">Time Manipulation Examples</a></li>
+<li><a href="#frame-rate-manipulation-examples">Frame Rate Manipulation Examples</a></li>
+<li><a href="#audio-manipulation-examples">Audio Manipulation Examples</a></li>
+<li><a href="#image-and-video-examples">Image and Video Examples</a></li>
 <li><a href="#stitch-multiple-videos-together">Stitch multiple videos together</a></li>
-<li><a href="#set-aspect-ratio">Set aspect ratio</a></li>
-<li><a href="#loop-an-image-with-audio">Loop an image with audio</a></li>
-<li><a href="#scale-and-crop-an-image">Scale and crop an image</a></li>
-<li><a href="#links">Links</a></li>
+<li><a href="#encode-gif-to-mp4-screentogif">Encode .gif to .mp4 (ScreenToGif)</a></li>
+<li><a href="#subtitle-examples">Subtitle Examples</a></li>
+<li><a href="#watermark-examples">Watermark Examples</a></li>
+<li><a href="#complex-filtergraph-examples">Complex Filtergraph Examples</a></li>
+<li><a href="#streaming-examples-basic">Streaming Examples (Basic)</a></li>
+<li><a href="#miscellaneous-examples">Miscellaneous Examples</a></li>
 </ul>
-<h2 id="remux-2160p-mkv-to-mp4"><a class="header" href="#remux-2160p-mkv-to-mp4">Remux 2160p .mkv to .mp4</a></h2>
-<pre><code class="language-plaintext">ffmpeg -y -i Input_File.mkv -strict experimental -loglevel error -stats -map 0:v? -map 0:a? -dn -map_chapters -1 -movflags +faststart -c:v copy -c:a copy -strict -2 Output_File.mp4
+<h2 id="an-example-with-an-explanation-of-switches"><a class="header" href="#an-example-with-an-explanation-of-switches">An example with an explanation of switches</a></h2>
+<pre><code class="language-powershell">ffmpeg -y -i Input_File.mkv -strict experimental -loglevel error -stats -map 0:v? -map 0:a? -dn -map_chapters -1 -movflags +faststart -c:v copy -c:a copy -strict -2 Output_File.mp4
 </code></pre>
-<h2 id="encode-gif-to-mp4--screentogif"><a class="header" href="#encode-gif-to-mp4--screentogif">Encode .gif to .mp4  (ScreenToGif)</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i example.gif -movflags faststart -pix_fmt yuv420p -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4  
-
+<p>Remux 2160p .mkv to .mp4</p>
+<details>
+<summary>Explanation</summary>
+<p><code>ffmpeg</code>:</p>
+<p>This is the command to run the FFmpeg program, a widely used tool to handle multimedia data.</p>
+<p><code>-y</code>:</p>
+<p>Automatically overwrite output files without asking.</p>
+<p><code>-i Input_File.mkv</code>:</p>
+<p>Specifies the input file, in this case, "Input_File.mkv."</p>
+<p><code>-strict experimental</code>:</p>
+<p>Enables experimental features. This is required for some codecs that are marked as experimental.</p>
+<p><code>-loglevel error</code>:</p>
+<p>Sets the logging level to "error" to suppress informational and warning messages.</p>
+<p><code>-stats</code>:</p>
+<p>Prints encoding progress/statistics to the console.</p>
+<p><code>-map 0:v?</code>:</p>
+<p>Maps all video streams from the input file (0 refers to the first input file). The ? ensures it doesn't fail if there are no video streams.</p>
+<p><code>-map 0:a?</code>:</p>
+<p>Maps all audio streams from the input file, similar to the video mapping.</p>
+<p><code>-dn</code>:</p>
+<p>Disables data streams (such as subtitle streams).</p>
+<p><code>-map_chapters -1</code>:</p>
+<p>Excludes chapters from the output file.</p>
+<p><code>-movflags +faststart</code>:</p>
+<p>Moves the moov atom to the beginning of the file, which can help in streaming scenarios.</p>
+<p><code>-c:v copy</code>:</p>
+<p>Copies the video codec from the input to the output without re-encoding.</p>
+<p><code>-c:a copy</code>:</p>
+<p>Copies the audio codec from the input to the output without re-encoding.</p>
+<p><code>-strict -2</code>:</p>
+<p>Another way to enable experimental features. This might be redundant with -strict experimental.</p>
+<p>Output_File.mp4:</p>
+<p>Specifies the output file name, "Output_File.mp4."</p>
+<p>Summary:</p>
+<p>This FFmpeg command reads an input MKV file (Input_File.mkv), and outputs it as an MP4 file (Output_File.mp4). It copies both the video and audio streams without re-encoding, excludes data streams and chapters, sets specific logging and progress options, and ensures the output file is ready for streaming with faststart.</p>
+</details>
+<h2 id="basic-examples"><a class="header" href="#basic-examples">Basic Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i input.avi output.mp4
 </code></pre>
-<h2 id="extract-and-convert-audio-from-media-file"><a class="header" href="#extract-and-convert-audio-from-media-file">Extract and convert audio from media file</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320k -f mp3 output.mp3
+<p>Convert input.avi to output.mp4 (using default codecs).</p>
+<pre><code class="language-powershell">ffmpeg -i input.mov -c:v libx264 -c:a aac output.mp4
 </code></pre>
-<p><code>-vn</code> - Indicates that we have disabled video recording in the output file.<br />
-<code>-ar</code> - Set the audio frequency of the output file. The common values used are  22050, 44100, 48000 Hz.<br />
-<code>-ac</code> - Set the number of audio channels.<br />
-<code>-ab</code> - Indicates the audio bitrate.<br />
-<code>-f</code> - Output file format. In our case, it's mp3 format.</p>
-<h2 id="change-resolution-of-video-files"><a class="header" href="#change-resolution-of-video-files">Change resolution of video files</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4  
+<p>Convert input.mov to H.264 video and AAC audio in an MP4 container.</p>
+<pre><code class="language-powershell">ffmpeg -i input.wmv -c:v libx265 -c:a aac output.mp4
 </code></pre>
-<h2 id="removing-audio-stream-from-a-video-file"><a class="header" href="#removing-audio-stream-from-a-video-file">Removing audio stream from a video file</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -an output.mp4  
+<p>Convert input.wmv to HEVC (H.265) video and AAC audio in an MP4 container.</p>
+<pre><code class="language-powershell">ffmpeg -i input.flv -vn -acodec libmp3lame output.mp3
 </code></pre>
-<h2 id="removing-video-stream-from-a-media-file"><a class="header" href="#removing-video-stream-from-a-media-file">Removing video stream from a media file</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -vn -ab 320k output.mp3  
+<p>Extract audio from input.flv to an MP3 file.</p>
+<pre><code class="language-powershell">ffmpeg -i input.wav -acodec aac output.aac
 </code></pre>
-<h2 id="extracting-images-from-video"><a class="header" href="#extracting-images-from-video">Extracting images from video</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png  
+<p>Convert a WAV audio file to an AAC audio file.</p>
+<h2 id="video-encoding-examples"><a class="header" href="#video-encoding-examples">Video Encoding Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -c:v libx264 -b:v 2000k output.mp4
 </code></pre>
-<p><code>-r</code> - Set the frame rate. I.e the number of frames to be extracted into images per second. The default value is 25.<br />
-<code>-f</code> - Indicates the output format i.e image format in our case.
+<p>Encode video with H.264 at a bitrate of 2000 kbps.</p>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -c:v libx265 -b:v 3000k -preset medium output.mp4
+</code></pre>
+<p>Encode video with HEVC at a bitrate of 3000 kbps using the medium preset.</p>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -c:v libx264 -crf 23 output.mp4
+</code></pre>
+<p>Use Constant Rate Factor (CRF) encoding for H.264 (lower CRF values mean higher quality, typically 18-28).</p>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -c:v libx264 -pass 1 -an -f null NUL &amp;&amp; ffmpeg -i input.mp4 -c:v libx264 -pass 2 -c:a aac -b:a 128k output.mp4
+</code></pre>
+<p>Two-pass encoding for better quality (Windows). Replaces /dev/null with NUL. First pass analyzes the video, second pass encodes it.</p>
+<h2 id="audio-encoding-examples"><a class="header" href="#audio-encoding-examples">Audio Encoding Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i input.mp3 -acodec aac -b:a 192k output.aac
+</code></pre>
+<p>Convert audio to AAC at a bitrate of 192 kbps.</p>
+<pre><code class="language-powershell">ffmpeg -i input.wav -acodec libmp3lame -b:a 128k output.mp3
+</code></pre>
+<p>Convert audio to MP3 at a bitrate of 128 kbps.</p>
+<pre><code class="language-powershell">ffmpeg -i input.flac -acodec copy output.flac
+</code></pre>
+<p>Copy the audio stream without re-encoding (lossless).</p>
+<h2 id="resizing-and-scaling-examples"><a class="header" href="#resizing-and-scaling-examples">Resizing and Scaling Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -vf scale=640:480 output_640x480.mp4
+</code></pre>
+<p>Scale the video to 640x480 resolution.</p>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -vf scale=1280:-1 output_1280w.mp4
+</code></pre>
+<p>Scale the video to 1280 pixels wide, automatically calculating the height to maintain aspect ratio.</p>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -vf scale=-1:720 output_720h.mp4
+</code></pre>
+<p>Scale the video to 720 pixels high, automatically calculating the width to maintain aspect ratio.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "scale=iw*0.5:ih*0.5" "output_halfsize.mp4"
+</code></pre>
+<p>Reduce the video to half its original size.</p>
+<p>Cropping Examples</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "crop=640:480:100:50" "output_cropped.mp4"
+</code></pre>
+<p>Crop the video to 640x480, starting at coordinates (100, 50).</p>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -vf "crop=in_w/2:in_h/2:(in_w-out_w)/2:(in_h-out_h)/2" output_center_cropped.mp4
+</code></pre>
+<p>Crop the center half of the video.</p>
+<h2 id="padding-examples"><a class="header" href="#padding-examples">Padding Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "pad=1280:720:0:0:black" "output_padded.mp4"
+</code></pre>
+<p>Pad the video to 1280x720 with black bars.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "pad=1280:720:(ow-iw)/2:(oh-ih)/2:white" "output_centered_padded.mp4"
+</code></pre>
+<p>Center the video within a 1280x720 frame with white padding.</p>
+<h2 id="rotation-and-flipping-examples"><a class="header" href="#rotation-and-flipping-examples">Rotation and Flipping Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "transpose=1" "output_rotated.mp4"
+</code></pre>
+<p>Rotate the video 90 degrees clockwise. transpose=2 is 90 degrees counterclockwise, transpose=3 is 180 degrees.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "hflip" "output_hflipped.mp4"
+</code></pre>
+<p>Flip the video horizontally.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "vflip" "output_vflipped.mp4"
+</code></pre>
+<p>Flip the video vertically.</p>
+<h2 id="time-manipulation-examples"><a class="header" href="#time-manipulation-examples">Time Manipulation Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -ss 00:01:00 -to 00:02:00 -c copy "output_cut.mp4"
+</code></pre>
+<p>Cut a clip from 1 minute to 2 minutes (fast, using stream copy).</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -ss 60 -t 30 -c copy "output_cut.mp4"
+</code></pre>
+<p>Cut a clip starting at 60 seconds with a duration of 30 seconds (fast, using stream copy).</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -ss 00:00:30 "output_start_30s.mp4"
+</code></pre>
+<p>Start playback at 30 seconds (doesn't cut the video, just sets the starting point).</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -itsoffset 5 -i "input.mp4" -map 1:a -map 0:v -c copy "output_delayed_audio.mp4"
+</code></pre>
+<p>Delay the audio by 5 seconds (adjust the offset value as needed).</p>
+<h2 id="frame-rate-manipulation-examples"><a class="header" href="#frame-rate-manipulation-examples">Frame Rate Manipulation Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -r 24 "output_24fps.mp4"
+</code></pre>
+<p>Change the frame rate to 24 fps.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -filter:v "minterpolate=mi_mode=mci,framerate=60" "output_60fps.mp4"
+</code></pre>
+<p>Increase the frame rate to 60 fps using motion interpolation (can introduce artifacts).</p>
+<h2 id="audio-manipulation-examples"><a class="header" href="#audio-manipulation-examples">Audio Manipulation Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -af "volume=0.5" "output_quieter.mp4"
+</code></pre>
+<p>Reduce the volume to 50%.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -af "volume=10dB" "output_louder.mp4"
+</code></pre>
+<p>Increase the volume by 10 dB.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -ac 2 "output_stereo.mp4"
+</code></pre>
+<p>Convert audio to stereo.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -ac 1 "output_mono.mp4"
+</code></pre>
+<p>Convert audio to mono.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -af "aresample=44100" "output_44100hz.mp4"
+</code></pre>
+<p>Change the sample rate to 44100 Hz.</p>
+<h2 id="image-and-video-examples"><a class="header" href="#image-and-video-examples">Image and Video Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -s 1280x720 -c:a copy output.mp4
+</code></pre>
+<p>Change resolution of video</p>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -vn -ab 320k output.mp3
+</code></pre>
+<p>Removing video stream from a media file</p>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -r 1 -f image2 image-%2d.png
+</code></pre>
+<p>Extracting images from video<br />
+<code>-r</code> - Set the frame rate. I.e. the number of frames to be extracted into images per second. The default value is 25.<br />
+<code>-f</code> - Indicates the output format i.e, image format in our case.
 image-%2d.png - Indicates how we want to name the extracted images. In this case, the names should start like image-01.png, image-02.png, image-03.png and so on. If you use %3d, then the name of images will start like image-001.png, image-002.png and so on.</p>
-<h2 id="crop-video"><a class="header" href="#crop-video">Crop video</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
+<hr />
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -filter:v "crop=w:h:x:y" output.mp4
 </code></pre>
-<p><code>-filter:v</code> - Indicates the video filter.<br />
+<p>Crop video<br />
+<code>-filter:v</code> - Indicates the video filter.<br />
 <code>crop</code> - Indicates crop filter.<br />
 <code>w</code> - Width of the rectangle that we want to crop from the source video.<br />
 <code>h</code> - Height of the rectangle.<br />
 <code>x</code> - x coordinate of the rectangle that we want to crop from the source video.<br />
 <code>y</code> - y coordinate of the rectangle.</p>
 <p>Let us say you want to a video with a width of 640 pixels and a height of 480 pixels, from the position (200,150), the command would be:</p>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -filter:v "crop=640:480:200:150" output.mp4`  
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -filter:v "crop=640:480:200:150" output.mp4`
 </code></pre>
-<h2 id="clip-sections-of-a-video"><a class="header" href="#clip-sections-of-a-video">Clip sections of a video</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -ss 00:01:30 -to 00:01:55 -c copy output.mp4
+<hr />
+<pre><code class="language-powershell">ffmpeg -i input_file.mp4 -ss 00:01:30 -to 00:01:55 -c copy output.mp4
 </code></pre>
-<p><code>-i input_file.mp4</code> - Specifies the input video file<br />
+<p>Clip sections of a video<br />
+<code>-i input_file.mp4</code> - Specifies the input video file<br />
 <code>-ss 00:01:30</code> - Sets the start time (1 minute and 30 seconds into the video)<br />
 <code>-to 00:01:55</code> - Sets the end time of the video<br />
 <code>-c copy</code> - Copies the streams without re-encoding (faster)<br />
 <code>output.mp4</code> - Name of the output file</p>
 <p>For a more accurate cut encoding can be used but will be slower.</p>
-<pre><code class="language-plaintext">ffmpeg -ss 00:01:30 -i input_file.mp4 -t 00:00:30 -c:v libx264 -c:a aac output.mp4  
+<pre><code class="language-powershell">ffmpeg -ss 00:01:30 -i input_file.mp4 -t 00:00:30 -c:v libx264 -c:a aac output.mp4
 </code></pre>
+<hr />
 <h2 id="stitch-multiple-videos-together"><a class="header" href="#stitch-multiple-videos-together">Stitch multiple videos together</a></h2>
-<p>First create a list of files.</p>
-<p>cmd:</p>
+<p>First create a list of files.
+<strong>cmd:</strong></p>
 <pre><code class="language-cmd">(for %i in (*.mp4) do @echo file '%i') &gt; files.txt
 </code></pre>
-<p>Powershell:</p>
-<pre><code class="language-Powershell">foreach ($i in Get-ChildItem .\*.mp4) {echo "file '$i'" &gt;&gt; files.txt}  
+<p><strong>Powershell:</strong></p>
+<pre><code class="language-Powershell">foreach ($i in Get-ChildItem .\*.mp4) {echo "file '$i'" &gt;&gt; files.txt}
 </code></pre>
-<p>Bash:</p>
+<p><strong>Bash:</strong></p>
 <pre><code class="language-bash">for f in *.mp4; do echo "file '$f'" &gt;&gt; videos.txt; done
 </code></pre>
 <p>or</p>
 <pre><code class="language-bash">printf "file '%s'\n" * &gt; files.txt
 </code></pre>
 <p>Once your text file is ready it should contain all the names of files you want to concatenate in this format:</p>
-<pre><code class="language-plaintext">file 'file2.mp4'
+<pre><code class="language-powershell">file 'file2.mp4'
 file 'file3.mp4'
 file 'file1.mp4'
 </code></pre>
 <p>Now you can enter the following command to concatenate the files:</p>
-<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i files.txt -c copy output.mp4  
+<pre><code class="language-powershell">ffmpeg -f concat -safe 0 -i files.txt -c copy output.mp4
 </code></pre>
 <p>With transcoding:</p>
-<pre><code class="language-plaintext">ffmpeg -f concat -safe 0 -i input.txt -c:v libx264 -c:a aac output.mp4  
+<pre><code class="language-powershell">ffmpeg -f concat -safe 0 -i input.txt -c:v libx264 -c:a aac output.mp4
 </code></pre>
 <p><code>-f concat</code> - Specifies the concat format<br />
 <code>-safe 0</code> - Allows ffmpeg to read files in the current directory<br />
@@ -381,18 +522,18 @@ file 'file1.mp4'
 <code>-c:v libx264</code> - uses the x264 (H.264) video encoder<br />
 <code>-c:a aac</code> - uses the AAC audio encoder<br />
 <code>output.mp4</code> - Name of the output file</p>
-<p>Method 2: Using the concat filter</p>
-<pre><code class="language-plaintext">ffmpeg -i input_file.mp4 -i input2.mp4 -i input3.mp4 -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
+<p><strong>Method 2:</strong> Using the concat filter</p>
+<pre><code class="language-powershell">ffmpeg -i input_file.mp4 -i input2.mp4 -i input3.mp4 -filter_complex "[0:v][0:a][1:v][1:a][2:v][2:a]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
 </code></pre>
 <p><code>-i input1.mp4 -i input2.mp4 -i input3.mp4</code> - Input video files<br />
 <code>-filter_complex</code> - Applies complex filtering<br />
 <code>concat=n=3:v=1:a=1</code> - Concatenates 3 inputs with 1 video and 1 audio stream each<br />
 <code>[outv][outa]</code> - Labels for the output video and audio streams<br />
-<code>-map "[outv]" -map "[outa]"</code> - Maplaintext the labeled streams to the output</p>
-<h2 id="set-aspect-ratio"><a class="header" href="#set-aspect-ratio">Set aspect ratio</a></h2>
-<pre><code class="language-plaintext">ffmpeg -i input.mp4 -aspect 16:9 output.mp4
+<code>-map "[outv]" -map "[outa]"</code> - Map the labeled streams to the output</p>
+<hr />
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -aspect 16:9 output.mp4
 </code></pre>
-<p>The commonly used aspect ratios are:</p>
+<p>Set aspect ratio. The commonly used aspect ratios are:</p>
 <p>16:9<br />
 4:3<br />
 16:10<br />
@@ -400,20 +541,80 @@ file 'file1.mp4'
 2:21:1<br />
 2:35:1<br />
 2:39:1</p>
-<h2 id="loop-an-image-with-audio"><a class="header" href="#loop-an-image-with-audio">Loop an image with audio</a></h2>
-<pre><code class="language-plaintext">ffmpeg -loop 1 -i inputimage.jpg -i inputaudio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+<pre><code class="language-powershell">ffmpeg -i "input.jpg" -c:v libx264 -loop 0 -t 10 "output.mp4"
 </code></pre>
-<h2 id="scale-and-crop-an-image"><a class="header" href="#scale-and-crop-an-image">Scale and crop an image</a></h2>
-<p>Scaled and cropped to width: 3840 pixels and height: 2160 pixels</p>
-<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=3840:-1:flags=lanczos,crop=3840:2160 image_after.jpg
+<p>Create a 10-second video from a still image (loop the image).</p>
+<pre><code class="language-powershell">ffmpeg -loop 1 -i "input.png" -c:v libx264 -t 5 -pix_fmt yuv420p "output.mp4"
 </code></pre>
-<p>Scaled and cropped to height: 2160 pixels and width: 3840 pixels</p>
-<pre><code class="language-plaintext">ffmpeg -i image_before.jpg -vf scale=-1:2160:flags=lanczos,crop=3840:2160 image_after.jpg
+<p>Create a 5-second video from a still image (loop the image), specifying pixel format.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "thumbnail" -frames:v 1 "output.jpg"
 </code></pre>
-<h2 id="links"><a class="header" href="#links">Links</a></h2>
-<p><a href="httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/">httplaintext://ostechnix.com/20-ffmpeg-commands-beginners/</a></p>
-<p><a href="httplaintext://www.ffmpeg.org/documentation.html">httplaintext://www.ffmpeg.org/documentation.html</a></p>
-<p><a href="httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts">httplaintext://github.com/NapoleonWils0n/ffmpeg-scripts</a></p>
+<p>Create a thumbnail image from a video.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "select=eq(n\,100)" -vframes 1 "output.png"
+</code></pre>
+<p>Extract a specific frame (frame 100) as an image.</p>
+<pre><code class="language-powershell">ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320k -f mp3 output.mp3
+</code></pre>
+<p>Extract and convert audio from media file</p>
+<p><code>-vn</code> - Indicates that we have disabled video recording in the output file.<br />
+<code>-ar</code> - Set the audio frequency of the output file. The common values used are 22050, 44100, 48000 Hz.<br />
+<code>-ac</code> - Set the number of audio channels.<br />
+<code>-ab</code> - Indicates the audio bitrate.<br />
+<code>-f</code> - Output file format. In our case, it's mp3 format.</p>
+<h2 id="encode-gif-to-mp4-screentogif"><a class="header" href="#encode-gif-to-mp4-screentogif">Encode .gif to .mp4 (ScreenToGif)</a></h2>
+<pre><code class="language-powershell">ffmpeg -i example.gif -movflags faststart -pix_fmt yuv420p -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4
+</code></pre>
+<p><code>-movflags faststart</code> - This flag optimizes the video file for web playback by moving the moov atom (metadata for the video) to the beginning of the file. This allows the video to start playing before it is fully downloaded.</p>
+<p><code>-pix_fmt yuv420p</code> - Sets the pixel format to yuv420p, which is widely supported by most video players and is optimal for web playback.</p>
+<p><code>-vf</code> - This applies a video filter (-vf) to crop the input video.</p>
+<p><code>"crop=trunc(iw/2)*2:trunc(ih/2)*2</code> - Ensures the width (iw) and height (ih) of the cropped video are both even numbers, which is often a requirement for video encoding.</p>
+<p><code>trunc(iw/2)*2</code> - This calculates half of the input width, truncates the decimal, and multiplies it by 2 to get an even number.</p>
+<p><code>trunc(ih/2)*2</code> - Similarly, this does the same for the input height.</p>
+<h2 id="subtitle-examples"><a class="header" href="#subtitle-examples">Subtitle Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "subtitles=subtitles.srt" "output_with_subs.mp4"
+</code></pre>
+<p>Add subtitles from a .srt file to the video (burn-in subtitles).</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -i "subtitles.srt" -c copy -map 0 -map 1 "output_with_subs.mkv"
+</code></pre>
+<p>Add subtitles as a separate stream in an MKV container (subtitles can be turned on/off).</p>
+<h2 id="watermark-examples"><a class="header" href="#watermark-examples">Watermark Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -i "watermark.png" -filter_complex "overlay=10:10" "output_watermarked.mp4"
+</code></pre>
+<p>Add a watermark image to the video at position (10, 10).</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -i "watermark.png" -filter_complex "overlay=(main_w-overlay_w-10):(main_h-overlay_h-10)" "output_bottom_right_watermarked.mp4"
+</code></pre>
+<p>Add a watermark to the bottom right corner.</p>
+<h2 id="complex-filtergraph-examples"><a class="header" href="#complex-filtergraph-examples">Complex Filtergraph Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "split[main][tmp];[tmp]scale=640:480,deshake[shake];[main][shake]overlay=x=W-w-10:y=10" "output_deshaked_watermarked.mp4"
+</code></pre>
+<p>Deshake the video and add a watermark (requires the deshake filter, which may need to be enabled during compilation).</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vf "chromakey=0x3CB371:0.1:0.1" "output_chromakeyed.mp4"
+</code></pre>
+<p>Apply chromakey (green screen) effect. Adjust the color and similarity/blend values as needed.</p>
+<h2 id="streaming-examples-basic"><a class="header" href="#streaming-examples-basic">Streaming Examples (Basic)</a></h2>
+<p><strong>Note:</strong> Streaming examples require a streaming server setup (e.g., using nginx with the RTMP module).</p>
+<pre><code class="language-powershell">ffmpeg -re -i "input.mp4" -c copy -f flv "rtmp://your_streaming_server/live/stream_key"
+</code></pre>
+<p>Stream a video to an RTMP server (replace with your server address and stream key).</p>
+<h2 id="miscellaneous-examples"><a class="header" href="#miscellaneous-examples">Miscellaneous Examples</a></h2>
+<pre><code class="language-powershell">ffmpeg -i "concat:input1.ts|input2.ts|input3.ts" -c copy "output.ts"
+</code></pre>
+<p>Concatenate multiple Transport Stream (TS) files (alternative to the text file method). May not always work reliably.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -map 0:v -map 0:a -c copy "output.mkv"
+</code></pre>
+<p>Remux to MKV container (copy all video and audio streams).</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -an "output_no_audio.mp4"
+</code></pre>
+<p>Remove audio from a video file.</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -vn "output_audio_only.mp4"
+</code></pre>
+<p>Remove video from a video file (leaving only audio).</p>
+<pre><code class="language-powershell">ffmpeg -i "input.mp4" -f image2 "output\_%03d.png"
+</code></pre>
+<p>Extract each frame as a separate image (output001.png, output002.png, etc.).</p>
+<pre><code class="language-powershell">ffmpeg -framerate 24 -i "image%03d.png" -c:v libx264 "output.mp4"
+</code></pre>
+<p>Create a video from a sequence of images (image001.png, image002.png, etc.) at 24 fps.</p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
