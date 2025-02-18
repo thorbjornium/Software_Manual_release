@@ -298,6 +298,7 @@
 <li><a href="#settings-via-ui">Settings Via UI</a>
 <ul>
 <li><a href="#search-in-selection">Search in selection</a></li>
+<li><a href="#customize-theme">Customize Theme</a></li>
 </ul>
 </li>
 </ul>
@@ -392,6 +393,16 @@
 <p><strong>Open the command palette and find <em>Preferences: Open Settings UI</em> or press <kbd>Ctrl</kbd> + <kbd>,</kbd></strong></p>
 <h3 id="search-in-selection"><a class="header" href="#search-in-selection">Search in selection</a></h3>
 <p>Paste "editor.find.autoFindInSelection" in search settings and choose 'multiline' to enable to search selection.</p>
+<h3 id="customize-theme"><a class="header" href="#customize-theme">Customize Theme</a></h3>
+<pre><code class="language-json">  "workbench.colorCustomizations": {
+    // "tab.activeBackground": "#92a2c3",
+    "tab.activeBorderTop": "#bebe48",
+    // "statusBar.border": "#82ccd3",
+    "statusBar.foreground":"#82ccd3",
+    "statusBarItem.remoteBackground": "#82ccd3",
+    "statusBarItem.remoteForeground":"#000",
+  },
+</code></pre>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
