@@ -281,7 +281,7 @@
 </style>
 <h1 id="ffmpeg"><a class="header" href="#ffmpeg">FFmpeg</a></h1>
 <ul>
-<li><a href="#an-example-with-an-explanation-of-switches">An example with an explanation of switches</a></li>
+<li><a href="#example-with-an-explanation-of-switches">Example with an explanation of switches</a></li>
 <li><a href="#basic-examples">Basic Examples</a></li>
 <li><a href="#video-encoding-examples">Video Encoding Examples</a></li>
 <li><a href="#audio-encoding-examples">Audio Encoding Examples</a></li>
@@ -300,7 +300,7 @@
 <li><a href="#streaming-examples-basic">Streaming Examples (Basic)</a></li>
 <li><a href="#miscellaneous-examples">Miscellaneous Examples</a></li>
 </ul>
-<h2 id="an-example-with-an-explanation-of-switches"><a class="header" href="#an-example-with-an-explanation-of-switches">An example with an explanation of switches</a></h2>
+<h2 id="example-with-an-explanation-of-switches"><a class="header" href="#example-with-an-explanation-of-switches">Example with an explanation of switches</a></h2>
 <pre><code class="language-powershell">ffmpeg -y -i Input_File.mkv -strict experimental -loglevel error -stats -map 0:v? -map 0:a? -dn -map_chapters -1 -movflags +faststart -c:v copy -c:a copy -strict -2 Output_File.mp4
 </code></pre>
 <p>Remux 2160p .mkv to .mp4</p>
