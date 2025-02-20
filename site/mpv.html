@@ -279,194 +279,214 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="mpv-user-guide-windows---basic"><a class="header" href="#mpv-user-guide-windows---basic">mpv User Guide (Windows) - Basic</a></h1>
+<h1 id="mpv-player-keyboard-shortcuts-and-scripts"><a class="header" href="#mpv-player-keyboard-shortcuts-and-scripts">MPV Player: Keyboard Shortcuts and Scripts</a></h1>
 <ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#basic-usage">Basic Usage</a>
+<li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a>
 <ul>
-<li><a href="#playing-media">Playing Media</a></li>
-<li><a href="#basic-controls-keyboard-shortcuts">Basic Controls (Keyboard Shortcuts)</a></li>
+<li><a href="#playback-controls">Playback Controls</a></li>
+<li><a href="#volume-and-audio">Volume and Audio</a></li>
+<li><a href="#video-and-subtitles">Video and Subtitles</a></li>
+<li><a href="#playlist-and-files">Playlist and Files</a></li>
+<li><a href="#screenshots-and-recording">Screenshots and Recording</a></li>
+<li><a href="#miscellaneous">Miscellaneous</a></li>
 </ul>
 </li>
-<li><a href="#on-screen-display-osd">On-Screen Display (OSD)</a></li>
-<li><a href="#configuration-file-mpvconf">Configuration File (mpv.conf)</a>
+<li><a href="#popular-mpv-scripts">Popular MPV Scripts</a>
 <ul>
-<li><a href="#example-mpvconf">Example <code>mpv.conf</code></a></li>
-<li><a href="#common-command-line-options">Common Command-Line Options</a></li>
-<li><a href="#advanced-usage">Advanced Usage</a></li>
+<li><a href="#1-mpv-quality-menu">1. mpv-quality-menu</a></li>
+<li><a href="#2-autoload">2. autoload</a></li>
+<li><a href="#3-thumbfast">3. thumbfast</a></li>
+<li><a href="#4-mpv-webm">4. mpv-webm</a></li>
+<li><a href="#5-mpv-scripts">5. mpv-scripts</a></li>
+<li><a href="#6-mpv-history">6. mpv-history</a></li>
+<li><a href="#7-mpv-playlistmanager">7. mpv-playlistmanager</a></li>
+<li><a href="#8-mpv-osc-tethys">8. mpv-osc-tethys</a></li>
 </ul>
 </li>
-<li><a href="#advanced-commands-configuration-file">Advanced Commands (Configuration File)</a></li>
-<li><a href="#command-line-examples-windows">Command-Line Examples (Windows)</a></li>
-</ul>
-<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
-<p>mpv is a free and open-source media player known for its flexibility, minimal GUI, and powerful command-line options. This guide covers basic usage on Windows. mpv relies heavily on keyboard shortcuts and configuration files for customization.</p>
-<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
-<ol>
-<li>
-<p>Downloads can be found <a href="https://mpv.io/installation/">here</a> and scripts <a href="https://github.com/mpv-player/mpv/wiki/User-Scripts">here</a></p>
-</li>
-<li>
-<p>Extract the downloaded archive to a folder of your choice (e.g., <code>C:\mpv</code>).</p>
-</li>
-<li>
-<p><strong>Optional (but Recommended): Add mpv to your PATH.</strong> This allows you to run <code>mpv</code> from any command prompt or PowerShell window.</p>
+<li><a href="#how-to-install-scripts">How to Install Scripts</a></li>
+<li><a href="#custom-keybindings">Custom Keybindings</a>
 <ul>
-<li>Search for "Edit the system environment variables" in the Windows Start Menu.</li>
-<li>Click "Environment Variables...".</li>
-<li>Under "System variables", find the "Path" variable and click "Edit...".</li>
-<li>Click "New" and add the path to the mpv directory (e.g., <code>C:\mpv</code>).</li>
-<li>Click "OK" on all windows.</li>
+<li><a href="#location-of-inputconf">Location of <code>input.conf</code></a></li>
+<li><a href="#example-keybindings">Example Keybindings</a></li>
 </ul>
 </li>
-</ol>
-<h2 id="basic-usage"><a class="header" href="#basic-usage">Basic Usage</a></h2>
-<h3 id="playing-media"><a class="header" href="#playing-media">Playing Media</a></h3>
-<ol>
-<li>
-<p><strong>Double-Click (Associate File Types):</strong> The easiest way is to associate common video file types (e.g., <code>.mp4</code>, <code>.mkv</code>, <code>.avi</code>) with <code>mpv.exe</code>. Right-click on a video file, select "Open with", choose "mpv", and check the box that says "Always use this app to open .[file extension] files".</p>
-</li>
-<li>
-<p><strong>Drag and Drop:</strong> Drag a video file onto the <code>mpv.exe</code> icon or a running mpv window.</p>
-</li>
-<li>
-<p><strong>Command Line/PowerShell:</strong> Open a command prompt or PowerShell window and type:</p>
-<pre><code class="language-powershell">mpv "path\to\your\video.mp4"
-</code></pre>
-<p>Replace <code>"path\to\your\video.mp4"</code> with the actual path to your video file. If you added mpv to your PATH, you can run this command from any directory. Otherwise, you'll need to navigate to the <code>mpv</code> directory first.</p>
-</li>
-</ol>
-<h3 id="basic-controls-keyboard-shortcuts"><a class="header" href="#basic-controls-keyboard-shortcuts">Basic Controls (Keyboard Shortcuts)</a></h3>
-<p>These are the most common and essential shortcuts</p>
-<div class="table-wrapper"><table><thead><tr><th>Key(s)</th><th>Action</th></tr></thead><tbody>
-<tr><td>Spacebar</td><td>Pause/Play</td></tr>
-<tr><td>Left Arrow</td><td>Seek backward 5 seconds</td></tr>
-<tr><td>Right Arrow</td><td>Seek forward 5 seconds</td></tr>
-<tr><td>Up Arrow</td><td>Volume up</td></tr>
-<tr><td>Down Arrow</td><td>Volume down</td></tr>
-<tr><td>q or Esc</td><td>Quit mpv</td></tr>
-<tr><td>f</td><td>Toggle fullscreen</td></tr>
-<tr><td>m</td><td>Mute/Unmute</td></tr>
-<tr><td>&gt; (Shift + .)</td><td>Next frame</td></tr>
-<tr><td>&lt; (Shift + ,)</td><td>Previous frame</td></tr>
-<tr><td>o</td><td>Show playback statistics (OSD)</td></tr>
-<tr><td>i</td><td>Show current filename (OSD)</td></tr>
-<tr><td>1</td><td>Cycle audio tracks</td></tr>
-<tr><td>j</td><td>Cycle subtitle tracks</td></tr>
-<tr><td>v</td><td>Toggle subtitle visibility</td></tr>
-<tr><td>9</td><td>Decrease subtitle delay</td></tr>
-<tr><td>0</td><td>Increase subtitle delay</td></tr>
-<tr><td>[</td><td>Decrease playback speed</td></tr>
-<tr><td>]</td><td>Increase playback speed</td></tr>
-<tr><td>\</td><td>Reset playback speed to normal (1.0x)</td></tr>
+</ul>
+<h2 id="keyboard-shortcuts"><a class="header" href="#keyboard-shortcuts">Keyboard Shortcuts</a></h2>
+<h3 id="playback-controls"><a class="header" href="#playback-controls">Playback Controls</a></h3>
+<div class="table-wrapper"><table><thead><tr><th><strong>Shortcut</strong></th><th><strong>Action</strong></th></tr></thead><tbody>
+<tr><td>Space</td><td>Play/Pause</td></tr>
+<tr><td>Enter</td><td>Play/Pause</td></tr>
+<tr><td>P</td><td>Pause</td></tr>
+<tr><td>. (Period)</td><td>Frame-step (move forward 1 frame)</td></tr>
+<tr><td>, (Comma)</td><td>Frame-back (move backward 1 frame)</td></tr>
+<tr><td>→ (Right Arrow)</td><td>Seek forward 5 seconds</td></tr>
+<tr><td>← (Left Arrow)</td><td>Seek backward 5 seconds</td></tr>
+<tr><td>↑ (Up Arrow)</td><td>Seek forward 1 minute</td></tr>
+<tr><td>↓ (Down Arrow)</td><td>Seek backward 1 minute</td></tr>
+<tr><td>Ctrl + →</td><td>Seek forward 10 seconds</td></tr>
+<tr><td>Ctrl + ←</td><td>Seek backward 10 seconds</td></tr>
+<tr><td>[</td><td>Decrease playback speed by 10%</td></tr>
+<tr><td>]</td><td>Increase playback speed by 10%</td></tr>
+<tr><td>{</td><td>Halve playback speed</td></tr>
+<tr><td>}</td><td>Double playback speed</td></tr>
+<tr><td>Backspace</td><td>Reset playback speed to normal</td></tr>
+</tbody></table>
+</div>
+<h3 id="volume-and-audio"><a class="header" href="#volume-and-audio">Volume and Audio</a></h3>
+<div class="table-wrapper"><table><thead><tr><th><strong>Shortcut</strong></th><th><strong>Action</strong></th></tr></thead><tbody>
+<tr><td>↑ (Up Arrow)</td><td>Increase volume</td></tr>
+<tr><td>↓ (Down Arrow)</td><td>Decrease volume</td></tr>
+<tr><td>9</td><td>Decrease volume</td></tr>
+<tr><td>0</td><td>Increase volume</td></tr>
+<tr><td>M</td><td>Mute/Unmute</td></tr>
+<tr><td>#</td><td>Cycle through audio tracks</td></tr>
+<tr><td>Ctrl + +</td><td>Increase audio delay</td></tr>
+<tr><td>Ctrl + -</td><td>Decrease audio delay</td></tr>
+</tbody></table>
+</div>
+<h3 id="video-and-subtitles"><a class="header" href="#video-and-subtitles">Video and Subtitles</a></h3>
+<div class="table-wrapper"><table><thead><tr><th><strong>Shortcut</strong></th><th><strong>Action</strong></th></tr></thead><tbody>
+<tr><td>F</td><td>Toggle fullscreen</td></tr>
+<tr><td>T</td><td>Toggle stay-on-top</td></tr>
+<tr><td>V</td><td>Toggle subtitle visibility</td></tr>
+<tr><td>J</td><td>Cycle through subtitle tracks</td></tr>
+<tr><td>Z</td><td>Adjust subtitle delay forward</td></tr>
+<tr><td>X</td><td>Adjust subtitle delay backward</td></tr>
 <tr><td>Ctrl + +</td><td>Zoom in</td></tr>
 <tr><td>Ctrl + -</td><td>Zoom out</td></tr>
-<tr><td>Ctrl + 0</td><td>Reset zoom</td></tr>
+<tr><td>Alt + ↑</td><td>Move subtitles up</td></tr>
+<tr><td>Alt + ↓</td><td>Move subtitles down</td></tr>
 </tbody></table>
 </div>
-<h2 id="on-screen-display-osd"><a class="header" href="#on-screen-display-osd">On-Screen Display (OSD)</a></h2>
-<p>mpv has a minimal OSD that appears briefly when you perform actions like seeking or changing volume</p>
-<h2 id="configuration-file-mpvconf"><a class="header" href="#configuration-file-mpvconf">Configuration File (mpv.conf)</a></h2>
-<p>mpv is highly customizable through a configuration file named <code>mpv.conf</code></p>
+<h3 id="playlist-and-files"><a class="header" href="#playlist-and-files">Playlist and Files</a></h3>
+<div class="table-wrapper"><table><thead><tr><th><strong>Shortcut</strong></th><th><strong>Action</strong></th></tr></thead><tbody>
+<tr><td>&gt;</td><td>Next file in playlist</td></tr>
+<tr><td>&lt;</td><td>Previous file in playlist</td></tr>
+<tr><td>Ctrl + P</td><td>Show playlist</td></tr>
+<tr><td>Ctrl + L</td><td>Load a file</td></tr>
+</tbody></table>
+</div>
+<h3 id="screenshots-and-recording"><a class="header" href="#screenshots-and-recording">Screenshots and Recording</a></h3>
+<div class="table-wrapper"><table><thead><tr><th><strong>Shortcut</strong></th><th><strong>Action</strong></th></tr></thead><tbody>
+<tr><td>S</td><td>Take a screenshot (without subs)</td></tr>
+<tr><td>s</td><td>Take a screenshot (with subs)</td></tr>
+<tr><td>Ctrl + S</td><td>Take a screenshot (original size)</td></tr>
+<tr><td>Ctrl + R</td><td>Start/stop recording</td></tr>
+</tbody></table>
+</div>
+<h3 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h3>
+<div class="table-wrapper"><table><thead><tr><th><strong>Shortcut</strong></th><th><strong>Action</strong></th></tr></thead><tbody>
+<tr><td>Q</td><td>Quit and save playback position</td></tr>
+<tr><td>Ctrl + Q</td><td>Force quit</td></tr>
+<tr><td>I</td><td>Show file information</td></tr>
+<tr><td>O</td><td>Show progress bar and time</td></tr>
+<tr><td>Tab</td><td>Show on-screen stats</td></tr>
+<tr><td>~ (Tilde)</td><td>Show console</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="popular-mpv-scripts"><a class="header" href="#popular-mpv-scripts">Popular MPV Scripts</a></h2>
+<p>MPV supports Lua and JavaScript scripts for advanced functionality. Here are some popular scripts:</p>
+<h3 id="1-mpv-quality-menu"><a class="header" href="#1-mpv-quality-menu">1. <strong>mpv-quality-menu</strong></a></h3>
+<ul>
+<li><strong>Description</strong>: Adds a menu to easily switch between video/audio quality options (e.g., 1080p, 720p) for streaming services like YouTube.</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/christoph-heinrich/mpv-quality-menu">mpv-quality-menu</a></li>
+</ul>
+<h3 id="2-autoload"><a class="header" href="#2-autoload">2. <strong>autoload</strong></a></h3>
+<ul>
+<li><strong>Description</strong>: Automatically loads and plays the next file in the directory.</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autoload.lua">autoload</a></li>
+</ul>
+<h3 id="3-thumbfast"><a class="header" href="#3-thumbfast">3. <strong>thumbfast</strong></a></h3>
+<ul>
+<li><strong>Description</strong>: Generates and displays thumbnails while seeking.</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/po5/thumbfast">thumbfast</a></li>
+</ul>
+<h3 id="4-mpv-webm"><a class="header" href="#4-mpv-webm">4. <strong>mpv-webm</strong></a></h3>
+<ul>
+<li><strong>Description</strong>: Allows you to create WebM clips from videos.</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/ekisu/mpv-webm">mpv-webm</a></li>
+</ul>
+<h3 id="5-mpv-scripts"><a class="header" href="#5-mpv-scripts">5. <strong>mpv-scripts</strong></a></h3>
+<ul>
+<li><strong>Description</strong>: A collection of useful scripts, including:
+<ul>
+<li><strong>auto-profiles</strong>: Automatically applies profiles based on media properties.</li>
+<li><strong>reload</strong>: Reloads the current file.</li>
+<li><strong>stats</strong>: Displays detailed playback statistics.</li>
+</ul>
+</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/mpv-player/mpv/wiki/User-Scripts">mpv-scripts</a></li>
+</ul>
+<h3 id="6-mpv-history"><a class="header" href="#6-mpv-history">6. <strong>mpv-history</strong></a></h3>
+<ul>
+<li><strong>Description</strong>: Keeps a history of played files and allows you to resume playback.</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/zenyd/mpv-scripts">mpv-history</a></li>
+</ul>
+<h3 id="7-mpv-playlistmanager"><a class="header" href="#7-mpv-playlistmanager">7. <strong>mpv-playlistmanager</strong></a></h3>
+<ul>
+<li><strong>Description</strong>: A playlist manager with a graphical interface.</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/jonniek/mpv-playlistmanager">mpv-playlistmanager</a></li>
+</ul>
+<h3 id="8-mpv-osc-tethys"><a class="header" href="#8-mpv-osc-tethys">8. <strong>mpv-osc-tethys</strong></a></h3>
+<ul>
+<li><strong>Description</strong>: A modern on-screen controller (OSC) for MPV.</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/Zren/mpv-osc-tethys">mpv-osc-tethys</a></li>
+</ul>
+<hr />
+<h2 id="how-to-install-scripts"><a class="header" href="#how-to-install-scripts">How to Install Scripts</a></h2>
 <ol>
-<li><strong>Location:</strong> The <code>mpv.conf</code> file should be placed in the following directory</li>
+<li>Download the script file (usually a <code>.lua</code> or <code>.js</code> file).</li>
+<li>Place it in the <code>scripts</code> directory:
+<ul>
+<li>Windows: <code>%APPDATA%\mpv\scripts\</code></li>
+<li>Linux/macOS: <code>~/.config/mpv/scripts/</code></li>
+</ul>
+</li>
+<li>Restart MPV to load the script.</li>
 </ol>
-<p><code>%APPDATA%\mpv</code> (usually <code>C:\Users\[Your Username]\AppData\Roaming\mpv</code>)</p>
-<p>Create the <code>mpv</code> directory if it doesn't exist</p>
-<p>2.<strong>Creating the File:</strong> Create a new text file named <code>mpv.conf</code> in the <code>%APPDATA%\mpv</code> directory</p>
-<p>3.<strong>Example Configuration:</strong> Here's a basic example</p>
-<h3 id="example-mpvconf"><a class="header" href="#example-mpvconf">Example <code>mpv.conf</code></a></h3>
-<pre><code class="language-txt">## Start in fullscreen
-fullscreen=yes
-
-## Volume at startup (0-100)
-volume=70
-
-### Prefer English audio tracks
-alang=en
-
-### Prefer English subtitles
-slang=en
-
-### Save position on exit (resumes playback)
-save-position-on-quit
-
-### Screenshot directory
-screenshot-directory="C:\\Users\\[Your Username]\\Pictures\\mpv_screenshots"
-
-### Example of rebinding a key
-W=add volume 5
-
-</code></pre>
+<hr />
+<h2 id="custom-keybindings"><a class="header" href="#custom-keybindings">Custom Keybindings</a></h2>
+<p>You can add custom keybindings in your <code>input.conf</code> file (located in the same directory as <code>mpv.conf</code>). This file allows you to define your own keyboard shortcuts for MPV. Here’s how to set it up:</p>
+<h3 id="location-of-inputconf"><a class="header" href="#location-of-inputconf">Location of <code>input.conf</code></a></h3>
 <ul>
-<li>
-<p>Replace <code>[Your Username]</code> with your actual Windows username in the <code>screenshot-directory</code> line</p>
-</li>
-<li>
-<p>The <code>W=add volume 5</code> line rebinds the <code>W</code> key to increase the volume by 5%</p>
-<p>4.<strong>Restart mpv:</strong> Changes to <code>mpv.conf</code> take effect when you restart mpv</p>
-</li>
+<li><strong>Windows</strong>: <code>%APPDATA%\mpv\input.conf</code></li>
+<li><strong>Linux/macOS</strong>: <code>~/.config/mpv/input.conf</code></li>
 </ul>
-<h3 id="common-command-line-options"><a class="header" href="#common-command-line-options">Common Command-Line Options</a></h3>
-<p>You can also use command-line options to control mpv's behavior. These options override settings in <code>mpv.conf</code></p>
-<pre><code class="language-powershell">
-mpv --fullscreen --volume=80 "path\to\your\video.mp4"
+<h3 id="example-keybindings"><a class="header" href="#example-keybindings">Example Keybindings</a></h3>
+<p>Here are some examples of custom keybindings you can add to <code>input.conf</code>:</p>
+<pre><code class="language-ini"># Cycle through audio tracks
+a cycle audio
 
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody>
-<tr><td>--fullscreen</td><td>Start in fullscreen mode.</td></tr>
-<tr><td>--volume=&lt;value&gt;</td><td>Set the initial volume (0-100).</td></tr>
-<tr><td>--loop</td><td>Loop the video indefinitely.</td></tr>
-<tr><td>--start=&lt;time&gt;</td><td>Start playback at a specific time (e.g., --start=01:30).</td></tr>
-<tr><td>--no-border</td><td>Remove window borders.</td></tr>
-<tr><td>--title=&lt;title&gt;</td><td>Set the window title.</td></tr>
-<tr><td>--audio-file=&lt;file&gt;</td><td>Play an external audio file.</td></tr>
-<tr><td>--sub-file=&lt;file&gt;</td><td>Load an external subtitle file.</td></tr>
-</tbody></table>
-</div>
-<h3 id="advanced-usage"><a class="header" href="#advanced-usage">Advanced Usage</a></h3>
-<p>mpv has many more advanced features, including</p>
-<ul>
-<li>
-<p><strong>Video and Audio Filters:</strong> Apply various filters to enhance or modify the video and audio output</p>
-</li>
-<li>
-<p><strong>Shaders:</strong> Use shaders for advanced video processing</p>
-</li>
-<li>
-<p><strong>Lua Scripting:</strong> Extend mpv's functionality with Lua scripts</p>
-</li>
-<li>
-<p><strong>Custom Keybindings:</strong> Rebind any key to any mpv command</p>
-</li>
-<li>
-<p><strong>OSD Customization:</strong> Customize the appearance of the OSD</p>
-</li>
-</ul>
-<h2 id="advanced-commands-configuration-file"><a class="header" href="#advanced-commands-configuration-file">Advanced Commands (Configuration File)</a></h2>
-<p>Many mpv settings are best configured in the <code>mpv.conf</code> file (location varies by OS). Here are some examples:</p>
-<ul>
-<li><strong><code>~/.config/mpv/mpv.conf</code> (Linux/macOS)</strong></li>
-<li><strong><code>%APPDATA%\mpv\mpv.conf</code> (Windows)</strong></li>
-</ul>
-<p><strong>Important Notes for Windows:</strong></p>
-<ul>
-<li><strong>Hardware Decoding:</strong> Experiment with different hardware decoding options in your <code>mpv.conf</code> file. Common options for Windows include <code>hwdec=d3d11va</code>, <code>hwdec=dxva2-copy</code>, or <code>hwdec=auto</code>. The best option depends on your graphics card and drivers.</li>
-<li><strong>File Paths:</strong> When using command-line arguments with file paths, be mindful of spaces in the path. Enclose the entire path in double quotes if it contains spaces (e.g., <code>mpv "C:\My Videos\movie.mp4"</code>).</li>
-<li><strong>Command Prompt/PowerShell:</strong> You can run MPV commands from the Command Prompt or PowerShell. Make sure MPV's directory is in your system's <code>PATH</code> environment variable, or specify the full path to <code>mpv.exe</code>.</li>
-</ul>
-<h2 id="command-line-examples-windows"><a class="header" href="#command-line-examples-windows">Command-Line Examples (Windows)</a></h2>
-<pre><code class="language-powershell">mpv file.mp4 - Play a file.
-mpv --loop file.mp4 - Play a file in a loop.
-mpv --start=1:30 file.mp4 - Start playback at 1 minute 30 seconds.
-mpv --playlist=movies.txt - Play a playlist.  Ensure the playlist file uses Windows-style line endings (CRLF).
-mpv --volume=80 file.mp4 - Set the volume to 80%.
-mpv --speed=2.0 file.mp4 - Play at 2x speed.
-mpv --no-audio file.mp4 - Play without audio.
-mpv --no-video file.mp4 - Play without video (audio only).
-mpv --geometry=50%+50% file.mp4 - Position the window at 50% horizontal and vertical.
-mpv "C:\My Videos\movie with spaces.mp4" - Play a file with spaces in the filename.
+# Cycle through subtitle tracks
+s cycle sub
+
+# Toggle mute
+m cycle mute
+
+# Take a screenshot (without subtitles)
+Ctrl+s screenshot video
+
+# Take a screenshot (with subtitles)
+Ctrl+Shift+s screenshot
+
+# Increase volume by 10
++ add volume 10
+
+# Decrease volume by 10
+- add volume -10
+
+# Seek forward by 30 seconds
+Shift+Right seek 30
+
+# Seek backward by 30 seconds
+Shift+Left seek -30
+
+# Toggle fullscreen
+f cycle fullscreen
+
+# Quit and save playback position
+q quit
 </code></pre>
 <style>
   .scroll-to-top {
