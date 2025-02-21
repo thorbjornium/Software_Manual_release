@@ -310,6 +310,12 @@
 <li><a href="#example-keybindings">Example Keybindings</a></li>
 </ul>
 </li>
+<li><a href="#all-keyboard-shortcuts">All Keyboard Shortcuts</a>
+<ul>
+<li><a href="#keyboard-control">Keyboard Control</a></li>
+<li><a href="#mouse-control">Mouse Control</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="keyboard-shortcuts"><a class="header" href="#keyboard-shortcuts">Keyboard Shortcuts</a></h2>
 <h3 id="playback-controls"><a class="header" href="#playback-controls">Playback Controls</a></h3>
@@ -488,6 +494,562 @@ f cycle fullscreen
 # Quit and save playback position
 q quit
 </code></pre>
+<h2 id="all-keyboard-shortcuts"><a class="header" href="#all-keyboard-shortcuts">All Keyboard Shortcuts</a></h2>
+<h3 id="keyboard-control"><a class="header" href="#keyboard-control">Keyboard Control</a></h3>
+<ul>
+<li>
+<p>LEFT and RIGHT</p>
+<ul>
+<li>Seek backward/forward 5 seconds. Shift+arrow does a 1 second exact seek (see <tt class="docutils literal"><span class="pre">--hr-seek</span></tt>).</li>
+</ul>
+</li>
+<li>
+<p>UP and DOWN</p>
+<ul>
+<li>Seek forward/backward 1 minute. Shift+arrow does a 5 second exact seek (see <tt class="docutils literal"><span class="pre">--hr-seek</span></tt>).</li>
+</ul>
+</li>
+<li>
+<p>Ctrl+LEFT and Ctrl+RIGHT</p>
+<ul>
+<li>Seek to the previous/next subtitle. Subject to some restrictions and might not always work; see <tt class="docutils literal"><span class="pre">sub-seek</span></tt> command.</li>
+</ul>
+</li>
+<li>
+<p>Ctrl+Shift+LEFT and Ctrl+Shift+RIGHT</p>
+<ul>
+<li>Adjust subtitle delay so that the previous or next subtitle is displayed now. This is especially useful to sync subtitles to audio.</li>
+</ul>
+</li>
+<li>
+<p>[ and ]</p>
+<ul>
+<li>Decrease/increase current playback speed by 10%.</li>
+</ul>
+</li>
+<li>
+<p>{ and }</p>
+<ul>
+<li>Halve/double current playback speed.</li>
+</ul>
+</li>
+<li>
+<p>BACKSPACE</p>
+<ul>
+<li>Reset playback speed to normal.</li>
+</ul>
+</li>
+<li>
+<p>Shift+BACKSPACE</p>
+<ul>
+<li>Undo the last seek. This works only if the playlist entry was not changed. Hitting it a second time will go back to the original position. See <tt class="docutils literal"><span class="pre">revert-seek</span></tt> command for details.</li>
+</ul>
+</li>
+<li>
+<p>Shift+Ctrl+BACKSPACE</p>
+<ul>
+<li>Mark the current position. This will then be used by <tt class="docutils literal">Shift+BACKSPACE</tt> as revert position (once you seek back, the marker will be reset). You can use this to seek around in the file and then return to the exact position where you left off.</li>
+</ul>
+</li>
+<li>
+<p>&lt; and &gt;</p>
+<ul>
+<li>Go backward/forward in the playlist.</li>
+</ul>
+</li>
+<li>
+<p>ENTER</p>
+<ul>
+<li>Go forward in the playlist.</li>
+</ul>
+</li>
+<li>
+<p>Shift+HOME and Shift+END</p>
+<ul>
+<li>Go to the first/last playlist entry.</li>
+</ul>
+</li>
+<li>
+<p>p and SPACE</p>
+<ul>
+<li>Pause (pressing again unpauses).</li>
+</ul>
+</li>
+<li>
+<p>.</p>
+<ul>
+<li>Step forward. Pressing once will pause, every consecutive press will play one frame and then go into pause mode again.</li>
+</ul>
+</li>
+<li>
+<p>,</p>
+<ul>
+<li>Step backward. Pressing once will pause, every consecutive press will play one frame in reverse and then go into pause mode again.</li>
+</ul>
+</li>
+<li>
+<p>q</p>
+<ul>
+<li>Stop playing and quit.</li>
+</ul>
+</li>
+<li>
+<p>Q</p>
+<ul>
+<li>Like <tt class="docutils literal">q</tt>, but store the current playback position. Playing the same file later will resume at the old playback position if possible. See <a href="https://mpv.io/manual/master/#resuming-playback">RESUMING PLAYBACK</a>.</li>
+</ul>
+</li>
+<li>
+<p>/ and *</p>
+<ul>
+<li>Decrease/increase volume.</li>
+</ul>
+</li>
+<li>
+<p>KP_DIVIDE and KP_MULTIPLY</p>
+<ul>
+<li>Decrease/increase volume.</li>
+</ul>
+</li>
+<li>
+<p>9 and 0</p>
+<ul>
+<li>Decrease/increase volume.</li>
+</ul>
+</li>
+<li>
+<p>m</p>
+<ul>
+<li>Mute sound.</li>
+</ul>
+</li>
+<li>
+<p>_</p>
+<ul>
+<li>Cycle through the available video tracks.</li>
+</ul>
+</li>
+<li>
+<p>#</p>
+<ul>
+<li>Cycle through the available audio tracks.</li>
+</ul>
+</li>
+<li>
+<p>E</p>
+<ul>
+<li>Cycle through the available Editions.</li>
+</ul>
+</li>
+<li>
+<p>f</p>
+<ul>
+<li>Toggle fullscreen (see also <tt class="docutils literal"><span class="pre">--fs</span></tt>).</li>
+</ul>
+</li>
+<li>
+<p>ESC</p>
+<ul>
+<li>Exit fullscreen mode.</li>
+</ul>
+</li>
+<li>
+<p>T</p>
+<ul>
+<li>Toggle stay-on-top (see also <tt class="docutils literal"><span class="pre">--ontop</span></tt>).</li>
+</ul>
+</li>
+<li>
+<p>w and W</p>
+<ul>
+<li>Decrease/increase pan-and-scan range. The <tt class="docutils literal">e</tt> key does the same as <tt class="docutils literal">W</tt> currently, but use is discouraged. See <tt class="docutils literal"><span class="pre">--panscan</span></tt> for more information.</li>
+</ul>
+</li>
+<li>
+<p>o and P</p>
+<ul>
+<li>Show progression bar, elapsed time and total duration on the OSD.</li>
+</ul>
+</li>
+<li>
+<p>O</p>
+<ul>
+<li>Toggle OSD states between normal and playback time/duration.</li>
+</ul>
+</li>
+<li>
+<p>v</p>
+<ul>
+<li>Toggle subtitle visibility.</li>
+</ul>
+</li>
+<li>
+<p>j and J</p>
+<ul>
+<li>Cycle through the available subtitles.</li>
+</ul>
+</li>
+<li>
+<p>z and Z</p>
+<ul>
+<li>Adjust subtitle delay by -/+ 0.1 seconds. The <tt class="docutils literal">x</tt> key does the same as <tt class="docutils literal">Z</tt> currently, but use is discouraged.</li>
+</ul>
+</li>
+<li>
+<p>l</p>
+<ul>
+<li>Set/clear A-B loop points. See <tt class="docutils literal"><span class="pre">ab-loop</span></tt> command for details.</li>
+</ul>
+</li>
+<li>
+<p>L</p>
+<ul>
+<li>Toggle infinite looping.</li>
+</ul>
+</li>
+<li>
+<p>Ctrl++ and Ctrl+-</p>
+<ul>
+<li>Adjust audio delay (A/V sync) by +/- 0.1 seconds.</li>
+</ul>
+</li>
+<li>
+<p>Ctrl+KP_ADD and Ctrl+KP_SUBTRACT</p>
+<ul>
+<li>Adjust audio delay (A/V sync) by +/- 0.1 seconds.</li>
+</ul>
+</li>
+<li>
+<p>G and F</p>
+<ul>
+<li>Adjust subtitle font size by +/- 10%.</li>
+</ul>
+</li>
+<li>
+<p>u</p>
+<ul>
+<li>Switch between applying only <tt class="docutils literal"><span class="pre">--sub-ass-*</span></tt> overrides (default) to SSA/ASS subtitles, and overriding them almost completely with the normal subtitle style. See <tt class="docutils literal"><span class="pre">--sub-ass-override</span></tt> for more info.</li>
+</ul>
+</li>
+<li>
+<p>V</p>
+<ul>
+<li>Cycle through which video data gets used for ASS rendering. See <tt class="docutils literal"><span class="pre">--sub-ass-use-video-data</span></tt> for more info.</li>
+</ul>
+</li>
+<li>
+<p>r and R</p>
+<ul>
+<li>Move subtitles up/down. The <tt class="docutils literal">t</tt> key does the same as <tt class="docutils literal">R</tt> currently, but use is discouraged.</li>
+</ul>
+</li>
+<li>
+<p>s</p>
+<ul>
+<li>Take a screenshot.</li>
+</ul>
+</li>
+<li>
+<p>S</p>
+<ul>
+<li>Take a screenshot, without subtitles. (Whether this works depends on VO driver support.)</li>
+</ul>
+</li>
+<li>
+<p>Ctrl+s</p>
+<ul>
+<li>Take a screenshot, as the window shows it (with subtitles, OSD, and scaled video).</li>
+</ul>
+</li>
+<li>
+<p>HOME</p>
+<ul>
+<li>Seek to the beginning of the file.</li>
+</ul>
+</li>
+<li>
+<p>PGUP and PGDWN</p>
+<ul>
+<li>Seek to the beginning of the previous/next chapter. In most cases, "previous" will actually go to the beginning of the current chapter; see <tt class="docutils literal"><span class="pre">--chapter-seek-threshold</span></tt>.</li>
+</ul>
+</li>
+<li>
+<p>Shift+PGUP and Shift+PGDWN</p>
+<ul>
+<li>Seek backward or forward by 10 minutes. (This used to be mapped to PGUP/PGDWN without Shift.)</li>
+</ul>
+</li>
+<li>
+<p>b</p>
+<ul>
+<li>Activate/deactivate debanding.</li>
+</ul>
+</li>
+<li>
+<p>d</p>
+<ul>
+<li>Cycle the deinterlacing filter.</li>
+</ul>
+</li>
+<li>
+<p>A</p>
+<ul>
+<li>Cycle aspect ratio override.</li>
+</ul>
+</li>
+<li>
+<p>Ctrl+h</p>
+<ul>
+<li>Toggle hardware video decoding on/off.</li>
+</ul>
+</li>
+<li>
+<p>Alt+LEFT, Alt+RIGHT, Alt+UP, Alt+DOWN</p>
+<ul>
+<li>Move the video rectangle (panning).</li>
+</ul>
+</li>
+<li>
+<p>Alt++ and Alt+-</p>
+<ul>
+<li>Change video zoom.</li>
+</ul>
+</li>
+<li>
+<p>Alt+KP_ADD and Alt+KP_SUBTRACT</p>
+<ul>
+<li>Change video zoom.</li>
+</ul>
+</li>
+<li>
+<p>Alt+BACKSPACE</p>
+<ul>
+<li>Reset the pan/zoom settings.</li>
+</ul>
+</li>
+<li>
+<p>F8</p>
+<ul>
+<li>Show the playlist and the current position in it.</li>
+</ul>
+</li>
+<li>
+<p>F9</p>
+<ul>
+<li>Show the list of audio and subtitle streams.</li>
+</ul>
+</li>
+<li>
+<p>Ctrl+v</p>
+<ul>
+<li>Append the file or URL in the clipboard to the playlist. If nothing is currently playing, it is played immediately. Only works on platforms that support the <tt class="docutils literal">clipboard</tt> property.</li>
+</ul>
+</li>
+<li>
+<p>i and I</p>
+<ul>
+<li>Show/toggle an overlay displaying statistics about the currently playing file such as codec, framerate, number of dropped frames and so on. See <a href="https://mpv.io/manual/master/#stats">STATS</a> for more information.</li>
+</ul>
+</li>
+<li>
+<p>?</p>
+<ul>
+<li>Toggle an overlay displaying the active key bindings. See <a href="https://mpv.io/manual/master/#stats">STATS</a> for more information.</li>
+</ul>
+</li>
+<li>
+<p>DEL</p>
+<ul>
+<li>Cycle OSC visibility between never / auto (mouse-move) / always</li>
+</ul>
+</li>
+<li>
+<p>`</p>
+<ul>
+<li>Show the console. (ESC closes it again. See <a href="https://mpv.io/manual/master/#console">CONSOLE</a>.)</li>
+</ul>
+</li>
+</ul>
+<p>(The following keys are valid only when using a video output that supports the corresponding adjustment.)</p>
+<ul>
+<li>1 and 2
+<ul>
+<li>Adjust contrast.</li>
+</ul>
+</li>
+<li>3 and 4
+<ul>
+<li>Adjust brightness.</li>
+</ul>
+</li>
+<li>5 and 6
+<ul>
+<li>Adjust gamma.</li>
+</ul>
+</li>
+<li>7 and 8
+<ul>
+<li>Adjust saturation.</li>
+</ul>
+</li>
+<li>Alt+0 (and Command+0 on macOS)
+<ul>
+<li>Resize video window to half its original size.</li>
+</ul>
+</li>
+<li>Alt+1 (and Command+1 on macOS)
+<ul>
+<li>Resize video window to its original size.</li>
+</ul>
+</li>
+<li>Alt+2 (and Command+2 on macOS)
+<ul>
+<li>Resize video window to double its original size.</li>
+</ul>
+</li>
+<li>Command + f (macOS only)
+<ul>
+<li>Toggle fullscreen (see also <tt class="docutils literal"><span class="pre">--fs</span></tt>).</li>
+</ul>
+</li>
+</ul>
+<p>(The following keybindings open a menu in the console that lets you choose from a list of items by typing part of the desired item, by clicking the desired item, or by navigating them with keybindings: <tt class="docutils literal">Down</tt> and <tt class="docutils literal">Ctrl+n</tt> go down, <tt class="docutils literal">Up</tt> and <tt class="docutils literal">Ctrl+p</tt> go up, <tt class="docutils literal">Page down</tt> and <tt class="docutils literal">Ctrl+f</tt> scroll down one page, and <tt class="docutils literal">Page up</tt> and <tt class="docutils literal">Ctrl+b</tt> scroll up one page.)</p>
+<p>In track menus, selecting the current tracks disables it.</p>
+<ul>
+<li>g-p
+<ul>
+<li>Select a playlist entry.</li>
+</ul>
+</li>
+<li>g-s
+<ul>
+<li>Select a subtitle track.</li>
+</ul>
+</li>
+<li>g-S
+<ul>
+<li>Select a secondary subtitle track.</li>
+</ul>
+</li>
+<li>g-a
+<ul>
+<li>Select an audio track.</li>
+</ul>
+</li>
+<li>g-v
+<ul>
+<li>Select a video track.</li>
+</ul>
+</li>
+<li>g-t
+<ul>
+<li>Select a track of any type.</li>
+</ul>
+</li>
+<li>g-c
+<ul>
+<li>Select a chapter.</li>
+</ul>
+</li>
+<li>g-e
+<ul>
+<li>Select an MKV edition or DVD/Blu-ray title.</li>
+</ul>
+</li>
+<li>g-l
+<ul>
+<li>Select a subtitle line to seek to. This currently requires <tt class="docutils literal">ffmpeg</tt> in <tt class="docutils literal">PATH</tt>, or in the same folder as mpv on Windows.</li>
+</ul>
+</li>
+<li>g-d
+<ul>
+<li>Select an audio device.</li>
+</ul>
+</li>
+<li>g-h
+<ul>
+<li>Select a file from the watch history. Requires <tt class="docutils literal"><span class="pre">--save-watch-history</span></tt>.</li>
+</ul>
+</li>
+<li>g-w
+<ul>
+<li>Select a file from watch later config files (see <a href="https://mpv.io/manual/master/#resuming-playback">RESUMING PLAYBACK</a>) to resume playing. Requires <tt class="docutils literal"><span class="pre">--write-filename-in-watch-later-config</span></tt>.</li>
+</ul>
+</li>
+<li>g-b
+<ul>
+<li>Select a defined input binding.</li>
+</ul>
+</li>
+<li>g-r
+<ul>
+<li>Show the values of all properties.</li>
+</ul>
+</li>
+<li>g-m, MENU, Ctrl+p
+<ul>
+<li>Show a menu with miscellaneous entries.</li>
+</ul>
+</li>
+</ul>
+<p>See <a href="https://mpv.io/manual/master/#select">SELECT</a> for more information.</p>
+<p>(The following keys are valid if you have a keyboard with multimedia keys.)</p>
+<ul>
+<li>PAUSE
+<ul>
+<li>Pause.</li>
+</ul>
+</li>
+<li>STOP
+<ul>
+<li>Stop playing and quit.</li>
+</ul>
+</li>
+<li>PREVIOUS and NEXT
+<ul>
+<li>Seek backward/forward 1 minute.</li>
+</ul>
+</li>
+<li>ZOOMIN and ZOOMOUT
+<ul>
+<li>Change video zoom.</li>
+</ul>
+</li>
+</ul>
+<p>If you miss some older key bindings, look at <tt class="docutils literal"><span class="pre">etc/restore-old-bindings.conf</span></tt> in the mpv git repository.</p>
+<h3 id="mouse-control"><a class="header" href="#mouse-control">Mouse Control</a></h3>
+<ul>
+<li>Left double click
+<ul>
+<li>Toggle fullscreen on/off.</li>
+</ul>
+</li>
+<li>Right click
+<ul>
+<li>Toggle pause on/off.</li>
+</ul>
+</li>
+<li>Forward/Back button
+<ul>
+<li>Skip to next/previous entry in playlist.</li>
+</ul>
+</li>
+<li>Wheel up/down
+<ul>
+<li>Decrease/increase volume.</li>
+</ul>
+</li>
+<li>Wheel left/right
+<ul>
+<li>Seek forward/backward 10 seconds.</li>
+</ul>
+</li>
+<li>Ctrl+Wheel up/down
+<ul>
+<li>Change video zoom.</li>
+</ul>
+</li>
+</ul>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
