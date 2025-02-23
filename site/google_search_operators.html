@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Links</title>
+        <title>Google Search Operators</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/links.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/google_search_operators.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,10 +279,58 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="links"><a class="header" href="#links">Links</a></h1>
-<p><a href="https://www.zombo.com/">https://www.zombo.com/</a>
-<a href="https://zoomquilt.org/">https://zoomquilt.org/</a>
-<a href="https://letmegooglethat.com/">https://letmegooglethat.com/</a></p>
+<h1 id="google-search-operators"><a class="header" href="#google-search-operators">Google Search Operators</a></h1>
+<h2 id="working"><a class="header" href="#working">Working</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Search operator</th><th>What it does</th><th>Example</th></tr></thead><tbody>
+<tr><td><code>“ ”</code></td><td>Search for results that mention a word or phrase.</td><td><a href="https://www.google.com/search?q=%22steve+jobs%22">“steve jobs”</a></td></tr>
+<tr><td><code>OR</code></td><td>Search for results related to X or Y.</td><td><a href="https://www.google.com/search?&amp;q=jobs+OR+gates">jobs OR gates</a></td></tr>
+<tr><td>`</td><td>`</td><td>Same as <code>OR:</code></td></tr>
+<tr><td><code>AND</code></td><td>Search for results related to X and Y.</td><td><a href="https://www.google.com/search?&amp;q=jobs+AND+gates">jobs AND gates</a></td></tr>
+<tr><td><code>-</code></td><td>Search for results that don’t mention a word or phrase.</td><td><a href="https://www.google.com/search?q=jobs+-apple">jobs -apple</a></td></tr>
+<tr><td><code>*</code></td><td>Wildcard matching any word or phrase.</td><td><a href="https://www.google.com/search?q=%22steve+*+apple%22">steve * apple</a></td></tr>
+<tr><td><code>( )</code></td><td>Group multiple searches.</td><td><a href="https://www.google.com/search?q=%28ipad+OR+iphone%29+apple">(ipad OR iphone) apple</a></td></tr>
+<tr><td><code>define:</code></td><td>Search for the definition of a word or phrase.</td><td><a href="https://www.google.com/search?q=define%3Aentrepreneur">define:entrepreneur</a></td></tr>
+<tr><td><code>cache:</code></td><td>Find the most recent cache of a webpage.</td><td><a href="https://webcache.googleusercontent.com/search?q=cache%3Aapple.com">cache:apple.com</a></td></tr>
+<tr><td><code>filetype:</code></td><td>Search for particular types of files (e.g., PDF).</td><td><a href="https://www.google.com/search?q=apple+filetype%3Apdf">apple filetype:pdf</a></td></tr>
+<tr><td><code>ext:</code></td><td>Same as <code>filetype:</code></td><td><a href="https://www.google.com/search?q=apple+ext%3Apdf">apple ext:pdf</a></td></tr>
+<tr><td><code>site:</code></td><td>Search for results from a particular website.</td><td><a href="https://www.google.com/search?q=site%3Aapple.com">site:apple.com</a></td></tr>
+<tr><td><code>related:</code></td><td>Search for sites related to a given domain.</td><td><a href="https://www.google.com/search?q=related%3Aapple.com">related:apple.com</a></td></tr>
+<tr><td><code>intitle:</code></td><td>Search for pages with a particular word in the title tag.</td><td><a href="https://www.google.com/search?q=intitle%3Aapple">intitle:apple</a></td></tr>
+<tr><td><code>allintitle:</code></td><td>Search for pages with multiple words in the title tag.</td><td><a href="https://www.google.com/search?q=allintitle%3Aapple+iphone">allintitle:apple iphone</a></td></tr>
+<tr><td><code>inurl:</code></td><td>Search for pages with a particular word in the URL.</td><td><a href="https://www.google.com/search?q=inurl%3Aapple">inurl:apple</a></td></tr>
+<tr><td><code>allinurl:</code></td><td>Search for pages with multiple words in the URL.</td><td><a href="https://www.google.com/search?q=allinurl%3Aapple+iphone">allinurl:apple iphone</a></td></tr>
+<tr><td><code>intext:</code></td><td>Search for pages with a particular word in their content.</td><td><a href="https://www.google.com/search?q=intext%3Aapple">intext:apple iphone</a></td></tr>
+<tr><td><code>allintext:</code></td><td>Search for pages with multiple words in their content.</td><td><a href="https://www.google.com/search?q=allintext%3Aapple+iphone">allintext:apple iphone</a></td></tr>
+<tr><td><code>weather:</code></td><td>Search for the weather in a location.</td><td><a href="https://www.google.com/search?q=weather%3Asan+francisco">weather:san francisco</a></td></tr>
+<tr><td><code>stocks:</code></td><td>Search for stock information for a ticker.</td><td><a href="https://www.google.com/search?q=stocks%3Aaapl">stocks:aapl</a></td></tr>
+<tr><td><code>map:</code></td><td>Force Google to show map results.</td><td><a href="https://www.google.com/search?q=map%3Asilicon+valley">map:silicon valley</a></td></tr>
+<tr><td><code>movie:</code></td><td>Search for information about a movie.</td><td><a href="https://www.google.com/search?q=movie%3Asteve+jobs">movie:steve jobs</a></td></tr>
+<tr><td><code>in</code></td><td>Convert one unit to another.</td><td><a href="https://www.google.com/search?q=$329+in+GBP">$329 in GBP</a></td></tr>
+<tr><td><code>source:</code></td><td>Search for results from a particular source in Google News.</td><td><a href="https://www.google.com/search?q=apple+source%3Athe_verge&amp;tbm=nws">apple source:the_verge</a></td></tr>
+<tr><td><code>before:</code></td><td>Search for results from before a particular date.</td><td><a href="https://www.google.com/search?q=apple+before%3A2007-06-29">apple before:2007-06-29</a></td></tr>
+<tr><td><code>after:</code></td><td>Search for results from after a particular date.</td><td><a href="https://www.google.com/search?q=apple+after%3A2007-06-29">apple after:2007-06-29</a></td></tr>
+</tbody></table>
+</div>
+<p>Sidenote.
+You can also use the _ operator, which acts as a wildcard in Google Autocomplete.</p>
+<h2 id="unreliable"><a class="header" href="#unreliable">Unreliable</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Search operator</th><th>What it does</th><th>Example</th></tr></thead><tbody>
+<tr><td><code>#..#</code></td><td>Search within a range of numbers.</td><td><a href="https://www.google.com/search?q=iphone+case+%2450..%2460">iphone case $50..$60</a></td></tr>
+<tr><td><code>inanchor:</code></td><td>Search for pages with backlinks containing specific anchor text.</td><td><a href="https://www.google.com/search?q=inanchor%3Aapple">inanchor:apple</a></td></tr>
+<tr><td><code>allinanchor:</code></td><td>Search for pages with backlinks containing multiple words in their anchor text.</td><td><a href="https://www.google.com/search?q=allinanchor%3Aapple+iphone">allinanchor:apple iphone</a></td></tr>
+<tr><td><code>AROUND(X)</code></td><td>Search for pages with two words or phrases within X words of one another.</td><td><a href="https://www.google.com/search?q=apple+AROUND%284%29">apple AROUND(4) iphone</a></td></tr>
+<tr><td><code>loc:</code></td><td>Find results from a given area.</td><td>loc:”san francisco” apple</td></tr>
+<tr><td><code>location:</code></td><td>Find news from a certain location in Google News.</td><td><a href="https://www.google.com/search?q=loc:%22san+francisco%22+apple">location:”san francisco” apple</a></td></tr>
+<tr><td><code>daterange:</code></td><td>Search for results from a particular date range.</td><td><a href="https://www.google.com/search?q=steve+jobs+daterange%3A11278-13278">daterange:11278-13278</a></td></tr>
+</tbody></table>
+</div>
+<h2 id="examples-with-combinations-of-operators"><a class="header" href="#examples-with-combinations-of-operators">Examples with combinations of operators</a></h2>
+<p>Exact Phrase + Content Search + Filetype</p>
+<pre><code class="language-text">“deep learning” allintext:neural networks filetype:pdf before:2020-01-01
+</code></pre>
+<p>Exact Phrase + Related Sites Search</p>
+<pre><code class="language-text">“artificial intelligence” related:openai.com after:2022-01-01
+</code></pre>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
@@ -328,13 +376,10 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="yt-dlp.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="links.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="google_search_operators.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -342,13 +387,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="yt-dlp.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="links.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="google_search_operators.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
