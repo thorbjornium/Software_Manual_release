@@ -14950,11 +14950,16 @@ yt-dlp --update
 }
 </style>
 <h1 id="google-search-operators"><a class="header" href="#google-search-operators">Google Search Operators</a></h1>
+<ul>
+<li><a href="google_search_operators.html#working">Working</a></li>
+<li><a href="google_search_operators.html#unreliable">Unreliable</a></li>
+<li><a href="google_search_operators.html#examples-with-combinations-of-operators">Examples with combinations of operators</a></li>
+</ul>
 <h2 id="working"><a class="header" href="#working">Working</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Search operator</th><th>What it does</th><th>Example</th></tr></thead><tbody>
 <tr><td><code>“ ”</code></td><td>Search for results that mention a word or phrase.</td><td><a href="https://www.google.com/search?q=%22steve+jobs%22">“steve jobs”</a></td></tr>
 <tr><td><code>OR</code></td><td>Search for results related to X or Y.</td><td><a href="https://www.google.com/search?&amp;q=jobs+OR+gates">jobs OR gates</a></td></tr>
-<tr><td>`</td><td>`</td><td>Same as <code>OR:</code></td></tr>
+<tr><td><code>|</code></td><td>Same as <code>OR:</code></td><td><a href="https://www.google.com/search?q=jobs%7Cgates">jobs | gates</a></td></tr>
 <tr><td><code>AND</code></td><td>Search for results related to X and Y.</td><td><a href="https://www.google.com/search?&amp;q=jobs+AND+gates">jobs AND gates</a></td></tr>
 <tr><td><code>-</code></td><td>Search for results that don’t mention a word or phrase.</td><td><a href="https://www.google.com/search?q=jobs+-apple">jobs -apple</a></td></tr>
 <tr><td><code>*</code></td><td>Wildcard matching any word or phrase.</td><td><a href="https://www.google.com/search?q=%22steve+*+apple%22">steve * apple</a></td></tr>
