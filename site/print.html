@@ -15046,6 +15046,426 @@ You can also use the _ operator, which acts as a wildcard in Google Autocomplete
     const button = document.querySelector(".scroll-to-top");
     button.classList.toggle("hidden", window.scrollY < 200);
   });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="osi-layers"><a class="header" href="#osi-layers">OSI Layers</a></h1>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<h3 id="1-physical-layer-layer-1-the-foundation-of-transmission"><a class="header" href="#1-physical-layer-layer-1-the-foundation-of-transmission"><strong>1. Physical Layer (Layer 1): The Foundation of Transmission</strong></a></h3>
+<ul>
+<li><strong>Core Function:</strong> The Physical Layer is the most fundamental layer, responsible for the actual transmission of raw, unstructured bit streams over a physical medium. It's the tangible connection between devices.</li>
+<li><strong>Detailed Focus:</strong>
+<ul>
+<li><strong>Physical Media:</strong> Defines the characteristics of the physical medium used for transmission, including copper cables (twisted-pair, coaxial), fiber optic cables (single-mode, multi-mode), and wireless radio frequencies (e.g., 2.4GHz, 5GHz, 60GHz).</li>
+<li><strong>Electrical Specifications:</strong> Specifies voltage levels, signal timing, and encoding schemes used to represent bits as electrical signals. This includes concepts like baud rate, signal amplitude, and modulation techniques (e.g., amplitude modulation, frequency modulation, phase modulation, quadrature amplitude modulation).</li>
+<li><strong>Mechanical Specifications:</strong> Defines the physical connectors, pin assignments, and cable specifications. This ensures compatibility between devices from different manufacturers. Examples: RJ45 pinouts, fiber optic connector types (LC, SC, ST, MTP/MPO).</li>
+<li><strong>Procedural Specifications:</strong> Defines the procedures for establishing, maintaining, and terminating the physical connection. Includes specifications for signal timing, synchronization, and handshaking.</li>
+<li><strong>Topology:</strong> Concerned with the physical layout of the network, such as point-to-point, bus, star, ring, or mesh topologies. Defines how devices are physically connected and the physical signal flow.</li>
+<li><strong>Synchronization:</strong> Handles bit synchronization, ensuring that the receiver can accurately interpret the transmitted bits. This involves clocking and timing mechanisms, including clock recovery and bit-level alignment.</li>
+</ul>
+</li>
+<li><strong>Key Aspects:</strong>
+<ul>
+<li>Deals with signal strength, attenuation (signal loss), and noise (interference).</li>
+<li>Specifies the bit rate (data transmission speed in bits per second).</li>
+<li>Includes technologies like Ethernet physical layer standards (10BASE-T, 100BASE-TX, 1000BASE-T, 10GBASE-T, 40GBASE-LR4), fiber optic standards (e.g., 1000BASE-LX, 10GBASE-LR, 40GBASE-ER4), and wireless standards (e.g., 802.11a/b/g/n/ac/ax/be).</li>
+<li>Deals with signal to noise ratio (SNR), and error rates.</li>
+</ul>
+</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>Cable types: Cat5e, Cat6, Cat6a, Cat7, Cat8, fiber optic cables (single-mode, multi-mode).</li>
+<li>Connectors: RJ45, LC, SC, ST, MTP/MPO, USB, HDMI.</li>
+<li>Network devices: Hubs, repeaters, media converters, transceivers (e.g., SFP, QSFP, CFP), optical amplifiers.</li>
+<li>NICs (Network Interface Cards), fiber optic modems, wireless transceivers, antennas.</li>
+<li>Power over ethernet (PoE) standards.</li>
+</ul>
+</li>
+<li><strong>Data Unit:</strong> Bits.</li>
+</ul>
+<h3 id="2-data-link-layer-layer-2-reliable-node-to-node-delivery"><a class="header" href="#2-data-link-layer-layer-2-reliable-node-to-node-delivery"><strong>2. Data Link Layer (Layer 2): Reliable Node-to-Node Delivery</strong></a></h3>
+<ul>
+<li><strong>Core Function:</strong> The Data Link Layer establishes a reliable link between two directly connected nodes, ensuring error-free data transfer within a local network.</li>
+<li><strong>Detailed Focus:</strong>
+<ul>
+<li><strong>Physical Addressing (MAC Addresses):</strong> Uses MAC addresses (Media Access Control addresses) to uniquely identify devices on a local network. Includes 48-bit or 64-bit addresses, the organization of the address (OUI, vendor ID), and the use of multicast and broadcast addresses.</li>
+<li><strong>Framing:</strong> Encapsulates data from the Network Layer into frames, adding header and trailer information for addressing, error detection, and control. Specific frame formats for Ethernet (802.3), Wi-Fi (802.11), and other Layer 2 protocols.</li>
+<li><strong>Error Detection and Correction:</strong> Implements error detection mechanisms (e.g., CRC - Cyclic Redundancy Check, checksums) to detect errors during transmission and may also implement error correction techniques (e.g., forward error correction - FEC).</li>
+<li><strong>Flow Control:</strong> Regulates the flow of data to prevent overwhelming the receiver. Includes techniques like stop-and-wait, sliding window, and backpressure, and the use of buffer management.</li>
+<li><strong>Media Access Control (MAC):</strong> Controls how devices access the shared physical medium, especially in shared media networks (e.g., Ethernet, Wi-Fi). Includes protocols like CSMA/CD (Carrier Sense Multiple Access with Collision Detection), CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance), and token passing.</li>
+<li><strong>Logical Link Control (LLC):</strong> Provides flow control and error detection for the Data Link Layer. It defines the protocols used for data exchange over the link, including service access points (SAPs).</li>
+<li><strong>VLANs (Virtual Local Area Networks):</strong> Allow for the logical segmentation of a physical network.</li>
+</ul>
+</li>
+<li><strong>Key Aspects:</strong>
+<ul>
+<li>Handles collision detection and avoidance in shared media networks.</li>
+<li>Implements bridging and switching functions, including spanning tree protocol (STP) and link aggregation.</li>
+<li>Includes protocols like Ethernet (802.3), Wi-Fi (802.11), PPP (Point-to-Point Protocol), HDLC (High-Level Data Link Control), and L2TP (Layer 2 Tunneling Protocol).</li>
+<li>Handles quality of service (QoS) at layer 2.</li>
+</ul>
+</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>Ethernet switches, bridges, wireless access points, network adapters.</li>
+<li>MAC addresses.</li>
+<li>Protocols: Ethernet (802.3), Wi-Fi (802.11), PPP, HDLC, Frame Relay, ATM (Asynchronous Transfer Mode), MPLS (Multiprotocol Label Switching).</li>
+</ul>
+</li>
+<li><strong>Data Unit:</strong> Frames.</li>
+</ul>
+<h3 id="3-network-layer-layer-3-logical-addressing-and-routing"><a class="header" href="#3-network-layer-layer-3-logical-addressing-and-routing"><strong>3. Network Layer (Layer 3): Logical Addressing and Routing</strong></a></h3>
+<ul>
+<li><strong>Core Function:</strong> The Network Layer is responsible for logical addressing (IP addresses) and routing data packets across networks, enabling communication between devices on different networks.</li>
+<li><strong>Detailed Focus:</strong>
+<ul>
+<li><strong>Logical Addressing (IP Addresses):</strong> Uses IP addresses (Internet Protocol addresses) to uniquely identify devices on a network. Includes IPv4 and IPv6 addressing schemes, subnetting, supernetting, and network address translation (NAT).</li>
+<li><strong>Routing:</strong> Determines the best path for data packets to travel from source to destination, even across multiple networks. Includes routing tables, routing algorithms (e.g., Dijkstra's algorithm, Bellman-Ford algorithm), and routing protocols.</li>
+<li><strong>Packet Forwarding:</strong> Forwards data packets based on their destination IP address. Includes techniques like longest prefix matching, packet switching, and label switching.</li>
+<li><strong>Fragmentation and Reassembly:</strong> Handles fragmentation of large packets into smaller packets for transmission over networks with different MTU (Maximum Transmission Unit) sizes and reassembles them at the destination.</li>
+<li><strong>Routing Protocols:</strong> Implements routing protocols (e.g., OSPF, RIP, BGP, EIGRP, IS-IS) to exchange routing information between routers. Includes distance-vector and link-state routing algorithms, and path vector routing.</li>
+<li><strong>IP Multicast:</strong> Allows the sending of a single packet to multiple destinations.</li>
+</ul>
+</li>
+<li><strong>Key Aspects:</strong>
+<ul>
+<li>Handles network congestion and quality of service (QoS) at the network layer.</li>
+<li>Includes protocols like IP (IPv4, IPv6), ICMP (Internet Control Message Protocol), ARP (Address Resolution Protocol), and IPsec (Internet Protocol Security).</li>
+<li>Handles network layer security.</li>
+</ul>
+</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>Routers, layer 3 switches, firewalls.</li>
+<li>IP addresses (IPv4 and IPv6).</li>
+<li>IP protocols: IP, ICMP, ARP, NAT, IPsec.</li>
+<li>Routing protocols: OSPF, RIP, BGP, EIGRP, IS-IS.</li>
+<li>VPNs (Virtual Private Networks).</li>
+</ul>
+</li>
+<li><strong>Data Unit:</strong> Packets.</li>
+</ul>
+<h3 id="4-transport-layer-layer-4-end-to-end-communication"><a class="header" href="#4-transport-layer-layer-4-end-to-end-communication"><strong>4. Transport Layer (Layer 4): End-to-End Communication</strong></a></h3>
+<ul>
+<li><strong>Core Function:</strong> The Transport Layer provides end-to-end communication between applications, ensuring reliable or unreliable data transfer.</li>
+<li><strong>Detailed Focus:</strong>
+<ul>
+<li><strong>Segmentation and Reassembly:</strong> Divides data from the Application Layer into segments (TCP) or datagrams (UDP) for transmission and reassembles them at the destination. Includes sequence numbers, acknowledgment mechanisms, and windowing (sliding window protocol).</li>
+<li><strong>Port Numbers:</strong> Uses port numbers to identify applications on a device. Includes well-known (0-1023), registered (1024-49151), and dynamic/private (49152-65535) port numbers, and the concept of sockets (IP address + port number).</li>
+<li><strong>Reliable Data Transfer (TCP):</strong> Provides reliable, connection-oriented data transfer with error detection (checksum), flow control (windowing, congestion control), and retransmission (ARQ - Automatic Repeat Request). Includes three-way handshake (SYN, SYN-ACK, ACK) for connection establishment, four-way termination (FIN, ACK, FIN, ACK) for connection closure, and congestion control algorithms (e.g., TCP Reno, TCP Cubic, TCP BBR).</li>
+<li><strong>Unreliable Data Transfer (UDP):</strong> Provides unreliable, connectionless data transfer with minimal overhead. Used for applications that prioritize speed over reliability, such as streaming media (voice, video), online gaming, DNS queries, and VoIP.</li>
+<li><strong>Flow Control:</strong> Regulates the flow of data to prevent network congestion and buffer overflows. Includes windowing and buffering techniques, as well as congestion avoidance and congestion control mechanisms.</li>
+<li><strong>Error Recovery:</strong> Implements mechanisms to recover from transmission errors, such as retransmission timeouts (RTO), selective acknowledgments (SACK), and fast retransmit/fast recovery.</li>
+<li><strong>Multiplexing and Demultiplexing:</strong> Allows multiple applications to share a single network connection by using port numbers to differentiate between them.</li>
+<li><strong>Connection-Oriented vs. Connectionless:</strong> Explains the difference between connection-oriented (TCP) and connectionless (UDP) communication, and their respective advantages and disadvantages.</li>
+</ul>
+</li>
+<li><strong>Key Aspects:</strong>
+<ul>
+<li>Provides end-to-end reliability and flow control.</li>
+<li>Includes protocols like TCP (Transmission Control Protocol) and UDP (User Datagram Protocol), as well as SCTP (Stream Control Transmission Protocol) and DCCP (Datagram Congestion Control Protocol).</li>
+<li>Handles quality of service (QoS) by prioritizing certain types of traffic.</li>
+</ul>
+</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>TCP and UDP protocols.</li>
+<li>Port numbers (e.g., 80 for HTTP, 443 for HTTPS, 53 for DNS).</li>
+<li>Sockets.</li>
+<li>Connection establishment and termination procedures.</li>
+</ul>
+</li>
+<li><strong>Data Unit:</strong> Segments (TCP) or Datagrams (UDP).</li>
+</ul>
+<h3 id="5-session-layer-layer-5-managing-application-sessions"><a class="header" href="#5-session-layer-layer-5-managing-application-sessions"><strong>5. Session Layer (Layer 5): Managing Application Sessions</strong></a></h3>
+<ul>
+<li><strong>Core Function:</strong> The Session Layer establishes, manages, and terminates sessions between applications, controlling the dialog between them.</li>
+<li><strong>Detailed Focus:</strong>
+<ul>
+<li><strong>Session Establishment and Termination:</strong> Establishes and terminates communication sessions between applications. Includes session negotiation, authentication, and authorization.</li>
+<li><strong>Dialog Control:</strong> Manages the dialog between applications, determining which party can transmit at any given time (full-duplex, half-duplex, simplex).</li>
+<li><strong>Synchronization:</strong> Provides synchronization points (checkpoints) for data streams, allowing for recovery in case of interruptions. Used for applications that require synchronized data exchange, such as database transactions and file transfers.</li>
+<li><strong>Session Management:</strong> Manages the state of the session, including authentication, authorization, accounting, and session recovery.</li>
+<li><strong>Token Management:</strong> Controls which party has the right to transmit data in a half-duplex communication.</li>
+<li><strong>Activity Management:</strong> Defines the data structure and operations for transferring data.</li>
+<li><strong>Exception Reporting:</strong> Handles exceptional conditions that arise during a session, such as session timeouts and errors.</li>
+<li><strong>Session Recovery:</strong> Provides mechanisms for recovering from session interruptions, such as session resumption and checkpointing.</li>
+</ul>
+</li>
+<li><strong>Key Aspects:</strong>
+<ul>
+<li>Handles session timeouts and recovery, including session resumption after interruptions.</li>
+<li>Includes protocols like NetBIOS, SAP (Session Announcement Protocol), RPC (Remote Procedure Call), SCP (Session Control Protocol), and TLS/SSL session management.</li>
+<li>Primarily used in older applications and protocols.</li>
+</ul>
+</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>NetBIOS session services.</li>
+<li>Database session management.</li>
+<li>Authentication protocols that establish sessions (e.g., Kerberos).</li>
+<li>Session resumption in TLS/SSL.</li>
+</ul>
+</li>
+<li><strong>Data Unit:</strong> Data.</li>
+</ul>
+<h3 id="6-presentation-layer-layer-6-data-formatting-and-security"><a class="header" href="#6-presentation-layer-layer-6-data-formatting-and-security"><strong>6. Presentation Layer (Layer 6): Data Formatting and Security</strong></a></h3>
+<ul>
+<li><strong>Core Function:</strong> The Presentation Layer handles data translation, encryption, and compression, ensuring that data is in a format that the Application Layer can understand.</li>
+<li><strong>Detailed Focus:</strong>
+<ul>
+<li><strong>Data Translation:</strong> Translates data between different formats (e.g., ASCII to EBCDIC, Unicode to UTF-8), ensuring compatibility between systems with different data representations. Includes character encoding, data type conversion, and data structure transformations.</li>
+<li><strong>Encryption and Decryption:</strong> Encrypts data for secure transmission (e.g., using SSL/TLS, AES, DES) and decrypts data at the destination, ensuring confidentiality. Includes symmetric and asymmetric encryption algorithms, key management, and digital signatures.</li>
+<li><strong>Compression and Decompression:</strong> Compresses data to reduce its size for efficient transmission (e.g., using ZIP, JPEG compression, MPEG compression) and decompresses it at the destination, improving bandwidth utilization. Includes lossless and lossy compression algorithms.</li>
+<li><strong>Data Formatting:</strong> Handles data formatting and syntax, ensuring that data is presented in a consistent and understandable way. Includes data structure definitions (e.g., XML, JSON), data type conversions, and data presentation standards.</li>
+<li><strong>Data Representation:</strong> Defines the data format that applications will accept.</li>
+</ul>
+</li>
+<li><strong>Key Aspects:</strong>
+<ul>
+<li>Handles character encoding, data representation, and data conversion.</li>
+<li>Includes protocols and standards like SSL/TLS (Secure Sockets Layer/Transport Layer Security), ASN.1 (Abstract Syntax Notation One), JPEG, MPEG, XML, JSON, and MIME (Multipurpose Internet Mail Extensions).</li>
+<li>Provides data security and data compression services.</li>
+</ul>
+</li>
+<li><strong>Examples:</strong>
+<ul>
+<li>Encryption protocols used in HTTPS and VPNs.</li>
+<li>Image and video compression algorithms used in multimedia applications.</li>
+<li>Data formatting used in web services (XML, JSON).</li>
+<li>Character encoding used in text documents and web pages.</li>
+</ul>
+</li>
+<li><strong>Data Unit:</strong> Data.</li>
+</ul>
+<h3 id="7-application-layer-layer-7-user-facing-network-services"><a class="header" href="#7-application-layer-layer-7-user-facing-network-services"><strong>7. Application Layer (Layer 7): User-Facing Network Services</strong></a></h3>
+<ul>
+<li>
+<p><strong>Core Function:</strong> The Application Layer is the topmost layer, providing network services directly to end-user applications. It's the layer that users interact with directly.</p>
+</li>
+<li>
+<p><strong>Detailed Focus:</strong></p>
+<ul>
+<li><strong>Application-Specific Protocols:</strong> Provides a set of protocols that are specific to the applications that use them. These protocols define how applications interact with the network.</li>
+<li><strong>User Interface:</strong> Acts as an interface between applications and the underlying network, allowing users to access network services.</li>
+<li><strong>Data Interpretation:</strong> Interprets data received from lower layers and presents it to the user in a meaningful way.</li>
+<li><strong>Network Services:</strong> Provides a wide range of network services, including file transfer, email, web browsing, remote access, and network management.</li>
+<li><strong>Identifying communication partners:</strong> Determine the identity and availability of communication partners for an application with data to transmit.</li>
+<li><strong>Synchronizing communication:</strong> Establish if enough resources exist for the intended communication.</li>
+<li><strong>Supporting syntax agreement:</strong> Establish agreement on procedures for error recovery and control of data integrity.</li>
+<li><strong>Application Logic:</strong> This layer can also contain some application-specific logic, such as data validation, business rules, and user authentication.</li>
+<li><strong>End-User Interaction:</strong> Directly supports user interaction and provides the interface for applications to access network services.</li>
+</ul>
+</li>
+<li>
+<p><strong>Key Aspects:</strong></p>
+<ul>
+<li>Is the only layer that directly interacts with end-user applications.</li>
+<li>Includes protocols like HTTP, HTTPS, FTP, SMTP, DNS, DHCP, Telnet, SSH, POP3, IMAP, SNMP, REST, SOAP, and SIP (Session Initiation Protocol).</li>
+<li>Provides services that are essential for everyday network use.</li>
+</ul>
+</li>
+<li>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>HTTP (Hypertext Transfer Protocol) and HTTPS (Hypertext Transfer Protocol Secure): Used for web browsing and secure web transactions.</li>
+<li>FTP (File Transfer Protocol): Used for transferring files between computers.</li>
+<li>SMTP (Simple Mail Transfer Protocol): Used for sending email.</li>
+<li>POP3 (Post Office Protocol version 3) and IMAP (Internet Message Access Protocol): Used for receiving email.</li>
+<li>DNS (Domain Name System): Used for translating domain names into IP addresses.</li>
+<li>DHCP (Dynamic Host Configuration Protocol): Used for automatically assigning IP addresses to devices.</li>
+<li>Telnet and SSH (Secure Shell): Used for remote access to computers and network devices.</li>
+<li>SNMP (Simple Network Management Protocol): Used for network management and monitoring.</li>
+<li>REST (Representational State Transfer) and SOAP (Simple Object Access Protocol): Used for web services and API communication.</li>
+<li>SIP (Session Initiation Protocol): Used for VoIP and multimedia communication.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Unit:</strong> Data.### <strong>4. Transport Layer (Layer 4): End-to-End Communication</strong></p>
+</li>
+<li>
+<p><strong>Core Function:</strong> The Transport Layer provides end-to-end communication between applications, ensuring reliable or unreliable data transfer.</p>
+</li>
+<li>
+<p><strong>Detailed Focus:</strong></p>
+<ul>
+<li><strong>Segmentation and Reassembly:</strong> Divides data from the Application Layer into segments (TCP) or datagrams (UDP) for transmission and reassembles them at the destination. Includes sequence numbers, acknowledgment mechanisms, and windowing (sliding window protocol).</li>
+<li><strong>Port Numbers:</strong> Uses port numbers to identify applications on a device. Includes well-known (0-1023), registered (1024-49151), and dynamic/private (49152-65535) port numbers, and the concept of sockets (IP address + port number).</li>
+<li><strong>Reliable Data Transfer (TCP):</strong> Provides reliable, connection-oriented data transfer with error detection (checksum), flow control (windowing, congestion control), and retransmission (ARQ - Automatic Repeat Request). Includes three-way handshake (SYN, SYN-ACK, ACK) for connection establishment, four-way termination (FIN, ACK, FIN, ACK) for connection closure, and congestion control algorithms (e.g., TCP Reno, TCP Cubic, TCP BBR).</li>
+<li><strong>Unreliable Data Transfer (UDP):</strong> Provides unreliable, connectionless data transfer with minimal overhead. Used for applications that prioritize speed over reliability, such as streaming media (voice, video), online gaming, DNS queries, and VoIP.</li>
+<li><strong>Flow Control:</strong> Regulates the flow of data to prevent network congestion and buffer overflows. Includes windowing and buffering techniques, as well as congestion avoidance and congestion control mechanisms.</li>
+<li><strong>Error Recovery:</strong> Implements mechanisms to recover from transmission errors, such as retransmission timeouts (RTO), selective acknowledgments (SACK), and fast retransmit/fast recovery.</li>
+<li><strong>Multiplexing and Demultiplexing:</strong> Allows multiple applications to share a single network connection by using port numbers to differentiate between them.</li>
+<li><strong>Connection-Oriented vs. Connectionless:</strong> Explains the difference between connection-oriented (TCP) and connectionless (UDP) communication, and their respective advantages and disadvantages.</li>
+</ul>
+</li>
+<li>
+<p><strong>Key Aspects:</strong></p>
+<ul>
+<li>Provides end-to-end reliability and flow control.</li>
+<li>Includes protocols like TCP (Transmission Control Protocol) and UDP (User Datagram Protocol), as well as SCTP (Stream Control Transmission Protocol) and DCCP (Datagram Congestion Control Protocol).</li>
+<li>Handles quality of service (QoS) by prioritizing certain types of traffic.</li>
+</ul>
+</li>
+<li>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>TCP and UDP protocols.</li>
+<li>Port numbers (e.g., 80 for HTTP, 443 for HTTPS, 53 for DNS).</li>
+<li>Sockets.</li>
+<li>Connection establishment and termination procedures.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Unit:</strong> Segments (TCP) or Datagrams (UDP).</p>
+</li>
+</ul>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
 </script>
                     </main>
 
