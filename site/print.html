@@ -4648,6 +4648,7 @@ desc = "Open PowerShell here"
 <h1 id="fd"><a class="header" href="#fd">fd</a></h1>
 <ul>
 <li><a href="fd.html#usage">Usage</a></li>
+<li><a href="fd.html#full-output-from---help">Full output from --help</a></li>
 </ul>
 <p>Install</p>
 <div class="mdbook-tabs-container" data-tabglobal="install">
@@ -4822,7 +4823,336 @@ Command-line options</p>
 <tr><td style="text-align: left">-h, --help</td><td style="text-align: left">Print help (see more with '--help')</td></tr>
 <tr><td style="text-align: left">-V, --version</td><td style="text-align: left">Print version</td></tr>
 </tbody></table>
-</div><style>
+</div>
+<h2 id="full-output-from---help"><a class="header" href="#full-output-from---help">Full output from --help</a></h2>
+<p>Usage: fd.exe [OPTIONS] [pattern] [path]...</p>
+<p>Arguments:
+[pattern]
+the search pattern which is either a regular expression (default) or a glob pattern (if
+--glob is used). If no pattern has been specified, every entry is considered a match. If
+your pattern starts with a dash (-), make sure to pass '--' first, or it will be
+considered as a flag (fd -- '-foo').</p>
+<p>[path]...
+The directory where the filesystem search is rooted (optional). If omitted, search the
+current working directory.</p>
+<p>Options:
+-H, --hidden
+Include hidden directories and files in the search results (default: hidden files and
+directories are skipped). Files and directories are considered to be hidden if their
+name starts with a <code>.</code> sign (dot). Any files or directories that are ignored due to the
+rules described by --no-ignore are still ignored unless otherwise specified. The flag
+can be overridden with --no-hidden.</p>
+<p>-I, --no-ignore
+Show search results from files and directories that would otherwise be ignored by
+'.gitignore', '.ignore', '.fdignore', or the global ignore file, The flag can be
+overridden with --ignore.</p>
+<pre><code>  --no-ignore-vcs
+      Show search results from files and directories that would otherwise be ignored by
+      '.gitignore' files. The flag can be overridden with --ignore-vcs.
+
+  --no-require-git
+      Do not require a git repository to respect gitignores. By default, fd will only respect
+      global gitignore rules, .gitignore rules, and local exclude rules if fd detects that you
+      are searching inside a git repository. This flag allows you to relax this restriction
+      such that fd will respect all git related ignore rules regardless of whether you're
+      searching in a git repository or not.
+      
+      This flag can be disabled with --require-git.
+
+  --no-ignore-parent
+      Show search results from files and directories that would otherwise be ignored by
+      '.gitignore', '.ignore', or '.fdignore' files in parent directories.
+</code></pre>
+<p>-u, --unrestricted...
+Perform an unrestricted search, including ignored and hidden files. This is an alias for
+'--no-ignore --hidden'.</p>
+<p>-s, --case-sensitive
+Perform a case-sensitive search. By default, fd uses case-insensitive searches, unless
+the pattern contains an uppercase character (smart case).</p>
+<p>-i, --ignore-case
+Perform a case-insensitive search. By default, fd uses case-insensitive searches, unless
+the pattern contains an uppercase character (smart case).</p>
+<p>-g, --glob
+Perform a glob-based search instead of a regular expression search.</p>
+<pre><code>  --regex
+      Perform a regular-expression based search (default). This can be used to override
+      --glob.
+</code></pre>
+<p>-F, --fixed-strings
+Treat the pattern as a literal string instead of a regular expression. Note that this
+also performs substring comparison. If you want to match on an exact filename, consider
+using '--glob'.</p>
+<pre><code>  --and &lt;pattern&gt;
+      Add additional required search patterns, all of which must be matched. Multiple
+      additional patterns can be specified. The patterns are regular expressions, unless
+      '--glob' or '--fixed-strings' is used.
+</code></pre>
+<p>-a, --absolute-path
+Shows the full path starting from the root as opposed to relative paths. The flag can be
+overridden with --relative-path.</p>
+<p>-l, --list-details
+Use a detailed listing format like 'ls -l'. This is basically an alias for '--exec-batch
+ls -l' with some additional 'ls' options. This can be used to see more metadata, to show
+symlink targets and to achieve a deterministic sort order.</p>
+<p>-L, --follow
+By default, fd does not descend into symlinked directories. Using this flag, symbolic
+links are also traversed. Flag can be overridden with --no-follow.</p>
+<p>-p, --full-path
+By default, the search pattern is only matched against the filename (or directory name).
+Using this flag, the pattern is matched against the full (absolute) path. Example:
+fd --glob -p '**/.git/config'</p>
+<p>-0, --print0
+Separate search results by the null character (instead of newlines). Useful for piping
+results to 'xargs'.</p>
+<p>-d, --max-depth <depth>
+Limit the directory traversal to a given depth. By default, there is no limit on the
+search depth.</p>
+<pre><code>  --min-depth &lt;depth&gt;
+      Only show search results starting at the given depth. See also: '--max-depth' and
+      '--exact-depth'
+
+  --exact-depth &lt;depth&gt;
+      Only show search results at the exact given depth. This is an alias for '--min-depth
+      &lt;depth&gt; --max-depth &lt;depth&gt;'.
+</code></pre>
+<p>-E, --exclude <pattern>
+Exclude files/directories that match the given glob pattern. This overrides any other
+ignore logic. Multiple exclude patterns can be specified.</p>
+<pre><code>      Examples: 
+        --exclude '*.pyc' 
+        --exclude node_modules
+
+  --prune
+      Do not traverse into directories that match the search criteria. If you want to exclude
+      specific directories, use the '--exclude=ΓÇª' option.
+</code></pre>
+<p>-t, --type <filetype>
+Filter the search by type:
+'f' or 'file':         regular files
+'d' or 'dir' or 'directory':    directories
+'l' or 'symlink':      symbolic links
+'s' or 'socket':       socket
+'p' or 'pipe':         named pipe (FIFO)
+'b' or 'block-device': block device
+'c' or 'char-device':  character device</p>
+<pre><code>        'x' or 'executable':   executables 
+        'e' or 'empty':        empty files or directories
+      
+      This option can be specified more than once to include multiple file types. Searching
+      for '--type file --type symlink' will show both regular files as well as symlinks. Note
+      that the 'executable' and 'empty' filters work differently: '--type executable' implies
+      '--type file' by default. And '--type empty' searches for empty files and directories,
+      unless either '--type file' or '--type directory' is specified in addition.
+      
+      Examples: 
+        - Only search for files: 
+            fd --type file ΓÇª 
+            fd -tf ΓÇª 
+        - Find both files and symlinks 
+            fd --type file --type symlink ΓÇª 
+            fd -tf -tl ΓÇª 
+        - Find executable files: 
+            fd --type executable 
+            fd -tx 
+        - Find empty files: 
+            fd --type empty --type file 
+            fd -te -tf 
+        - Find empty directories: 
+            fd --type empty --type directory 
+            fd -te -td
+</code></pre>
+<p>-e, --extension <ext>
+(Additionally) filter search results by their file extension. Multiple allowable file
+extensions can be specified.</p>
+<pre><code>      If you want to search for files without extension, you can use the regex '^[^.]+$' as a
+      normal search pattern.
+</code></pre>
+<p>-S, --size <size>
+Limit results based on the size of files using the format &lt;+-&gt;<NUM><UNIT>.
+'+': file size must be greater than or equal to this
+'-': file size must be less than or equal to this</p>
+<pre><code>      If neither '+' nor '-' is specified, file size must be exactly equal to this.
+         'NUM':  The numeric size (e.g. 500)
+         'UNIT': The units for NUM. They are not case-sensitive.
+      Allowed unit values:
+          'b':  bytes
+          'k':  kilobytes (base ten, 10^3 = 1000 bytes)
+          'm':  megabytes
+          'g':  gigabytes
+          't':  terabytes
+          'ki': kibibytes (base two, 2^10 = 1024 bytes)
+          'mi': mebibytes
+          'gi': gibibytes
+          'ti': tebibytes
+
+  --changed-within &lt;date|dur&gt;
+      Filter results based on the file modification time. Files with modification times
+      greater than the argument are returned. The argument can be provided as a specific point
+      in time (YYYY-MM-DD HH:MM:SS or @timestamp) or as a duration (10h, 1d, 35min). If the
+      time is not specified, it defaults to 00:00:00. '--change-newer-than', '--newer', or
+      '--changed-after' can be used as aliases.
+      
+      Examples: 
+          --changed-within 2weeks 
+          --change-newer-than '2018-10-27 10:00:00' 
+          --newer 2018-10-27 
+          --changed-after 1day
+
+  --changed-before &lt;date|dur&gt;
+      Filter results based on the file modification time. Files with modification times less
+      than the argument are returned. The argument can be provided as a specific point in time
+      (YYYY-MM-DD HH:MM:SS or @timestamp) or as a duration (10h, 1d, 35min).
+      '--change-older-than' or '--older' can be used as aliases.
+      
+      Examples: 
+          --changed-before '2018-10-27 10:00:00' 
+          --change-older-than 2weeks 
+          --older 2018-10-27
+
+  --format &lt;fmt&gt;
+      Print results according to template
+</code></pre>
+<p>-x, --exec <cmd>...
+Execute a command for each search result in parallel (use --threads=1 for sequential
+command execution). There is no guarantee of the order commands are executed in, and the
+order should not be depended upon. All positional arguments following --exec are
+considered to be arguments to the command - not to fd. It is therefore recommended to
+place the '-x'/'--exec' option last.
+The following placeholders are substituted before the command is executed:
+'{}':   path (of the current search result)
+'{/}':  basename
+'{//}': parent directory
+'{.}':  path without file extension
+'{/.}': basename without file extension
+'{{':   literal '{' (for escaping)
+'}}':   literal '}' (for escaping)</p>
+<pre><code>      If no placeholder is present, an implicit "{}" at the end is assumed.
+      
+      Examples:
+      
+        - find all *.zip files and unzip them:
+      
+            fd -e zip -x unzip
+      
+        - find *.h and *.cpp files and run "clang-format -i .." for each of them:
+      
+            fd -e h -e cpp -x clang-format -i
+      
+        - Convert all *.jpg files to *.png files:
+      
+            fd -e jpg -x convert {} {.}.png
+</code></pre>
+<p>-X, --exec-batch <cmd>...
+Execute the given command once, with all search results as arguments.
+The order of the arguments is non-deterministic, and should not be relied upon.
+One of the following placeholders is substituted before the command is executed:
+'{}':   path (of all search results)
+'{/}':  basename
+'{//}': parent directory
+'{.}':  path without file extension
+'{/.}': basename without file extension
+'{{':   literal '{' (for escaping)
+'}}':   literal '}' (for escaping)</p>
+<pre><code>      If no placeholder is present, an implicit "{}" at the end is assumed.
+      
+      Examples:
+      
+        - Find all test_*.py files and open them in your favorite editor:
+      
+            fd -g 'test_*.py' -X vim
+      
+        - Find all *.rs files and count the lines with "wc -l ...":
+      
+            fd -e rs -X wc -l
+
+  --batch-size &lt;size&gt;
+      Maximum number of arguments to pass to the command given with -X. If the number of
+      results is greater than the given size, the command given with -X is run again with
+      remaining arguments. A batch size of zero means there is no limit (default), but note
+      that batching might still happen due to OS restrictions on the maximum length of command
+      lines.
+      
+      [default: 0]
+
+  --ignore-file &lt;path&gt;
+      Add a custom ignore-file in '.gitignore' format. These files have a low precedence.
+</code></pre>
+<p>-c, --color <when>
+Declare when to use color for the pattern match output</p>
+<pre><code>      [default: auto]
+
+      Possible values:
+      - auto:   show colors if the output goes to an interactive console (default)
+      - always: always use colorized output
+      - never:  do not use colorized output
+
+  --hyperlink[=&lt;when&gt;]
+      Add a terminal hyperlink to a file:// url for each path in the output.
+      
+      Auto mode  is used if no argument is given to this option.
+      
+      This doesn't do anything for --exec and --exec-batch.
+      
+      [default: never]
+
+      Possible values:
+      - auto:   Use hyperlinks only if color is enabled
+      - always: Always use hyperlinks when printing file paths
+      - never:  Never use hyperlinks
+</code></pre>
+<p>-j, --threads <num>
+Set number of threads to use for searching &amp; executing (default: number of available CPU
+cores)</p>
+<pre><code>  --max-results &lt;count&gt;
+      Limit the number of search results to 'count' and quit immediately.
+</code></pre>
+<p>-1
+Limit the search to a single result and quit immediately. This is an alias for
+'--max-results=1'.</p>
+<p>-q, --quiet
+When the flag is present, the program does not print anything and will return with an
+exit code of 0 if there is at least one match. Otherwise, the exit code will be 1.
+'--has-results' can be used as an alias.</p>
+<pre><code>  --show-errors
+      Enable the display of filesystem errors for situations such as insufficient permissions
+      or dead symlinks.
+
+  --base-directory &lt;path&gt;
+      Change the current working directory of fd to the provided path. This means that search
+      results will be shown with respect to the given base path. Note that relative paths
+      which are passed to fd via the positional &lt;path&gt; argument or the '--search-path' option
+      will also be resolved relative to this directory.
+
+  --path-separator &lt;separator&gt;
+      Set the path separator to use when printing file paths. The default is the OS-specific
+      separator ('/' on Unix, '\' on Windows).
+
+  --search-path &lt;search-path&gt;
+      Provide paths to search as an alternative to the positional &lt;path&gt; argument. Changes the
+      usage to `fd [OPTIONS] --search-path &lt;path&gt; --search-path &lt;path2&gt; [&lt;pattern&gt;]`
+
+  --strip-cwd-prefix[=&lt;when&gt;]
+      By default, relative paths are prefixed with './' when -x/--exec, -X/--exec-batch, or
+      -0/--print0 are given, to reduce the risk of a path starting with '-' being treated as a
+      command line option. Use this flag to change this behavior. If this flag is used without
+      a value, it is equivalent to passing "always".
+
+      Possible values:
+      - auto:   Use the default behavior
+      - always: Always strip the ./ at the beginning of paths
+      - never:  Never strip the ./
+
+  --one-file-system
+      By default, fd will traverse the file system tree as far as other options dictate. With
+      this flag, fd ensures that it does not descend into a different file system than the one
+      it started in. Comparable to the -mount or -xdev filters of find(1).
+</code></pre>
+<p>-h, --help
+Print help (see a summary with '-h')</p>
+<p>-V, --version
+Print version</p>
+<p>Bugs can be reported on GitHub: <a href="https://github.com/sharkdp/fd/issues">https://github.com/sharkdp/fd/issues</a></p>
+<style>
   .scroll-to-top {
     font-size: 2.5rem;
     width: 3.2rem;
@@ -15426,6 +15756,252 @@ You can also use the _ operator, which acts as a wildcard in Google Autocomplete
 <p><strong>Data Unit:</strong> Segments (TCP) or Datagrams (UDP).</p>
 </li>
 </ul>
+<style>
+  .scroll-to-top {
+    font-size: 2.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    padding: 0.75rem;
+    bottom: 4rem;
+    right: calc(1.25rem + 90px + var(--page-padding));
+    z-index: 999;
+    cursor: pointer;
+    border: none;
+    color: var(--bg);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+  .scroll-to-top.hidden {
+    display: none;
+  }
+  .scroll-to-top i {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 1080px) {
+    .scroll-to-top {
+      display: flex;
+    }
+  }
+</style>
+<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
+  <i class="fa fa-angle-up"></i>
+</button>
+<script>
+  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
+  window.addEventListener("scroll", () => {
+    const button = document.querySelector(".scroll-to-top");
+    button.classList.toggle("hidden", window.scrollY < 200);
+  });
+</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="nslookup"><a class="header" href="#nslookup">NsLookup</a></h1>
+<p>Basic Usage:</p>
+<ol>
+<li>
+<p>Find the IP address of a domain name (forward lookup):
+nslookup google.com</p>
+<p>Output will show:</p>
+<ul>
+<li>Server used for the query (default DNS server)</li>
+<li>Name of the domain (google.com)</li>
+<li>Address (IP address(es) for google.com)</li>
+</ul>
+</li>
+<li>
+<p>Find the domain name associated with an IP address (reverse lookup):
+nslookup 8.8.8.8</p>
+<p>Output will show:</p>
+<ul>
+<li>Server used for the query</li>
+<li>Reverse lookup results, if available (e.g., google-public-dns-a.google.com)</li>
+</ul>
+</li>
+</ol>
+<p>Specifying Query Type:</p>
+<ol start="3">
+<li>
+<p>Query for a specific record type (e.g., MX records for mail servers):
+nslookup -type=mx google.com</p>
+<p>Output will show:</p>
+<ul>
+<li>MX records for google.com, listing mail servers and priority</li>
+</ul>
+</li>
+<li>
+<p>Query for Name Server (NS) records:
+nslookup -type=ns google.com</p>
+<p>Output will show:</p>
+<ul>
+<li>NS records for google.com, listing authoritative name servers</li>
+</ul>
+</li>
+<li>
+<p>Query for Start of Authority (SOA) record:
+nslookup -type=soa google.com</p>
+<p>Output will show:</p>
+<ul>
+<li>SOA record for google.com, containing administrative information about the domain</li>
+</ul>
+</li>
+</ol>
+<p>Specifying DNS Server:</p>
+<ol start="6">
+<li>
+<p>Use a specific DNS server (e.g., Google Public DNS 8.8.8.8) for the query:
+nslookup google.com 8.8.8.8</p>
+<p>Output will be similar to basic lookup, but using 8.8.8.8 as the DNS server</p>
+</li>
+<li>
+<p>Use a specific DNS server for a specific record type:
+nslookup -type=mx google.com 8.8.8.8</p>
+<p>Output will show MX records for google.com, queried from 8.8.8.8</p>
+</li>
+</ol>
+<p>Interactive Mode:</p>
+<ol start="8">
+<li>
+<p>Enter interactive mode:
+nslookup</p>
+<p>Then, within nslookup interactive mode:</p>
+<blockquote>
+<p>set type=a<br />
+google.com<br />
+server 8.8.8.8<br />
+microsoft.com<br />
+exit</p>
+</blockquote>
+<ul>
+<li><code>nslookup</code> starts interactive mode</li>
+<li><code>set type=a</code> sets query type to A records (IP addresses)</li>
+<li><code>google.com</code> performs lookup for google.com</li>
+<li><code>server 8.8.8.8</code> changes the DNS server to 8.8.8.8 for subsequent queries</li>
+<li><code>microsoft.com</code> performs lookup for microsoft.com using 8.8.8.8</li>
+<li><code>exit</code> quits interactive mode</li>
+</ul>
+</li>
+</ol>
+<p>Common Record Types to Query with -type=:</p>
+<ul>
+<li>A:      Address record (IPv4 address)</li>
+<li>AAAA:   IPv6 address record</li>
+<li>MX:     Mail exchange record (mail servers)</li>
+<li>NS:     Name server record (authoritative DNS servers)</li>
+<li>SOA:    Start of Authority record (domain admin info)</li>
+<li>CNAME:  Canonical name record (alias for another domain name)</li>
+<li>TXT:    Text record (often used for verification or SPF records)</li>
+</ul>
+<p>Note:  <code>nslookup</code> is being replaced by <code>dig</code> and <code>host</code> utilities in many environments as they offer more features and are considered more modern. However, <code>nslookup</code> is still widely available and useful for basic DNS queries.</p>
 <style>
   .scroll-to-top {
     font-size: 2.5rem;
