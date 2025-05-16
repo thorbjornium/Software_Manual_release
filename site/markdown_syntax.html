@@ -138,10 +138,10 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software_Manual_release" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/thorbjornium/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/horbjorn/Software-Manual/blob/main/src/markdown_syntax.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/markdown_syntax.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -352,7 +352,7 @@
 </code></pre>
 <p>That is so funny! 😂</p>
 <p>Might need som additional software to work. <a href="https://github.com/blyxyas/mdbook-emojicodes">mdbook-emojicodes</a> works for mdBook.</p>
-<p><a href="https://gist.github.com/horbjorn/cb36d5e32b7b1310f567595acc1da615">Here's</a> a list of emojis.</p>
+<p><a href="https://gist.github.com/thorbjornium/cb36d5e32b7b1310f567595acc1da615">Here's</a> a list of emojis.</p>
 <h2 id="highlight"><a class="header" href="#highlight">Highlight</a></h2>
 <pre><code class="language-markdown">I need to highlight these ==very important words==.
 </code></pre>
@@ -537,10 +537,7 @@ puts .to_
 
 [^1]: This is the footnote.
 </code></pre>
-<p>Here's a sentence with a footnote. <sup class="footnote-reference"><a href="#1">1</a></sup></p>
-<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>This is the footnote.</p>
-</div>
+<p>Here's a sentence with a footnote. <sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">1</a></sup></p>
 <h2 id="task-list"><a class="header" href="#task-list">Task List</a></h2>
 <pre><code class="language-markdown">- [x] Write the press release
 - [ ] Update the website
@@ -584,47 +581,12 @@ require 'asciidoctor'
 ```
 ````
 </code></pre>
-<style>
-  .scroll-to-top {
-    font-size: 2.5rem;
-    width: 3.2rem;
-    height: 3.2rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 4rem;
-    right: calc(1.25rem + 90px + var(--page-padding));
-    z-index: 999;
-    cursor: pointer;
-    border: none;
-    color: var(--bg);
-    background: var(--fg);
-    border-radius: 50%;
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  .scroll-to-top i {
-    transform: translateY(-2px);
-  }
-  @media (min-width: 1080px) {
-    .scroll-to-top {
-      display: flex;
-    }
-  }
-</style>
-<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-  <i class="fa fa-angle-up"></i>
-</button>
-<script>
-  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
-  window.addEventListener("scroll", () => {
-    const button = document.querySelector(".scroll-to-top");
-    button.classList.toggle("hidden", window.scrollY < 200);
-  });
-</script>
+<!-- mdbook-embedify [scroll-to-top]  -->
+<style> .scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script> const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><hr>
+<ol class="footnote-definition"><li id="footnote-1">
+<p>This is the footnote. <a href="#fr-1-1">↩</a></p>
+</li>
+</ol>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
