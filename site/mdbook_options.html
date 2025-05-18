@@ -357,26 +357,15 @@ to work. Hopefully this limitation will be lifted soon."</p>
 <br>
 <h2 id="embedify"><a class="header" href="#embedify">Embedify</a></h2>
 <p>Get <a href="https://github.com/MR-Addict/mdbook-embedify">mdBook-embedify</a>. Embed videos, gists &amp; codepens. Option to include banners, scroll-to-top and footer options.</p>
-<iframe
-  allowfullscreen
-  name="youtube"
-  loading="lazy"
-  src="https://www.youtube.com/embed/Osqf4oIK0E8"
-  style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-></iframe>
+<!-- mdbook-embedify [youtube]  -->
+<iframe allowfullscreen name="youtube" loading="lazy" src="https://www.youtube.com/embed/Osqf4oIK0E8" style="width: 100%; height: 100%; border: none; aspect-ratio: 16/9; border-radius: 1rem; background: black" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
 <br>  
 <br>  
+<!-- mdbook-embedify [gist]  -->
 <script src="https://gist.github.com/7fc39974980739135253e755b2fa1433.js"></script>
 <br>  
-<iframe
-  allowfullscreen
-  name="codepen"
-  loading="lazy"
-  height="600"
-  style="width: 100%; border: none; border-radius: 1rem; background: black"
-  src="https://codepen.io/TDJ/embed/wBwZaQG?default-tab=result&theme-id=dark"
-></iframe>
+<!-- mdbook-embedify [codepen]  -->
+<iframe allowfullscreen name="codepen" loading="lazy" height="600" style="width: 100%; border: none; border-radius: 1rem; background: black" src="https://codepen.io/TDJ/embed/wBwZaQG?default-tab=result&theme-id=dark"></iframe>
 <h2 id="alerts"><a class="header" href="#alerts">Alerts</a></h2>
 <p>Modified and translated version of mdBook-alerts. English and Swedish. See options: <a href="https://github.com/thorbjornium/rs-mdbook-alerts">https://github.com/thorbjornium/rs-mdbook-alerts</a></p>
 <div class="mdbook-alerts mdbook-alerts-notera">
@@ -832,47 +821,8 @@ To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt
 <p>To really <b><span style="color: #e70073">grab</span></b> your reader's attention.</p>
 </div>
 </details>
-<style>
-  .scroll-to-top {
-    font-size: 2.5rem;
-    width: 3.2rem;
-    height: 3.2rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    padding: 0.75rem;
-    bottom: 4rem;
-    right: calc(1.25rem + 90px + var(--page-padding));
-    z-index: 999;
-    cursor: pointer;
-    border: none;
-    color: var(--bg);
-    background: var(--fg);
-    border-radius: 50%;
-  }
-  .scroll-to-top.hidden {
-    display: none;
-  }
-  .scroll-to-top i {
-    transform: translateY(-2px);
-  }
-  @media (min-width: 1080px) {
-    .scroll-to-top {
-      display: flex;
-    }
-  }
-</style>
-<button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()">
-  <i class="fa fa-angle-up"></i>
-</button>
-<script>
-  const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" });
-  window.addEventListener("scroll", () => {
-    const button = document.querySelector(".scroll-to-top");
-    button.classList.toggle("hidden", window.scrollY < 200);
-  });
-</script>
+<!-- mdbook-embedify [scroll-to-top]  -->
+<style> .scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script> const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
