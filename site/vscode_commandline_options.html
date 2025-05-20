@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Keyboard Shortcuts</title>
+        <title>Commandline Options</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/thorbjornium/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/hyper_v_shortcuts.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/vscode_commandline_options.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,57 +279,25 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="hyper-v-keyboard-shortcuts"><a class="header" href="#hyper-v-keyboard-shortcuts">Hyper-V Keyboard Shortcuts</a></h1>
-<h2 id="general-shortcuts"><a class="header" href="#general-shortcuts">General Shortcuts</a></h2>
-<p><strong>By default, the keyboard input and mouse clicks are sent to the virtual machine. So you may need to press CTRL + ALT + LEFT arrow before you use the following shortcut keys.</strong></p>
-<ul>
-<li><strong>Ctrl + N</strong>: Create a new virtual machine.</li>
-<li><strong>Ctrl + O</strong>: Open an existing virtual machine.</li>
-<li><strong>Ctrl + S</strong>: Save the current state of the virtual machine.</li>
-<li><strong>Ctrl + P</strong>: Pause the virtual machine.</li>
-<li><strong>Ctrl + R</strong>: Reset the virtual machine.</li>
-<li><strong>Ctrl + L</strong>: Open the Virtual Machine Connection window for a selected VM.</li>
-<li><strong>Delete</strong>: Delete the selected virtual machine.</li>
-</ul>
-<h2 id="virtual-machine-management"><a class="header" href="#virtual-machine-management">Virtual Machine Management</a></h2>
-<ul>
-<li><strong>Ctrl + Shift + M</strong>: Open the Virtual Machine Settings for the selected VM.</li>
-<li><strong>Ctrl + Shift + I</strong>: Open the "Inspect" options for a selected virtual machine.</li>
-<li><strong>Ctrl + Shift + C</strong>: Connect to the selected virtual machine.</li>
-</ul>
-<h2 id="snapshot-management"><a class="header" href="#snapshot-management">Snapshot Management</a></h2>
-<ul>
-<li><strong>Ctrl + N</strong>: Create a new snapshot of the selected virtual machine.</li>
-<li><strong>Ctrl + Shift + D</strong>: Delete the selected snapshot.</li>
-<li><strong>Ctrl + Shift + R</strong>: Restore the selected snapshot.</li>
-</ul>
-<h2 id="virtual-switch-management"><a class="header" href="#virtual-switch-management">Virtual Switch Management</a></h2>
-<ul>
-<li><strong>Ctrl + Shift + S</strong>: Open the Virtual Switch Manager.</li>
-<li><strong>Ctrl + D</strong>: Delete the selected virtual switch.</li>
-</ul>
-<h2 id="console-interaction"><a class="header" href="#console-interaction">Console Interaction</a></h2>
-<ul>
-<li><strong>Ctrl + Alt + Delete</strong>: Send Ctrl + Alt + Delete to the VM.</li>
-<li><strong>Ctrl + Alt + Enter</strong>: Toggle full-screen mode for the VM console.</li>
-</ul>
-<h2 id="navigation"><a class="header" href="#navigation">Navigation</a></h2>
-<ul>
-<li><strong>Tab</strong>: Move focus to the next item in the interface.</li>
-<li><strong>Shift + Tab</strong>: Move focus to the previous item in the interface.</li>
-<li><strong>Arrow Keys</strong>: Navigate through the list of virtual machines and settings.</li>
-</ul>
+<h1 id="commandline-options"><a class="header" href="#commandline-options">Commandline Options</a></h1>
+<p><code>code -w</code> - Wait for the files to be closed before returning.</p>
+<p><code>code -n</code> - Force to open a new window.</p>
+<p><code>code .</code> - Opens a new empty window.</p>
+<p><code>code -r</code> - Reuse window. Force to open in an already opened window.</p>
+<p><code>code -a</code> - Add folder(s) to the last active window.</p>
+<p><code>code -g --goto &lt;file:line[:character]&gt;</code> - Open a file at a specific line number.</p>
+<p><code>Get-ChildItem | code -</code> - Opens the output of the command in VS Code.</p>
 <!-- mdbook-embedify [scroll-to-top]  -->
 <style> .scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script> const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="vscode_commandline_options.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="vscode_settings.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="essential_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="hyper_v_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -339,11 +307,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="vscode_commandline_options.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="vscode_settings.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="essential_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="hyper_v_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

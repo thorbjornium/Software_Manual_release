@@ -292,14 +292,6 @@
 <p>Open the Powershell profile in notepad <code>notepad $profile</code></p>
 <p>Print the current PSReadLine key handlers <code>Get-PSReadLineKeyHandler</code></p>
 <p>or press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>?</kbd></p>
-<h2 id="vs-code-options"><a class="header" href="#vs-code-options">VS Code options</a></h2>
-<p><code>code -w</code> - Wait for the files to be closed before returning.</p>
-<p><code>code -n</code> - Force to open a new window.</p>
-<p><code>code .</code> - Opens a new empty window.</p>
-<p><code>code -r</code> - Reuse window. Force to open in an already opened window.</p>
-<p><code>code -a</code> - Add folder(s) to the last active window.</p>
-<p><code>code -g --goto &lt;file:line[:character]&gt;</code> - Open a file at a specific line number.</p>
-<p><code>Get-ChildItem | code -</code> - Opens the output of the command in VS Code.</p>
 <h2 id="misc"><a class="header" href="#misc">Misc</a></h2>
 <p>Find the file location of the Powershell history file. Edit and remove inaccurate predictions.</p>
 <pre><code class="language-Powershell">Get-PSReadLineOption | select-Object -Property HistorySavePath
