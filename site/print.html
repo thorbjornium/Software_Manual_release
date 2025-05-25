@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sun sidebar-visible" dir="ltr">
+<html lang="en" class="nordic sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -43,7 +43,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "nordic" : "sun";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "nordic" : "nordic";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -72,7 +72,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
-            html.classList.remove('sun')
+            html.classList.remove('nordic')
             html.classList.add(theme);
             html.classList.add("js");
         </script>
@@ -11453,6 +11453,16 @@ assert_eq!(m.as_str(), "abc");</code></pre>
 }
 </style>
 <h1 id="list-of-common-ubuntu-commands"><a class="header" href="#list-of-common-ubuntu-commands">List of Common Ubuntu Commands</a></h1>
+<ul>
+<li><a href="ubuntu_common_commands.html#file-and-directory-management">File and Directory Management</a></li>
+<li><a href="ubuntu_common_commands.html#system-information">System Information</a></li>
+<li><a href="ubuntu_common_commands.html#package-management">Package Management</a></li>
+<li><a href="ubuntu_common_commands.html#user-management">User Management</a></li>
+<li><a href="ubuntu_common_commands.html#networking">Networking</a></li>
+<li><a href="ubuntu_common_commands.html#disk-management">Disk Management</a></li>
+<li><a href="ubuntu_common_commands.html#search-and-find">Search and Find</a></li>
+<li><a href="ubuntu_common_commands.html#miscellaneous">Miscellaneous</a></li>
+</ul>
 <h2 id="file-and-directory-management"><a class="header" href="#file-and-directory-management">File and Directory Management</a></h2>
 <ul>
 <li><code>ls</code> - List directory contents</li>
@@ -14043,7 +14053,7 @@ You can also use the _ operator, which acts as a wildcard in Google Autocomplete
 }
 </style>
 <h1 id="nslookup"><a class="header" href="#nslookup">NsLookup</a></h1>
-<p>Basic Usage:</p>
+<p><strong>Basic Usage:</strong></p>
 <ol>
 <li>
 <p>Find the IP address of a domain name (forward lookup):
@@ -14065,7 +14075,7 @@ nslookup 8.8.8.8</p>
 </ul>
 </li>
 </ol>
-<p>Specifying Query Type:</p>
+<p><strong>Specifying Query Type:</strong></p>
 <ol start="3">
 <li>
 <p>Query for a specific record type (e.g., MX records for mail servers):
@@ -14092,7 +14102,7 @@ nslookup -type=soa google.com</p>
 </ul>
 </li>
 </ol>
-<p>Specifying DNS Server:</p>
+<p><strong>Specifying DNS Server:</strong></p>
 <ol start="6">
 <li>
 <p>Use a specific DNS server (e.g., Google Public DNS 8.8.8.8) for the query:
@@ -14105,7 +14115,7 @@ nslookup -type=mx google.com 8.8.8.8</p>
 <p>Output will show MX records for google.com, queried from 8.8.8.8</p>
 </li>
 </ol>
-<p>Interactive Mode:</p>
+<p><strong>Interactive Mode:</strong></p>
 <ol start="8">
 <li>
 <p>Enter interactive mode:
@@ -14128,7 +14138,7 @@ exit</p>
 </ul>
 </li>
 </ol>
-<p>Common Record Types to Query with -type=:</p>
+<p><strong>Common Record Types to Query with -type=:</strong></p>
 <ul>
 <li>A:      Address record (IPv4 address)</li>
 <li>AAAA:   IPv6 address record</li>

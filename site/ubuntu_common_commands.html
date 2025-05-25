@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sun sidebar-visible" dir="ltr">
+<html lang="en" class="nordic sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -42,7 +42,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "nordic" : "sun";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "nordic" : "nordic";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -71,7 +71,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
-            html.classList.remove('sun')
+            html.classList.remove('nordic')
             html.classList.add(theme);
             html.classList.add("js");
         </script>
@@ -280,6 +280,16 @@
 }
 </style>
 <h1 id="list-of-common-ubuntu-commands"><a class="header" href="#list-of-common-ubuntu-commands">List of Common Ubuntu Commands</a></h1>
+<ul>
+<li><a href="#file-and-directory-management">File and Directory Management</a></li>
+<li><a href="#system-information">System Information</a></li>
+<li><a href="#package-management">Package Management</a></li>
+<li><a href="#user-management">User Management</a></li>
+<li><a href="#networking">Networking</a></li>
+<li><a href="#disk-management">Disk Management</a></li>
+<li><a href="#search-and-find">Search and Find</a></li>
+<li><a href="#miscellaneous">Miscellaneous</a></li>
+</ul>
 <h2 id="file-and-directory-management"><a class="header" href="#file-and-directory-management">File and Directory Management</a></h2>
 <ul>
 <li><code>ls</code> - List directory contents</li>
