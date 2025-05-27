@@ -1,0 +1,709 @@
+<!DOCTYPE HTML>
+<html lang="en" class="nordic sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Cisco Router &amp; Switch basic config</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/tabs.css">
+        <link rel="stylesheet" href="mdbook-admonish.css">
+        <link rel="stylesheet" href="theme/sun.css">
+        <link rel="stylesheet" href="theme/catppuccin.css">
+        <link rel="stylesheet" href="theme/catppuccin-admonish.css">
+        <link rel="stylesheet" href="theme/nordic.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "nordic" : "nordic";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('nordic')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="sun">Sun</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="nordic">Nordic</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/thorbjornium/Software_Manual_release" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/cisco.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="cisco-router--switch-configuration"><a class="header" href="#cisco-router--switch-configuration">Cisco Router &amp; Switch Configuration</a></h1>
+<ul>
+<li><a href="#part-1-configuring-a-cisco-router">Part 1: Configuring a Cisco Router</a>
+<ul>
+<li><a href="#1-access-the-router-cli">1. Access the Router CLI</a></li>
+<li><a href="#2-enter-privileged-exec-mode">2. Enter Privileged EXEC Mode</a></li>
+<li><a href="#3-enter-global-configuration-mode">3. Enter Global Configuration Mode</a></li>
+<li><a href="#4-basic-router-configuration">4. Basic Router Configuration</a></li>
+<li><a href="#5-configure-router-interfaces-assign-ip-addresses">5. Configure Router Interfaces (Assign IP Addresses)</a></li>
+<li><a href="#6-configure-a-default-route-for-internet-access">6. Configure a Default Route (for Internet Access)</a></li>
+<li><a href="#7-save-the-configuration">7. Save the Configuration</a></li>
+<li><a href="#8-verify-configuration-from-privileged-exec-mode-">8. Verify Configuration (from Privileged EXEC mode #)</a></li>
+</ul>
+</li>
+<li><a href="#part-2-configuring-a-cisco-switch">Part 2: Configuring a Cisco Switch</a>
+<ul>
+<li><a href="#1-access-the-switch-cli">1. Access the Switch CLI</a></li>
+<li><a href="#2-enter-privileged-exec-mode-1">2. Enter Privileged EXEC Mode</a></li>
+<li><a href="#3-enter-global-configuration-mode-1">3. Enter Global Configuration Mode</a></li>
+<li><a href="#4-basic-switch-configuration-similar-to-router">4. Basic Switch Configuration (Similar to Router)</a></li>
+<li><a href="#5-configure-vlans-virtual-local-area-networks">5. Configure VLANs (Virtual Local Area Networks)</a></li>
+<li><a href="#6-assign-access-ports-to-vlans">6. Assign Access Ports to VLANs</a></li>
+<li><a href="#7-configure-trunk-ports-for-inter-vlan-communication-between-switchesrouters">7. Configure Trunk Ports (for inter-VLAN communication between switches/routers)</a></li>
+<li><a href="#8-configure-a-management-ip-address-switched-virtual-interface---svi">8. Configure a Management IP Address (Switched Virtual Interface - SVI)</a></li>
+<li><a href="#9-configure-a-default-gateway-for-management-to-reach-other-subnets">9. Configure a Default Gateway (for management to reach other subnets)</a></li>
+<li><a href="#10-save-the-configuration">10. Save the Configuration</a></li>
+<li><a href="#11-verify-configuration-from-privileged-exec-mode-">11. Verify Configuration (from Privileged EXEC mode #)</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="part-1-configuring-a-cisco-router"><a class="header" href="#part-1-configuring-a-cisco-router"><strong>Part 1: Configuring a Cisco Router</strong></a></h2>
+<p>Routers operate at Layer 3 (Network Layer) and are responsible for forwarding packets between different networks (IP subnets).</p>
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li>You have a Cisco router (physical or in Packet Tracer/GNS3).</li>
+<li>You have a console cable connected from your PC's serial port (or USB-to-serial adapter) to the router's console port.</li>
+<li>You are using a terminal emulation program (like PuTTY, Tera Term, or Packet Tracer's Terminal app) with settings typically <code>9600 baud, 8 data bits, no parity, 1 stop bit, no flow control</code>.</li>
+</ul>
+<hr />
+<h3 id="1-access-the-router-cli"><a class="header" href="#1-access-the-router-cli">1. Access the Router CLI</a></h3>
+<ul>
+<li>Power on the router.</li>
+<li>Open your terminal emulation program and connect to the console port.</li>
+<li>You'll likely see a boot-up sequence. If it asks "Would you like to enter the initial configuration dialog? [yes/no]:", type <code>no</code> and press Enter.</li>
+<li>You'll arrive at the <strong>User EXEC mode</strong>: <code>Router&gt;</code></li>
+</ul>
+<h3 id="2-enter-privileged-exec-mode"><a class="header" href="#2-enter-privileged-exec-mode">2. Enter Privileged EXEC Mode</a></h3>
+<ul>
+<li>From <code>Router&gt;</code>, type <code>enable</code> or <code>en</code>.</li>
+<li>Press Enter.</li>
+<li>The prompt changes to <code>Router#</code>. This mode allows you to view system information and enter global configuration mode.</li>
+</ul>
+<h3 id="3-enter-global-configuration-mode"><a class="header" href="#3-enter-global-configuration-mode">3. Enter Global Configuration Mode</a></h3>
+<ul>
+<li>From <code>Router#</code>, type <code>configure terminal</code> or <code>conf t</code>.</li>
+<li>Press Enter.</li>
+<li>The prompt changes to <code>Router(config)#</code>. This mode allows you to make system-wide changes.</li>
+</ul>
+<h3 id="4-basic-router-configuration"><a class="header" href="#4-basic-router-configuration">4. Basic Router Configuration</a></h3>
+<ul>
+<li>
+<p><strong>Set a Hostname:</strong></p>
+<pre><code>Router(config)# hostname MyBranchRouter
+MyBranchRouter(config)#
+</code></pre>
+<p><em>(The prompt changes immediately)</em></p>
+</li>
+<li>
+<p><strong>Secure Privileged EXEC Mode (Encrypts password):</strong></p>
+<pre><code>MyBranchRouter(config)# enable secret YourStrongPassword
+</code></pre>
+<p><em>(This password will be requested when typing <code>enable</code>)</em></p>
+</li>
+<li>
+<p><strong>Secure Console Line (Local Login for Console):</strong></p>
+<pre><code>MyBranchRouter(config)# line console 0
+MyBranchRouter(config-line)# password ConsolePass
+MyBranchRouter(config-line)# login
+MyBranchRouter(config-line)# exit
+</code></pre>
+<p><em>(This password will be requested when connecting via console)</em></p>
+</li>
+<li>
+<p><strong>Secure VTY Lines (for Telnet/SSH access):</strong>
+VTY lines allow remote access. A common range is <code>0 4</code> (allowing 5 simultaneous sessions).</p>
+<pre><code>MyBranchRouter(config)# line vty 0 4
+MyBranchRouter(config-line)# password VTYPass
+MyBranchRouter(config-line)# login
+MyBranchRouter(config-line)# exit
+</code></pre>
+<p><em>(These passwords will be requested when connecting via Telnet/SSH)</em></p>
+</li>
+<li>
+<p><strong>Encrypt all plaintext passwords:</strong></p>
+<pre><code>MyBranchRouter(config)# service password-encryption
+</code></pre>
+<p><em>(This encrypts passwords set using <code>password</code> command, not <code>enable secret</code> which is already hashed)</em></p>
+</li>
+<li>
+<p><strong>Set a Banner (Message of the Day):</strong></p>
+<pre><code>MyBranchRouter(config)# banner motd # Unauthorized access is prohibited #
+</code></pre>
+<p><em>(The <code>#</code> is a delimiter; you can use any character not in the message)</em></p>
+</li>
+</ul>
+<h3 id="5-configure-router-interfaces-assign-ip-addresses"><a class="header" href="#5-configure-router-interfaces-assign-ip-addresses">5. Configure Router Interfaces (Assign IP Addresses)</a></h3>
+<p>Routers have physical interfaces (e.g., GigabitEthernet, FastEthernet, Serial). Each interface usually connects to a different network segment.</p>
+<ul>
+<li>
+<p><strong>Identify Interfaces:</strong> In Privileged EXEC mode (<code>MyBranchRouter#</code>), you can use:</p>
+<pre><code>show ip interface brief
+</code></pre>
+<p>This shows all interfaces, their IP addresses (if any), and their status.</p>
+</li>
+<li>
+<p><strong>Enter Interface Configuration Mode:</strong></p>
+<pre><code>MyBranchRouter(config)# interface GigabitEthernet0/0  (or FastEthernet0/0, or Serial0/0/0 etc.)
+MyBranchRouter(config-if)#
+</code></pre>
+</li>
+<li>
+<p><strong>Assign IP Address and Subnet Mask:</strong></p>
+<pre><code>MyBranchRouter(config-if)# ip address 192.168.1.1 255.255.255.0
+</code></pre>
+</li>
+<li>
+<p><strong>Activate the Interface:</strong> By default, interfaces are administratively down.</p>
+<pre><code>MyBranchRouter(config-if)# no shutdown
+</code></pre>
+<p><em>(You should see a message about the interface changing state to up)</em></p>
+</li>
+<li>
+<p><strong>Exit Interface Mode:</strong></p>
+<pre><code>MyBranchRouter(config-if)# exit
+MyBranchRouter(config)#
+</code></pre>
+<p><em>(Repeat for all interfaces you need to configure)</em></p>
+</li>
+</ul>
+<h3 id="6-configure-a-default-route-for-internet-access"><a class="header" href="#6-configure-a-default-route-for-internet-access">6. Configure a Default Route (for Internet Access)</a></h3>
+<p>If your router connects to the internet (or another router that leads to the internet), you'll need a default route. This tells the router where to send packets if it doesn't have a specific route for the destination network.</p>
+<ul>
+<li>
+<p><code>0.0.0.0 0.0.0.0</code> represents "any network, any subnet mask."</p>
+</li>
+<li>
+<p><code>10.0.0.1</code> would be the IP address of the "next-hop" router (e.g., your ISP's router or your main home router).</p>
+<pre><code>MyBranchRouter(config)# ip route 0.0.0.0 0.0.0.0 10.0.0.1
+</code></pre>
+</li>
+</ul>
+<h3 id="7-save-the-configuration"><a class="header" href="#7-save-the-configuration">7. Save the Configuration</a></h3>
+<p>Changes made in <code>config</code> modes are only in the running-configuration (RAM). To save them permanently so they survive a reboot, you need to copy them to startup-configuration (NVRAM).</p>
+<ul>
+<li>
+<p>From <code>MyBranchRouter(config)#</code>, type <code>exit</code> to go back to Privileged EXEC mode.</p>
+<pre><code>MyBranchRouter(config)# exit
+MyBranchRouter#
+</code></pre>
+</li>
+<li>
+<p>Save the configuration:</p>
+<pre><code>MyBranchRouter# copy running-config startup-config
+Destination filename [startup-config]? (Press Enter)
+Building configuration...
+</code></pre>
+</li>
+</ul>
+<h3 id="8-verify-configuration-from-privileged-exec-mode-"><a class="header" href="#8-verify-configuration-from-privileged-exec-mode-">8. Verify Configuration (from Privileged EXEC mode #)</a></h3>
+<ul>
+<li><code>show running-config</code>: Shows the current active configuration in RAM.</li>
+<li><code>show ip interface brief</code>: Shows a summary of all interfaces, their IP addresses, and status.</li>
+<li><code>show ip route</code>: Shows the routing table.</li>
+<li><code>ping &lt;destination_ip&gt;</code>: Test connectivity (e.g., <code>ping 192.168.1.254</code>).</li>
+</ul>
+<hr />
+<h2 id="part-2-configuring-a-cisco-switch"><a class="header" href="#part-2-configuring-a-cisco-switch"><strong>Part 2: Configuring a Cisco Switch</strong></a></h2>
+<p>Switches primarily operate at Layer 2 (Data Link Layer) and are responsible for forwarding frames within the same local network (LAN) based on MAC addresses.</p>
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li>You have a Cisco switch (physical or in Packet Tracer/GNS3).</li>
+<li>You have a console cable connected from your PC's serial port to the switch's console port.</li>
+<li>You are using a terminal emulation program (like PuTTY, Tera Term, or Packet Tracer's Terminal app).</li>
+</ul>
+<hr />
+<h3 id="1-access-the-switch-cli"><a class="header" href="#1-access-the-switch-cli">1. Access the Switch CLI</a></h3>
+<ul>
+<li>Power on the switch.</li>
+<li>Open your terminal emulation program and connect to the console port.</li>
+<li>You'll likely see a boot-up sequence.</li>
+<li>You'll arrive at the <strong>User EXEC mode</strong>: <code>Switch&gt;</code></li>
+</ul>
+<h3 id="2-enter-privileged-exec-mode-1"><a class="header" href="#2-enter-privileged-exec-mode-1">2. Enter Privileged EXEC Mode</a></h3>
+<ul>
+<li>From <code>Switch&gt;</code>, type <code>enable</code> or <code>en</code>.</li>
+<li>Press Enter.</li>
+<li>The prompt changes to <code>Switch#</code>.</li>
+</ul>
+<h3 id="3-enter-global-configuration-mode-1"><a class="header" href="#3-enter-global-configuration-mode-1">3. Enter Global Configuration Mode</a></h3>
+<ul>
+<li>From <code>Switch#</code>, type <code>configure terminal</code> or <code>conf t</code>.</li>
+<li>Press Enter.</li>
+<li>The prompt changes to <code>Switch(config)#</code>.</li>
+</ul>
+<h3 id="4-basic-switch-configuration-similar-to-router"><a class="header" href="#4-basic-switch-configuration-similar-to-router">4. Basic Switch Configuration (Similar to Router)</a></h3>
+<ul>
+<li>
+<p><strong>Set a Hostname:</strong></p>
+<pre><code>Switch(config)# hostname MyFloorSwitch
+MyFloorSwitch(config)#
+</code></pre>
+</li>
+<li>
+<p><strong>Secure Privileged EXEC Mode:</strong></p>
+<pre><code>MyFloorSwitch(config)# enable secret YourStrongPassword
+</code></pre>
+</li>
+<li>
+<p><strong>Secure Console Line:</strong></p>
+<pre><code>MyFloorSwitch(config)# line console 0
+MyFloorSwitch(config-line)# password ConsolePass
+MyFloorSwitch(config-line)# login
+MyFloorSwitch(config-line)# exit
+</code></pre>
+</li>
+<li>
+<p><strong>Secure VTY Lines (for Telnet/SSH access):</strong></p>
+<pre><code>MyFloorSwitch(config)# line vty 0 15  (Switches typically have more VTY lines than routers, up to 16)
+MyFloorSwitch(config-line)# password VTYPass
+MyFloorSwitch(config-line)# login
+MyFloorSwitch(config-line)# exit
+</code></pre>
+</li>
+<li>
+<p><strong>Encrypt all plaintext passwords:</strong></p>
+<pre><code>MyFloorSwitch(config)# service password-encryption
+</code></pre>
+</li>
+<li>
+<p><strong>Set a Banner:</strong></p>
+<pre><code>MyFloorSwitch(config)# banner motd # Authorized access only #
+</code></pre>
+</li>
+</ul>
+<h3 id="5-configure-vlans-virtual-local-area-networks"><a class="header" href="#5-configure-vlans-virtual-local-area-networks">5. Configure VLANs (Virtual Local Area Networks)</a></h3>
+<p>VLANs segment a broadcast domain. By default, all ports are in VLAN 1.</p>
+<ul>
+<li>
+<p><strong>Create a new VLAN:</strong></p>
+<pre><code>MyFloorSwitch(config)# vlan 10
+MyFloorSwitch(config-vlan)# name Sales_VLAN
+MyFloorSwitch(config-vlan)# exit
+</code></pre>
+<p><em>(Repeat for other VLANs as needed, e.g., vlan 20 name IT_VLAN)</em></p>
+</li>
+</ul>
+<h3 id="6-assign-access-ports-to-vlans"><a class="header" href="#6-assign-access-ports-to-vlans">6. Assign Access Ports to VLANs</a></h3>
+<p>Access ports carry traffic for a single VLAN.</p>
+<ul>
+<li>
+<p><strong>Enter Interface Configuration Mode for the port:</strong></p>
+<pre><code>MyFloorSwitch(config)# interface FastEthernet0/1 (or GigabitEthernet0/1 etc.)
+MyFloorSwitch(config-if)#
+</code></pre>
+</li>
+<li>
+<p><strong>Set port mode to access:</strong></p>
+<pre><code>MyFloorSwitch(config-if)# switchport mode access
+</code></pre>
+</li>
+<li>
+<p><strong>Assign the port to a VLAN:</strong></p>
+<pre><code>MyFloorSwitch(config-if)# switchport access vlan 10
+MyFloorSwitch(config-if)# exit
+</code></pre>
+<p><em>(Repeat for all access ports)</em></p>
+</li>
+</ul>
+<h3 id="7-configure-trunk-ports-for-inter-vlan-communication-between-switchesrouters"><a class="header" href="#7-configure-trunk-ports-for-inter-vlan-communication-between-switchesrouters">7. Configure Trunk Ports (for inter-VLAN communication between switches/routers)</a></h3>
+<p>Trunk ports carry traffic for multiple VLANs, typically connecting switches to other switches or to routers (for inter-VLAN routing).</p>
+<ul>
+<li>
+<p><strong>Enter Interface Configuration Mode for the trunk port:</strong></p>
+<pre><code>MyFloorSwitch(config)# interface GigabitEthernet0/1  (Commonly use GigE for trunks)
+MyFloorSwitch(config-if)#
+</code></pre>
+</li>
+<li>
+<p><strong>Set encapsulation type (usually Dot1Q):</strong></p>
+<pre><code>MyFloorSwitch(config-if)# switchport trunk encapsulation dot1q
+</code></pre>
+</li>
+<li>
+<p><strong>Set port mode to trunk:</strong></p>
+<pre><code>MyFloorSwitch(config-if)# switchport mode trunk
+</code></pre>
+</li>
+<li>
+<p><strong>Allow specific VLANs on the trunk (optional, good practice):</strong></p>
+<pre><code>MyFloorSwitch(config-if)# switchport trunk allowed vlan 1,10,20
+</code></pre>
+<p><em>(VLAN 1 is the default and usually remains allowed)</em></p>
+</li>
+<li>
+<p><strong>Exit Interface Mode:</strong></p>
+<pre><code>MyFloorSwitch(config-if)# exit
+</code></pre>
+</li>
+</ul>
+<h3 id="8-configure-a-management-ip-address-switched-virtual-interface---svi"><a class="header" href="#8-configure-a-management-ip-address-switched-virtual-interface---svi">8. Configure a Management IP Address (Switched Virtual Interface - SVI)</a></h3>
+<p>Switches are Layer 2 devices, but for remote management (Telnet/SSH) they need an IP address. This is done by creating a Switched Virtual Interface (SVI) for a VLAN.</p>
+<ul>
+<li>
+<p><strong>Enter Interface VLAN mode:</strong></p>
+<pre><code>MyFloorSwitch(config)# interface vlan 1  (VLAN 1 is the default management VLAN)
+MyFloorSwitch(config-if)#
+</code></pre>
+</li>
+<li>
+<p><strong>Assign IP Address and Subnet Mask:</strong></p>
+<pre><code>MyFloorSwitch(config-if)# ip address 192.168.1.254 255.255.255.0
+</code></pre>
+</li>
+<li>
+<p><strong>Activate the Interface:</strong></p>
+<pre><code>MyFloorSwitch(config-if)# no shutdown
+</code></pre>
+<p><em>(You should see a message about the interface changing state to up)</em></p>
+</li>
+<li>
+<p><strong>Exit Interface Mode:</strong></p>
+<pre><code>MyFloorSwitch(config-if)# exit
+</code></pre>
+</li>
+</ul>
+<h3 id="9-configure-a-default-gateway-for-management-to-reach-other-subnets"><a class="header" href="#9-configure-a-default-gateway-for-management-to-reach-other-subnets">9. Configure a Default Gateway (for management to reach other subnets)</a></h3>
+<p>For the switch to be managed from another network (e.g., from a PC on a different VLAN or the internet), it needs a default gateway (the IP address of the router connected to that VLAN).</p>
+<ul>
+<li>
+<pre><code>  MyFloorSwitch(config)# ip default-gateway 192.168.1.1
+</code></pre>
+</li>
+</ul>
+<h3 id="10-save-the-configuration"><a class="header" href="#10-save-the-configuration">10. Save the Configuration</a></h3>
+<ul>
+<li>
+<p>From <code>MyFloorSwitch(config)#</code>, type <code>exit</code> to go back to Privileged EXEC mode.</p>
+<pre><code>MyFloorSwitch(config)# exit
+MyFloorSwitch#
+</code></pre>
+</li>
+<li>
+<p>Save the configuration:</p>
+<pre><code>MyFloorSwitch# copy running-config startup-config
+Destination filename [startup-config]? (Press Enter)
+Building configuration...
+</code></pre>
+</li>
+</ul>
+<h3 id="11-verify-configuration-from-privileged-exec-mode-"><a class="header" href="#11-verify-configuration-from-privileged-exec-mode-">11. Verify Configuration (from Privileged EXEC mode #)</a></h3>
+<ul>
+<li><code>show running-config</code>: Shows the current active configuration in RAM.</li>
+<li><code>show ip interface brief</code>: Shows a summary of VLAN interfaces and their IP addresses.</li>
+<li><code>show vlan brief</code>: Shows a summary of all VLANs and port assignments.</li>
+<li><code>show mac address-table</code>: Shows the MAC address table.</li>
+<li><code>ping &lt;ip_address&gt;</code>: Test connectivity (e.g., <code>ping 192.168.1.1</code>).</li>
+</ul>
+<!-- mdbook-embedify [scroll-to-top]  -->
+<style> .scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script> const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="chrome_shortcuts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="git.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="chrome_shortcuts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="git.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/tabs.js"></script>
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
