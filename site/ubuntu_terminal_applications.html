@@ -377,6 +377,11 @@ sudo apt update sudo apt install -y gpg
 sudo mkdir -p /etc/apt/keyrings wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list sudo apt update sudo apt install -y eza
 
 </code></pre>
+<p>Add an alias and config to bash:</p>
+<pre><code class="language-bash">
+alias e='eza -lha --icons --git --time-style=long-iso --header --group-directories-first'
+
+</code></pre>
 <p><em>Note</em>: In strict apt environments, you may need to add the target: <code>echo "deb [arch=amd64 signed-by=...</code></p>
 <p>More info at <a href="https://github.com/eza-community/eza">https://github.com/eza-community/eza</a></p>
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
