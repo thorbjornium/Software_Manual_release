@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Settings</title>
+        <title>Terminal Applications</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/thorbjornium/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/windows_terminal_settings.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/ubuntu_terminal_applications.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,42 +279,126 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="settings"><a class="header" href="#settings">Settings</a></h1>
+<h1 id="terminal-applications"><a class="header" href="#terminal-applications">Terminal Applications</a></h1>
 <ul>
-<li><a href="#terminal-icons">Terminal Icons</a></li>
+<li><a href="#quick-install">Quick Install</a>
+<ul>
+<li><a href="#bat">bat</a></li>
+<li><a href="#fzf">fzf</a></li>
+<li><a href="#zoxide">zoxide</a></li>
+<li><a href="#intelli-shell">intelli-shell</a></li>
+<li><a href="#fd">fd</a></li>
+<li><a href="#ripgrep">ripgrep</a></li>
+<li><a href="#eza">eza</a></li>
 </ul>
-<p>Open settings: <kbd>Ctrl</kbd> + <kbd>,</kbd>
-Click on the JSON file in the lower left corner to manually edit bound and unbound shortcuts. To view all default
-settings <kbd>Alt</kbd> + click the JSON file.</p>
-<h2 id="terminal-icons"><a class="header" href="#terminal-icons">Terminal Icons</a></h2>
-<p>Install Terminal icons:</p>
-<div class="mdbook-tabs-container" data-tabglobal="install">
-<nav class="mdbook-tabs">
-<button class="mdbook-tab active" data-tabname="Winget">Winget</button>
-<button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
-</nav>
-<div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">Install-Module -Name Terminal-Icons -Repository PSGallery
+</li>
+</ul>
+<h2 id="quick-install"><a class="header" href="#quick-install">Quick Install</a></h2>
+<pre><code class="language-bash">
+sudo apt install bat zoxide fd-find ripgrep
+
 </code></pre>
-</div>
-<div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">scoop bucket add extras
-scoop install terminal-icons
+<h3 id="bat"><a class="header" href="#bat">bat</a></h3>
+<p>Important: If you install bat this way, please note that the executable may be installed as batcat instead of bat (due to a name clash with another package). You can set up a bat -&gt; batcat symlink or alias to prevent any issues that may come up because of this and to be consistent with other distributions:</p>
+<pre><code class="language-bash">
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
 </code></pre>
-</div>
-</div>
-<p>Add <code>Import-Module -Name Terminal-Icons</code> to your PowerShell profile.</p>
-<p>More info <a href="https://github.com/devblackops/Terminal-Icons">here</a></p>
+<p>More info at <a href="https://github.com/sharkdp/bat">https://github.com/sharkdp/bat</a></p>
+<h3 id="fzf"><a class="header" href="#fzf">fzf</a></h3>
+<p><strong>To get the most up-to-date version on Ubuntu Server 24.04:</strong></p>
+<pre><code class="language-bash">
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+</code></pre>
+<p>Add the following line to your shell configuration file.</p>
+<p>bash:</p>
+<pre><code class="language-bash">
+eval "$(fzf --bash)"
+
+</code></pre>
+<p>More info at <a href="https://github.com/junegunn/fzf">https://github.com/junegunn/fzf</a></p>
+<h3 id="zoxide"><a class="header" href="#zoxide">zoxide</a></h3>
+<p>Set up the repo:</p>
+<pre><code class="language-bash">
+curl -fsSL https://apt.cli.rs/pubkey.asc | sudo tee -a /usr/share/keyrings/rust-tools.asc
+curl -fsSL https://apt.cli.rs/rust-tools.list | sudo tee /etc/apt/sources.list.d/rust-tools.list
+sudo apt update
+
+</code></pre>
+<p>You might need to run <code>sudo apt install zoxide</code> again.</p>
+<p>bash:</p>
+<p>Add this to the <strong>end</strong> of your config file (usually ~/.bashrc):</p>
+<pre><code class="language-bash">
+eval "$(zoxide init bash)"
+
+</code></pre>
+<p>More info at <a href="https://github.com./ajeetdsouza/zoxide">https://github.com/ajeetdsouza/zoxide</a></p>
+<h3 id="intelli-shell"><a class="header" href="#intelli-shell">intelli-shell</a></h3>
+<p>Download repo:</p>
+<pre><code class="language-bash">
+curl -sSf https://raw.githubusercontent.com/lasantosr/intelli-shell/main/install.sh | bash
+
+</code></pre>
+<p>Enable hotkeys:</p>
+<pre><code class="language-bash">
+mkdir -p ~/.local/share/intelli-shell/bin
+curl -sSf https://raw.githubusercontent.com/lasantosr/intelli-shell/main/intelli-shell.sh &gt; ~/.local/share/intelli-shell/bin/intelli-shell.sh
+
+</code></pre>
+<p>More info at <a href="https://github.com/lasantosr/intelli-shell">https://github.com/lasantosr/intelli-shell</a></p>
+<h3 id="fd"><a class="header" href="#fd">fd</a></h3>
+<p>Note that the binary is called fdfind as the binary name fd is already used by another package. It is recommended that after installation, you add a link to fd by executing command..</p>
+<pre><code class="language-bash">
+ln -s $(which fdfind) ~/.local/bin/fd
+
+</code></pre>
+<p>.. in order to use fd in the same way as in this documentation. Make sure that $HOME/.local/bin is in your $PATH.</p>
+<p>You can use <em>fd</em> to generate input for the command-line fuzzy finder fzf:</p>
+<pre><code class="language-bash">
+export FZF_DEFAULT_COMMAND='fd --type file' export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+</code></pre>
+<p>Then, you can type <code>vim &lt;Ctrl-T&gt;</code> on your terminal to open fzf and search through the fd-results.</p>
+<p>Alternatively, you might like to follow symbolic links and include hidden files (but exclude <code>.git</code> folders):</p>
+<pre><code class="language-bash">
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+
+</code></pre>
+<p>You can even use fd's colored output inside fzf by setting:</p>
+<pre><code class="language-bash">
+export FZF_DEFAULT_COMMAND="fd --type file --color=always" export FZF_DEFAULT_OPTS="--ansi"
+
+</code></pre>
+<p>More info at <a href="https://github.com/sharkdp/fd">https://github.com/sharkdp/fd</a> and see the <a href="https://github.com/junegunn/fzf#tips">Tips section</a> of the fzf README.</p>
+<h3 id="ripgrep"><a class="header" href="#ripgrep">ripgrep</a></h3>
+<p>Info at <a href="https://github.com/BurntSushi/ripgrep">https://github.com/BurntSushi/ripgrep</a> and user guide here: <a href="https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md">https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md</a></p>
+<h3 id="eza"><a class="header" href="#eza">eza</a></h3>
+<p>Eza is available from <a href="http://deb.gierens.de">deb.gierens.de</a>. The GPG public key is in this repo under <a href="https://github.com/eza-community/eza/blob/main/deb.asc">deb.asc</a>.</p>
+<p>First make sure you have the <code>gpg</code> command, and otherwise install it via:</p>
+<pre><code class="language-bash">
+sudo apt update sudo apt install -y gpg
+
+</code></pre>
+<p>Then install eza via:</p>
+<pre><code class="language-bash">
+sudo mkdir -p /etc/apt/keyrings wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list sudo apt update sudo apt install -y eza
+
+</code></pre>
+<p><em>Note</em>: In strict apt environments, you may need to add the target: <code>echo "deb [arch=amd64 signed-by=...</code></p>
+<p>More info at <a href="https://github.com/eza-community/eza">https://github.com/eza-community/eza</a></p>
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="windows_terminal_default_keyboard_shortcuts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ubuntu_common_commands.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="mpv.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="markdown_syntax.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -324,11 +408,11 @@ scoop install terminal-icons
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="windows_terminal_default_keyboard_shortcuts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ubuntu_common_commands.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="mpv.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="markdown_syntax.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
