@@ -285,7 +285,12 @@
 <li><a href="#global-gitignore">Global .gitignore</a></li>
 </ul>
 <h2 id="global-gitignore"><a class="header" href="#global-gitignore">Global .gitignore</a></h2>
-<p>Set up a global <code>core.excludesfile</code> configuration file and point it to a global <code>.gitignore</code> file located in your home directory:</p>
+<p>Set up a global <code>core.excludesfile</code> configuration file and point it to a global <code>.gitignore</code> file located in your home or user directory. Check if you already have this config:</p>
+<pre><code class="language-sh">
+git config --get core.excludesfile
+
+</code></pre>
+<p>If you have a .gitignore located in your home or user directory:</p>
 <p><strong>nix or Windows git bash:</strong></p>
 <pre><code class="language-bash">
 git config --global core.excludesFile '~/.gitignore' 
