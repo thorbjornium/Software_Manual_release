@@ -965,31 +965,31 @@
 </style>
 <h1 id="cisco-router--switch-configuration"><a class="header" href="#cisco-router--switch-configuration">Cisco Router &amp; Switch Configuration</a></h1>
 <ul>
-<li><a href="cisco.html#part-1-configuring-a-cisco-router">Part 1: Configuring a Cisco Router</a>
+<li><a href="cisco_basic_config.html#part-1-configuring-a-cisco-router">Part 1: Configuring a Cisco Router</a>
 <ul>
-<li><a href="cisco.html#1-access-the-router-cli">1. Access the Router CLI</a></li>
-<li><a href="cisco.html#2-enter-privileged-exec-mode">2. Enter Privileged EXEC Mode</a></li>
-<li><a href="cisco.html#3-enter-global-configuration-mode">3. Enter Global Configuration Mode</a></li>
-<li><a href="cisco.html#4-basic-router-configuration">4. Basic Router Configuration</a></li>
-<li><a href="cisco.html#5-configure-router-interfaces-assign-ip-addresses">5. Configure Router Interfaces (Assign IP Addresses)</a></li>
-<li><a href="cisco.html#6-configure-a-default-route-for-internet-access">6. Configure a Default Route (for Internet Access)</a></li>
-<li><a href="cisco.html#7-save-the-configuration">7. Save the Configuration</a></li>
-<li><a href="cisco.html#8-verify-configuration-from-privileged-exec-mode-">8. Verify Configuration (from Privileged EXEC mode #)</a></li>
+<li><a href="cisco_basic_config.html#1-access-the-router-cli">1. Access the Router CLI</a></li>
+<li><a href="cisco_basic_config.html#2-enter-privileged-exec-mode">2. Enter Privileged EXEC Mode</a></li>
+<li><a href="cisco_basic_config.html#3-enter-global-configuration-mode">3. Enter Global Configuration Mode</a></li>
+<li><a href="cisco_basic_config.html#4-basic-router-configuration">4. Basic Router Configuration</a></li>
+<li><a href="cisco_basic_config.html#5-configure-router-interfaces-assign-ip-addresses">5. Configure Router Interfaces (Assign IP Addresses)</a></li>
+<li><a href="cisco_basic_config.html#6-configure-a-default-route-for-internet-access">6. Configure a Default Route (for Internet Access)</a></li>
+<li><a href="cisco_basic_config.html#7-save-the-configuration">7. Save the Configuration</a></li>
+<li><a href="cisco_basic_config.html#8-verify-configuration-from-privileged-exec-mode-">8. Verify Configuration (from Privileged EXEC mode #)</a></li>
 </ul>
 </li>
-<li><a href="cisco.html#part-2-configuring-a-cisco-switch">Part 2: Configuring a Cisco Switch</a>
+<li><a href="cisco_basic_config.html#part-2-configuring-a-cisco-switch">Part 2: Configuring a Cisco Switch</a>
 <ul>
-<li><a href="cisco.html#1-access-the-switch-cli">1. Access the Switch CLI</a></li>
-<li><a href="cisco.html#2-enter-privileged-exec-mode-1">2. Enter Privileged EXEC Mode</a></li>
-<li><a href="cisco.html#3-enter-global-configuration-mode-1">3. Enter Global Configuration Mode</a></li>
-<li><a href="cisco.html#4-basic-switch-configuration-similar-to-router">4. Basic Switch Configuration (Similar to Router)</a></li>
-<li><a href="cisco.html#5-configure-vlans-virtual-local-area-networks">5. Configure VLANs (Virtual Local Area Networks)</a></li>
-<li><a href="cisco.html#6-assign-access-ports-to-vlans">6. Assign Access Ports to VLANs</a></li>
-<li><a href="cisco.html#7-configure-trunk-ports-for-inter-vlan-communication-between-switchesrouters">7. Configure Trunk Ports (for inter-VLAN communication between switches/routers)</a></li>
-<li><a href="cisco.html#8-configure-a-management-ip-address-switched-virtual-interface---svi">8. Configure a Management IP Address (Switched Virtual Interface - SVI)</a></li>
-<li><a href="cisco.html#9-configure-a-default-gateway-for-management-to-reach-other-subnets">9. Configure a Default Gateway (for management to reach other subnets)</a></li>
-<li><a href="cisco.html#10-save-the-configuration">10. Save the Configuration</a></li>
-<li><a href="cisco.html#11-verify-configuration-from-privileged-exec-mode-">11. Verify Configuration (from Privileged EXEC mode #)</a></li>
+<li><a href="cisco_basic_config.html#1-access-the-switch-cli">1. Access the Switch CLI</a></li>
+<li><a href="cisco_basic_config.html#2-enter-privileged-exec-mode-1">2. Enter Privileged EXEC Mode</a></li>
+<li><a href="cisco_basic_config.html#3-enter-global-configuration-mode-1">3. Enter Global Configuration Mode</a></li>
+<li><a href="cisco_basic_config.html#4-basic-switch-configuration-similar-to-router">4. Basic Switch Configuration (Similar to Router)</a></li>
+<li><a href="cisco_basic_config.html#5-configure-vlans-virtual-local-area-networks">5. Configure VLANs (Virtual Local Area Networks)</a></li>
+<li><a href="cisco_basic_config.html#6-assign-access-ports-to-vlans">6. Assign Access Ports to VLANs</a></li>
+<li><a href="cisco_basic_config.html#7-configure-trunk-ports-for-inter-vlan-communication-between-switchesrouters">7. Configure Trunk Ports (for inter-VLAN communication between switches/routers)</a></li>
+<li><a href="cisco_basic_config.html#8-configure-a-management-ip-address-switched-virtual-interface---svi">8. Configure a Management IP Address (Switched Virtual Interface - SVI)</a></li>
+<li><a href="cisco_basic_config.html#9-configure-a-default-gateway-for-management-to-reach-other-subnets">9. Configure a Default Gateway (for management to reach other subnets)</a></li>
+<li><a href="cisco_basic_config.html#10-save-the-configuration">10. Save the Configuration</a></li>
+<li><a href="cisco_basic_config.html#11-verify-configuration-from-privileged-exec-mode-">11. Verify Configuration (from Privileged EXEC mode #)</a></li>
 </ul>
 </li>
 </ul>
@@ -1329,6 +1329,318 @@ Building configuration...
 <li><code>show vlan brief</code>: Shows a summary of all VLANs and port assignments.</li>
 <li><code>show mac address-table</code>: Shows the MAC address table.</li>
 <li><code>ping &lt;ip_address&gt;</code>: Test connectivity (e.g., <code>ping 192.168.1.1</code>).</li>
+</ul>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="common-cisco-ios-commands-for-routers-and-switches"><a class="header" href="#common-cisco-ios-commands-for-routers-and-switches">Common Cisco IOS Commands for Routers and Switches</a></h1>
+<ul>
+<li><a href="cisco_common_commands_routers_and_switches.html#navigation-and-basic-system-commands">Navigation and Basic System Commands</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#basic-device-configuration">Basic Device Configuration</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#interface-configuration">Interface Configuration</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#vlans-switches-only">VLANs (Switches Only)</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#routing-routers-primarily">Routing (Routers Primarily)</a>
+<ul>
+<li><a href="cisco_common_commands_routers_and_switches.html#static-routing">Static Routing</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#ospf-open-shortest-path-first">OSPF (Open Shortest Path First)</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#eigrp-enhanced-interior-gateway-routing-protocol">EIGRP (Enhanced Interior Gateway Routing Protocol)</a></li>
+</ul>
+</li>
+<li><a href="cisco_common_commands_routers_and_switches.html#security">Security</a>
+<ul>
+<li><a href="cisco_common_commands_routers_and_switches.html#access-control-lists-acls">Access Control Lists (ACLs)</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#port-security-switches-only">Port Security (Switches Only)</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#ssh-configuration">SSH Configuration</a></li>
+</ul>
+</li>
+<li><a href="cisco_common_commands_routers_and_switches.html#monitoring-and-verification-show-commands">Monitoring and Verification (Show Commands)</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#troubleshooting-commands">Troubleshooting Commands</a></li>
+<li><a href="cisco_common_commands_routers_and_switches.html#configuration-management">Configuration Management</a></li>
+</ul>
+<p>This list covers fundamental and frequently used commands.</p>
+<h2 id="navigation-and-basic-system-commands"><a class="header" href="#navigation-and-basic-system-commands">Navigation and Basic System Commands</a></h2>
+<ul>
+<li>
+<p><code>Router&gt;</code>: User EXEC mode prompt (limited commands).</p>
+</li>
+<li>
+<p><code>Switch&gt;</code>: User EXEC mode prompt (limited commands).</p>
+</li>
+<li>
+<p><code>Router#</code>: Privileged EXEC mode prompt (all monitoring commands, allows entry to config modes).</p>
+</li>
+<li>
+<p><code>Switch#</code>: Privileged EXEC mode prompt (all monitoring commands, allows entry to config modes).</p>
+</li>
+<li>
+<p><code>Router(config)#</code>: Global Configuration mode prompt.</p>
+</li>
+<li>
+<p><code>Switch(config)#</code>: Global Configuration mode prompt.</p>
+</li>
+<li>
+<p><code>enable</code>: Enter privileged EXEC mode from user EXEC mode.</p>
+</li>
+<li>
+<p><code>disable</code>: Exit privileged EXEC mode to user EXEC mode.</p>
+</li>
+<li>
+<p><code>configure terminal</code> (or <code>config t</code>): Enter global configuration mode.</p>
+</li>
+<li>
+<p><code>exit</code>: Exit the current configuration mode or log out from user EXEC mode.</p>
+</li>
+<li>
+<p><code>end</code>: Exit all configuration modes and return to privileged EXEC mode.</p>
+</li>
+<li>
+<p><code>logout</code>: Log out from the current session.</p>
+</li>
+<li>
+<p><code>?</code>: Displays context-sensitive help for commands.</p>
+</li>
+<li>
+<p><code>&lt;command&gt; ?</code>: Displays arguments for a command.</p>
+</li>
+<li>
+<p><code>&lt;command&gt; &lt;partial-argument&gt;?</code>: Displays options for a partial argument.</p>
+</li>
+<li>
+<p><code>&lt;command&gt;</code> (tab): Autocompletes a command.</p>
+</li>
+</ul>
+<h2 id="basic-device-configuration"><a class="header" href="#basic-device-configuration">Basic Device Configuration</a></h2>
+<ul>
+<li><code>hostname &lt;name&gt;</code>: Sets the hostname of the device (Global config).</li>
+<li><code>enable secret &lt;password&gt;</code>: Sets an encrypted privileged EXEC mode password (Global config).</li>
+<li><code>enable password &lt;password&gt;</code>: Sets a clear-text privileged EXEC mode password (less secure, Global config).</li>
+<li><code>service password-encryption</code>: Encrypts all clear-text passwords in the configuration (Global config).</li>
+<li><code>banner motd #&lt;text&gt;#</code>: Configures a Message Of The Day banner (Global config). The <code>#</code> can be any character not in the text.</li>
+<li><code>line console 0</code>: Enters console line configuration mode (Global config).</li>
+<li><code>password &lt;password&gt;</code>: Sets a password for the line (Line config).</li>
+<li><code>login</code>: Requires password authentication for the line (Line config).</li>
+<li><code>exec-timeout &lt;minutes&gt; &lt;seconds&gt;</code>: Sets the inactivity timeout for the line (Line config).</li>
+<li><code>logging synchronous</code>: Prevents console messages from interrupting command input (Line config).</li>
+<li><code>line vty 0 4</code>: Enters virtual terminal (Telnet/SSH) line configuration mode (Global config). <code>0 4</code> typically means 5 VTY lines.</li>
+</ul>
+<h2 id="interface-configuration"><a class="header" href="#interface-configuration">Interface Configuration</a></h2>
+<ul>
+<li><code>interface &lt;type&gt; &lt;number&gt;</code> (e.g., <code>interface GigabitEthernet0/1</code>, <code>interface FastEthernet0/0</code>): Enters interface configuration mode (Global config).</li>
+<li><code>ip address &lt;ip-address&gt; &lt;subnet-mask&gt;</code>: Assigns an IP address and subnet mask to the interface (Interface config).</li>
+<li><code>no shutdown</code>: Activates the interface (Interface config).</li>
+<li><code>shutdown</code>: Deactivates the interface (Interface config).</li>
+<li><code>description &lt;text&gt;</code>: Adds a description to the interface (Interface config).</li>
+<li><code>ipv6 address &lt;ipv6-address&gt;/&lt;prefix-length&gt;</code>: Assigns an IPv6 address to the interface (Interface config).</li>
+<li><code>ipv6 address autoconfig</code>: Enables IPv6 stateless autoconfiguration (SLAAC) on the interface (Interface config).</li>
+<li><code>duplex &lt;auto|full|half&gt;</code>: Sets the duplex mode (Interface config).</li>
+<li><code>speed &lt;auto|10|100|1000&gt;</code>: Sets the interface speed (Interface config).</li>
+</ul>
+<h2 id="vlans-switches-only"><a class="header" href="#vlans-switches-only">VLANs (Switches Only)</a></h2>
+<ul>
+<li><code>vlan &lt;vlan-id&gt;</code>: Creates a VLAN and enters VLAN configuration mode (Global config).</li>
+<li><code>name &lt;vlan-name&gt;</code>: Assigns a name to the VLAN (VLAN config).</li>
+<li><code>interface &lt;type&gt; &lt;number&gt;</code>: Selects an interface (Global config).</li>
+<li><code>switchport mode access</code>: Configures the interface as an access port (Interface config).</li>
+<li><code>switchport access vlan &lt;vlan-id&gt;</code>: Assigns the access port to a specific VLAN (Interface config).</li>
+<li><code>switchport mode trunk</code>: Configures the interface as a trunk port (Interface config).</li>
+<li><code>switchport trunk encapsulation &lt;dot1q|isl&gt;</code>: Specifies the trunking encapsulation (Interface config).</li>
+<li><code>switchport trunk allowed vlan &lt;vlan-list&gt;</code>: Allows specific VLANs on the trunk (Interface config).</li>
+<li><code>switchport trunk native vlan &lt;vlan-id&gt;</code>: Sets the native VLAN for the trunk (Interface config).</li>
+<li><code>no vlan &lt;vlan-id&gt;</code>: Deletes a VLAN (Global config).</li>
+</ul>
+<h2 id="routing-routers-primarily"><a class="header" href="#routing-routers-primarily">Routing (Routers Primarily)</a></h2>
+<h3 id="static-routing"><a class="header" href="#static-routing">Static Routing</a></h3>
+<ul>
+<li><code>ip route &lt;destination-network&gt; &lt;subnet-mask&gt; &lt;next-hop-ip | exit-interface&gt;</code>: Configures a static route (Global config).</li>
+<li><code>ip route 0.0.0.0 0.0.0.0 &lt;next-hop-ip | exit-interface&gt;</code>: Configures a default route (Global config).</li>
+<li><code>no ip route &lt;destination-network&gt; &lt;subnet-mask&gt; &lt;next-hop-ip | exit-interface&gt;</code>: Removes a static route (Global config).</li>
+</ul>
+<h3 id="ospf-open-shortest-path-first"><a class="header" href="#ospf-open-shortest-path-first">OSPF (Open Shortest Path First)</a></h3>
+<ul>
+<li><code>router ospf &lt;process-id&gt;</code>: Enables OSPF routing process (Global config).</li>
+<li><code>network &lt;network-address&gt; &lt;wildcard-mask&gt; area &lt;area-id&gt;</code>: Specifies networks to be included in the OSPF process and their area (Router config).</li>
+<li><code>passive-interface &lt;interface-type&gt; &lt;number&gt;</code>: Prevents OSPF updates from being sent out a specific interface (Router config).</li>
+</ul>
+<h3 id="eigrp-enhanced-interior-gateway-routing-protocol"><a class="header" href="#eigrp-enhanced-interior-gateway-routing-protocol">EIGRP (Enhanced Interior Gateway Routing Protocol)</a></h3>
+<ul>
+<li><code>router eigrp &lt;asn&gt;</code>: Enables EIGRP routing process (Global config). <code>asn</code> is the Autonomous System Number.</li>
+<li><code>network &lt;network-address&gt;</code>: Specifies networks to be included in the EIGRP process (Router config).</li>
+<li><code>no auto-summary</code>: Disables automatic summarization of networks (Router config).</li>
+</ul>
+<h2 id="security"><a class="header" href="#security">Security</a></h2>
+<h3 id="access-control-lists-acls"><a class="header" href="#access-control-lists-acls">Access Control Lists (ACLs)</a></h3>
+<ul>
+<li><code>access-list &lt;acl-number&gt; &lt;permit|deny&gt; &lt;source-ip&gt; &lt;source-wildcard&gt;</code> (Standard ACL): Creates a standard IP ACL (Global config).</li>
+<li><code>access-list &lt;acl-number&gt; &lt;permit|deny&gt; &lt;protocol&gt; &lt;source-ip&gt; &lt;source-wildcard&gt; &lt;destination-ip&gt; &lt;destination-wildcard&gt; [eq|gt|lt|neq] &lt;port&gt;</code> (Extended ACL): Creates an extended IP ACL (Global config).</li>
+<li><code>ip access-group &lt;acl-number&gt; &lt;in|out&gt;</code>: Applies an ACL to an interface (Interface config).</li>
+<li><code>ip access-list standard &lt;acl-name&gt;</code>: Creates a named standard ACL (Global config).</li>
+<li><code>ip access-list extended &lt;acl-name&gt;</code>: Creates a named extended ACL (Global config).</li>
+<li><code>permit|deny &lt;conditions&gt;</code>: Adds permit/deny statements within a named ACL (Named ACL config).</li>
+</ul>
+<h3 id="port-security-switches-only"><a class="header" href="#port-security-switches-only">Port Security (Switches Only)</a></h3>
+<ul>
+<li><code>interface &lt;type&gt; &lt;number&gt;</code>: Selects an interface (Global config).</li>
+<li><code>switchport mode access</code>: Configures the interface as an access port (Interface config).</li>
+<li><code>switchport port-security</code>: Enables port security on the interface (Interface config).</li>
+<li><code>switchport port-security maximum &lt;number&gt;</code>: Sets the maximum number of secure MAC addresses (Interface config).</li>
+<li><code>switchport port-security mac-address sticky</code>: Enables sticky learning of MAC addresses (Interface config).</li>
+<li><code>switchport port-security violation &lt;shutdown|restrict|protect&gt;</code>: Sets the violation mode (Interface config).</li>
+</ul>
+<h3 id="ssh-configuration"><a class="header" href="#ssh-configuration">SSH Configuration</a></h3>
+<ul>
+<li><code>ip domain-name &lt;domain-name&gt;</code>: Configures the domain name (Global config).</li>
+<li><code>crypto key generate rsa</code>: Generates RSA keys for SSH (Global config).</li>
+<li><code>username &lt;username&gt; secret &lt;password&gt;</code>: Creates a local user (Global config).</li>
+<li><code>line vty 0 4</code>: Enters VTY line configuration mode (Global config).</li>
+<li><code>transport input ssh</code>: Allows only SSH connections on VTY lines (Line config).</li>
+<li><code>login local</code>: Requires local authentication (Line config).</li>
+</ul>
+<h2 id="monitoring-and-verification-show-commands"><a class="header" href="#monitoring-and-verification-show-commands">Monitoring and Verification (Show Commands)</a></h2>
+<p>These commands are typically run from Privileged EXEC mode (<code>#</code>).</p>
+<ul>
+<li><code>show version</code>: Displays system hardware, software version, and uptime.</li>
+<li><code>show running-config</code> (or <code>sh run</code>): Displays the current active configuration in RAM.</li>
+<li><code>show startup-config</code> (or <code>sh start</code>): Displays the configuration saved in NVRAM (loaded at boot).</li>
+<li><code>show ip interface brief</code> (or <code>sh ip int brie</code>): Displays a summary of interface IP addresses and status (up/down).</li>
+<li><code>show interfaces &lt;type&gt; &lt;number&gt;</code>: Displays detailed status and statistics for a specific interface.</li>
+<li><code>show ip route</code>: Displays the IP routing table.</li>
+<li><code>show cdp neighbors detail</code>: Displays detailed information about directly connected Cisco devices.</li>
+<li><code>show mac address-table</code> (or <code>show mac address-table dynamic</code>): Displays the MAC address table on a switch.</li>
+<li><code>show vlan brief</code>: Displays a summary of VLANs and their assigned ports.</li>
+<li><code>show interfaces trunk</code>: Displays trunk port status and allowed VLANs.</li>
+<li><code>show ip protocols</code>: Displays information about active routing protocols.</li>
+<li><code>show controllers &lt;type&gt; &lt;number&gt;</code>: Displays hardware-specific information for an interface.</li>
+<li><code>show log</code>: Displays system log messages.</li>
+<li><code>show users</code>: Displays current console and VTY users.</li>
+<li><code>show history</code>: Displays previously entered commands.</li>
+<li><code>show flash:</code>: Displays contents of flash memory.</li>
+</ul>
+<h2 id="troubleshooting-commands"><a class="header" href="#troubleshooting-commands">Troubleshooting Commands</a></h2>
+<ul>
+<li><code>ping &lt;ip-address|hostname&gt;</code>: Tests IP connectivity.</li>
+<li><code>traceroute &lt;ip-address|hostname&gt;</code>: Traces the path packets take to a destination.</li>
+<li><code>telnet &lt;ip-address|hostname&gt;</code>: Opens a Telnet connection to another device.</li>
+<li><code>debug &lt;feature&gt;</code>: Enables debugging output for a specific feature (use with caution, can impact performance).</li>
+<li><code>no debug all</code> or <code>undebug all</code> (or <code>u all</code>): Disables all debugging.</li>
+<li><code>clear ip route *</code>: Clears the IP routing table (use with caution).</li>
+<li><code>clear mac address-table dynamic</code>: Clears dynamically learned MAC addresses.</li>
+<li><code>clear line &lt;line-number&gt;</code>: Clears a VTY or console line.</li>
+</ul>
+<h2 id="configuration-management"><a class="header" href="#configuration-management">Configuration Management</a></h2>
+<ul>
+<li><code>copy running-config startup-config</code> (or <code>wr mem</code> or <code>copy run start</code>): Saves the running configuration to NVRAM.</li>
+<li><code>copy running-config tftp:</code>: Copies the running configuration to a TFTP server.</li>
+<li><code>copy tftp: running-config</code>: Copies a configuration file from a TFTP server to running-config.</li>
+<li><code>erase startup-config</code>: Erases the startup configuration from NVRAM.</li>
+<li><code>reload</code>: Reboots the device.</li>
+<li><code>archive log config</code>: Configures logging of configuration changes.</li>
+<li><code>show archive log config all</code>: Shows the history of configuration changes.</li>
 </ul>
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-alerts {
