@@ -292,12 +292,16 @@
 </ul>
 <p>GitHub CLI, or gh, is a command-line interface to GitHub and <a href="https://gist.github.com">GitHub-Gist</a> for use in your terminal or your scripts. Manual is found <a href="https://cli.github.com/manual">here</a> and the GitHub page is <a href="https://github.com/cli/cli">here</a>.</p>
 <p>Install:</p>
-<pre><code class="language-powershell">winget install --id GitHub.cli
+<pre><code class="language-powershell">
+winget install --id GitHub.cli
+
 </code></pre>
 <p>Plugins is found <a href="https://github.com/topics/gh-extension">here</a>.</p>
 <h2 id="completions"><a class="header" href="#completions">Completions</a></h2>
 <p>Add the following to your powershell profile:</p>
-<pre><code class="language-powershell">Invoke-Expression -Command $(gh completion -s powershell | Out-String)
+<pre><code class="language-powershell">
+Invoke-Expression -Command $(gh completion -s powershell | Out-String)
+
 </code></pre>
 <br>  
 <h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
