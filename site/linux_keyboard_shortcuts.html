@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Common Commands</title>
+        <title>Keyboard Shortcuts</title>
 
 
         <!-- Custom HTML head -->
@@ -141,7 +141,7 @@
                         <a href="https://github.com/thorbjornium/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/ubuntu_common_commands.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/linux_keyboard_shortcuts.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -279,195 +279,155 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="list-of-common-ubuntu-commands"><a class="header" href="#list-of-common-ubuntu-commands">List of Common Ubuntu Commands</a></h1>
+<h1 id="keyboard-shortcuts"><a class="header" href="#keyboard-shortcuts">Keyboard Shortcuts</a></h1>
 <ul>
-<li><a href="#file-and-directory-management">File and Directory Management</a></li>
-<li><a href="#system-information">System Information</a></li>
-<li><a href="#package-management">Package Management</a></li>
-<li><a href="#user-management">User Management</a></li>
-<li><a href="#networking">Networking</a></li>
-<li><a href="#disk-management">Disk Management</a></li>
-<li><a href="#search-and-find">Search and Find</a></li>
-<li><a href="#miscellaneous">Miscellaneous</a></li>
+<li><a href="#i-general-desktop-environment-shortcuts">I. General Desktop Environment Shortcuts</a>
+<ul>
+<li><a href="#window-management">Window Management</a></li>
+<li><a href="#workspace-management-virtual-desktops">Workspace Management (Virtual Desktops)</a></li>
+<li><a href="#system-actions">System Actions</a></li>
+<li><a href="#universal-text-editing-gui-applications">Universal Text Editing (GUI Applications)</a></li>
 </ul>
-<h2 id="file-and-directory-management"><a class="header" href="#file-and-directory-management">File and Directory Management</a></h2>
+</li>
+<li><a href="#ii-terminal-bashzshshell-shortcuts">II. Terminal (Bash/Zsh/Shell) Shortcuts</a>
 <ul>
-<li><code>ls</code> - List directory contents</li>
-<li><code>ls -a</code> - List all files, including hidden files</li>
-<li><code>ls -lh</code> - List files with human-readable sizes</li>
-<li><code>ls -R</code> - List files in directories and subdirectories</li>
-<li><code>cd [directory]</code> - Change the current directory</li>
-<li><code>cd ..</code> - Move up one directory</li>
-<li><code>cd -</code> - Switch to the previous directory</li>
-<li><code>cd ~</code> - Change to the home directory</li>
-<li><code>pwd</code> - Print the current working directory</li>
-<li><code>mkdir [directory]</code> - Create a new directory</li>
-<li><code>mkdir -p [path/to/directory]</code> - Create parent directories as needed</li>
-<li><code>rmdir [directory]</code> - Remove an empty directory</li>
-<li><code>rm [file]</code> - Remove a file</li>
-<li><code>rm -r [directory]</code> - Remove a directory and its contents recursively</li>
-<li><code>rm -f [file]</code> - Force remove a file without confirmation</li>
-<li><code>cp [source] [destination]</code> - Copy files and directories</li>
-<li><code>cp -r [source] [destination]</code> - Copy directories recursively</li>
-<li><code>mv [source] [destination]</code> - Move or rename files and directories</li>
-<li><code>touch [file]</code> - Create an empty file or update the timestamp of a file</li>
-<li><code>cat [file]</code> - Concatenate and display file content</li>
-<li><code>head [file]</code> - Display the first 10 lines of a file</li>
-<li><code>tail [file]</code> - Display the last 10 lines of a file</li>
-<li><code>tail -f [file]</code> - Follow the end of a file in real-time</li>
-<li><code>find [path] -name [filename]</code> - Search for files by name</li>
-<li><code>find [path] -type f -name '*.txt'</code> - Find all text files</li>
-<li><code>file [filename]</code> - Determine the file type</li>
-<li><code>ln -s [target] [link]</code> - Create a symbolic link</li>
-<li><code>du -sh [directory]</code> - Display disk usage of a directory in human-readable format</li>
-<li><code>stat [file]</code> - Display file or file system status</li>
-<li><code>tree</code> - Display a directory structure in a tree format (requires installation)</li>
-<li><code>xargs</code> - Build and execute command lines from standard input</li>
+<li><a href="#cursor-movement">Cursor Movement</a></li>
+<li><a href="#text-editingdeletion">Text Editing/Deletion</a></li>
+<li><a href="#history-navigation--search">History Navigation &amp; Search</a></li>
+<li><a href="#terminal-control">Terminal Control</a></li>
 </ul>
-<h2 id="system-information"><a class="header" href="#system-information">System Information</a></h2>
-<ul>
-<li><code>uname -a</code> - Display system information</li>
-<li><code>top</code> - Display active processes</li>
-<li><code>htop</code> - Interactive process viewer (requires installation)</li>
-<li><code>df -h</code> - Show disk space usage</li>
-<li><code>free -h</code> - Show memory usage</li>
-<li><code>uptime</code> - Show how long the system has been running</li>
-<li><code>lscpu</code> - Display CPU architecture information</li>
-<li><code>lsblk</code> - List block devices</li>
-<li><code>dmesg</code> - Show kernel ring buffer messages</li>
-<li><code>ps aux</code> - Display all running processes</li>
-<li><code>whoami</code> - Show the current user</li>
-<li><code>last</code> - Show last logged in users</li>
-<li><code>cat /proc/cpuinfo</code> - Display CPU information</li>
-<li><code>cat /proc/meminfo</code> - Display memory information</li>
-<li><code>vmstat</code> - Report information about processes, memory, paging, block I/O, traps, and CPU activity</li>
-<li><code>lsof</code> - List open files and the processes that opened them</li>
-<li><code>uptime</code> - Show system load averages and uptime</li>
-<li><code>hostname</code> - Display the system's hostname</li>
+</li>
+<li><a href="#iii-systemboot-level-shortcuts">III. System/Boot Level Shortcuts</a></li>
 </ul>
-<h2 id="package-management"><a class="header" href="#package-management">Package Management</a></h2>
+<h2 id="i-general-desktop-environment-shortcuts"><a class="header" href="#i-general-desktop-environment-shortcuts">I. General Desktop Environment Shortcuts</a></h2>
+<p>These shortcuts often use the <strong>Super key</strong> (usually the Windows key on most keyboards) or a combination of <kbd>Ctrl</kbd> + <kbd>Alt</kbd>.</p>
+<h3 id="window-management"><a class="header" href="#window-management">Window Management</a></h3>
 <ul>
-<li><code>sudo apt update</code> - Update package lists</li>
-<li><code>sudo apt upgrade</code> - Upgrade installed packages</li>
-<li><code>sudo apt dist-upgrade</code> - Upgrade packages, handling dependencies</li>
-<li><code>sudo apt install [package]</code> - Install a package</li>
-<li><code>sudo apt remove [package]</code> - Remove a package</li>
-<li><code>apt search [keyword]</code> - Search for a package</li>
-<li><code>sudo apt autoremove</code> - Remove unnecessary packages</li>
-<li><code>apt list --installed</code> - List all installed packages</li>
-<li><code>apt show [package]</code> - Display information about a package</li>
-<li><code>apt-cache policy [package]</code> - Show package version information</li>
-<li><code>dpkg -l</code> - List all installed packages using dpkg</li>
-<li><code>sudo apt purge [package]</code> - Remove a package and its configuration files</li>
-<li><code>sudo apt-get clean</code> - Clear local repository of retrieved package files</li>
-<li><code>sudo dpkg -i [package.deb]</code> - Install a .deb package</li>
-<li><code>sudo apt-mark hold [package]</code> - Prevent a package from being upgraded</li>
-<li><code>apt-file search [filename]</code> - Search for a file in available packages (requires installation)</li>
-<li><code>sudo apt edit-sources</code> - Edit the sources list for package management</li>
+<li><kbd>Alt</kbd> + <kbd>Tab</kbd>: Switch between open applications/windows (hold <kbd>Alt</kbd> and repeatedly press <kbd>Tab</kbd> to cycle; release <kbd>Alt</kbd> to select). Use <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Tab</kbd> for reverse order.</li>
+<li><kbd>Super</kbd> + <kbd>Tab</kbd>: (GNOME) Similar to <kbd>Alt</kbd> + <kbd>Tab</kbd>, often integrated with Activities overview.</li>
+<li><kbd>Super</kbd> + <kbd>D</kbd> or <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>D</kbd>: Show/Hide Desktop (minimize/restore all windows).</li>
+<li><kbd>Alt</kbd> + <kbd>F4</kbd>: Close the current application window.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Esc</kbd>: Force quit an unresponsive application (changes cursor to a "kill" icon).</li>
+<li><kbd>Super</kbd> + <kbd>Left Arrow</kbd>: Snap window to left half of the screen (tiling).</li>
+<li><kbd>Super</kbd> + <kbd>Right Arrow</kbd>: Snap window to right half of the screen (tiling).</li>
+<li><kbd>Super</kbd> + <kbd>Up Arrow</kbd>: Maximize window.</li>
+<li><kbd>Super</kbd> + <kbd>Down Arrow</kbd>: Restore/Minimize window.</li>
 </ul>
-<h2 id="user-management"><a class="header" href="#user-management">User Management</a></h2>
+<h3 id="workspace-management-virtual-desktops"><a class="header" href="#workspace-management-virtual-desktops">Workspace Management (Virtual Desktops)</a></h3>
 <ul>
-<li><code>adduser [username]</code> - Add a new user</li>
-<li><code>deluser [username]</code> - Delete a user</li>
-<li><code>passwd [username]</code> - Change a user's password</li>
-<li><code>groups [username]</code> - List groups a user belongs to</li>
-<li><code>who</code> - Show who is logged in</li>
-<li><code>last</code> - Show last logged in users</li>
-<li><code>usermod -aG [group] [username]</code> - Add a user to a group</li>
-<li><code>sudo su - [username]</code> - Switch to another user</li>
-<li><code>finger [username]</code> - Show information about a user</li>
-<li><code>chage -l [username]</code> - Show password aging information</li>
-<li><code>sudo visudo</code> - Edit the sudoers file</li>
-<li><code>userdel -r [username]</code> - Delete a user and their home directory</li>
-<li><code>id [username]</code> - Show user ID and group ID information</li>
-<li><code>newgrp [group]</code> - Log in to a new group</li>
-<li><code>groups</code> - List groups for the current user</li>
-<li><code>sudo usermod -d [new_home] [username]</code> - Change a user’s home directory</li>
+<li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Left Arrow</kbd>: Switch to the left workspace.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Right Arrow</kbd>: Switch to the right workspace.</li>
+<li><kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Left Arrow</kbd>: Move the current window to the left workspace.</li>
+<li><kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Right Arrow</kbd>: Move the current window to the right workspace.</li>
+<li><kbd>Super</kbd> + <kbd>Page Down</kbd>: (GNOME) Switch to the next workspace.</li>
+<li><kbd>Super</kbd> + <kbd>Page Up</kbd>: (GNOME) Switch to the previous workspace.</li>
+<li><kbd>Shift</kbd> + <kbd>Super</kbd> + <kbd>Page Down</kbd>: (GNOME) Move current window to the next workspace.</li>
+<li><kbd>Shift</kbd> + <kbd>Super</kbd> + <kbd>Page Up</kbd>: (GNOME) Move current window to the previous workspace.</li>
 </ul>
-<h2 id="networking"><a class="header" href="#networking">Networking</a></h2>
+<h3 id="system-actions"><a class="header" href="#system-actions">System Actions</a></h3>
 <ul>
-<li><code>ifconfig</code> - Display network interfaces (deprecated; use <code>ip addr</code>)</li>
-<li><code>ip addr</code> - Show IP address and network details</li>
-<li><code>ping [host]</code> - Check connectivity to a host</li>
-<li><code>curl [URL]</code> - Transfer data from or to a server</li>
-<li><code>wget [URL]</code> - Download files from the web</li>
-<li><code>netstat -tuln</code> - Display listening ports</li>
-<li><code>traceroute [host]</code> - Trace the route to a network host</li>
-<li><code>nslookup [domain]</code> - Query DNS for a domain</li>
-<li><code>dig [domain]</code> - Perform DNS lookup (requires installation)</li>
-<li><code>whois [domain]</code> - Retrieve domain registration information</li>
-<li><code>ssh [user]@[host]</code> - Securely connect to a remote server</li>
-<li><code>scp [file] [user]@[host]:[path]</code> - Securely copy files to a remote server</li>
-<li><code>ftp [host]</code> - Connect to an FTP server</li>
-<li><code>telnet [host] [port]</code> - Connect to a host via Telnet (if installed)</li>
-<li><code>route -n</code> - Display the routing table</li>
-<li><code>ip link show</code> - Show all network interfaces</li>
-<li><code>nmap [host]</code> - Network exploration tool and security/port scanner (requires installation)</li>
+<li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>: Open a new terminal window.</li>
+<li><kbd>Alt</kbd> + <kbd>F2</kbd>: Open a "Run Command" dialog (e.g., KRunner in KDE).</li>
+<li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd> or <kbd>Super</kbd> + <kbd>L</kbd>: Lock the screen.</li>
+<li><kbd>Print Screen</kbd> (PrtSc): Take a screenshot of the entire screen.</li>
+<li><kbd>Alt</kbd> + <kbd>Print Screen</kbd>: Take a screenshot of the active window.</li>
+<li><kbd>Shift</kbd> + <kbd>Print Screen</kbd>: Take a screenshot of a selected area.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Delete</kbd>: Bring up shutdown/logout options.</li>
+<li><kbd>Super</kbd> key (just press it): Opens the Activities overview, application launcher, or main menu, depending on your DE (e.g., GNOME Activities, KDE Plasma's Application Launcher).</li>
 </ul>
-<h2 id="disk-management"><a class="header" href="#disk-management">Disk Management</a></h2>
+<h3 id="universal-text-editing-gui-applications"><a class="header" href="#universal-text-editing-gui-applications">Universal Text Editing (GUI Applications)</a></h3>
 <ul>
-<li><code>mount</code> - List mounted filesystems</li>
-<li><code>umount [device]</code> - Unmount a filesystem</li>
-<li><code>fdisk -l</code> - List disk partitions</li>
-<li><code>df -i</code> - Show inode usage</li>
-<li><code>du -h [directory]</code> - Show directory size in human-readable format</li>
-<li><code>lsblk</code> - List block devices with mount points</li>
-<li><code>badblocks [device]</code> - Check for bad sectors on a disk</li>
-<li><code>fsck [device]</code> - Check and repair a filesystem</li>
-<li><code>mkfs.ext4 [device]</code> - Create an ext4 filesystem on a device</li>
-<li><code>resize2fs [device]</code> - Resize an ext2/ext3/ext4 filesystem</li>
-<li><code>dd if=[source] of=[destination]</code> - Copy and convert files (use with caution)</li>
-<li><code>parted [device]</code> - Manage disk partitions interactively</li>
-<li><code>mount -o loop [file] [mountpoint]</code> - Mount an image file</li>
-<li><code>pvcreate [device]</code> - Initialize a physical volume for LVM</li>
-<li><code>vgcreate [volume-group] [device]</code> - Create a volume group in LVM</li>
+<li><kbd>Ctrl</kbd> + <kbd>C</kbd>: Copy selected text.</li>
+<li><kbd>Ctrl</kbd> + <kbd>X</kbd>: Cut selected text.</li>
+<li><kbd>Ctrl</kbd> + <kbd>V</kbd>: Paste text.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Z</kbd>: Undo the last action.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Y</kbd> or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>: Redo the last undone action.</li>
+<li><kbd>Ctrl</kbd> + <kbd>A</kbd>: Select all.</li>
+<li><kbd>Ctrl</kbd> + <kbd>S</kbd>: Save.</li>
+<li><kbd>Ctrl</kbd> + <kbd>N</kbd>: New document/file/window.</li>
+<li><kbd>Ctrl</kbd> + <kbd>O</kbd>: Open file.</li>
+<li><kbd>Ctrl</kbd> + <kbd>P</kbd>: Print.</li>
+<li><kbd>Ctrl</kbd> + <kbd>F</kbd>: Find (in current document/application).</li>
+<li><kbd>F1</kbd>: Open help.</li>
 </ul>
-<h2 id="search-and-find"><a class="header" href="#search-and-find">Search and Find</a></h2>
+<hr />
+<h2 id="ii-terminal-bashzshshell-shortcuts"><a class="header" href="#ii-terminal-bashzshshell-shortcuts">II. Terminal (Bash/Zsh/Shell) Shortcuts</a></h2>
+<p>These shortcuts are primarily for navigating and editing text within the command line itself.</p>
+<h3 id="cursor-movement"><a class="header" href="#cursor-movement">Cursor Movement</a></h3>
 <ul>
-<li><code>find [path] -name [filename]</code> - Search for files by name</li>
-<li><code>grep [pattern] [file]</code> - Search for a pattern in a file</li>
-<li><code>locate [filename]</code> - Find files by name quickly</li>
-<li><code>which [command]</code> - Show the full path of a command</li>
-<li><code>whereis [command]</code> - Locate the binary, source, and manual page files</li>
-<li><code>history</code> - Show command history</li>
-<li><code>echo [text]</code> - Print text to the terminal</li>
-<li><code>sed 's/[old]/[new]/g' [file]</code> - Replace text in a file</li>
-<li><code>awk '{print $1}' [file]</code> - Print the first column of a file</li>
-<li><code>grep -r [pattern] [directory]</code> - Recursively search for a pattern in a directory</li>
-<li><code>find [path] -type f -exec [command] {} \;</code> - Execute a command on found files</li>
-<li><code>xargs</code> - Build and execute command lines from standard input</li>
-<li><code>fuzzyfind [pattern]</code> - Fuzzy search for files (requires installation)</li>
+<li><kbd>Ctrl</kbd> + <kbd>A</kbd> (or <kbd>Home</kbd>): Move cursor to the beginning of the line.</li>
+<li><kbd>Ctrl</kbd> + <kbd>E</kbd> (or <kbd>End</kbd>): Move cursor to the end of the line.</li>
+<li><kbd>Ctrl</kbd> + <kbd>B</kbd> (or <kbd>Left Arrow</kbd>): Move cursor backward one character.</li>
+<li><kbd>Ctrl</kbd> + <kbd>F</kbd> (or <kbd>Right Arrow</kbd>): Move cursor forward one character.</li>
+<li><kbd>Alt</kbd> + <kbd>B</kbd> (or <kbd>Ctrl</kbd> + <kbd>Left Arrow</kbd>): Move cursor backward one word.</li>
+<li><kbd>Alt</kbd> + <kbd>F</kbd> (or <kbd>Ctrl</kbd> + <kbd>Right Arrow</kbd>): Move cursor forward one word.</li>
+<li><kbd>Ctrl</kbd> + <kbd>X</kbd> (tap twice quickly): Toggle between the start of the line and the current cursor position.</li>
 </ul>
-<h2 id="miscellaneous"><a class="header" href="#miscellaneous">Miscellaneous</a></h2>
+<h3 id="text-editingdeletion"><a class="header" href="#text-editingdeletion">Text Editing/Deletion</a></h3>
 <ul>
-<li><code>clear</code> - Clear the terminal screen</li>
-<li><code>man [command]</code> - Display the manual for a command</li>
-<li><code>alias [name]='[command]'</code> - Create an alias for a command</li>
-<li><code>unalias [name]</code> - Remove an alias</li>
-<li><code>exit</code> - Exit the terminal session</li>
-<li><code>chmod [permissions] [file]</code> - Change file permissions</li>
-<li><code>chown [user]:[group] [file]</code> - Change file owner and group</li>
-<li><code>tar -cvf [archive.tar] [directory]</code> - Create a tar archive</li>
-<li><code>tar -xvf [archive.tar]</code> - Extract a tar archive</li>
-<li><code>zip [archive.zip] [file]</code> - Create a zip archive</li>
-<li><code>unzip [archive.zip]</code> - Extract a zip archive</li>
-<li><code>date</code> - Display the current date and time</li>
-<li><code>cal</code> - Display a calendar</li>
-<li><code>export [variable]=[value]</code> - Set an environment variable</li>
-<li><code>env</code> - Display environment variables</li>
-<li><code>echo $PATH</code> - Display the current PATH variable</li>
-<li><code>crontab -e</code> - Edit the cron jobs for the current user</li>
+<li><kbd>Ctrl</kbd> + <kbd>H</kbd> (or <kbd>Backspace</kbd>): Delete character before cursor.</li>
+<li><kbd>Ctrl</kbd> + <kbd>D</kbd> (or <kbd>Delete</kbd>): Delete character under cursor.</li>
+<li><kbd>Alt</kbd> + <kbd>Backspace</kbd> or <kbd>Ctrl</kbd> + <kbd>W</kbd>: Delete the word before the cursor.</li>
+<li><kbd>Alt</kbd> + <kbd>D</kbd>: Delete the word from the cursor to the end of the word.</li>
+<li><kbd>Ctrl</kbd> + <kbd>U</kbd>: Delete (cut) everything from the cursor to the beginning of the line.</li>
+<li><kbd>Ctrl</kbd> + <kbd>K</kbd>: Delete (cut) everything from the cursor to the end of the line.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Y</kbd>: Paste the last deleted/cut text.</li>
+<li><kbd>Ctrl</kbd> + <kbd>T</kbd>: Transpose (swap) the last two characters before the cursor.</li>
+<li><kbd>Alt</kbd> + <kbd>T</kbd>: Transpose (swap) the last two words before the cursor.</li>
+<li><kbd>Alt</kbd> + <kbd>U</kbd>: Uppercase from cursor to end of word.</li>
+<li><kbd>Alt</kbd> + <kbd>L</kbd>: Lowercase from cursor to end of word.</li>
+<li><kbd>Alt</kbd> + <kbd>C</kbd>: Capitalize the first character of the word.</li>
+</ul>
+<h3 id="history-navigation--search"><a class="header" href="#history-navigation--search">History Navigation &amp; Search</a></h3>
+<ul>
+<li><kbd>Up Arrow</kbd> / <kbd>Down Arrow</kbd>: Scroll through previous/next commands in history.</li>
+<li><kbd>Ctrl</kbd> + <kbd>R</kbd>: Reverse incremental search through command history (type to search, <kbd>Ctrl</kbd> + <kbd>R</kbd> again for next match, <kbd>Enter</kbd> to execute, <kbd>Esc</kbd> to exit).</li>
+<li><kbd>Ctrl</kbd> + <kbd>G</kbd>: Exit history search mode.</li>
+<li><kbd>!!</kbd>: Execute the last command.</li>
+<li><kbd>!string</kbd>: Execute the last command starting with "string".</li>
+<li><kbd>!$</kbd>: Use the last argument of the previous command.</li>
+</ul>
+<h3 id="terminal-control"><a class="header" href="#terminal-control">Terminal Control</a></h3>
+<ul>
+<li><kbd>Tab</kbd>: Autocomplete commands, filenames, or directory names (press twice for options if ambiguous).</li>
+<li><kbd>Ctrl</kbd> + <kbd>C</kbd>: Interrupt/terminate the currently running foreground process.</li>
+<li><kbd>Ctrl</kbd> + <kbd>D</kbd>: Send an End-of-File (EOF) marker (can log you out or exit a program).</li>
+<li><kbd>Ctrl</kbd> + <kbd>Z</kbd>: Suspend the current foreground process.</li>
+<li><kbd>Ctrl</kbd> + <kbd>L</kbd>: Clear the terminal screen.</li>
+<li><kbd>Ctrl</kbd> + <kbd>S</kbd>: Pause terminal output.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Q</kbd>: Resume terminal output.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>: Copy selected text from the terminal.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>: Paste text into the terminal.</li>
+<li><kbd>Shift</kbd> + <kbd>Insert</kbd>: Alternative paste (often uses the primary selection buffer).</li>
+</ul>
+<hr />
+<h2 id="iii-systemboot-level-shortcuts"><a class="header" href="#iii-systemboot-level-shortcuts">III. System/Boot Level Shortcuts</a></h2>
+<p>These shortcuts are less common for daily use but are useful for troubleshooting or direct system interaction.</p>
+<ul>
+<li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F1</kbd> to <kbd>F6</kbd>: Switch to a virtual console (text-based login screen). Use <kbd>F7</kbd> or <kbd>F8</kbd> to return to the graphical desktop.</li>
+<li><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Backspace</kbd>: Kills the X server, returning to the login screen (often disabled by default).</li>
+<li><strong>Magic SysRq Key:</strong> A powerful kernel-level debugging tool for emergencies (requires <kbd>SysRq</kbd> key, often shared with <kbd>Print Screen</kbd>). <strong>Use with extreme caution!</strong>
+<ul>
+<li><kbd>Alt</kbd> + <kbd>SysRq</kbd> + <kbd>R</kbd>: Raw (take keyboard control).</li>
+<li><kbd>Alt</kbd> + <kbd>SysRq</kbd> + <kbd>E</kbd>: Terminate (send SIGTERM to processes).</li>
+<li><kbd>Alt</kbd> + <kbd>SysRq</kbd> + <kbd>I</kbd>: Kill (send SIGKILL to processes).</li>
+<li><kbd>Alt</kbd> + <kbd>SysRq</kbd> + <kbd>S</kbd>: Sync (sync disk).</li>
+<li><kbd>Alt</kbd> + <kbd>SysRq</kbd> + <kbd>U</kbd>: Unmount (remount all filesystems read-only).</li>
+<li><kbd>Alt</kbd> + <kbd>SysRq</kbd> + <kbd>B</kbd>: Reboot (immediate reboot).</li>
+<li>Common mnemonic for a safe reboot: <kbd>R</kbd> <kbd>E</kbd> <kbd>I</kbd> <kbd>S</kbd> <kbd>U</kbd> <kbd>B</kbd> (Raising Elephants Is So Utterly Boring)</li>
+</ul>
+</li>
 </ul>
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="hyper_v_shortcuts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ubuntu_common_commands.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="linux_keyboard_shortcuts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ubuntu_terminal_applications.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -477,11 +437,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="hyper_v_shortcuts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ubuntu_common_commands.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="linux_keyboard_shortcuts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ubuntu_terminal_applications.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
