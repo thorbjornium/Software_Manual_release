@@ -300,17 +300,21 @@ Most scripts require additional software. Install the following software if you 
 <button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">winget install ajeetdsouza.zoxide
+<pre><code class="language-Powershell">
+winget install ajeetdsouza.zoxide
 winget install junegunn.fzf
 winget install sharkdp.fd
 winget install sharkdp.bat
 winget install BurntSushi.ripgrep.MSVC
 winget install eza-community.eza
 winget install jftuga.less
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop install zoxide fzf fd bat ripgrep eza less
+<pre><code class="language-Powershell">
+Scoop install zoxide fzf fd bat ripgrep eza less
+
 </code></pre>
 </div>
 </div>
@@ -325,17 +329,23 @@ winget install jftuga.less
 <button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">Install-Module -Name PSFzf
+<pre><code class="language-Powershell">
+Install-Module -Name PSFzf
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop install PSFzf
+<pre><code class="language-Powershell">
+Scoop install PSFzf
+
 </code></pre>
 </div>
 </div>
 <p>Paste the following into your PowerShell profile:</p>
-<pre><code class="language-Powershell">Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'  
+<pre><code class="language-Powershell">
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'  
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }  
+
 </code></pre>
 <p><img src="./pics/PSFzf.jpg" alt="PSFzf" /></p>
 <p>Type <code>cd</code> and press <kbd>Ctrl</kbd> + <kbd>t</kbd> and search for the directory you want to navigate to. Hit <kbd>Enter</kbd> twice to navigate to the directory.</p>
@@ -347,17 +357,20 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>Type <code>disks</code> and hit <kbd>Enter</kbd> to display disk information in human readable format.</p>
 <details>  
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">function disks {
-    
+<pre><code class="language-Powershell">
+function disks {
+
     Get-WmiObject -Class Win32_LogicalDisk | Select-Object -Property DeviceID, VolumeName, @{Label = 'FreeGb'; expression = { ($_.FreeSpace / 1GB).ToString('F2') } }, @{Label = 'TotalGb'; expression = { ($_.Size / 1GB).ToString('F2') } }, @{label = 'Free %'; expression = { [Math]::Round(($_.freespace / $_.size) * 100, 2)}}|Format-Table
     }
+
 </code></pre>
 </details>  
 <h2 id="find-files-and-folders"><a class="header" href="#find-files-and-folders">Find files and folders</a></h2>
 <p>A script with options to view, delete or edit files with external tools.</p>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">$env:FZF_DEFAULT_OPTS = @"
+<pre><code class="language-Powershell">
+$env:FZF_DEFAULT_OPTS = @"
 --layout=reverse
 --cycle
 --scroll-off=5
@@ -452,6 +465,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("rgg")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
+
 </code></pre>
 </details>  
 <p>There are two ways to get a file path.</p>
@@ -484,7 +498,8 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>File search script utilizing fzf, ripgrep and bat.</p>
 <details>  
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell"> function fz {
+<pre><code class="language-Powershell">
+ function fz {
     
         $INITIAL_QUERY = "${*:-}"
         $RG_PREFIX = "rg --column --line-number --no-heading --color=always --smart-case"
@@ -502,6 +517,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
         --preview 'bat --color=always {1} --highlight-line {2} --style=plain' `
         --preview-window 'up,60%,border-bottom,+{2}+3/3'
         }
+
 </code></pre>
 </details>
 <p><img src="./pics/fz.jpg" alt="fz" /></p>
@@ -513,7 +529,8 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>File searcher script utilizing fzf, fd and bat.</p>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">function fza { 
+<pre><code class="language-Powershell">
+function fza { 
     fd --type file --follow --exclude .git |
     fzf --style=full `
         --bind 'focus:transform-header:file --brief {}' `
@@ -521,6 +538,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
         --preview-window '~3' --reverse `
     
 }
+
 </code></pre>
 </details>
 <p><img src="./pics/fza.jpg" alt="fza" /></p>
@@ -533,7 +551,8 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 Opens in your default browser.</p>
 <details>  
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">Function search-google {
+<pre><code class="language-Powershell">
+Function search-google {
     $query = 'https://www.google.com/search?q='
     $args | ForEach-Object { $query = $query + "$_+" }
     $url = $query.Substring(0, $query.Length - 1)
@@ -541,13 +560,15 @@ Opens in your default browser.</p>
 }
 
 Set-Alias gog search-google
+
 </code></pre>
 </details>
 <h2 id="eza"><a class="header" href="#eza">eza</a></h2>
 <p>List files with details using the <code>e</code> alias. Image and more information in the <a href="./eza.html">eza folder</a>.</p>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">function e {
+<pre><code class="language-Powershell">
+function e {
     eza `
         --long `
         --hyperlink `
@@ -564,6 +585,7 @@ Set-Alias gog search-google
         --all `
 
 }
+
 </code></pre>
 </details>
 <h2 id="yt-dlp"><a class="header" href="#yt-dlp">yt-dlp</a></h2>
@@ -574,11 +596,15 @@ Set-Alias gog search-google
 <button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">winget install yt-dlp
+<pre><code class="language-Powershell">
+winget install yt-dlp
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop install yt-dlp
+<pre><code class="language-Powershell">
+Scoop install yt-dlp
+
 </code></pre>
 </div>
 </div>
@@ -592,7 +618,8 @@ Set-Alias gog search-google
 </div>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">Function ytm {
+<pre><code class="language-Powershell">
+Function ytm {
     yt-dlp `
         --progress `
         --console-title `
@@ -611,6 +638,7 @@ Set-Alias gog search-google
         --write-auto-subs --sub-lang "en.*" `
         $args
 }
+
 </code></pre>
 </details>
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>

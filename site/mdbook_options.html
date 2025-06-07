@@ -299,14 +299,19 @@
 <br>
 <p>For more details see <a href="https://rust-lang.github.io/mdBook/">mdBook docs</a></p>
 <h2 id="change-browser-tab-title"><a class="header" href="#change-browser-tab-title">Change browser tab title</a></h2>
-<pre><code class="language-plaintext">{{#title New &amp; improved}}
+<pre><code class="language-plaintext">
+{{#title New &amp; improved}}
+
 </code></pre>
 <br>
 <h2 id="include-other-files"><a class="header" href="#include-other-files">Include other files</a></h2>
 <p>Include line 2-10 of the file rust.rs.</p>
-<pre><code>{{#include rust.rs:2:10}}
+<pre><code>
+{{#include rust.rs:2:10}}
+
 </code></pre>
 <pre><code>
+
 fn do_things&lt;T&gt;(a: T, b: T)
 where
     T: IntoIterator,
@@ -315,35 +320,46 @@ where
     for (e, f) in a.into_iter().zip(b.into_iter()) {
         println!("{} {}", e, f);
     }
+
 </code></pre>
 <h2 id="rust-playground"><a class="header" href="#rust-playground">Rust Playground</a></h2>
 <p>Use <a href="https://play.rust-lang.org">Rust Playground</a> to run code in the browser.</p>
 <p>Produce editable code that runs in the browser.</p>
-<pre><code>```rust,editable
+<pre><code>
+```rust,editable
 fn main() {
     let number = 5;
     print!("{}", number);
 }
 ```
+
 </code></pre>
-<pre><pre class="playground"><code class="language-rust editable">fn main() {
+<pre><pre class="playground"><code class="language-rust editable">
+fn main() {
     let number = 5;
     print!("{}", number);
-}</code></pre></pre>
+}
+</code></pre></pre>
 <p>Non-editable code. Runs in the browser.</p>
-<pre><code>```rust
+<pre><code>
+```rust
 fn main() {
     let x = "Rust";
     print!("{}", x);
 }
 ```
+
 </code></pre>
-<pre><pre class="playground"><code class="language-rust">fn main() {
+<pre><pre class="playground"><code class="language-rust">
+fn main() {
     let x = "Rust";
     print!("{}", x);
-}</code></pre></pre>
+}
+</code></pre></pre>
 <h2 id="mathjax-support"><a class="header" href="#mathjax-support">MathJax support</a></h2>
-<pre><code class="language-plaintext">\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
+<pre><code class="language-plaintext">
+\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
+
 </code></pre>
 <p>\[ \mu = \frac{1}{N} \sum_{i=0} x_i \]</p>
 <div class="mdbook-alerts mdbook-alerts-note">
@@ -482,7 +498,8 @@ style Test fill:#73737,color:#23272e,stroke-opacity:0.2
 </pre>
 <details>
 <summary>Source code</summary>
-<pre><code class="language-plaintext">```mermaid
+<pre><code class="language-plaintext">
+```mermaid
 %%{
   init: {
     'theme': 'base',
@@ -530,6 +547,7 @@ style Test fill:#dfdfdf,color:#23272e,stroke-opacity:0.2
           
           
 ```
+
 </code></pre>
 </details>
 <br>
@@ -537,7 +555,8 @@ style Test fill:#dfdfdf,color:#23272e,stroke-opacity:0.2
 </details>
 <h2 id="tabs"><a class="header" href="#tabs">Tabs</a></h2>
 <p>Get <a href="https://github.com/RustForWeb/mdbook-plugins/tree/main/packages/mdbook-tabs">mdbook-tabs</a></p>
-<pre><code class="language-plaintext">{{#tabs }}
+<pre><code class="language-plaintext">
+{{#tabs }}
 {{#tab name="Tab 1" }}
 **Tab content 1**
 {{#endtab }}
@@ -548,6 +567,7 @@ _Tab content 2_
 ~~Tab content 3~~
 {{#endtab }}
 {{#endtabs }}
+
 </code></pre>
 <div class="mdbook-tabs-container">
 <nav class="mdbook-tabs">
@@ -567,7 +587,8 @@ _Tab content 2_
 </div>
 <br>
 <h3 id="global-tabs"><a class="header" href="#global-tabs">Global tabs</a></h3>
-<pre><code class="language-plaintext">{{#tabs global="test" }}
+<pre><code class="language-plaintext">
+{{#tabs global="test" }}
 {{#tab name="Rust" }}
 
 ```rust,noplayground  
@@ -599,6 +620,7 @@ println!("Hello World!");
 
 {{#endtab }}
 {{#endtabs }}
+
 </code></pre>
 <div class="mdbook-alerts mdbook-alerts-tip">
 <p class="mdbook-alerts-title">
@@ -614,16 +636,21 @@ println!("Hello World!");
 <button class="mdbook-tab" data-tabname="CSS">CSS</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Rust">
-<pre><code class="language-rust noplayground">fn main() {
+<pre><code class="language-rust noplayground">
+fn main() {
 println!("Hello World!");  
-} </code></pre>
+} 
+</code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="HTML">
-<pre><code class="language-html">&lt;p style="text-align:center;"&gt;Essential Shortcuts&lt;/p&gt;
+<pre><code class="language-html">
+&lt;p style="text-align:center;"&gt;Essential Shortcuts&lt;/p&gt;
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="CSS">
-<pre><code class="language-css">.mdbook-tab {
+<pre><code class="language-css">
+.mdbook-tab {
     background-color: var(--table-alternate-bg);
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -631,6 +658,7 @@ println!("Hello World!");
     font-size: 1.6rem;
     line-height: 1.45em;
 }
+
 </code></pre>
 </div>
 </div>
@@ -641,16 +669,21 @@ println!("Hello World!");
 <button class="mdbook-tab" data-tabname="CSS">CSS</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Rust">
-<pre><code class="language-rust noplayground">fn main() {
+<pre><code class="language-rust noplayground">
+fn main() {
 println!("Hello World!");  
-} </code></pre>
+} 
+</code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="HTML">
-<pre><code class="language-html">&lt;p style="text-align:center;"&gt;Essential Shortcuts&lt;/p&gt;
+<pre><code class="language-html">
+&lt;p style="text-align:center;"&gt;Essential Shortcuts&lt;/p&gt;
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="CSS">
-<pre><code class="language-css">.mdbook-tab {
+<pre><code class="language-css">
+.mdbook-tab {
     background-color: var(--table-alternate-bg);
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -658,19 +691,24 @@ println!("Hello World!");
     font-size: 1.6rem;
     line-height: 1.45em;
 }
+
 </code></pre>
 </div>
 </div>
 <h2 id="admonish"><a class="header" href="#admonish">Admonish</a></h2>
 <p>Install <a href="https://github.com/tommilligan/mdbook-admonish">admonish</a></p>
 <p>Examples:</p>
-<pre><code class="language-plaintext">```admonish
+<pre><code class="language-plaintext">
+```admonish
 Some text
 ```
+
 </code></pre>
-<pre><code class="language-plaintext">```admonish example
+<pre><code class="language-plaintext">
+```admonish example
 example
 ```
+
 </code></pre>
 <div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
@@ -804,9 +842,11 @@ example
 <p>quote, cite</p>
 </div>
 </div>
-<pre><code class="language-plaintext">```admonish quote collapsible=true, title='A title that really &lt;span style="color: #e70073"&gt;pops&lt;/span&gt;'
+<pre><code class="language-plaintext">
+```admonish quote collapsible=true, title='A title that really &lt;span style="color: #e70073"&gt;pops&lt;/span&gt;'
 To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt; your reader's attention.
 ```
+
 </code></pre>
 <details id="admonition-a-title-that-really-pops" class="admonition admonish-quote" role="note" aria-labelledby="admonition-a-title-that-really-pops-title">
 <summary class="admonition-title">

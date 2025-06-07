@@ -3483,31 +3483,37 @@ require 'asciidoctor'
 <li><a href="inline_html.html#embed-video">Embed video</a>
 <ul>
 <li><a href="inline_html.html#local-source">Local source</a></li>
-<li><a href="inline_html.html#interweb-source">Interweb source</a></li>
+<li><a href="inline_html.html#interwebz-source">Interwebz source</a></li>
 </ul>
 </li>
 </ul>
 <h2 id="underline"><a class="header" href="#underline">Underline</a></h2>
-<pre><code class="language-html">&lt;u&gt; Text &lt;/u&gt; 
+<pre><code class="language-html">
+&lt;u&gt; Text &lt;/u&gt; 
+
 </code></pre>
 <p><u> Text </u></p>
 <h2 id="color"><a class="header" href="#color">Color</a></h2>
-<pre><code class="language-html">&lt;span style="color: #FF69B4;"&gt;Why did the tomato turn red?&lt;/span&gt;
+<pre><code class="language-html">
+&lt;span style="color: #FF69B4;"&gt;Why did the tomato turn red?&lt;/span&gt;
 &lt;span style="color: #00FFFF;"&gt;Because it saw the salad dressing!&lt;/span&gt;
 &lt;span style="color:red;"&gt;your text here in red&lt;/span&gt;,
 &lt;span style="color:#520099;"&gt;or make it blue&lt;/span&gt;
+
 </code></pre>
 <p><span style="color: #FF69B4;">Why did the tomato turn red?</span>
 <span style="color: #00FFFF;">Because it saw the salad dressing!</span>
 <span style="color:red;">your text here in red</span>,
 <span style="color:#520099;">or make it blue</span></p>
 <h2 id="commentary"><a class="header" href="#commentary">Commentary</a></h2>
-<pre><code class="language-html">&lt;!-- ingen kommentar --&gt;  
+<pre><code class="language-html">
+&lt;!-- ingen kommentar --&gt;  
+
 </code></pre>
-<p>ingen kommentar</p>
 <br>  
 <h2 id="collapsed-section"><a class="header" href="#collapsed-section">Collapsed section</a></h2>
-<pre><code class="language-html">&lt;details&gt;
+<pre><code class="language-html">
+&lt;details&gt;
 
 &lt;summary&gt;Tips for collapsed sections&lt;/summary&gt;
 
@@ -3520,6 +3526,7 @@ You can add an image or a code block, too.
 ```
 
 &lt;/details&gt;
+
 </code></pre>
 <details>
 <summary>Tips for collapsed sections</summary>
@@ -3530,35 +3537,49 @@ You can add an image or a code block, too.
 </details>
 <br>  
 <h2 id="align"><a class="header" href="#align">Align</a></h2>
-<pre><code class="language-html">&amp;emsp; &amp;emsp;Centrera
+<pre><code class="language-html">
+&amp;emsp; &amp;emsp;Centrera
+
 </code></pre>
 <p>   Centrera</p>
 <br>
-<pre><code class="language-html">&amp;ensp; &amp;ensp; &amp;ensp;Centrera
+<pre><code class="language-html">
+&amp;ensp; &amp;ensp; &amp;ensp;Centrera
+
 </code></pre>
 <p>     Centrera</p>
 <br>
-<pre><code class="language-html">&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Centrera
+<pre><code class="language-html">
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;Centrera
+
 </code></pre>
 <p>         Centrera</p>
 <br>
 <h2 id="center-align"><a class="header" href="#center-align">Center align</a></h2>
-<pre><code class="language-html">&lt;p style="text-align: center;"&gt;Text i mitten 
+<pre><code class="language-html">
+&lt;p style="text-align: center;"&gt;Text i mitten 
+
 </code></pre>
 <p style="text-align: center;">Text i mitten  
 <h2 id="keyboard"><a class="header" href="#keyboard">Keyboard</a></h2>
-<pre><code class="language-html">&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;F&lt;/kbd&gt;
+<pre><code class="language-html">
+&lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;F&lt;/kbd&gt;
+
 </code></pre>
 <p><kbd>Ctrl</kbd> + <kbd>F</kbd></p>
 <h2 id="embed-video"><a class="header" href="#embed-video">Embed video</a></h2>
 <h3 id="local-source"><a class="header" href="#local-source">Local source</a></h3>
-<pre><code class="language-html">&lt;video src="imgburn.mp4" width="100%" height="100%" controls&gt;&lt;/video&gt;
+<pre><code class="language-html">
+&lt;video src="imgburn.mp4" width="100%" height="100%" controls&gt;&lt;/video&gt;
+
 </code></pre>
 <p><video src="imgburn.mp4" width="100%" height="100%" controls></video></p>
-<h3 id="interweb-source"><a class="header" href="#interweb-source">Interweb source</a></h3>
-<pre><code class="language-html">&lt;iframe width="100%" height="100%"
+<h3 id="interwebz-source"><a class="header" href="#interwebz-source">Interwebz source</a></h3>
+<pre><code class="language-html">
+&lt;iframe width="100%" height="100%"
 src="https://www.youtube.com/embed/tgbNymZ7vqY"&gt;
 &lt;/iframe&gt;  
+
 </code></pre>
 <div class="mdbook-alerts mdbook-alerts-note">
 <p class="mdbook-alerts-title">
@@ -3698,14 +3719,19 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
 <br>
 <p>For more details see <a href="https://rust-lang.github.io/mdBook/">mdBook docs</a></p>
 <h2 id="change-browser-tab-title"><a class="header" href="#change-browser-tab-title">Change browser tab title</a></h2>
-<pre><code class="language-plaintext">{{#title New &amp; improved}}
+<pre><code class="language-plaintext">
+{{#title New &amp; improved}}
+
 </code></pre>
 <br>
 <h2 id="include-other-files"><a class="header" href="#include-other-files">Include other files</a></h2>
 <p>Include line 2-10 of the file rust.rs.</p>
-<pre><code>{{#include rust.rs:2:10}}
+<pre><code>
+{{#include rust.rs:2:10}}
+
 </code></pre>
 <pre><code>
+
 fn do_things&lt;T&gt;(a: T, b: T)
 where
     T: IntoIterator,
@@ -3714,35 +3740,46 @@ where
     for (e, f) in a.into_iter().zip(b.into_iter()) {
         println!("{} {}", e, f);
     }
+
 </code></pre>
 <h2 id="rust-playground"><a class="header" href="#rust-playground">Rust Playground</a></h2>
 <p>Use <a href="https://play.rust-lang.org">Rust Playground</a> to run code in the browser.</p>
 <p>Produce editable code that runs in the browser.</p>
-<pre><code>```rust,editable
+<pre><code>
+```rust,editable
 fn main() {
     let number = 5;
     print!("{}", number);
 }
 ```
+
 </code></pre>
-<pre><pre class="playground"><code class="language-rust editable">fn main() {
+<pre><pre class="playground"><code class="language-rust editable">
+fn main() {
     let number = 5;
     print!("{}", number);
-}</code></pre></pre>
+}
+</code></pre></pre>
 <p>Non-editable code. Runs in the browser.</p>
-<pre><code>```rust
+<pre><code>
+```rust
 fn main() {
     let x = "Rust";
     print!("{}", x);
 }
 ```
+
 </code></pre>
-<pre><pre class="playground"><code class="language-rust">fn main() {
+<pre><pre class="playground"><code class="language-rust">
+fn main() {
     let x = "Rust";
     print!("{}", x);
-}</code></pre></pre>
+}
+</code></pre></pre>
 <h2 id="mathjax-support"><a class="header" href="#mathjax-support">MathJax support</a></h2>
-<pre><code class="language-plaintext">\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
+<pre><code class="language-plaintext">
+\\[ \mu = \frac{1}{N} \sum_{i=0} x_i \\]
+
 </code></pre>
 <p>\[ \mu = \frac{1}{N} \sum_{i=0} x_i \]</p>
 <div class="mdbook-alerts mdbook-alerts-note">
@@ -3881,7 +3918,8 @@ style Test fill:#73737,color:#23272e,stroke-opacity:0.2
 </pre>
 <details>
 <summary>Source code</summary>
-<pre><code class="language-plaintext">```mermaid
+<pre><code class="language-plaintext">
+```mermaid
 %%{
   init: {
     'theme': 'base',
@@ -3929,6 +3967,7 @@ style Test fill:#dfdfdf,color:#23272e,stroke-opacity:0.2
           
           
 ```
+
 </code></pre>
 </details>
 <br>
@@ -3936,7 +3975,8 @@ style Test fill:#dfdfdf,color:#23272e,stroke-opacity:0.2
 </details>
 <h2 id="tabs"><a class="header" href="#tabs">Tabs</a></h2>
 <p>Get <a href="https://github.com/RustForWeb/mdbook-plugins/tree/main/packages/mdbook-tabs">mdbook-tabs</a></p>
-<pre><code class="language-plaintext">{{#tabs }}
+<pre><code class="language-plaintext">
+{{#tabs }}
 {{#tab name="Tab 1" }}
 **Tab content 1**
 {{#endtab }}
@@ -3947,6 +3987,7 @@ _Tab content 2_
 ~~Tab content 3~~
 {{#endtab }}
 {{#endtabs }}
+
 </code></pre>
 <div class="mdbook-tabs-container">
 <nav class="mdbook-tabs">
@@ -3966,7 +4007,8 @@ _Tab content 2_
 </div>
 <br>
 <h3 id="global-tabs"><a class="header" href="#global-tabs">Global tabs</a></h3>
-<pre><code class="language-plaintext">{{#tabs global="test" }}
+<pre><code class="language-plaintext">
+{{#tabs global="test" }}
 {{#tab name="Rust" }}
 
 ```rust,noplayground  
@@ -3998,6 +4040,7 @@ println!("Hello World!");
 
 {{#endtab }}
 {{#endtabs }}
+
 </code></pre>
 <div class="mdbook-alerts mdbook-alerts-tip">
 <p class="mdbook-alerts-title">
@@ -4013,16 +4056,21 @@ println!("Hello World!");
 <button class="mdbook-tab" data-tabname="CSS">CSS</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Rust">
-<pre><code class="language-rust noplayground">fn main() {
+<pre><code class="language-rust noplayground">
+fn main() {
 println!("Hello World!");  
-} </code></pre>
+} 
+</code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="HTML">
-<pre><code class="language-html">&lt;p style="text-align:center;"&gt;Essential Shortcuts&lt;/p&gt;
+<pre><code class="language-html">
+&lt;p style="text-align:center;"&gt;Essential Shortcuts&lt;/p&gt;
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="CSS">
-<pre><code class="language-css">.mdbook-tab {
+<pre><code class="language-css">
+.mdbook-tab {
     background-color: var(--table-alternate-bg);
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -4030,6 +4078,7 @@ println!("Hello World!");
     font-size: 1.6rem;
     line-height: 1.45em;
 }
+
 </code></pre>
 </div>
 </div>
@@ -4040,16 +4089,21 @@ println!("Hello World!");
 <button class="mdbook-tab" data-tabname="CSS">CSS</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Rust">
-<pre><code class="language-rust noplayground">fn main() {
+<pre><code class="language-rust noplayground">
+fn main() {
 println!("Hello World!");  
-} </code></pre>
+} 
+</code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="HTML">
-<pre><code class="language-html">&lt;p style="text-align:center;"&gt;Essential Shortcuts&lt;/p&gt;
+<pre><code class="language-html">
+&lt;p style="text-align:center;"&gt;Essential Shortcuts&lt;/p&gt;
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="CSS">
-<pre><code class="language-css">.mdbook-tab {
+<pre><code class="language-css">
+.mdbook-tab {
     background-color: var(--table-alternate-bg);
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -4057,19 +4111,24 @@ println!("Hello World!");
     font-size: 1.6rem;
     line-height: 1.45em;
 }
+
 </code></pre>
 </div>
 </div>
 <h2 id="admonish"><a class="header" href="#admonish">Admonish</a></h2>
 <p>Install <a href="https://github.com/tommilligan/mdbook-admonish">admonish</a></p>
 <p>Examples:</p>
-<pre><code class="language-plaintext">```admonish
+<pre><code class="language-plaintext">
+```admonish
 Some text
 ```
+
 </code></pre>
-<pre><code class="language-plaintext">```admonish example
+<pre><code class="language-plaintext">
+```admonish example
 example
 ```
+
 </code></pre>
 <div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
@@ -4203,9 +4262,11 @@ example
 <p>quote, cite</p>
 </div>
 </div>
-<pre><code class="language-plaintext">```admonish quote collapsible=true, title='A title that really &lt;span style="color: #e70073"&gt;pops&lt;/span&gt;'
+<pre><code class="language-plaintext">
+```admonish quote collapsible=true, title='A title that really &lt;span style="color: #e70073"&gt;pops&lt;/span&gt;'
 To really &lt;b&gt;&lt;span style="color: #e70073"&gt;grab&lt;/span&gt;&lt;/b&gt; your reader's attention.
 ```
+
 </code></pre>
 <details id="admonition-a-title-that-really-pops" class="admonition admonish-quote" role="note" aria-labelledby="admonition-a-title-that-really-pops-title">
 <summary class="admonition-title">
@@ -4495,17 +4556,21 @@ Most scripts require additional software. Install the following software if you 
 <button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">winget install ajeetdsouza.zoxide
+<pre><code class="language-Powershell">
+winget install ajeetdsouza.zoxide
 winget install junegunn.fzf
 winget install sharkdp.fd
 winget install sharkdp.bat
 winget install BurntSushi.ripgrep.MSVC
 winget install eza-community.eza
 winget install jftuga.less
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop install zoxide fzf fd bat ripgrep eza less
+<pre><code class="language-Powershell">
+Scoop install zoxide fzf fd bat ripgrep eza less
+
 </code></pre>
 </div>
 </div>
@@ -4520,17 +4585,23 @@ winget install jftuga.less
 <button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">Install-Module -Name PSFzf
+<pre><code class="language-Powershell">
+Install-Module -Name PSFzf
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop install PSFzf
+<pre><code class="language-Powershell">
+Scoop install PSFzf
+
 </code></pre>
 </div>
 </div>
 <p>Paste the following into your PowerShell profile:</p>
-<pre><code class="language-Powershell">Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'  
+<pre><code class="language-Powershell">
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'  
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }  
+
 </code></pre>
 <p><img src="./pics/PSFzf.jpg" alt="PSFzf" /></p>
 <p>Type <code>cd</code> and press <kbd>Ctrl</kbd> + <kbd>t</kbd> and search for the directory you want to navigate to. Hit <kbd>Enter</kbd> twice to navigate to the directory.</p>
@@ -4542,17 +4613,20 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>Type <code>disks</code> and hit <kbd>Enter</kbd> to display disk information in human readable format.</p>
 <details>  
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">function disks {
-    
+<pre><code class="language-Powershell">
+function disks {
+
     Get-WmiObject -Class Win32_LogicalDisk | Select-Object -Property DeviceID, VolumeName, @{Label = 'FreeGb'; expression = { ($_.FreeSpace / 1GB).ToString('F2') } }, @{Label = 'TotalGb'; expression = { ($_.Size / 1GB).ToString('F2') } }, @{label = 'Free %'; expression = { [Math]::Round(($_.freespace / $_.size) * 100, 2)}}|Format-Table
     }
+
 </code></pre>
 </details>  
 <h2 id="find-files-and-folders"><a class="header" href="#find-files-and-folders">Find files and folders</a></h2>
 <p>A script with options to view, delete or edit files with external tools.</p>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">$env:FZF_DEFAULT_OPTS = @"
+<pre><code class="language-Powershell">
+$env:FZF_DEFAULT_OPTS = @"
 --layout=reverse
 --cycle
 --scroll-off=5
@@ -4647,6 +4721,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("rgg")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
+
 </code></pre>
 </details>  
 <p>There are two ways to get a file path.</p>
@@ -4679,7 +4754,8 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>File search script utilizing fzf, ripgrep and bat.</p>
 <details>  
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell"> function fz {
+<pre><code class="language-Powershell">
+ function fz {
     
         $INITIAL_QUERY = "${*:-}"
         $RG_PREFIX = "rg --column --line-number --no-heading --color=always --smart-case"
@@ -4697,6 +4773,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
         --preview 'bat --color=always {1} --highlight-line {2} --style=plain' `
         --preview-window 'up,60%,border-bottom,+{2}+3/3'
         }
+
 </code></pre>
 </details>
 <p><img src="./pics/fz.jpg" alt="fz" /></p>
@@ -4708,7 +4785,8 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>File searcher script utilizing fzf, fd and bat.</p>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">function fza { 
+<pre><code class="language-Powershell">
+function fza { 
     fd --type file --follow --exclude .git |
     fzf --style=full `
         --bind 'focus:transform-header:file --brief {}' `
@@ -4716,6 +4794,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
         --preview-window '~3' --reverse `
     
 }
+
 </code></pre>
 </details>
 <p><img src="./pics/fza.jpg" alt="fza" /></p>
@@ -4728,7 +4807,8 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 Opens in your default browser.</p>
 <details>  
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">Function search-google {
+<pre><code class="language-Powershell">
+Function search-google {
     $query = 'https://www.google.com/search?q='
     $args | ForEach-Object { $query = $query + "$_+" }
     $url = $query.Substring(0, $query.Length - 1)
@@ -4736,13 +4816,15 @@ Opens in your default browser.</p>
 }
 
 Set-Alias gog search-google
+
 </code></pre>
 </details>
 <h2 id="eza-1"><a class="header" href="#eza-1">eza</a></h2>
 <p>List files with details using the <code>e</code> alias. Image and more information in the <a href="./eza.html">eza folder</a>.</p>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">function e {
+<pre><code class="language-Powershell">
+function e {
     eza `
         --long `
         --hyperlink `
@@ -4759,6 +4841,7 @@ Set-Alias gog search-google
         --all `
 
 }
+
 </code></pre>
 </details>
 <h2 id="yt-dlp"><a class="header" href="#yt-dlp">yt-dlp</a></h2>
@@ -4769,11 +4852,15 @@ Set-Alias gog search-google
 <button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">winget install yt-dlp
+<pre><code class="language-Powershell">
+winget install yt-dlp
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop install yt-dlp
+<pre><code class="language-Powershell">
+Scoop install yt-dlp
+
 </code></pre>
 </div>
 </div>
@@ -4787,7 +4874,8 @@ Set-Alias gog search-google
 </div>
 <details>
 <summary><u>Script</u></summary>
-<pre><code class="language-Powershell">Function ytm {
+<pre><code class="language-Powershell">
+Function ytm {
     yt-dlp `
         --progress `
         --console-title `
@@ -4806,6 +4894,7 @@ Set-Alias gog search-google
         --write-auto-subs --sub-lang "en.*" `
         $args
 }
+
 </code></pre>
 </details>
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><div style="break-before: page; page-break-before: always;"></div><style>
@@ -5219,10 +5308,14 @@ edited with any of: <kbd>ctrl</kbd> + <kbd>e</kbd>, <kbd>ctrl</kbd> + <kbd>u</kb
 </style>
 <h1 id="zoxide-1"><a class="header" href="#zoxide-1">zoxide</a></h1>
 <h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
-<pre><code class="language-Powershell">winget install ajeetdsouza.zoxide
+<pre><code class="language-Powershell">
+winget install ajeetdsouza.zoxide
+
 </code></pre>
 <p>Add this to the end of your $profile in PowerShell:</p>
-<pre><code class="language-PowerShell">Invoke-Expression (&amp; { (zoxide init powershell | Out-String) })
+<pre><code class="language-PowerShell">
+Invoke-Expression (&amp; { (zoxide init powershell | Out-String) })
+
 </code></pre>
 <p>See the <a href="https://github.com/ajeetdsouza/zoxide">zoxide documentation</a> for more information</p>
 <h2 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h2>
@@ -5468,11 +5561,15 @@ _ZO_RESOLVE_SYMLINKS
 <button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">winget install junegunn.fzf
+<pre><code class="language-Powershell">
+winget install junegunn.fzf
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop install fzf 
+<pre><code class="language-Powershell">
+Scoop install fzf 
+
 </code></pre>
 </div>
 </div>
@@ -7606,12 +7703,16 @@ bat <a href="https://github.com/sharkdp/bat">homepage</a></p>
 <button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">winget install sharkdp.bat
+<pre><code class="language-Powershell">
+winget install sharkdp.bat
 winget install jftuga.less
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop bat less
+<pre><code class="language-Powershell">
+Scoop bat less
+
 </code></pre>
 </div>
 </div>
@@ -8048,11 +8149,15 @@ desc = "Open PowerShell here"
 <button class="mdbook-tab" data-tabname="Scoop">Scoop</button>
 </nav>
 <div class="mdbook-tab-content" data-tabname="Winget">
-<pre><code class="language-Powershell">winget install sharkdp.fd
+<pre><code class="language-Powershell">
+winget install sharkdp.fd
+
 </code></pre>
 </div>
 <div class="mdbook-tab-content hidden" data-tabname="Scoop">
-<pre><code class="language-Powershell">Scoop fd
+<pre><code class="language-Powershell">
+Scoop fd
+
 </code></pre>
 </div>
 </div>
@@ -8982,18 +9087,24 @@ Print version</p>
 <p><img src="./pics/glow.jpg" alt="Glow" /></p>
 <p>More info at <a href="https://github.com/charmbracelet/glow">glow</a></p>
 <p>Install:</p>
-<pre><code class="language-powershell">winget install charmbracelet.glow
+<pre><code class="language-powershell">
+winget install charmbracelet.glow
+
 </code></pre>
 <p>Just type <code>glow</code> in the terminal and <code>?</code> to get help.</p>
 <p>A plugin for yazi can be found <a href="https://github.com/Reledia/glow.yazi">here</a></p>
 <p>Install it with</p>
-<pre><code class="language-powershell">ya pack -a Reledia/glow
+<pre><code class="language-powershell">
+ya pack -a Reledia/glow
+
 </code></pre>
 <p>and add this to yazi.toml:</p>
-<pre><code class="language-toml">[plugin]
+<pre><code class="language-toml">
+[plugin]
 prepend_previewers = [
   { name = "*.md", run = "glow" },
 ]
+
 </code></pre>
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-alerts {
