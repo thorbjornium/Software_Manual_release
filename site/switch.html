@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>PowerShell 7</title>
+        <title>Switch</title>
 
 
         <!-- Custom HTML head -->
@@ -142,7 +142,7 @@
                         <a href="https://github.com/thorbjornium/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/Powershell.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/switch.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -280,55 +280,132 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="powershell-7"><a class="header" href="#powershell-7">Powershell 7</a></h1>
-<br>  
-<h2 id="basic-handling-of-powershell"><a class="header" href="#basic-handling-of-powershell">Basic handling of Powershell</a></h2>
-<p>Press <kbd>F1</kbd> after typing a command to get help or type <code>man</code> before the command.</p>
-<p>Press <kbd>F2</kbd> to toggle prediction.</p>
-<p>Press <kbd>Tab</kbd> to move to or list the next suggestion.</p>
-<p>Press <kbd>Shift</kbd> + <kbd>Tab</kbd> to move to the previous suggestion.</p>
-<p>Press <kbd>→</kbd> to accept the suggestion.</p>
-<p>Press <kbd>Ctrl</kbd> + <kbd>Space</kbd> to list autocomplete suggestions.</p>
-<p>Find the Powershell profile <code>echo $profile</code> or just <code>$profile</code></p>
-<p>Open the Powershell profile in notepad <code>notepad $profile</code></p>
-<p>Print the current PSReadLine key handlers <code>Get-PSReadLineKeyHandler</code></p>
-<p>or press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>?</kbd></p>
-<h2 id="misc"><a class="header" href="#misc">Misc</a></h2>
-<p>Find the file location of the Powershell history file. Edit and remove inaccurate predictions.</p>
-<pre><code class="language-Powershell">Get-PSReadLineOption | select-Object -Property HistorySavePath
-# or
-(Get-PSReadLineOption).HistorySavePath
-</code></pre>
-<h2 id="basic-commands"><a class="header" href="#basic-commands"><p style="text-align:center;">Basic Commands</p></a></h2>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Command</th><th style="text-align: left">Description</th></tr></thead><tbody>
-<tr><td style="text-align: left">pwd</td><td style="text-align: left">Prints the current working directory.</td></tr>
-<tr><td style="text-align: left">ls</td><td style="text-align: left">Lists the contents of the current directory.</td></tr>
-<tr><td style="text-align: left">cd</td><td style="text-align: left">Changes the current directory.</td></tr>
-<tr><td style="text-align: left">md</td><td style="text-align: left">Creates a new directory.</td></tr>
-<tr><td style="text-align: left">rm</td><td style="text-align: left">Removes a file or directory.</td></tr>
-<tr><td style="text-align: left">cp</td><td style="text-align: left">Copies a file or directory.</td></tr>
-<tr><td style="text-align: left">mv</td><td style="text-align: left">Moves a file or directory.</td></tr>
-<tr><td style="text-align: left">cat</td><td style="text-align: left">Displays the contents of a file.</td></tr>
-<tr><td style="text-align: left">tree</td><td style="text-align: left">Lists the contents of a directory in a treelike format.</td></tr>
-<tr><td style="text-align: left">echo</td><td style="text-align: left">Prints text to the console.</td></tr>
-<tr><td style="text-align: left">read</td><td style="text-align: left">Reads input from the user.</td></tr>
-<tr><td style="text-align: left">cls</td><td style="text-align: left">Clears the console.</td></tr>
-<tr><td style="text-align: left">exit</td><td style="text-align: left">Exits the current shell.</td></tr>
-<tr><td style="text-align: left">help</td><td style="text-align: left">Displays information about the builtin commands.</td></tr>
-<tr><td style="text-align: left">get-help</td><td style="text-align: left">Displays information about a specific command.</td></tr>
-<tr><td style="text-align: left">file</td><td style="text-align: left">Displays information about a file.</td></tr>
-<tr><td style="text-align: left">type</td><td style="text-align: left">Displays the contents of a file.</td></tr>
+<h1 id="switch"><a class="header" href="#switch">Switch</a></h1>
+<ul>
+<li><a href="#summary-table-of-switch-methods">Summary Table of Switch Methods</a>
+<ul>
+<li><a href="#method-details">Method Details</a>
+<ul>
+<li><a href="#store-and-forward">Store-and-Forward</a></li>
+<li><a href="#cut-through">Cut-Through</a></li>
+<li><a href="#--fragment-free">- Fragment-Free</a></li>
+<li><a href="#--fast-forward">- Fast-Forward</a></li>
+</ul>
+</li>
+<li><a href="#visual-comparison">Visual Comparison</a></li>
+</ul>
+</li>
+<li><a href="#ethernet-frame-fields">Ethernet Frame Fields</a>
+<ul>
+<li><a href="#ethernet-frame-structure">Ethernet Frame Structure</a></li>
+<li><a href="#field-descriptions">Field Descriptions</a></li>
+<li><a href="#visual-representation">Visual Representation</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="summary-table-of-switch-methods"><a class="header" href="#summary-table-of-switch-methods">Summary Table of Switch Methods</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Method</th><th>How It Works</th><th>Speed</th><th>Error Checking</th><th>Frame Processing Start</th><th>Notes / Use Cases</th></tr></thead><tbody>
+<tr><td>Store-and-Forward</td><td>Receives entire frame, checks for errors (CRC), then forwards if valid.</td><td>Slowest</td><td>Best (CRC check)</td><td>After full frame received</td><td>High accuracy, supports different port speeds</td></tr>
+<tr><td>Cut-Through</td><td>Starts forwarding after reading destination MAC (first 6–8 bytes), before whole frame arrives.</td><td>Fastest</td><td>None</td><td>After 1st 6–8 bytes</td><td>Lowest latency, may forward corrupted frames</td></tr>
+<tr><td>- Fragment-Free</td><td>Waits for first 64 bytes (to filter out runts), then forwards.</td><td>Moderate</td><td>Limited (runts)</td><td>After 64 bytes received</td><td>Balances speed and error avoidance (filters runts)</td></tr>
+<tr><td>- Fast-Forward</td><td><strong>Often used as another term for cut-through</strong> (vendor-specific); behaves like cut-through.</td><td>Fastest</td><td>None</td><td>After 1st 6–8 bytes</td><td>Sometimes used interchangeably with cut-through</td></tr>
 </tbody></table>
-</div><style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
+</div>
+<hr />
+<h3 id="method-details"><a class="header" href="#method-details">Method Details</a></h3>
+<h4 id="store-and-forward"><a class="header" href="#store-and-forward"><strong>Store-and-Forward</strong></a></h4>
+<ul>
+<li>Switch receives the entire Ethernet frame into memory.</li>
+<li>Performs a CRC (Cyclic Redundancy Check) to detect errors.</li>
+<li>Only forwards error-free frames.</li>
+<li>Introduces the most latency but ensures data integrity.</li>
+<li>Can connect ports of different speeds.</li>
+</ul>
+<h4 id="cut-through"><a class="header" href="#cut-through"><strong>Cut-Through</strong></a></h4>
+<ul>
+<li>Switch reads only enough of the frame to learn the destination MAC (typically first 6–8 bytes).</li>
+<li>Starts forwarding immediately after determining the output port.</li>
+<li>Lowest latency, but may forward frames with errors.</li>
+<li>Cannot detect or filter out corrupted frames.</li>
+</ul>
+<h4 id="--fragment-free"><a class="header" href="#--fragment-free"><strong>- Fragment-Free</strong></a></h4>
+<ul>
+<li>Switch waits for the first 64 bytes of the frame before forwarding.</li>
+<li>64 bytes is the minimum legal Ethernet frame size; anything smaller is a "runt" (likely a collision fragment).</li>
+<li>Filters out runts but does not check for other errors.</li>
+<li>Provides a balance between speed and error avoidance.</li>
+</ul>
+<h4 id="--fast-forward"><a class="header" href="#--fast-forward"><strong>- Fast-Forward</strong></a></h4>
+<ul>
+<li>Often a vendor-specific term for cut-through switching.</li>
+<li>Behavior is essentially the same as cut-through: forwards frames as soon as the destination MAC is read.</li>
+<li>Focuses on minimizing latency.</li>
+</ul>
+<hr />
+<h3 id="visual-comparison"><a class="header" href="#visual-comparison">Visual Comparison</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Feature</th><th>Store-and-Forward</th><th>Cut-Through</th><th>Fragment-Free</th><th>Fast-Forward</th></tr></thead><tbody>
+<tr><td>Latency</td><td>High</td><td>Low</td><td>Medium</td><td>Low</td></tr>
+<tr><td>Error Detection (CRC)</td><td>Yes</td><td>No</td><td>No (except runts)</td><td>No</td></tr>
+<tr><td>Filters Runts</td><td>Yes</td><td>No</td><td>Yes</td><td>No</td></tr>
+<tr><td>When Forwarding Starts</td><td>After full frame</td><td>After 6–8 bytes</td><td>After 64 bytes</td><td>After 6–8 bytes</td></tr>
+<tr><td>Port Speed Conversion</td><td>Yes</td><td>No</td><td>No</td><td>No</td></tr>
+</tbody></table>
+</div>
+<hr />
+<p><strong>In summary:</strong></p>
+<ul>
+<li><strong>Store-and-forward</strong> maximizes reliability but adds delay.</li>
+<li><strong>Cut-through</strong> (and fast-forward) minimizes delay but may propagate errors.</li>
+<li><strong>Fragment-free</strong> offers a compromise, filtering out the most common collision fragments but not all errors.</li>
+</ul>
+<h2 id="ethernet-frame-fields"><a class="header" href="#ethernet-frame-fields">Ethernet Frame Fields</a></h2>
+<p>An Ethernet frame is a structured packet used for data transmission at the data link layer. It encapsulates both addressing and error-checking information, along with the payload. Here are the main fields in a standard Ethernet II frame:</p>
+<hr />
+<h3 id="ethernet-frame-structure"><a class="header" href="#ethernet-frame-structure">Ethernet Frame Structure</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Size (Bytes)</th><th>Description</th></tr></thead><tbody>
+<tr><td>Preamble</td><td>7</td><td>Synchronizes the receiver's clock; pattern of alternating 1s and 0s</td></tr>
+<tr><td>Start Frame Delimiter</td><td>1</td><td>Marks the end of preamble and start of the frame (10101011)</td></tr>
+<tr><td>Destination MAC Address</td><td>6</td><td>MAC address of the receiving device</td></tr>
+<tr><td>Source MAC Address</td><td>6</td><td>MAC address of the sending device</td></tr>
+<tr><td>EtherType/Length</td><td>2</td><td>Indicates protocol type (e.g., IPv4, IPv6) or payload length</td></tr>
+<tr><td>(Optional) VLAN Tag</td><td>4</td><td>Used for VLAN identification (802.1Q)</td></tr>
+<tr><td>Payload (Data and Pad)</td><td>46–1500</td><td>Data being transmitted; padded if less than 46 bytes</td></tr>
+<tr><td>Frame Check Sequence</td><td>4</td><td>CRC for error checking</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="field-descriptions"><a class="header" href="#field-descriptions">Field Descriptions</a></h3>
+<ul>
+<li><strong>Preamble:</strong> 7 bytes of alternating 1s and 0s for synchronization.</li>
+<li><strong>Start Frame Delimiter (SFD):</strong> 1 byte (10101011) indicating the start of the actual frame.</li>
+<li><strong>Destination MAC Address:</strong> 6 bytes specifying the intended recipient.</li>
+<li><strong>Source MAC Address:</strong> 6 bytes specifying the sender.</li>
+<li><strong>EtherType/Length:</strong> 2 bytes; EtherType (≥1536) specifies the upper-layer protocol, or Length (≤1500) for payload size.</li>
+<li><strong>VLAN Tag (optional):</strong> 4 bytes inserted after the source MAC for VLAN tagging.</li>
+<li><strong>Payload (Data and Pad):</strong> Actual data; minimum 46 bytes (padded if needed), maximum 1500 bytes.</li>
+<li><strong>Frame Check Sequence (FCS):</strong> 4 bytes CRC for error detection.</li>
+</ul>
+<hr />
+<h3 id="visual-representation"><a class="header" href="#visual-representation">Visual Representation</a></h3>
+<p>| Preamble | SFD | Dest MAC | Src MAC | EtherType/Length | [VLAN Tag] | Payload (Data+Pad) | FCS |
+| 7 B | 1 B | 6 B | 6 B | 2 B | 4 B | 46–1500 B | 4 B |</p>
+<hr />
+<p><strong>Note:</strong></p>
+<ul>
+<li>VLAN Tag is optional and present only in VLAN-enabled networks.</li>
+<li>The minimum Ethernet frame size is 64 bytes (including all fields).</li>
+<li>The maximum payload is 1500 bytes, and the maximum frame size (without VLAN) is 1518 bytes.</li>
+</ul>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="switch.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="osi_layers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="powershell_scripts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="Powershell.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -338,11 +415,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="switch.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="osi_layers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="powershell_scripts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="Powershell.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

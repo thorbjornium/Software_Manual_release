@@ -290,6 +290,12 @@
 <li><a href="#5-session-layer-layer-5-managing-application-sessions">5. Session Layer (Layer 5): Managing Application Sessions</a></li>
 <li><a href="#6-presentation-layer-layer-6-data-formatting-and-security">6. Presentation Layer (Layer 6): Data Formatting and Security</a></li>
 <li><a href="#7-application-layer-layer-7-user-facing-network-services">7. Application Layer (Layer 7): User-Facing Network Services</a></li>
+<li><a href="#osi-model-vs-tcpip-model">OSI Model vs TCP/IP Model</a>
+<ul>
+<li><a href="#layer-structure-comparison">Layer Structure Comparison</a></li>
+<li><a href="#key-differences">Key Differences</a></li>
+</ul>
+</li>
 </ul>
 <h3 id="1-physical-layer-layer-1-the-foundation-of-transmission"><a class="header" href="#1-physical-layer-layer-1-the-foundation-of-transmission"><strong>1. Physical Layer (Layer 1): The Foundation of Transmission</strong></a></h3>
 <ul>
@@ -560,16 +566,43 @@
 <p><strong>Data Unit:</strong> Segments (TCP) or Datagrams (UDP).</p>
 </li>
 </ul>
+<h2 id="osi-model-vs-tcpip-model"><a class="header" href="#osi-model-vs-tcpip-model">OSI Model vs TCP/IP Model</a></h2>
+<p>Both the OSI and TCP/IP models are layered frameworks for understanding and designing network protocols, but they differ in structure, purpose, and real-world application.</p>
+<hr />
+<h3 id="layer-structure-comparison"><a class="header" href="#layer-structure-comparison">Layer Structure Comparison</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>OSI Model Layer</th><th>TCP/IP Model Layer</th><th>Function(s) Covered</th></tr></thead><tbody>
+<tr><td>7. Application</td><td>Application</td><td>User interface, network services (HTTP, FTP, SMTP)</td></tr>
+<tr><td>6. Presentation</td><td>Application</td><td>Data translation, encryption, compression</td></tr>
+<tr><td>5. Session</td><td>Application</td><td>Session management, dialog control</td></tr>
+<tr><td>4. Transport</td><td>Transport</td><td>End-to-end communication, reliability (TCP, UDP)</td></tr>
+<tr><td>3. Network</td><td>Internet</td><td>Logical addressing, routing (IP, ICMP)</td></tr>
+<tr><td>2. Data Link</td><td>Network Access</td><td>Physical addressing, error detection (Ethernet, Wi-Fi)</td></tr>
+<tr><td>1. Physical</td><td>Network Access</td><td>Transmission of raw bits over physical medium</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="key-differences"><a class="header" href="#key-differences">Key Differences</a></h3>
+<ul>
+<li><strong>Number of Layers:</strong> OSI has 7 layers; TCP/IP has 4 layers (sometimes depicted as 5).</li>
+<li><strong>Layer Functions:</strong> TCP/IP merges OSI’s Application, Presentation, and Session layers into a
+single Application layer. It also combines Data Link and Physical into Network Access.</li>
+<li><strong>Purpose:</strong> OSI is a conceptual, protocol-agnostic reference model; TCP/IP is a practical protocol
+suite used in real-world networking.</li>
+<li><strong>Usage:</strong> TCP/IP underpins the modern Internet; OSI is widely used for teaching, troubleshooting,
+and network planning.</li>
+<li><strong>Protocol Dependency:</strong> OSI is protocol-independent; TCP/IP is built around standard protocols (TCP, IP, etc.).</li>
+</ul>
+<hr />
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="google_search_operators.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="nslookup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="nslookup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="switch.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -579,11 +612,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="google_search_operators.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="nslookup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="nslookup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="switch.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
