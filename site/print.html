@@ -15614,7 +15614,584 @@ exit</p>
 <li>TXT:    Text record (often used for verification or SPF records)</li>
 </ul>
 <p>Note:  <code>nslookup</code> is being replaced by <code>dig</code> and <code>host</code> utilities in many environments as they offer more features and are considered more modern. However, <code>nslookup</code> is still widely available and useful for basic DNS queries.</p>
-<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.1em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-notera {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+
+.mdbook-alerts-tips {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-viktigt {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-varning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(255, 142, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-fara {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-question {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+
+.mdbook-alerts-fundering {
+  --mdbook-alerts-color: rgb(22, 229, 50);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
+}
+</style>
+<h1 id="ipv6"><a class="header" href="#ipv6">IPv6</a></h1>
+<ul>
+<li><a href="ipv6.html#unicast">Unicast</a>
+<ul>
+<li><a href="ipv6.html#1-global-unicast-address">1. Global Unicast Address</a></li>
+<li><a href="ipv6.html#2-unique-local-address-ula">2. Unique Local Address (ULA)</a></li>
+<li><a href="ipv6.html#3-link-local-address">3. Link-Local Address</a></li>
+<li><a href="ipv6.html#4-loopback-address">4. Loopback Address</a></li>
+<li><a href="ipv6.html#5-unspecified-address">5. Unspecified Address</a></li>
+<li><a href="ipv6.html#6-ipv4-embedded-ipv6-addresses">6. IPv4-Embedded IPv6 Addresses</a>
+<ul>
+<li><a href="ipv6.html#example-table">Example Table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="ipv6.html#multicast">Multicast</a>
+<ul>
+<li><a href="ipv6.html#general-structure">General Structure</a>
+<ul>
+<li><a href="ipv6.html#multicast-address-format">Multicast Address Format</a></li>
+</ul>
+</li>
+<li><a href="ipv6.html#flags-field">Flags Field</a></li>
+<li><a href="ipv6.html#scope-field">Scope Field</a></li>
+<li><a href="ipv6.html#special-multicast-address-types">Special Multicast Address Types</a></li>
+<li><a href="ipv6.html#examples">Examples</a></li>
+<li><a href="ipv6.html#summary">Summary</a></li>
+</ul>
+</li>
+<li><a href="ipv6.html#anycast">Anycast</a>
+<ul>
+<li><a href="ipv6.html#what-is-an-anycast-address">What is an Anycast Address?</a></li>
+<li><a href="ipv6.html#key-characteristics">Key Characteristics</a></li>
+<li><a href="ipv6.html#ipv6-anycast-address-examples">IPv6 Anycast Address Examples</a></li>
+<li><a href="ipv6.html#how-anycast-works">How Anycast Works</a></li>
+<li><a href="ipv6.html#summary-table">Summary Table</a></li>
+</ul>
+</li>
+<li><a href="ipv6.html#nd-ns-and-ula-the-essentials">ND, NS, and ULA: The Essentials</a>
+<ul>
+<li><a href="ipv6.html#summary-table-1">Summary Table</a></li>
+</ul>
+</li>
+<li><a href="ipv6.html#global-unicast-address-gua">Global Unicast Address, GUA</a>
+<ul>
+<li><a href="ipv6.html#structure-of-an-ipv6-gua">Structure of an IPv6 GUA</a></li>
+<li><a href="ipv6.html#breakdown-of-address-parts">Breakdown of Address Parts</a>
+<ul>
+<li><a href="ipv6.html#1-global-routing-prefix-48-bits">1. Global Routing Prefix (48 bits)</a></li>
+<li><a href="ipv6.html#2-subnet-id-16-bits">2. Subnet ID (16 bits)</a></li>
+<li><a href="ipv6.html#3-interface-id-64-bits">3. Interface ID (64 bits)</a></li>
+</ul>
+</li>
+<li><a href="ipv6.html#allocation-example">Allocation Example</a></li>
+<li><a href="ipv6.html#key-features">Key Features</a></li>
+<li><a href="ipv6.html#summary-table-2">Summary Table</a></li>
+</ul>
+</li>
+<li><a href="ipv6.html#eui-calculating-ipv6-interface-id-using-eui-64-from-mac-address-1c-6f-65-c2-bd-f8">EUI: Calculating IPv6 Interface ID Using EUI-64 from MAC Address 1C-6F-65-C2-BD-F8</a>
+<ul>
+<li><a href="ipv6.html#step-by-step-eui-64-calculation">Step-by-Step EUI-64 Calculation</a></li>
+<li><a href="ipv6.html#result">Result</a></li>
+</ul>
+</li>
+<li><a href="ipv6.html#ipv4-header-fields-vs-ipv6-header-fields">IPv4 Header Fields vs IPv6 Header Fields</a>
+<ul>
+<li><a href="ipv6.html#comparison-table-ipv4-vs-ipv6-header-fields">Comparison Table: IPv4 vs IPv6 Header Fields</a></li>
+<li><a href="ipv6.html#key-differences">Key Differences</a></li>
+<li><a href="ipv6.html#visual-summary">Visual Summary</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="unicast"><a class="header" href="#unicast">Unicast</a></h2>
+<ul>
+<li><strong>One-to-one communication</strong>: Data is sent from a single source to a single, specific destination address.</li>
+<li><strong>Typical use</strong>: Most internet traffic (web browsing, file downloads) is unicast.</li>
+<li><strong>IPv6 example</strong>: Sending a packet from your computer to a specific server.</li>
+</ul>
+<h3 id="1-global-unicast-address"><a class="header" href="#1-global-unicast-address">1. Global Unicast Address</a></h3>
+<ul>
+<li><strong>Publicly routable on the Internet</strong></li>
+<li>Prefix: <code>2000::/3</code></li>
+<li>Used for global communication</li>
+</ul>
+<h3 id="2-unique-local-address-ula"><a class="header" href="#2-unique-local-address-ula">2. Unique Local Address (ULA)</a></h3>
+<ul>
+<li><strong>Private, not routable on the Internet</strong></li>
+<li>Prefix: <code>FD00::/8</code></li>
+<li>Used for local communications within a site</li>
+</ul>
+<h3 id="3-link-local-address"><a class="header" href="#3-link-local-address">3. Link-Local Address</a></h3>
+<ul>
+<li><strong>Valid only within a single local network segment</strong></li>
+<li>Prefix: <code>FE80::/10</code></li>
+<li>Automatically assigned to every IPv6 interface</li>
+</ul>
+<h3 id="4-loopback-address"><a class="header" href="#4-loopback-address">4. Loopback Address</a></h3>
+<ul>
+<li><strong>Used by a device to send packets to itself</strong></li>
+<li>Address: <code>::1/128</code></li>
+</ul>
+<h3 id="5-unspecified-address"><a class="header" href="#5-unspecified-address">5. Unspecified Address</a></h3>
+<ul>
+<li><strong>Indicates the absence of an address</strong></li>
+<li>Address: <code>::/128</code></li>
+</ul>
+<h3 id="6-ipv4-embedded-ipv6-addresses"><a class="header" href="#6-ipv4-embedded-ipv6-addresses">6. IPv4-Embedded IPv6 Addresses</a></h3>
+<ul>
+<li><strong>Allow IPv4 and IPv6 interoperability</strong></li>
+<li>Embed a 32-bit IPv4 address within an IPv6 address, often for transition mechanisms like NAT64, IPv4-mapped, and compatible addresses.</li>
+<li>Common formats:
+<ul>
+<li><strong>IPv4-mapped IPv6</strong>: <code>::ffff:192.0.2.33</code> (80 bits zero, 16 bits ones, 32 bits IPv4)<br />
+Used for representing IPv4 addresses in IPv6-only environments, especially in software and NAT64 scenarios</li>
+<li><strong>IPv4-compatible IPv6</strong>: <code>::192.0.2.33</code> [deprecated; 96 bits zero, 32 bits IPv4]</li>
+<li><strong>NAT64/XLAT464</strong>: Uses a configurable prefix (e.g., <code>64:ff9b::/96</code>), followed by the IPv4 address</li>
+<li><strong>Custom Embedded</strong>: Networks can embed IPv4 addresses using various prefix lengths, placing the IPv4 address at specific bits within the IPv6 address</li>
+</ul>
+</li>
+</ul>
+<h4 id="example-table"><a class="header" href="#example-table">Example Table</a></h4>
+<div class="table-wrapper"><table><thead><tr><th>Type/Format</th><th>Example Address</th><th>Description</th></tr></thead><tbody>
+<tr><td>Global Unicast</td><td>2001:db8::1</td><td>Public, Internet-routable</td></tr>
+<tr><td>Unique Local (ULA)</td><td>fd12:3456:789a::1</td><td>Private, site-local only</td></tr>
+<tr><td>Link-Local</td><td>fe80::1</td><td>Local segment only</td></tr>
+<tr><td>Loopback</td><td>::1</td><td>Local device (self)</td></tr>
+<tr><td>Unspecified</td><td>::</td><td>No specific address</td></tr>
+<tr><td>IPv4-mapped IPv6</td><td>::ffff:192.0.2.33</td><td>IPv4 in IPv6 for dual-stack/NAT64</td></tr>
+<tr><td>IPv4-compatible IPv6</td><td>::192.0.2.33</td><td>Deprecated, for dual-stack</td></tr>
+<tr><td>NAT64/XLAT464 Embedded</td><td>64:ff9b::192.0.2.33</td><td>NAT64 translation prefix + IPv4</td></tr>
+<tr><td>Custom Embedded (various)</td><td>2001:db8::c000:221</td><td>Prefix + embedded IPv4 (e.g., 192.0.2.33)</td></tr>
+</tbody></table>
+</div>
+<p><strong>Note:</strong> Embedding IPv4 in IPv6 addresses is essential for transition and interoperability between IPv4 and IPv6 networks</p>
+<h2 id="multicast"><a class="header" href="#multicast">Multicast</a></h2>
+<ul>
+<li><strong>One-to-many communication</strong>: Data is sent from one source to multiple destinations, but only to devices that have joined a specific multicast group.</li>
+<li><strong>Efficient for group communication</strong>: Saves bandwidth because the data is only sent once and delivered to all interested receivers.</li>
+<li><strong>Typical use</strong>: Streaming media, online conferencing, or network discovery protocols.</li>
+<li><strong>IPv6 example</strong>: Sending a video stream to all devices in a multicast group (e.g., all routers on a network).</li>
+</ul>
+<h3 id="general-structure"><a class="header" href="#general-structure">General Structure</a></h3>
+<p>All IPv6 multicast addresses start with the prefix <code>FF00::/8</code> (the first 8 bits are <code>11111111</code> in binary, or <code>FF</code> in hexadecimal).</p>
+<h4 id="multicast-address-format"><a class="header" href="#multicast-address-format">Multicast Address Format</a></h4>
+<div class="table-wrapper"><table><thead><tr><th>Bits</th><th>Field</th><th>Description</th></tr></thead><tbody>
+<tr><td>8</td><td>Prefix</td><td>Always <code>11111111</code> (FF) to indicate multicast</td></tr>
+<tr><td>4</td><td>Flags</td><td>Various control flags (see below)</td></tr>
+<tr><td>4</td><td>Scope</td><td>Defines the reach of the multicast (e.g., link-local, global)</td></tr>
+<tr><td>112</td><td>Group ID</td><td>Identifies the multicast group</td></tr>
+</tbody></table>
+</div>
+<p>Example: <code>FF02::1</code> (All nodes on the local link)</p>
+<hr />
+<h3 id="flags-field"><a class="header" href="#flags-field">Flags Field</a></h3>
+<p>The 4-bit flags field provides additional information about the multicast address:</p>
+<div class="table-wrapper"><table><thead><tr><th>Bit</th><th>Flag</th><th>Meaning when 0</th><th>Meaning when 1</th></tr></thead><tbody>
+<tr><td>8</td><td>Reserved</td><td>Reserved</td><td>Reserved</td></tr>
+<tr><td>9</td><td>R (Rendezvous)</td><td>RP not embedded</td><td>RP embedded</td></tr>
+<tr><td>10</td><td>P (Prefix)</td><td>Not based on prefix</td><td>Based on network prefix</td></tr>
+<tr><td>11</td><td>T (Transient)</td><td>Well-known address</td><td>Dynamically assigned address</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="scope-field"><a class="header" href="#scope-field">Scope Field</a></h3>
+<p>The 4-bit scope field defines where the multicast is valid:</p>
+<div class="table-wrapper"><table><thead><tr><th>Scope Value</th><th>IPv6 Address Example</th><th>Scope Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>1</td><td>FF01::/16</td><td>Interface-local</td><td>Stays within the originating node</td></tr>
+<tr><td>2</td><td>FF02::/16</td><td>Link-local</td><td>Stays within the local link</td></tr>
+<tr><td>3</td><td>FF03::/16</td><td>Realm-local</td><td>Local to a particular network technology</td></tr>
+<tr><td>4</td><td>FF04::/16</td><td>Admin-local</td><td>Administratively configured scope</td></tr>
+<tr><td>5</td><td>FF05::/16</td><td>Site-local</td><td>Restricted to the local site</td></tr>
+<tr><td>8</td><td>FF08::/16</td><td>Organization-local</td><td>Restricted to the organization</td></tr>
+<tr><td>E</td><td>FFE0::/16</td><td>Global</td><td>Globally routable multicast</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="special-multicast-address-types"><a class="header" href="#special-multicast-address-types">Special Multicast Address Types</a></h3>
+<ul>
+<li><strong>Solicited-Node Multicast Address:</strong> Used by Neighbor Discovery Protocol (NDP). Format: <code>FF02::1:FFXX:XXXX</code> where the last 24 bits come from the unicast/anycast address.</li>
+<li><strong>Well-Known Multicast Groups:</strong> Assigned by IANA for specific protocols (e.g., <code>FF02::1</code> for all nodes, <code>FF02::2</code> for all routers).</li>
+</ul>
+<hr />
+<h3 id="examples-3"><a class="header" href="#examples-3">Examples</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Address</th><th>Scope</th><th>Group Purpose</th></tr></thead><tbody>
+<tr><td>FF02::1</td><td>Link-local</td><td>All nodes on the local link</td></tr>
+<tr><td>FF02::2</td><td>Link-local</td><td>All routers on the local link</td></tr>
+<tr><td>FF05::101</td><td>Site-local</td><td>NTP servers in a site</td></tr>
+<tr><td>FF0E::1</td><td>Global</td><td>All nodes (global scope)</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<ul>
+<li>All IPv6 multicast addresses begin with <code>FF</code>.</li>
+<li>The next 4 bits are flags, followed by 4 bits for scope.</li>
+<li>The remaining 112 bits specify the multicast group.</li>
+<li>Scope and flags determine the reach and type of multicast group.</li>
+<li>No broadcast in IPv6; multicast fulfills this role.</li>
+</ul>
+<hr />
+<h2 id="anycast"><a class="header" href="#anycast">Anycast</a></h2>
+<ul>
+<li><strong>One-to-nearest communication</strong>: Data is sent from one source to the nearest (in routing terms) member of a group of receivers sharing the same address.</li>
+<li><strong>Used for redundancy and load balancing</strong>: Improves availability and performance by routing requests to the closest server.</li>
+<li><strong>Typical use</strong>: DNS root servers, content delivery networks (CDNs), and global services like Google DNS.</li>
+<li><strong>IPv6 example</strong>: Multiple servers around the world share the same anycast address; a user’s request is automatically routed to the closest server.</li>
+</ul>
+<h3 id="what-is-an-anycast-address"><a class="header" href="#what-is-an-anycast-address">What is an Anycast Address?</a></h3>
+<p>An IPv6 anycast address is an address assigned to multiple interfaces, typically on different nodes. When a packet is sent to an anycast address, it is routed to the "nearest" interface (according to the routing protocol's metric, such as hop count or cost) that has been assigned that address.</p>
+<hr />
+<h3 id="key-characteristics"><a class="header" href="#key-characteristics">Key Characteristics</a></h3>
+<ul>
+<li><strong>Indistinguishable from Unicast:</strong> Anycast addresses are allocated from the unicast address space and look identical to unicast addresses. There is no special prefix or format to distinguish them; their "anycast" property comes from being assigned to multiple interfaces.</li>
+<li><strong>Routing Behavior:</strong> Routers deliver packets sent to an anycast address to the closest (in terms of routing distance) node with that address.</li>
+<li><strong>Use Cases:</strong> Anycast is commonly used for:
+<ul>
+<li>Redundancy and load balancing (e.g., DNS root servers, CDN edge nodes)</li>
+<li>Service discovery and high availability</li>
+<li>Routing to the nearest gateway or service provider</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="ipv6-anycast-address-examples"><a class="header" href="#ipv6-anycast-address-examples">IPv6 Anycast Address Examples</a></h3>
+<ul>
+<li><strong>Subnet Router Anycast:</strong> The lowest address in any IPv6 subnet (where the interface identifier is all zeros) is reserved as the subnet-router anycast address.</li>
+</ul>
+<p>For example, in the subnet:</p>
+<blockquote>
+<p>2001:db8:abcd:0012::/64</p>
+</blockquote>
+<p>the anycast address is:</p>
+<blockquote>
+<p>2001:db8:abcd:12::</p>
+</blockquote>
+<ul>
+<li><strong>Reserved Ranges:</strong> The highest 128 interface identifiers in a subnet are also reserved for anycast purposes.</li>
+</ul>
+<hr />
+<h3 id="how-anycast-works"><a class="header" href="#how-anycast-works">How Anycast Works</a></h3>
+<ol>
+<li><strong>Assignment:</strong> The same unicast address is configured on multiple devices/interfaces.</li>
+<li><strong>Routing:</strong> Each device advertises its route to the shared address. Routers learn multiple paths to the same address.</li>
+<li><strong>Packet Delivery:</strong> When a host sends a packet to the anycast address, the network delivers it to the nearest device (according to the routing protocol).</li>
+</ol>
+<hr />
+<h3 id="summary-table"><a class="header" href="#summary-table">Summary Table</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody>
+<tr><td>Address Format</td><td>Identical to unicast</td></tr>
+<tr><td>Assignment</td><td>Assigned to multiple interfaces/nodes</td></tr>
+<tr><td>Routing</td><td>Delivered to the nearest interface with the address</td></tr>
+<tr><td>Common Uses</td><td>DNS root servers, CDN nodes, redundant gateways, service discovery</td></tr>
+<tr><td>IPv6 Reserved</td><td>Subnet-router anycast (all-zero interface ID), highest 128 interface IDs</td></tr>
+</tbody></table>
+</div>
+<hr />
+<p><strong>Note:</strong> Anycast addresses provide a way to distribute services across multiple locations, improving redundancy, availability, and response times for clients.</p>
+ <br>
+<div class="table-wrapper"><table><thead><tr><th>Type</th><th>Communication Model</th><th>Use Case Example</th><th>IPv6 Address Range/Assignment</th></tr></thead><tbody>
+<tr><td>Unicast</td><td>One-to-one</td><td>Web browsing, file download</td><td>Global: 2000::/3, Link-local: FE80::/10, ULA: FC00::/7</td></tr>
+<tr><td>Multicast</td><td>One-to-many</td><td>Video streaming, network discovery</td><td>FF00::/8</td></tr>
+<tr><td>Anycast</td><td>One-to-nearest</td><td>DNS root servers, CDNs</td><td>Allocated from unicast space</td></tr>
+</tbody></table>
+</div>
+<p><strong>Note:</strong> IPv6 does not use broadcast; multicast replaces broadcast functionality.</p>
+<h2 id="nd-ns-and-ula-the-essentials"><a class="header" href="#nd-ns-and-ula-the-essentials">ND, NS, and ULA: The Essentials</a></h2>
+<p><strong>IPv6 ND (Neighbor Discovery), NS (Neighbor Solicitation), and ULA (Unique Local Address)</strong> are foundational concepts in IPv6 networking. Here’s a concise breakdown:</p>
+<hr />
+<p><strong>IPv6 Neighbor Discovery (ND)</strong>:</p>
+<ul>
+<li>ND is a protocol in IPv6 that allows devices (nodes) on the same network link to discover each other, learn about routers, resolve Layer 3 (IP) to Layer 2 (MAC) addresses, and maintain reachability information.</li>
+<li>It replaces IPv4’s ARP and ICMP Router Discovery, providing more secure and efficient communication.</li>
+<li>ND uses several ICMPv6 message types, including Neighbor Solicitation (NS) and Neighbor Advertisement (NA), to perform its functions.</li>
+</ul>
+<p><strong>Key ND Functions:</strong></p>
+<ul>
+<li>Address resolution (finding a device’s MAC address from its IPv6 address)</li>
+<li>Neighbor reachability detection</li>
+<li>Router and prefix discovery</li>
+<li>Address autoconfiguration (stateless)</li>
+<li>Redirecting hosts to better routes</li>
+</ul>
+<hr />
+<p><strong>Neighbor Solicitation (NS)</strong>:</p>
+<ul>
+<li>NS is a specific message type within ND, used to discover the link-layer (MAC) address of a neighbor or to verify its reachability.</li>
+<li>It is functionally similar to an ARP Request in IPv4 but uses multicast instead of broadcast, making it more efficient.</li>
+<li>NS messages are sent to a solicited-node multicast address derived from the target IPv6 address, ensuring only the relevant device responds.</li>
+</ul>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>A host sends an NS message to resolve a neighbor’s MAC address.</li>
+<li>The target device replies with a Neighbor Advertisement (NA), providing its MAC address.</li>
+<li>NS is also used for Duplicate Address Detection (DAD), ensuring no two devices use the same IPv6 address on the network.</li>
+</ul>
+<hr />
+<p><strong>Unique Local Address (ULA)</strong>:</p>
+<ul>
+<li>ULAs are IPv6 addresses meant for local communications within a site or organization, similar to private IPv4 addresses (like 192.168.x.x).</li>
+<li>They are not routable on the global Internet but can be routed within private networks.</li>
+<li>ULA addresses start with the prefix <strong>FD00::/8</strong>. The rest of the address is generated randomly to ensure uniqueness within the local scope.</li>
+</ul>
+<p><strong>Key ULA Points:</strong></p>
+<ul>
+<li>Used for internal-only communication</li>
+<li>Not registered or routed on the Internet</li>
+<li>Replace the deprecated “site-local” IPv6 addresses</li>
+</ul>
+<hr />
+<h3 id="summary-table-1"><a class="header" href="#summary-table-1">Summary Table</a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Term</th><th style="text-align: left">Purpose</th><th style="text-align: left">Key Features</th></tr></thead><tbody>
+<tr><td style="text-align: left">ND (Neighbor Discovery)</td><td style="text-align: left">Device discovery, address resolution, router/prefix discovery</td><td style="text-align: left">Replaces ARP, uses ICMPv6, supports autoconfiguration and reachability detection</td></tr>
+<tr><td style="text-align: left">NS (Neighbor Solicitation)</td><td style="text-align: left">Resolve MAC addresses, check reachability</td><td style="text-align: left">Multicast-based, more efficient than ARP, used for DAD</td></tr>
+<tr><td style="text-align: left">ULA (Unique Local Address)</td><td style="text-align: left">Private IPv6 addressing</td><td style="text-align: left">FD00::/8 prefix, not Internet-routable, for internal use</td></tr>
+</tbody></table>
+</div>
+<hr />
+<p>These mechanisms are essential for IPv6 networks to operate efficiently, securely, and with minimal manual configuration.</p>
+<h2 id="global-unicast-address-gua"><a class="header" href="#global-unicast-address-gua">Global Unicast Address, GUA</a></h2>
+<p>An IPv6 Global Unicast Address (GUA) is a globally unique, Internet-routable address, equivalent to a public IPv4 address. GUAs are used for devices that need to communicate across the Internet and are assigned by Internet authorities to ensure uniqueness.</p>
+<hr />
+<h3 id="structure-of-an-ipv6-gua"><a class="header" href="#structure-of-an-ipv6-gua">Structure of an IPv6 GUA</a></h3>
+<p>A typical IPv6 GUA consists of three main parts:</p>
+<div class="table-wrapper"><table><thead><tr><th>Part</th><th>Length</th><th>Description</th></tr></thead><tbody>
+<tr><td>Global Routing Prefix</td><td>48 bits</td><td>Uniquely identifies the network; assigned by IANA, RIR, or ISP</td></tr>
+<tr><td>Subnet ID</td><td>16 bits</td><td>Identifies subnets within the organization; set by local administrators</td></tr>
+<tr><td>Interface ID</td><td>64 bits</td><td>Uniquely identifies an interface on a subnet; usually auto-generated</td></tr>
+</tbody></table>
+</div>
+<ul>
+<li><strong>Prefix:</strong> All GUAs start with binary <code>001</code> (hex 2 or 3), corresponding to <code>2000::/3</code>.</li>
+</ul>
+<p><strong>Example Address:</strong></p>
+<blockquote>
+<p>2001:0db8:1234:5678:9abc:def0:1234:5678</p>
+</blockquote>
+<hr />
+<h3 id="breakdown-of-address-parts"><a class="header" href="#breakdown-of-address-parts">Breakdown of Address Parts</a></h3>
+<h4 id="1-global-routing-prefix-48-bits"><a class="header" href="#1-global-routing-prefix-48-bits">1. Global Routing Prefix (48 bits)</a></h4>
+<ul>
+<li>Assigned hierarchically (IANA → RIR → ISP → organization)</li>
+<li>Ensures global uniqueness</li>
+<li>Used by routers to forward packets across the Internet</li>
+</ul>
+<h4 id="2-subnet-id-16-bits"><a class="header" href="#2-subnet-id-16-bits">2. Subnet ID (16 bits)</a></h4>
+<ul>
+<li>Allows organizations to divide their address space into multiple subnets</li>
+<li>Functions similarly to subnetting in IPv4, but with more flexibility and scale</li>
+<li>Expressed in hexadecimal notation</li>
+</ul>
+<h4 id="3-interface-id-64-bits"><a class="header" href="#3-interface-id-64-bits">3. Interface ID (64 bits)</a></h4>
+<ul>
+<li>Uniquely identifies each interface within a subnet</li>
+<li>Often auto-generated from the device’s MAC address using EUI-64, but can be set manually</li>
+<li>Ensures each device on a subnet has a unique address</li>
+</ul>
+<hr />
+<h3 id="allocation-example"><a class="header" href="#allocation-example">Allocation Example</a></h3>
+<ul>
+<li><strong>IANA</strong> assigns a large block (e.g., <code>2001::/16</code>) to a Regional Internet Registry (RIR)</li>
+<li><strong>RIR</strong> assigns a smaller block (e.g., <code>2001:0db8::/32</code>) to an ISP</li>
+<li><strong>ISP</strong> assigns a /48 prefix (e.g., <code>2001:0db8:abcd::/48</code>) to an organization</li>
+<li><strong>Organization</strong> subdivides the /48 into multiple /64 subnets using the Subnet ID</li>
+<li><strong>Devices</strong> on each subnet get a unique Interface ID</li>
+</ul>
+<hr />
+<h3 id="key-features"><a class="header" href="#key-features">Key Features</a></h3>
+<ul>
+<li><strong>Globally unique and routable:</strong> Ensures no address conflicts on the Internet</li>
+<li><strong>Hierarchical allocation:</strong> Simplifies routing and address management</li>
+<li><strong>Supports subnetting:</strong> Organizations can create many subnets internally</li>
+<li><strong>Large address space:</strong> 64-bit Interface ID allows for vast numbers of devices per subnet</li>
+</ul>
+<hr />
+<h3 id="summary-table-2"><a class="header" href="#summary-table-2">Summary Table</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Length (bits)</th><th>Example Value</th><th>Purpose</th></tr></thead><tbody>
+<tr><td>Global Routing Prefix</td><td>48</td><td>2001:0db8:abcd</td><td>Identifies organization/network globally</td></tr>
+<tr><td>Subnet ID</td><td>16</td><td>1234</td><td>Identifies subnet within organization</td></tr>
+<tr><td>Interface ID</td><td>64</td><td>5678:9abc:def0:1234</td><td>Identifies device/interface uniquely</td></tr>
+</tbody></table>
+</div>
+<hr />
+<p><strong>In summary:</strong><br />
+IPv6 GUAs are globally unique, Internet-routable addresses with a hierarchical structure, enabling scalable, efficient, and conflict-free global networking.</p>
+<h2 id="eui-calculating-ipv6-interface-id-using-eui-64-from-mac-address-1c-6f-65-c2-bd-f8"><a class="header" href="#eui-calculating-ipv6-interface-id-using-eui-64-from-mac-address-1c-6f-65-c2-bd-f8">EUI: Calculating IPv6 Interface ID Using EUI-64 from MAC Address 1C-6F-65-C2-BD-F8</a></h2>
+<h3 id="step-by-step-eui-64-calculation"><a class="header" href="#step-by-step-eui-64-calculation">Step-by-Step EUI-64 Calculation</a></h3>
+<ol>
+<li>
+<p><strong>Split the MAC address into two halves:</strong></p>
+<ul>
+<li>MAC: <code>1C-6F-65-C2-BD-F8</code></li>
+<li>First half: <code>1C-6F-65</code></li>
+<li>Second half: <code>C2-BD-F8</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Insert <code>FFFE</code> in the middle:</strong></p>
+<ul>
+<li>Result: <code>1C-6F-65-FF-FE-C2-BD-F8</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Convert to IPv6 notation (grouped by two bytes):</strong></p>
+<ul>
+<li><code>1C6F:65FF:FEC2:BDF8</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Invert the 7th bit (Universal/Local bit) of the first byte:</strong></p>
+<ul>
+<li>First byte <code>1C</code> in binary: <code>00011100</code></li>
+<li>7th bit (counting from left, zero-based): currently <code>0</code></li>
+<li>Invert it to <code>1</code>: <code>00011110</code> (hex: <code>1E</code>)</li>
+<li>So, the new first byte is <code>1E</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Final EUI-64 Interface ID:</strong></p>
+<ul>
+<li>Replace the first byte: <code>1E6F:65FF:FEC2:BDF8</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="result"><a class="header" href="#result"><strong>Result</strong></a></h3>
+<p>The interface ID, generated using EUI-64 from the MAC address <code>1C-6F-65-C2-BD-F8</code>, is: <code>1E6F:65FF:FEC2:BDF8</code></p>
+<h2 id="ipv4-header-fields-vs-ipv6-header-fields"><a class="header" href="#ipv4-header-fields-vs-ipv6-header-fields">IPv4 Header Fields vs IPv6 Header Fields</a></h2>
+<p>IPv6 simplifies and streamlines the IP header compared to IPv4, removing or replacing several fields to improve processing efficiency and support new features.</p>
+<h3 id="comparison-table-ipv4-vs-ipv6-header-fields"><a class="header" href="#comparison-table-ipv4-vs-ipv6-header-fields">Comparison Table: IPv4 vs IPv6 Header Fields</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>IPv4 Header Field</th><th>IPv6 Header Field</th><th>Present in IPv6?</th><th>Description / Notes</th></tr></thead><tbody>
+<tr><td>Version</td><td>Version</td><td>Yes</td><td>4 bits; indicates IP version (4 or 6)</td></tr>
+<tr><td>IHL (Header Length)</td><td>—</td><td>No</td><td>IPv6 header is fixed at 40 bytes; field not needed</td></tr>
+<tr><td>Type of Service (ToS)</td><td>Traffic Class</td><td>Yes</td><td>8 bits; used for QoS (DSCP marking)</td></tr>
+<tr><td>Total Length</td><td>Payload Length</td><td>Yes</td><td>In IPv4, includes header + data; in IPv6, only payload + extension headers</td></tr>
+<tr><td>Identification</td><td>—</td><td>No</td><td>Used for fragmentation in IPv4; handled via extension header in IPv6</td></tr>
+<tr><td>Flags</td><td>—</td><td>No</td><td>Used for fragmentation in IPv4; handled via extension header in IPv6</td></tr>
+<tr><td>Fragment Offset</td><td>—</td><td>No</td><td>Used for fragmentation in IPv4; handled via extension header in IPv6</td></tr>
+<tr><td>Time to Live (TTL)</td><td>Hop Limit</td><td>Yes</td><td>8 bits; limits packet lifetime (prevents loops)</td></tr>
+<tr><td>Protocol</td><td>Next Header</td><td>Yes</td><td>8 bits; indicates next header or upper-layer protocol (TCP, UDP, etc.)</td></tr>
+<tr><td>Header Checksum</td><td>—</td><td>No</td><td>Removed in IPv6; error checking handled elsewhere</td></tr>
+<tr><td>Source Address</td><td>Source Address</td><td>Yes</td><td>32 bits in IPv4, 128 bits in IPv6</td></tr>
+<tr><td>Destination Address</td><td>Destination Address</td><td>Yes</td><td>32 bits in IPv4, 128 bits in IPv6</td></tr>
+<tr><td>Options</td><td>Extension Headers</td><td>Yes (different)</td><td>IPv4 options replaced by separate extension headers in IPv6</td></tr>
+<tr><td>Padding</td><td>—</td><td>No</td><td>Not present; IPv6 header is naturally aligned</td></tr>
+<tr><td>Flow Label</td><td>Flow Label</td><td>Yes (new)</td><td>20 bits; used for labeling packets belonging to the same flow (new in IPv6)</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="key-differences"><a class="header" href="#key-differences">Key Differences</a></h3>
+<ul>
+<li><strong>IPv6 header is fixed at 40 bytes</strong> (IPv4 header is variable: 20–60 bytes).</li>
+<li><strong>Fragmentation fields</strong> (Identification, Flags, Fragment Offset) are removed from the main header and handled by an optional extension header in IPv6.</li>
+<li><strong>Header checksum</strong> is eliminated in IPv6 to reduce processing overhead.</li>
+<li><strong>Options</strong> are replaced by more flexible <strong>extension headers</strong> in IPv6.</li>
+<li><strong>Flow Label</strong> is a new field in IPv6 for special packet handling.</li>
+<li><strong>Address fields</strong> are expanded from 32 bits (IPv4) to 128 bits (IPv6).</li>
+</ul>
+<hr />
+<h3 id="visual-summary"><a class="header" href="#visual-summary">Visual Summary</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>IPv4</th><th>IPv6</th></tr></thead><tbody>
+<tr><td>Version</td><td>4</td><td>6</td></tr>
+<tr><td>Header Length</td><td>Variable (20–60 bytes)</td><td>Fixed (40 bytes)</td></tr>
+<tr><td>Source Address</td><td>32 bits</td><td>128 bits</td></tr>
+<tr><td>Destination Addr</td><td>32 bits</td><td>128 bits</td></tr>
+<tr><td>Checksum</td><td>Yes</td><td>No</td></tr>
+<tr><td>Extension Header</td><td>No (Options instead)</td><td>Yes</td></tr>
+<tr><td>Flow Label</td><td>No</td><td>Yes (20 bits)</td></tr>
+</tbody></table>
+</div><style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
