@@ -280,7 +280,9 @@
   --mdbook-alerts-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 23q-2.8 0-5.15-1.275T3 18.325V21H1v-6h6v2H4.525q1.2 1.8 3.163 2.9T12 21q1.875 0 3.513-.712t2.85-1.925t1.925-2.85T21 12h2q0 2.275-.862 4.275t-2.363 3.5t-3.5 2.363T12 23M1 12q0-2.275.863-4.275t2.362-3.5t3.5-2.362T12 1q2.8 0 5.15 1.275t3.85 3.4V3h2v6h-6V7h2.475q-1.2-1.8-3.162-2.9T12 3q-1.875 0-3.512.713t-2.85 1.924t-1.925 2.85T3 12zm11 6q.525 0 .888-.363t.362-.887t-.363-.9t-.887-.375t-.888.363t-.362.887t.363.9T12 18m-.9-3.8h1.825q0-.9.213-1.35t.862-1.1q.875-.875 1.163-1.412t.287-1.288q0-1.4-1-2.225T12 6q-1.25 0-2.15.65T8.55 8.5l1.65.7q.175-.65.663-1.075T12 7.7q.675 0 1.137.388t.463 1.037q0 .425-.2.85t-.85 1q-.825.725-1.137 1.413T11.1 14.2'/%3E%3C/svg%3E");
 }
 </style>
-<h1 id="scripts"><a class="header" href="#scripts">Scripts</a></h1>
+<h1 id="powershell-scripts"><a class="header" href="#powershell-scripts">Powershell Scripts</a></h1>
+<ul>
+<li><a href="#usage">Usage</a>
 <ul>
 <li><a href="#psfzf">PSFzf</a></li>
 <li><a href="#disks">Disks</a></li>
@@ -290,10 +292,21 @@
 <li><a href="#google-search">Google search</a></li>
 <li><a href="#eza">eza</a></li>
 <li><a href="#yt-dlp">yt-dlp</a></li>
+<li><a href="#get-myip">Get-MyIP</a></li>
+<li><a href="#open-path-in-directory-opus">Open path in Directory Opus</a></li>
+<li><a href="#list-items">List items</a></li>
+</ul>
+</li>
+<li><a href="#alias">Alias</a>
+<ul>
+<li><a href="#open-path-in-explorer">Open path in Explorer</a></li>
+</ul>
+</li>
 </ul>
 <br>  
-<p>Copy and Paste the scripts into your PowerShell profile. To open your PowerShell profile in VS Code type <code>code $Profile</code>.<br />
-Most scripts require additional software. Install the following software if you do not have it already:</p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<p>Copy and Paste the scripts into your PowerShell profile. To open your PowerShell profile in VS Code type <code>code $Profile</code>. To open in Notepad type <code>notepad $profile</code></p>
+<p>Most scripts require additional software. Install the following software if you do not have it already:</p>
 <div class="mdbook-tabs-container" data-tabglobal="install">
 <nav class="mdbook-tabs">
 <button class="mdbook-tab active" data-tabname="Winget">Winget</button>
@@ -321,7 +334,7 @@ Scoop install zoxide fzf fd bat ripgrep eza less
 <p>You will need to install the <a href="https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170">Visual C++ Redistributable</a> package as well.</p>
 <p>Add <code>Invoke-Expression (&amp; { (zoxide init powershell | Out-String) })</code> to your PowerShell profile</p>
 <p>Detailed information can be found by clicking <a href="https://github.com/ajeetdsouza/zoxide">zoxide</a>, <a href="https://github.com/junegunn/fzf">fzf</a>, <a href="https://github.com/sharkdp/fd">fd</a>, <a href="https://github.com/sharkdp/bat">bat</a>, <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>, <a href="https://github.com/eza-community/eza">eza</a> and <a href="https://www.greenwoodsoftware.com/less/faq.html">less</a>.</p>
-<h2 id="psfzf"><a class="header" href="#psfzf">PSFzf</a></h2>
+<h3 id="psfzf"><a class="header" href="#psfzf">PSFzf</a></h3>
 <p>PSFzf installs from PSGallery. More details <a href="https://github.com/kelleyma49/PSFzf">here</a>.</p>
 <div class="mdbook-tabs-container" data-tabglobal="install">
 <nav class="mdbook-tabs">
@@ -352,7 +365,7 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 <p>Press <kbd>Ctrl</kbd> + <kbd>r</kbd> to list previous commands. Search and hit <kbd>Enter</kbd> twice to execute the command.</p>
 <p>Press <kbd>↑</kbd> or <kbd>↓</kbd> to navigate the list.</p>
 <p>Tab completion works out of the box.</p>
-<h2 id="disks"><a class="header" href="#disks">Disks</a></h2>
+<h3 id="disks"><a class="header" href="#disks">Disks</a></h3>
 <p><img src="./pics/Disks.jpg" alt="Disks" /></p>
 <p>Type <code>disks</code> and hit <kbd>Enter</kbd> to display disk information in human readable format.</p>
 <details>  
@@ -365,7 +378,7 @@ function disks {
 
 </code></pre>
 </details>  
-<h2 id="find-files-and-folders"><a class="header" href="#find-files-and-folders">Find files and folders</a></h2>
+<h3 id="find-files-and-folders"><a class="header" href="#find-files-and-folders">Find files and folders</a></h3>
 <p>A script with options to view, delete or edit files with external tools.</p>
 <details>
 <summary><u>Script</u></summary>
@@ -494,7 +507,7 @@ $env:FZF_DEFAULT_OPTS = @"
 </p>
 <p>The script sets two keybindings via PSReadLineKeyHandler.</p>
 </div>
-<h2 id="find-fz"><a class="header" href="#find-fz">Find fz</a></h2>
+<h3 id="find-fz"><a class="header" href="#find-fz">Find fz</a></h3>
 <p>File search script utilizing fzf, ripgrep and bat.</p>
 <details>  
 <summary><u>Script</u></summary>
@@ -525,7 +538,7 @@ $env:FZF_DEFAULT_OPTS = @"
 <p>Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to switch between ripgrep and fzf.</p>
 <p>Press <kbd>↑</kbd> or <kbd>↓</kbd> to navigate the list. Press <kbd>Enter</kbd> to select.</p>
 <p>Press <kbd>Shift</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd> to navigate the preview.</p>
-<h2 id="find-fza"><a class="header" href="#find-fza">Find fza</a></h2>
+<h3 id="find-fza"><a class="header" href="#find-fza">Find fza</a></h3>
 <p>File searcher script utilizing fzf, fd and bat.</p>
 <details>
 <summary><u>Script</u></summary>
@@ -546,7 +559,7 @@ function fza {
 <p>Press <kbd>↑</kbd> or <kbd>↓</kbd> to navigate the list.</p>
 <p>Press <kbd>Shift</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd> to navigate the preview.</p>
 </details>  
-<h2 id="google-search"><a class="header" href="#google-search">Google search</a></h2>
+<h3 id="google-search"><a class="header" href="#google-search">Google search</a></h3>
 <p>Search Google from the command line. Type <code>gog</code> and a search term and hit <kbd>Enter</kbd>.
 Opens in your default browser.</p>
 <details>  
@@ -563,8 +576,8 @@ Set-Alias gog search-google
 
 </code></pre>
 </details>
-<h2 id="eza"><a class="header" href="#eza">eza</a></h2>
-<p>List files with details using the <code>e</code> alias. Image and more information in the <a href="./eza.html">eza folder</a>.</p>
+<h3 id="eza"><a class="header" href="#eza">eza</a></h3>
+<p>List files with details using the <code>e</code> alias. More information in the <a href="./eza.html">eza document</a>.</p>
 <details>
 <summary><u>Script</u></summary>
 <pre><code class="language-Powershell">
@@ -588,7 +601,7 @@ function e {
 
 </code></pre>
 </details>
-<h2 id="yt-dlp"><a class="header" href="#yt-dlp">yt-dlp</a></h2>
+<h3 id="yt-dlp"><a class="header" href="#yt-dlp">yt-dlp</a></h3>
 <p>Requires <code>yt-dlp</code>. More information <a href="https://github.com/yt-dlp/yt-dlp">here</a>. A short user guide is available <a href="./yt-dlp.html">here</a>.</p>
 <div class="mdbook-tabs-container" data-tabglobal="install">
 <nav class="mdbook-tabs">
@@ -641,6 +654,38 @@ Function ytm {
 
 </code></pre>
 </details>
+<h3 id="get-myip"><a class="header" href="#get-myip">Get-MyIP</a></h3>
+<p>Fetch WAN ip.</p>
+<pre><code class="language-powershell">
+function Get-MyIP {
+    (Invoke-RestMethod -Uri "https://api.ipify.org")
+}
+</code></pre>
+<p>Paste into your $Profile</p>
+<h3 id="open-path-in-directory-opus"><a class="header" href="#open-path-in-directory-opus">Open path in Directory Opus</a></h3>
+<pre><code class="language-powershell">
+function Open {
+    $opusPath = "C:\Program Files\GPSoftware\Directory Opus\dopus.exe"
+    $folderPath = Get-Location
+
+    $folderPath = $folderPath -replace '\{', '' -replace '\}', ''
+
+    Start-Process $opusPath -ArgumentList "/path `"$folderPath`""
+}
+</code></pre>
+<h3 id="list-items"><a class="header" href="#list-items">List items</a></h3>
+<pre><code class="language-powershell">
+function ll { Get-ChildItem -Force | Format-Table -AutoSize }
+function la { Get-ChildItem -Force -Attributes Hidden, ReadOnly, System | Format-Table -AutoSize }
+function l { Get-ChildItem -Name }
+
+</code></pre>
+<h2 id="alias"><a class="header" href="#alias">Alias</a></h2>
+<h3 id="open-path-in-explorer"><a class="header" href="#open-path-in-explorer">Open path in Explorer</a></h3>
+<pre><code class="language-powershell">
+Set-Alias -Name open -Value explorer.exe
+
+</code></pre>
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
                     </main>
 
