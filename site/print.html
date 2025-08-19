@@ -2842,6 +2842,319 @@ alias e='eza -lha --icons --git --time-style=long-iso --header --group-directori
 }
 
 </style>
+<h1 id="user-management-1"><a class="header" href="#user-management-1">User management</a></h1>
+<ul>
+<li><a href="linux_user_management.html#case-scenario">Case Scenario</a></li>
+<li><a href="linux_user_management.html#setting-up-the-departments-">Setting Up the Departments 💻</a>
+<ul>
+<li><a href="linux_user_management.html#step-1-create-directories-and-groups">Step 1: Create Directories and Groups</a></li>
+<li><a href="linux_user_management.html#step-2-create-users-and-passwords">Step 2: Create Users and Passwords</a></li>
+<li><a href="linux_user_management.html#password-security-best-practices">Password Security Best Practices</a></li>
+<li><a href="linux_user_management.html#step-3-configure-directory-ownership-and-permissions">Step 3: Configure Directory Ownership and Permissions</a></li>
+<li><a href="linux_user_management.html#sticky-bit-suid--sgid">Sticky bit, SUID &amp; SGID</a></li>
+<li><a href="linux_user_management.html#special-permission-bit-differences">Special Permission Bit Differences</a></li>
+<li><a href="linux_user_management.html#step-4-create-confidential-documents">Step 4: Create Confidential Documents</a></li>
+<li><a href="linux_user_management.html#deliverables-verification-commands-">Deliverables: Verification Commands ✅</a>
+<ul>
+<li><a href="linux_user_management.html#verify-user-and-group-creation">Verify User and Group Creation</a></li>
+<li><a href="linux_user_management.html#verify-users-group-assignment">Verify User’s Group Assignment</a></li>
+<li><a href="linux_user_management.html#verify-directory-creation-and-permissions">Verify Directory Creation and Permissions</a></li>
+<li><a href="linux_user_management.html#verify-file-creation-and-permissions">Verify File Creation and Permissions</a></li>
+</ul>
+</li>
+<li><a href="linux_user_management.html#cleanup">Cleanup</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="case-scenario"><a class="header" href="#case-scenario">Case Scenario</a></h2>
+<p>As the Linux Administrator for fast-growing company, you have been tasked with creating, modifying, and removing user accounts from the Linux server. The company has just hired 9 new employees to fill 3 newly designed departments. The departments that have been created are Engineering, Sales and IS. The server must be setup with the appropriate files, folders, users, groups and permissions to ensure a successful launch of the newly designed departments.</p>
+<h2 id="setting-up-the-departments-"><a class="header" href="#setting-up-the-departments-">Setting Up the Departments 💻</a></h2>
+<p>To set up the new departments, we'll follow a series of steps to create the necessary directories, users, and groups, and then configure the permissions to meet the specified security requirements.</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Department</th><th style="text-align: left">Administrator User</th><th style="text-align: left">Additional Users</th><th style="text-align: left">Group</th><th style="text-align: left">Directory</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>Engineering</strong></td><td style="text-align: left"><code>engadmin</code></td><td style="text-align: left"><code>enguser1</code>, <code>enguser2</code></td><td style="text-align: left"><code>engineering</code></td><td style="text-align: left"><code>/engineering</code></td></tr>
+<tr><td style="text-align: left"><strong>Sales</strong></td><td style="text-align: left"><code>salsadmin</code></td><td style="text-align: left"><code>saluser1</code>, <code>saluser2</code></td><td style="text-align: left"><code>sales</code></td><td style="text-align: left"><code>/sales</code></td></tr>
+<tr><td style="text-align: left"><strong>IS</strong></td><td style="text-align: left"><code>isadmin</code></td><td style="text-align: left"><code>isuser1</code>, <code>isuser2</code></td><td style="text-align: left"><code>is</code></td><td style="text-align: left"><code>/is</code></td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="step-1-create-directories-and-groups"><a class="header" href="#step-1-create-directories-and-groups">Step 1: Create Directories and Groups</a></h3>
+<p>First, we need to create the directories and groups for each department.</p>
+<p><strong>Commands:</strong></p>
+<ul>
+<li><code>sudo mkdir /engineering /sales /is</code> (Creates the department directories at the root level).</li>
+<li><code>sudo groupadd engineering</code> (Creates the <code>engineering</code> group).</li>
+<li><code>sudo groupadd sales</code> (Creates the <code>sales</code> group).</li>
+<li><code>sudo groupadd is</code> (Creates the <code>is</code> group).</li>
+<li><code>sudo groupdel 'group'</code> (Removes group).</li>
+</ul>
+<hr />
+<h3 id="step-2-create-users-and-passwords"><a class="header" href="#step-2-create-users-and-passwords">Step 2: Create Users and Passwords</a></h3>
+<p>Next, we'll create the administrative and normal users for each department, ensuring they have a Bash login shell and are assigned to their respective primary groups.</p>
+<p><strong>Commands:</strong><br />
+<code>-m</code> create the user's home directory.<br />
+<code>-g</code> name or ID of the primary group of the new account(group).<br />
+Use <code>-mg</code> for both options.</p>
+<ul>
+<li><code>sudo useradd -m -g engineering -s /bin/bash engadmin</code> (Creates the <code>engadmin</code> user with the primary group <code>engineering</code> and a home directory).</li>
+<li><code>sudo useradd -m -g engineering -s /bin/bash enguser1</code></li>
+<li><code>sudo useradd -m -g engineering -s /bin/bash enguser2</code></li>
+<li><code>sudo useradd -m -g sales -s /bin/bash salsadmin</code> (Creates the <code>salsadmin</code> user with the primary group <code>sales</code> and a home directory).</li>
+<li><code>sudo useradd -m -g sales -s /bin/bash saluser1</code></li>
+<li><code>sudo useradd -m -g sales -s /bin/bash saluser2</code></li>
+<li><code>sudo useradd -m -g is -s /bin/bash isadmin</code> (Creates the <code>isadmin</code> user with the primary group <code>is</code> and a home directory).</li>
+<li><code>sudo useradd -m -g is -s /bin/bash isuser1</code></li>
+<li><code>sudo useradd -m -g is -s /bin/bash isuser2</code></li>
+<li><code>sudo userdel 'user'</code> (Removes user).</li>
+</ul>
+<br>
+<ul>
+<li><code>sudo passwd engadmin</code></li>
+<li><code>sudo passwd enguser1</code></li>
+<li><code>sudo passwd enguser2</code></li>
+<li><code>sudo passwd salsadmin</code></li>
+<li><code>sudo passwd saluser1</code></li>
+<li><code>sudo passwd saluser2</code></li>
+<li><code>sudo passwd isadmin</code></li>
+<li><code>sudo passwd isuser1</code></li>
+<li><code>sudo passwd isuser2</code></li>
+</ul>
+<p>After you run each command, the terminal will prompt you to input and confirm the new password for the specified user.</p>
+<h3 id="password-security-best-practices"><a class="header" href="#password-security-best-practices">Password Security Best Practices</a></h3>
+<p>When setting passwords, it's a good practice to enforce security policies to protect the system. Linux systems have a variety of tools to manage password policies, such as:</p>
+<ul>
+<li><strong>Password aging:</strong> Forcing users to change their passwords after a certain period.</li>
+<li><strong>Complexity requirements:</strong> Requiring passwords to meet specific criteria, like a minimum length and the inclusion of special characters.</li>
+<li><strong>Locking accounts:</strong> Automatically locking accounts after a certain number of failed login attempts.</li>
+</ul>
+<p>These policies can be configured in files like <code>/etc/login.defs</code> and <code>/etc/pam.d/common-password</code> to enhance overall system security.</p>
+<hr />
+<h3 id="step-3-configure-directory-ownership-and-permissions"><a class="header" href="#step-3-configure-directory-ownership-and-permissions">Step 3: Configure Directory Ownership and Permissions</a></h3>
+<p>This step ensures that the department directories have the correct ownership and permissions. We will set the department administrator as the owner, the department group as the group owner, and apply special permissions.</p>
+<ul>
+<li><code>sudo chown engadmin:engineering /engineering</code> (Changes the ownership of the <code>/engineering</code> directory).</li>
+<li><code>sudo chown salsadmin:sales /sales</code> (Changes the ownership of the <code>/sales</code> directory).</li>
+<li><code>sudo chown isadmin:is /is</code> (Changes the ownership of the <code>/is</code> directory).</li>
+</ul>
+<p><code>engadmin:engineering</code>: This is the new ownership specification.</p>
+<p><code>engadmin</code>: The name before the colon is the new <strong>user owner</strong>. All files and directories have a user owner, and in this case, the /engineering directory's owner is being set to the engadmin user.</p>
+<p><code>:engineering</code>: The name after the colon specifies the new <strong>group owner</strong>. All files and directories also have a group owner. By setting the group owner to engineering, all users who are members of the engineering group will inherit the group's permissions for this directory.</p>
+<p><code>/engineering</code>: This is the target directory. This command will apply the ownership changes to the /engineering directory.</p>
+<p>Now, we will set the permissions. The <strong><code>chmod</code></strong> command is used to set the permissions of files and directories. Permissions can be represented in either symbolic or octal (numeric) form. The octal representation is often clearer for complex permissions. A three-digit octal code represents the permissions for the owner, the group, and others, respectively. The octal values are derived from the sum of the permissions: read (<code>r</code>) is 4, write (<code>w</code>) is 2, and execute (<code>x</code>) is 1.</p>
+<p>For example, <code>7</code> represents <code>rwx</code> (4+2+1), <code>5</code> represents <code>r-x</code> (4+0+1), and <code>6</code> represents <code>rw-</code> (4+2+0). The fourth octal digit, if present, is for special permissions.</p>
+<p>To meet the requirements, we'll use a combination of standard and special permissions. The <strong>sticky bit</strong> (<code>t</code> or <code>1</code> in the first octal digit) is a special permission that, when applied to a directory, prevents users from deleting files they don't own, even if they have write permissions to the directory. This is exactly what the prompt requires. The first <code>2</code> in our command will set the <strong>SGID</strong> (Set Group ID) bit, which ensures that any new file created in the directory will inherit the group ownership of the directory (<code>engineering</code>, <code>sales</code>, or <code>is</code>).</p>
+<p><strong>Commands:</strong></p>
+<ul>
+<li><code>sudo chmod 2770 /engineering</code>
+<ul>
+<li><strong>2</strong>: Sets the <strong>SGID</strong> bit. This means any new file or subdirectory created within <code>/engineering</code> will automatically belong to the <code>engineering</code> group.</li>
+<li><strong>7</strong>: <code>rwx</code> (read, write, execute) for the <strong>owner</strong> (<code>engadmin</code>).</li>
+<li><strong>7</strong>: <code>rwx</code> (read, write, execute) for the <strong>group</strong> (<code>engineering</code>).</li>
+<li><strong>0</strong>: No permissions for <strong>others</strong>.</li>
+</ul>
+</li>
+<li><code>sudo chmod 2770 /sales</code></li>
+<li><code>sudo chmod 2770 /is</code></li>
+<li><code>sudo chmod +t /engineering</code> (Adds the sticky bit to the <code>/engineering</code> directory, allowing only file owners to delete their own files).</li>
+<li><code>sudo chmod +t /sales</code></li>
+<li><code>sudo chmod +t /is</code></li>
+</ul>
+<h3 id="sticky-bit-suid--sgid"><a class="header" href="#sticky-bit-suid--sgid">Sticky bit, SUID &amp; SGID</a></h3>
+<p>Here's a breakdown of the differences between <code>1770</code>, <code>2770</code>, and <code>4770</code> permissions, with a focus on their special bits.</p>
+<p>The numbers <code>1</code>, <code>2</code>, and <code>4</code> in the first position of the octal permission code represent special permission bits that affect how a file or directory behaves. The <code>770</code> part always means that the <strong>owner</strong> and the <strong>group</strong> have full read, write, and execute permissions (<code>rwx</code>), while <strong>others</strong> have no permissions (<code>---</code>).</p>
+<hr />
+<h3 id="special-permission-bit-differences"><a class="header" href="#special-permission-bit-differences">Special Permission Bit Differences</a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Octal Code</th><th style="text-align: left">Special Bit</th><th style="text-align: left">Meaning and Impact</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong><code>1770</code></strong></td><td style="text-align: left"><strong>Sticky Bit (1)</strong> 📌</td><td style="text-align: left"><strong>Applies to Directories:</strong> When set on a directory, users can create files and subdirectories within it, but they can <strong>only delete or rename files they own</strong> (or files owned by the directory owner). This is crucial for shared directories like <code>/tmp</code> to prevent users from deleting others' content.</td></tr>
+<tr><td style="text-align: left"><strong><code>2770</code></strong></td><td style="text-align: left"><strong>Set Group ID (SGID) Bit (2)</strong> 👥</td><td style="text-align: left"><strong>Applies to Directories:</strong> When set on a directory, any new files or subdirectories created within it will <strong>inherit the group ownership of the parent directory</strong>, rather than the primary group of the user who created them. This is very useful for collaborative projects where all files should belong to a specific project group.  <br> <strong>Applies to Executable Files:</strong> When set on an executable file, the process will run with the <strong>effective group ID of the file's group owner</strong>, not the primary group of the user executing it.</td></tr>
+<tr><td style="text-align: left"><strong><code>4770</code></strong></td><td style="text-align: left"><strong>Set User ID (SUID) Bit (4)</strong> 👤</td><td style="text-align: left"><strong>Applies to Executable Files:</strong> When set on an executable file, the process will run with the <strong>effective user ID of the file's owner</strong>, not the user who is executing it. A classic example is the <code>passwd</code> command, which allows a non-root user to change their password by temporarily assuming the root user's permissions to modify system files.  <br> <strong>Applies to Directories:</strong> The SUID bit on a directory is generally ignored by most modern Linux systems and doesn't have a standard or widely recognized behavior.</td></tr>
+</tbody></table>
+</div>
+<hr />
+<p>In all these cases, the <code>770</code> indicates <code>rwx</code> (read, write, execute) for the user owner, <code>rwx</code> for the group owner, and <code>---</code> (no permissions) for others. The first digit is what changes the fundamental behavior regarding ownership or deletion within a directory, or execution privileges for a file.</p>
+<hr />
+<h3 id="step-4-create-confidential-documents"><a class="header" href="#step-4-create-confidential-documents">Step 4: Create Confidential Documents</a></h3>
+<p>Now we will create the required documents in each department's directory and set the appropriate ownership and permissions.</p>
+<p><strong>Commands:</strong></p>
+<ul>
+<li><code>sudo su engadmin -c "echo 'This file contains confidential information for the engineering department.' &gt; /engineering/confidential.txt"</code> (Creates the file and writes the text as <code>engadmin</code>).</li>
+<li><code>sudo su salsadmin -c "echo 'This file contains confidential information for the sales department.' &gt; /sales/confidential.txt"</code> (Creates the file as <code>salsadmin</code>).</li>
+<li><code>sudo su isadmin -c "echo 'This file contains confidential information for the IS department.' &gt; /is/confidential.txt"</code> (Creates the file as <code>isadmin</code>).</li>
+</ul>
+<br>
+<p><code>-c</code>: This option tells su to execute a single command (the one that follows) instead of starting a new interactive shell.</p>
+<p><code>"..."</code>: The double quotes are crucial. They enclose the command string that you want to execute as the engadmin user. This ensures that the entire command, including any pipes or redirections, is treated as a single unit and executed in the context of the new user's shell.</p>
+<p><strong>Modify file permissions:</strong></p>
+<ul>
+<li><code>sudo su engadmin -c "chmod 640 /engineering/confidential.txt"</code>
+<ul>
+<li><strong>6</strong>: <code>rw-</code> (read and write) for the <strong>owner</strong> (<code>engadmin</code>).</li>
+<li><strong>4</strong>: <code>r--</code> (read-only) for the <strong>group</strong> (<code>engineering</code>).</li>
+<li><strong>0</strong>: No permissions for <strong>others</strong>.</li>
+</ul>
+</li>
+<li><code>sudo su salsadmin -c "chmod 640 /sales/confidential.txt"</code></li>
+<li><code>sudo su isadmin -c "chmod 640 /is/confidential.txt"</code></li>
+</ul>
+<hr />
+<h3 id="deliverables-verification-commands-"><a class="header" href="#deliverables-verification-commands-">Deliverables: Verification Commands ✅</a></h3>
+<h4 id="verify-user-and-group-creation"><a class="header" href="#verify-user-and-group-creation">Verify User and Group Creation</a></h4>
+<p>To verify that the users and groups have been created, you can check the <code>/etc/passwd</code> and <code>/etc/group</code> files, respectively.</p>
+<ul>
+<li>
+<p><code>cat /etc/passwd | grep -E "engadmin|enguser1|enguser2|salsadmin|saluser1|saluser2|isadmin|isuser1|isuser2"</code></p>
+<ul>
+<li>This command searches the <code>/etc/passwd</code> file for the usernames we created. The output confirms their existence and provides details like their UID, GID, home directory, and shell.</li>
+</ul>
+</li>
+<li>
+<p><code>cat /etc/group | grep -E "engineering|sales|is"</code></p>
+<ul>
+<li>This command searches the <code>/etc/group</code> file for the group names. The output confirms the groups exist and shows which users are members.</li>
+</ul>
+</li>
+<li>
+<p><code>getent passwd</code> Displays a list of all users.</p>
+</li>
+<li>
+<p><code>getent passwd isadmin isuser1 isuser2</code> Displays users if found.</p>
+</li>
+<li>
+<p><code>-E</code> Enables extended regular expressions.</p>
+</li>
+</ul>
+<h4 id="verify-users-group-assignment"><a class="header" href="#verify-users-group-assignment">Verify User’s Group Assignment</a></h4>
+<p>To check a specific user's group assignments, you can use the <strong><code>id</code></strong> command.</p>
+<ul>
+<li><code>id engadmin</code>
+<ul>
+<li><strong>Sample Output:</strong> <code>uid=1001(engadmin) gid=1001(engineering) groups=1001(engineering)</code></li>
+<li>This shows that <code>engadmin</code>'s primary group (<code>gid</code>) is <code>engineering</code>.</li>
+</ul>
+</li>
+<li><code>id saluser1</code></li>
+<li><code>id isuser2</code>
+<ul>
+<li>You can run this command for each user to confirm their primary group.</li>
+</ul>
+</li>
+</ul>
+<h4 id="verify-directory-creation-and-permissions"><a class="header" href="#verify-directory-creation-and-permissions">Verify Directory Creation and Permissions</a></h4>
+<p>The <strong><code>ls -ld</code></strong> command is essential for checking directory permissions, ownership, and other details.</p>
+<ul>
+<li><code>ls -ld /engineering /sales /is</code>
+<ul>
+<li><strong>Sample Output for <code>/engineering</code></strong>: <code>drwxrwsr-T 2 engadmin engineering 4096 Aug 19 12:00 /engineering</code></li>
+<li><strong><code>d</code></strong>: Confirms it's a directory.</li>
+<li><strong><code>rwxrwsr-T</code></strong>:
+<ul>
+<li><code>rwx</code>: Owner (<code>engadmin</code>) has read, write, and execute permissions.</li>
+<li><code>rws</code>: The <code>s</code> confirms the <strong>SGID</strong> bit is set, and the group has read, write, and execute permissions.</li>
+<li><code>r-T</code>: The <code>T</code> confirms the <strong>sticky bit</strong> is set for others' permissions.</li>
+</ul>
+</li>
+<li><strong><code>engadmin engineering</code></strong>: Confirms the correct owner and group ownership.</li>
+</ul>
+</li>
+</ul>
+<h4 id="verify-file-creation-and-permissions"><a class="header" href="#verify-file-creation-and-permissions">Verify File Creation and Permissions</a></h4>
+<p>To verify the creation and permissions of the confidential documents, use the <strong><code>ls -l</code></strong> command.</p>
+<ul>
+<li><code>sudo su engadmin -c "ls -l /engineering/confidential.txt"</code>
+<ul>
+<li><strong>Sample Output</strong>: <code>-rw-r----- 1 engadmin engineering 62 Aug 19 12:05 /engineering/confidential_doc</code></li>
+<li><strong><code>-rw-r-----</code></strong>: Confirms the permissions.
+<ul>
+<li><code>rw-</code>: Owner (<code>engadmin</code>) has read and write access.</li>
+<li><code>r--</code>: Group (<code>engineering</code>) has read-only access.</li>
+<li><code>---</code>: Others have no permissions.</li>
+</ul>
+</li>
+<li><strong><code>engadmin engineering</code></strong>: Confirms the correct ownership and group.</li>
+</ul>
+</li>
+<li><code>sudo su salsadmin -c "ls -l /sales/confidential_doc"</code></li>
+<li><code>sudo su isadmin -c "ls -l /is/confidential_doc"</code></li>
+</ul>
+<h3 id="cleanup"><a class="header" href="#cleanup">Cleanup</a></h3>
+<pre><code class="language-bash">
+sudo userdel -r engadmin enguser1 enguser2 &amp;&amp; \
+sudo userdel -r salsadmin saluser1 saluser2 &amp;&amp; \
+sudo userdel -r isadmin isuser1 isuser2 &amp;&amp; \
+sudo groupdel engineering &amp;&amp; \
+sudo groupdel sales &amp;&amp; \
+sudo groupdel is &amp;&amp; \
+sudo rm -r /engineering &amp;&amp; \
+sudo rm -r /sales &amp;&amp; \
+sudo rm -r /is
+
+</code></pre>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script><div style="break-before: page; page-break-before: always;"></div><style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.25em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(154, 103, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+</style>
 <h1 id="basic-syntax"><a class="header" href="#basic-syntax">Basic Syntax</a></h1>
 <ul>
 <li><a href="markdown_syntax.html#heading">Heading</a></li>
