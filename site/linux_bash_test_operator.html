@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Keyboard Shortcuts</title>
+        <title>Bash Test Operator</title>
 
 
         <!-- Custom HTML head -->
@@ -142,7 +142,7 @@
                         <a href="https://github.com/thorbjornium/Software_Manual_release" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
-                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/hyper_v_shortcuts.md" title="Suggest an edit" aria-label="Suggest an edit">
+                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/linux_bash_test_operator.md" title="Suggest an edit" aria-label="Suggest an edit">
                             <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
@@ -238,56 +238,78 @@
 }
 
 </style>
-<h1 id="hyper-v-keyboard-shortcuts"><a class="header" href="#hyper-v-keyboard-shortcuts">Hyper-V Keyboard Shortcuts</a></h1>
-<h2 id="general-shortcuts"><a class="header" href="#general-shortcuts">General Shortcuts</a></h2>
-<p><strong>By default, the keyboard input and mouse clicks are sent to the virtual machine. So you may need to press CTRL + ALT + LEFT arrow before you use the following shortcut keys.</strong></p>
+<h1 id="bash"><a class="header" href="#bash">Bash</a></h1>
 <ul>
-<li><strong>Ctrl + N</strong>: Create a new virtual machine.</li>
-<li><strong>Ctrl + O</strong>: Open an existing virtual machine.</li>
-<li><strong>Ctrl + S</strong>: Save the current state of the virtual machine.</li>
-<li><strong>Ctrl + P</strong>: Pause the virtual machine.</li>
-<li><strong>Ctrl + R</strong>: Reset the virtual machine.</li>
-<li><strong>Ctrl + L</strong>: Open the Virtual Machine Connection window for a selected VM.</li>
-<li><strong>Delete</strong>: Delete the selected virtual machine.</li>
+<li><a href="#-bash-test-operator-cheat-sheet">🛠 Bash Test Operator Cheat Sheet</a>
+<ul>
+<li><a href="#-string-comparisons">🔤 String Comparisons</a></li>
+<li><a href="#-integer-comparisons">🔢 Integer Comparisons</a></li>
+<li><a href="#-file-tests">📂 File Tests</a></li>
+<li><a href="#-regex-examples-with-">🌀 Regex Examples with <code>=~</code></a></li>
+<li><a href="#-pro-tips">💡 Pro Tips</a></li>
 </ul>
-<h2 id="virtual-machine-management"><a class="header" href="#virtual-machine-management">Virtual Machine Management</a></h2>
-<ul>
-<li><strong>Ctrl + Shift + M</strong>: Open the Virtual Machine Settings for the selected VM.</li>
-<li><strong>Ctrl + Shift + I</strong>: Open the "Inspect" options for a selected virtual machine.</li>
-<li><strong>Ctrl + Shift + C</strong>: Connect to the selected virtual machine.</li>
+</li>
 </ul>
-<h2 id="snapshot-management"><a class="header" href="#snapshot-management">Snapshot Management</a></h2>
+<h2 id="-bash-test-operator-cheat-sheet"><a class="header" href="#-bash-test-operator-cheat-sheet">🛠 Bash Test Operator Cheat Sheet</a></h2>
+<h3 id="-string-comparisons"><a class="header" href="#-string-comparisons">🔤 String Comparisons</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Meaning</th><th>Example</th></tr></thead><tbody>
+<tr><td><code>=</code> / <code>==</code></td><td>Strings are equal</td><td><code>[[ $a == "yes" ]]</code></td></tr>
+<tr><td><code>!=</code></td><td>Strings are NOT equal</td><td><code>[[ $a != "no" ]]</code></td></tr>
+<tr><td><code>=~</code></td><td>Left side matches regex on right</td><td><code>[[ $name =~ ^[A-Z] ]]</code></td></tr>
+<tr><td><code>&lt;</code> / <code>&gt;</code></td><td>Lexicographic (alphabetical) compare</td><td><code>[[ $a &lt; $b ]]</code></td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="-integer-comparisons"><a class="header" href="#-integer-comparisons">🔢 Integer Comparisons</a></h3>
+<p>(<em>Use <code>-</code> style operators for numbers</em>)</p>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Meaning</th><th>Example</th></tr></thead><tbody>
+<tr><td><code>-eq</code></td><td>equal to</td><td><code>[ $x -eq 5 ]</code></td></tr>
+<tr><td><code>-ne</code></td><td>not equal to</td><td><code>[ $x -ne 10 ]</code></td></tr>
+<tr><td><code>-lt</code></td><td>less than</td><td><code>[ $x -lt 3 ]</code></td></tr>
+<tr><td><code>-le</code></td><td>less than or equal to</td><td><code>[ $x -le 7 ]</code></td></tr>
+<tr><td><code>-gt</code></td><td>greater than</td><td><code>[ $x -gt 100 ]</code></td></tr>
+<tr><td><code>-ge</code></td><td>greater than or equal to</td><td><code>[ $x -ge 18 ]</code></td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="-file-tests"><a class="header" href="#-file-tests">📂 File Tests</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Meaning</th><th>Example</th></tr></thead><tbody>
+<tr><td><code>-e</code></td><td>file exists</td><td><code>[ -e /path/file ]</code></td></tr>
+<tr><td><code>-f</code></td><td>regular file</td><td><code>[ -f myfile.txt ]</code></td></tr>
+<tr><td><code>-d</code></td><td>directory exists</td><td><code>[ -d /etc ]</code></td></tr>
+<tr><td><code>-r</code></td><td>file is readable</td><td><code>[ -r secret.txt ]</code></td></tr>
+<tr><td><code>-w</code></td><td>file is writable</td><td><code>[ -w /tmp/file ]</code></td></tr>
+<tr><td><code>-x</code></td><td>file is executable</td><td><code>[ -x script.sh ]</code></td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="-regex-examples-with-"><a class="header" href="#-regex-examples-with-">🌀 Regex Examples with <code>=~</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Pattern</th><th>Matches</th><th>Doesn’t Match</th></tr></thead><tbody>
+<tr><td><code>^[A-Z]</code></td><td>"Hello", "Zebra"</td><td>"apple", "1start"</td></tr>
+<tr><td><code>^[0-9]+$</code></td><td>"123", "007"</td><td>"12a", "abc"</td></tr>
+<tr><td><code>foo|bar</code></td><td>"foo", "barbecue"</td><td>"baz"</td></tr>
+<tr><td><code>^[a-z]{3}$</code></td><td>"cat", "dog"</td><td>"cats", "do"</td></tr>
+<tr><td><code>\.(jpg|png)$</code></td><td>"file.jpg", "img.png"</td><td>"pic.jpeg", "file.JPG"</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h3 id="-pro-tips"><a class="header" href="#-pro-tips">💡 Pro Tips</a></h3>
 <ul>
-<li><strong>Ctrl + N</strong>: Create a new snapshot of the selected virtual machine.</li>
-<li><strong>Ctrl + Shift + D</strong>: Delete the selected snapshot.</li>
-<li><strong>Ctrl + Shift + R</strong>: Restore the selected snapshot.</li>
-</ul>
-<h2 id="virtual-switch-management"><a class="header" href="#virtual-switch-management">Virtual Switch Management</a></h2>
-<ul>
-<li><strong>Ctrl + Shift + S</strong>: Open the Virtual Switch Manager.</li>
-<li><strong>Ctrl + D</strong>: Delete the selected virtual switch.</li>
-</ul>
-<h2 id="console-interaction"><a class="header" href="#console-interaction">Console Interaction</a></h2>
-<ul>
-<li><strong>Ctrl + Alt + Delete</strong>: Send Ctrl + Alt + Delete to the VM.</li>
-<li><strong>Ctrl + Alt + Enter</strong>: Toggle full-screen mode for the VM console.</li>
-</ul>
-<h2 id="navigation"><a class="header" href="#navigation">Navigation</a></h2>
-<ul>
-<li><strong>Tab</strong>: Move focus to the next item in the interface.</li>
-<li><strong>Shift + Tab</strong>: Move focus to the previous item in the interface.</li>
-<li><strong>Arrow Keys</strong>: Navigate through the list of virtual machines and settings.</li>
+<li>Prefer <code>[[ ... ]]</code> over <code>[ ... ]</code> — it’s safer and supports <code>=~</code> regex matching.</li>
+<li>Don’t quote the regex pattern on the right side of <code>=~</code> — quoting forces a literal match.</li>
+<li>Prefix a test with <code>!</code> to invert it (logical NOT).</li>
+<li>Combine tests with <code>&amp;&amp;</code> (AND) and <code>||</code> (OR) for complex conditions.</li>
 </ul>
 <style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="git_misc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="linux_bash_scripting_example.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="linux_bash_scripting_example.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ubuntu_common_commands.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -297,11 +319,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="git_misc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="linux_bash_scripting_example.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="linux_bash_scripting_example.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ubuntu_common_commands.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

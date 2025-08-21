@@ -1,0 +1,638 @@
+<!DOCTYPE HTML>
+<html lang="en" class="nordic sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Bash Scripting Example</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/tabs.css">
+        <link rel="stylesheet" href="mdbook-admonish.css">
+        <link rel="stylesheet" href="theme/sun.css">
+        <link rel="stylesheet" href="theme/catppuccin.css">
+        <link rel="stylesheet" href="theme/catppuccin-admonish.css">
+        <link rel="stylesheet" href="theme/nordic.css">
+        <link rel="stylesheet" href="./mdbook-admonish.css">
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "nordic" : "nordic";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('nordic')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="sun">Sun</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="nordic">Nordic</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>  
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/thorbjornium/Software_Manual_release" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/thorbjornium/Software-Manual/blob/main/src/linux_bash_scripting_example.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <style>
+.mdbook-alerts {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 0.25em solid var(--mdbook-alerts-color);
+}
+
+.mdbook-alerts > *:first-child {
+  margin-top: 0;
+}
+
+.mdbook-alerts > *:last-child {
+  margin-bottom: 0;
+}
+
+.mdbook-alerts-title {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  line-height: 1;
+  color: var(--mdbook-alerts-color);
+  text-transform: capitalize;
+}
+
+.mdbook-alerts-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: no-repeat center / 100%;
+  mask: no-repeat center / 100%;
+  -webkit-mask-image: var(--mdbook-alerts-icon);
+  mask-image: var(--mdbook-alerts-icon);
+}
+
+.mdbook-alerts-note {
+  --mdbook-alerts-color: rgb(9, 105, 218);
+  /* https://icon-sets.iconify.design/material-symbols/info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11q-.425 0-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8q0 .425.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20m0-8"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-tip {
+  --mdbook-alerts-color: rgb(26, 127, 55);
+  /* https://icon-sets.iconify.design/material-symbols/lightbulb-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 22q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22m-3-3q-.425 0-.712-.288T8 18q0-.425.288-.712T9 17h6q.425 0 .713.288T16 18q0 .425-.288.713T15 19zm-.75-3q-1.725-1.025-2.738-2.75T4.5 9.5q0-3.125 2.188-5.312T12 2q3.125 0 5.313 2.188T19.5 9.5q0 2.025-1.012 3.75T15.75 16zm.6-2h6.3q1.125-.8 1.738-1.975T17.5 9.5q0-2.3-1.6-3.9T12 4Q9.7 4 8.1 5.6T6.5 9.5q0 1.35.613 2.525T8.85 14M12 14"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-important {
+  --mdbook-alerts-color: rgb(130, 80, 223);
+  /* https://icon-sets.iconify.design/material-symbols/chat-info-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 7q.425 0 .713-.288T13 6q0-.425-.288-.712T12 5q-.425 0-.712.288T11 6q0 .425.288.713T12 7m0 8q.425 0 .713-.288T13 14v-4q0-.425-.288-.712T12 9q-.425 0-.712.288T11 10v4q0 .425.288.713T12 15m-6 3l-2.3 2.3q-.475.475-1.088.213T2 19.575V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18zm-.85-2H20V4H4v13.125zM4 16V4z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-warning {
+  --mdbook-alerts-color: rgb(154, 103, 0);
+  /* https://icon-sets.iconify.design/material-symbols/warning-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M2.725 21q-.275 0-.5-.137t-.35-.363q-.125-.225-.137-.488t.137-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137zm1.725-2h15.1L12 6zM12 18q.425 0 .713-.288T13 17q0-.425-.288-.712T12 16q-.425 0-.712.288T11 17q0 .425.288.713T12 18m0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.712T12 10q-.425 0-.712.288T11 11v3q0 .425.288.713T12 15m0-2.5"%2F%3E%3C%2Fsvg%3E');
+}
+
+.mdbook-alerts-caution {
+  --mdbook-alerts-color: rgb(207, 34, 46);
+  /* https://icon-sets.iconify.design/material-symbols/brightness-alert-outline-rounded/ */
+  --mdbook-alerts-icon: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill="currentColor" d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m0-4q.425 0 .713-.288T13 12V8q0-.425-.288-.712T12 7q-.425 0-.712.288T11 8v4q0 .425.288.713T12 13m-3.35 7H6q-.825 0-1.412-.587T4 18v-2.65L2.075 13.4q-.275-.3-.425-.662T1.5 12q0-.375.15-.737t.425-.663L4 8.65V6q0-.825.588-1.412T6 4h2.65l1.95-1.925q.3-.275.663-.425T12 1.5q.375 0 .738.15t.662.425L15.35 4H18q.825 0 1.413.588T20 6v2.65l1.925 1.95q.275.3.425.663t.15.737q0 .375-.15.738t-.425.662L20 15.35V18q0 .825-.587 1.413T18 20h-2.65l-1.95 1.925q-.3.275-.662.425T12 22.5q-.375 0-.737-.15t-.663-.425zm.85-2l2.5 2.5l2.5-2.5H18v-3.5l2.5-2.5L18 9.5V6h-3.5L12 3.5L9.5 6H6v3.5L3.5 12L6 14.5V18zm2.5-6"%2F%3E%3C%2Fsvg%3E');
+}
+
+</style>
+<h1 id="bash-scripting"><a class="header" href="#bash-scripting">Bash Scripting</a></h1>
+<ul>
+<li><a href="#bash-script-checker">Bash script checker</a></li>
+<li><a href="#objectives">Objectives</a></li>
+<li><a href="#user-management-script-assignment-outline">User Management Script Assignment Outline</a></li>
+<li><a href="#script">Script</a>
+<ul>
+<li><a href="#script-without-comments">Script without comments</a></li>
+</ul>
+</li>
+<li><a href="#user-management-bash-script">User Management Bash Script</a></li>
+</ul>
+<h2 id="bash-script-checker"><a class="header" href="#bash-script-checker">Bash script checker</a></h2>
+<p>Check your script on <a href="https://www.shellcheck.net/">https://www.shellcheck.net/</a></p>
+<h2 id="objectives"><a class="header" href="#objectives">Objectives</a></h2>
+<p>Create a bash script to perform user management tasks as outlined below:</p>
+<ol>
+<li>
+<p>Create a new group. Each group must have a unique name. The script must check to ensure that no duplicate group names exist on the system. If a duplicate is found, an error needs to be reported, and the administrator must try another group name.</p>
+</li>
+<li>
+<p>Create a new user. Each user must have a unique name. The script must check to ensure that no duplicate usernames exist on the system. If a duplicate is found, an error needs to be reported and the administrator must try another username. The user will have a Bash login shell and belong to the group that was created in the previous step.</p>
+</li>
+<li>
+<p>Create a password for each user that is created.</p>
+</li>
+<li>
+<p>Ensure that the new user created is a member of the new group created.</p>
+</li>
+<li>
+<p>Create a directory at the root / of the file system with same name as the user created.</p>
+</li>
+<li>
+<p>Set the ownership of the directory to the user and group created.</p>
+</li>
+<li>
+<p>Set the permissions of the directory to full control for the owner and full control for the group created.</p>
+</li>
+<li>
+<p>Set the permissions to ensure that only the owner of a file can delete it from the directory.</p>
+</li>
+<li>
+<p>Ensure that the script is executable.</p>
+</li>
+</ol>
+<h2 id="user-management-script-assignment-outline"><a class="header" href="#user-management-script-assignment-outline">User Management Script Assignment Outline</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Objective</th><th style="text-align: left">Description</th><th style="text-align: left">Commands/Concepts Used</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>1. Create New Group</strong></td><td style="text-align: left">Create a new group with a unique name. Check for duplicates and report errors if found.</td><td style="text-align: left"><code>getent group</code>, <code>groupadd</code>, <code>$?</code> (exit status check)</td></tr>
+<tr><td style="text-align: left"><strong>2. Create New User</strong></td><td style="text-align: left">Create a new user with a unique name. Check for duplicates and report errors if found. User should have a Bash login shell and belong to the new group.</td><td style="text-align: left"><code>id -u</code>, <code>useradd -m -s /bin/bash -g &lt;groupname&gt;</code>, <code>$?</code></td></tr>
+<tr><td style="text-align: left"><strong>3. Create Password for User</strong></td><td style="text-align: left">Set a password for the newly created user.</td><td style="text-align: left"><code>passwd</code>, `echo "username:password"</td></tr>
+<tr><td style="text-align: left"><strong>4. Ensure User is Member of Group</strong></td><td style="text-align: left">Verify that the new user is correctly assigned to the new group. (This is typically handled by <code>useradd -g</code>).</td><td style="text-align: left"><code>groups &lt;username&gt;</code> (for verification)</td></tr>
+<tr><td style="text-align: left"><strong>5. Create User-Named Directory at <code>/</code></strong></td><td style="text-align: left">Create a directory at the root (<code>/</code>) of the file system, named after the user.</td><td style="text-align: left"><code>mkdir</code>, <code>$?</code></td></tr>
+<tr><td style="text-align: left"><strong>6. Set Directory Ownership</strong></td><td style="text-align: left">Assign ownership of the new directory to the created user and group.</td><td style="text-align: left"><code>chown &lt;user&gt;:&lt;group&gt;</code>, <code>$?</code></td></tr>
+<tr><td style="text-align: left"><strong>7. Set Directory Permissions (Owner &amp; Group)</strong></td><td style="text-align: left">Grant full control (read, write, execute) to both the owner and the group for the new directory.</td><td style="text-align: left"><code>chmod 770</code>, <code>$?</code></td></tr>
+<tr><td style="text-align: left"><strong>8. Set Sticky Bit on Directory</strong></td><td style="text-align: left">Ensure that only the owner of a file can delete it from the directory, even if others have write permissions.</td><td style="text-align: left"><code>chmod +t</code>, <code>$?</code></td></tr>
+<tr><td style="text-align: left"><strong>9. Script Executability</strong></td><td style="text-align: left">The script file itself must be made executable.</td><td style="text-align: left"><code>chmod +x &lt;script_name.sh&gt;</code> (performed manually once after script creation)</td></tr>
+<tr><td style="text-align: left"><strong>Accept Any Username/Group Name</strong></td><td style="text-align: left">The script should use variables for user and group names, not hardcoded values.</td><td style="text-align: left">Bash variables, <code>read</code> command for input.</td></tr>
+<tr><td style="text-align: left"><strong>Error Checking</strong></td><td style="text-align: left">Implement checks for the success of each command using the exit status.</td><td style="text-align: left"><code>$?</code> (checks the exit status of the most recently executed foreground command)</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="script"><a class="header" href="#script">Script</a></h2>
+<pre><code class="language-bash">#!/bin/bash
+# Shebang: Specifies that this script should be executed with bash.
+
+# --- Function to display error messages and exit ---
+error_exit() {
+    echo "ERROR: $1" &gt;&amp;2  # Print the error message to standard error (&gt;&amp;2).
+    exit 1               # Exit the script with a non-zero status code (1) to indicate an error.
+}
+
+# --- Check if the script is run as root ---
+# User management commands require root privileges.
+if [[ $EUID -ne 0 ]]; then # Check if the Effective User ID (EUID) is not 0 (root).
+   error_exit "This script must be run as root. Please use 'sudo'." # If not root, call error_exit and terminate.
+fi
+
+echo "--- User and Group Management Script ---" # Informative header for the script output.
+
+# --- Prompt for Group Name ---
+read -rp "Enter the new group name: " GROUP_NAME # Prompt the user and read the input into GROUP_NAME.
+
+# --- Validate Group Name ---
+if [[ -z "$GROUP_NAME" ]]; then # Check if the GROUP_NAME variable is empty (-z checks for empty string).
+    error_exit "Group name cannot be empty." # If empty, report an error.
+fi
+
+# --- Check for Duplicate Group Name ---
+# 'getent group "$GROUP_NAME"' attempts to retrieve information about the group.
+# '&amp;&gt;/dev/null' redirects both standard output and standard error to /dev/null, suppressing command output.
+# If 'getent' finds the group, its exit status is 0 (success).
+if getent group "$GROUP_NAME" &amp;&gt;/dev/null; then
+    error_exit "Group '$GROUP_NAME' already exists. Please choose a unique group name." # If group exists, report error.
+fi
+
+# --- Create New Group ---
+echo "Creating group '$GROUP_NAME'..." # Inform the user about group creation.
+groupadd "$GROUP_NAME" # Attempt to create the group.
+if [[ $? -ne 0 ]]; then # Check the exit status of the *previous* command (groupadd). $? stores the exit status.
+# Correction: The original script had a redundant 'groupadd "$GROUP_NAME"' in the if condition,
+# which would attempt to create the group twice or cause a syntax error depending on strictness.
+# Checking '$?' after the command is the correct way.
+    error_exit "Failed to create group '$GROUP_NAME'." # If groupadd failed, report error.
+fi
+echo "Group '$GROUP_NAME' created successfully." # Confirm group creation.
+
+# --- Prompt for User Name ---
+read -rp "Enter the new user name: " USER_NAME # Prompt the user and read the input into USER_NAME.
+
+# --- Validate User Name ---
+if [[ -z "$USER_NAME" ]]; then # Check if the USER_NAME variable is empty.
+    error_exit "User name cannot be empty." # If empty, report an error.
+fi
+
+# --- Check for Duplicate User Name ---
+# 'id -u "$USER_NAME"' attempts to get the user ID.
+# '&amp;&gt;/dev/null' suppresses command output.
+# If 'id -u' finds the user, its exit status is 0.
+if id -u "$USER_NAME" &amp;&gt;/dev/null; then
+    error_exit "User '$USER_NAME' already exists. Please choose a unique user name." # If user exists, report error.
+fi
+
+# --- Create New User ---
+echo "Creating user '$USER_NAME' and adding to group '$GROUP_NAME'..." # Inform the user about user creation.
+# 'useradd': command to create a new user.
+# '-m': Creates the user's home directory if it doesn't exist.
+# '-s /bin/bash': Sets Bash as the user's default login shell.
+# '-g "$GROUP_NAME"': Assigns the newly created group as the user's primary group.
+useradd -m -s /bin/bash -g "$GROUP_NAME" "$USER_NAME" # Attempt to create the user.
+if [[ $? -ne 0 ]]; then # Check the exit status of the 'useradd' command.
+# Correction: The original script had a redundant 'useradd "$USER_NAME"' in the if condition.
+    error_exit "Failed to create user '$USER_NAME'." # If useradd failed, report error.
+fi
+echo "User '$USER_NAME' created successfully." # Confirm user creation.
+
+# --- Set Password for the New User ---
+echo "Setting password for user '$USER_NAME'..." # Inform the user about password setting.
+passwd "$USER_NAME" # Prompts for and sets the password for the new user interactively.
+if [[ $? -ne 0 ]]; then # Check the exit status of the 'passwd' command.
+# Correction: The original script had 'passwd "USER_NAME"' which uses a literal string, not the variable.
+# It should check the exit status of 'passwd "$USER_NAME"'.
+    error_exit "Failed to set password for user '$USER_NAME'. You might need to set it manually." # If passwd failed, report error.
+fi
+echo "Password set successfully for user '$USER_NAME'." # Confirm password set.
+
+# --- Verify User is Member of Group (Optional but good practice) ---
+# 'id -nG "$USER_NAME"': Lists all groups (names only) the user belongs to.
+# 'grep -qw "$GROUP_NAME"': Searches for the exact group name quietly (-q) and as a whole word (-w).
+# '!': Inverts the exit status, so the 'if' block runs if grep *fails* to find the group (i.e., user is NOT a member).
+if ! id -nG "$USER_NAME" | grep -qw "$GROUP_NAME"; then
+    echo "Warning: User '$USER_NAME' does not appear to be a member of group '$GROUP_NAME'." # Warn if not a member.
+    echo "Attempting to add user to group (if not already done)..." # Inform about attempting to add.
+    # 'usermod -aG "$GROUP_NAME" "$USER_NAME"': Adds the user to the specified supplementary group.
+    # '-a': Appends the user to the group.
+    # '-G': Specifies the supplementary group(s).
+    usermod -aG "$GROUP_NAME" "$USER_NAME" # Attempt to add user to the group.
+    if [[ $? -ne 0 ]]; then # Check the exit status of the 'usermod' command.
+    # Correction: The original script had 'usermod "GROUP_NAME"' which is incorrect.
+        error_exit "Failed to add user '$USER_NAME' to group '$GROUP_NAME'." # If usermod failed, report error.
+    fi
+fi
+echo "User '$USER_NAME' is a member of group '$GROUP_NAME'." # Confirm user is in the group.
+
+# --- Create User-Named Directory at Root ---
+DIRECTORY_PATH="/$USER_NAME" # Define the path for the new directory.
+echo "Creating directory '$DIRECTORY_PATH'..." # Inform the user about directory creation.
+# 'mkdir -p "$DIRECTORY_PATH"': Creates the directory.
+# '-p': Creates parent directories if they don't exist and doesn't report an error if the directory already exists.
+mkdir -p "$DIRECTORY_PATH"
+if [[ $? -ne 0 ]]; then # Check the exit status of the 'mkdir' command.
+# Correction: The original script had 'mkdir -p "DIRECTORY_PATH"' which uses a literal string, not the variable.
+    error_exit "Failed to create directory '$DIRECTORY_PATH'." # If mkdir failed, report error.
+fi
+echo "Directory '$DIRECTORY_PATH' created successfully." # Confirm directory creation.
+
+# --- Set Ownership of the Directory ---
+echo "Setting ownership of '$DIRECTORY_PATH' to '$USER_NAME:$GROUP_NAME'..." # Inform about ownership change.
+# 'chown "$USER_NAME":"$GROUP_NAME" "$DIRECTORY_PATH"': Changes ownership to the specified user and group.
+chown "$USER_NAME":"$GROUP_NAME" "$DIRECTORY_PATH"
+if [[ $? -ne 0 ]]; then # Check the exit status of the 'chown' command.
+# Correction: The original script had 'chown "USER_NAME"' which is incorrect.
+    error_exit "Failed to set ownership for '$DIRECTORY_PATH'." # If chown failed, report error.
+fi
+echo "Ownership set successfully." # Confirm ownership change.
+
+# --- Set Permissions of the Directory ---
+echo "Setting permissions for '$DIRECTORY_PATH' to 770 (rwx for owner and group)..." # Inform about permissions.
+# 'chmod 770 "$DIRECTORY_PATH"': Sets permissions.
+# '770': Read, write, execute for owner (7); read, write, execute for group (7); no permissions for others (0).
+chmod 770 "$DIRECTORY_PATH"
+if [[ $? -ne 0 ]]; then # Check the exit status of the 'chmod' command.
+# Correction: The original script had 'chmod 770 "DIRECTORY_PATH"' which uses a literal string.
+    error_exit "Failed to set permissions for '$DIRECTORY_PATH'." # If chmod failed, report error.
+fi
+echo "Permissions set successfully to 770." # Confirm permissions set.
+
+# --- Set Sticky Bit on the Directory ---
+echo "Setting sticky bit on '$DIRECTORY_PATH'..." # Inform about sticky bit.
+# 'chmod +t "$DIRECTORY_PATH"': Sets the sticky bit.
+# The sticky bit on a directory means that only the owner of a file (or the directory owner/root)
+# can rename or delete files within that directory, even if others have write permissions to the directory.
+chmod +t "$DIRECTORY_PATH"
+if [[ $? -ne 0 ]]; then # Check the exit status of the 'chmod' command.
+# Correction: The original script had 'chmod +t "DIRECTORY_PATH"' which uses a literal string.
+    error_exit "Failed to set sticky bit for '$DIRECTORY_PATH'." # If chmod failed, report error.
+fi
+echo "Sticky bit set successfully on '$DIRECTORY_PATH'." # Confirm sticky bit set.
+
+echo "--- User and group management complete for '$USER_NAME' and '$GROUP_NAME'. ---" # Final success message.
+
+</code></pre>
+<h3 id="script-without-comments"><a class="header" href="#script-without-comments">Script without comments</a></h3>
+<pre><code class="language-bash">#!/bin/bash
+
+error_exit() {
+    echo "ERROR: $1" &gt;&amp;2
+    exit 1
+}
+
+if [[ $EUID -ne 0 ]]; then
+   error_exit "This script must be run as root. Please use 'sudo'."
+fi
+
+echo "--- User and Group Management Script ---"
+
+read -rp "Enter the new group name: " GROUP_NAME
+
+if [[ -z "$GROUP_NAME" ]]; then
+    error_exit "Group name cannot be empty."
+fi
+
+if getent group "$GROUP_NAME" &amp;&gt;/dev/null; then
+    error_exit "Group '$GROUP_NAME' already exists. Please choose a unique group name."
+fi
+
+echo "Creating group '$GROUP_NAME'..."
+groupadd "$GROUP_NAME"
+if [[ $? -ne 0 ]]; then
+    error_exit "Failed to create group '$GROUP_NAME'."
+fi
+echo "Group '$GROUP_NAME' created successfully."
+
+read -rp "Enter the new user name: " USER_NAME
+
+if [[ -z "$USER_NAME" ]]; then
+    error_exit "User name cannot be empty."
+fi
+
+if id -u "$USER_NAME" &amp;&gt;/dev/null; then
+    error_exit "User '$USER_NAME' already exists. Please choose a unique user name."
+fi
+
+echo "Creating user '$USER_NAME' and adding to group '$GROUP_NAME'..."
+useradd -m -s /bin/bash -g "$GROUP_NAME" "$USER_NAME"
+if [[ $? -ne 0 ]]; then
+    error_exit "Failed to create user '$USER_NAME'."
+fi
+echo "User '$USER_NAME' created successfully."
+
+echo "Setting password for user '$USER_NAME'..."
+passwd "$USER_NAME"
+if [[ $? -ne 0 ]]; then
+    error_exit "Failed to set password for user '$USER_NAME'. You might need to set it manually."
+fi
+echo "Password set successfully for user '$USER_NAME'."
+
+if ! id -nG "$USER_NAME" | grep -qw "$GROUP_NAME"; then
+    echo "Warning: User '$USER_NAME' does not appear to be a member of group '$GROUP_NAME'."
+    echo "Attempting to add user to group (if not already done)..."
+    usermod -aG "$GROUP_NAME" "$USER_NAME"
+    if [[ $? -ne 0 ]]; then
+        error_exit "Failed to add user '$USER_NAME' to group '$GROUP_NAME'."
+    fi
+fi
+echo "User '$USER_NAME' is a member of group '$GROUP_NAME'."
+
+DIRECTORY_PATH="/$USER_NAME"
+echo "Creating directory '$DIRECTORY_PATH'..."
+mkdir -p "$DIRECTORY_PATH"
+if [[ $? -ne 0 ]]; then
+    error_exit "Failed to create directory '$DIRECTORY_PATH'."
+fi
+echo "Directory '$DIRECTORY_PATH' created successfully."
+
+echo "Setting ownership of '$DIRECTORY_PATH' to '$USER_NAME:$GROUP_NAME'..."
+chown "$USER_NAME":"$GROUP_NAME" "$DIRECTORY_PATH"
+if [[ $? -ne 0 ]]; then
+    error_exit "Failed to set ownership for '$DIRECTORY_PATH'."
+fi
+echo "Ownership set successfully."
+
+echo "Setting permissions for '$DIRECTORY_PATH' to 770 (rwx for owner and group)..."
+chmod 770 "$DIRECTORY_PATH"
+if [[ $? -ne 0 ]]; then
+    error_exit "Failed to set permissions for '$DIRECTORY_PATH'."
+fi
+echo "Permissions set successfully to 770."
+
+echo "Setting sticky bit on '$DIRECTORY_PATH'..."
+chmod +t "$DIRECTORY_PATH"
+if [[ $? -ne 0 ]]; then
+    error_exit "Failed to set sticky bit for '$DIRECTORY_PATH'."
+fi
+echo "Sticky bit set successfully on '$DIRECTORY_PATH'."
+
+echo "--- User and group management complete for '$USER_NAME' and '$GROUP_NAME'. ---"
+
+
+</code></pre>
+<h2 id="user-management-bash-script"><a class="header" href="#user-management-bash-script">User Management Bash Script</a></h2>
+<p>Remember to save this as a <code>.sh</code> file (e.g., <code>user_manager.sh</code>) and make it executable using <code>chmod +x user_manager.sh</code> before running it.</p>
+<p>This script is designed to be robust by checking for existing users and groups, handling potential errors, and setting the correct permissions and ownership.</p>
+<p>To execute the script you would perform the following steps in a terminal:</p>
+<ol>
+<li><strong>Save the script:</strong> Copy the code above and save it to a file, e.g., <code>user_manager.sh</code>.</li>
+<li><strong>Make it executable:</strong></li>
+</ol>
+<pre><code class="language-bash">
+chmod +x user_manager.sh
+
+</code></pre>
+<ol start="3">
+<li><strong>Run with new unique user/group:</strong></li>
+</ol>
+<pre><code class="language-bash">
+sudo ./user_manager.sh 
+
+</code></pre>
+<p>(Then follow the prompts to enter a new unique user and group name, and set the password.)</p>
+<ol start="4">
+<li><strong>Show the error for duplicate user/group:</strong></li>
+</ol>
+<pre><code class="language-bash">
+sudo ./user_manager.sh
+
+</code></pre>
+<p>(Then enter a user or group name that you just created in the previous step, and observe the error message.)</p>
+<style>.scroll-to-top { font-size: 2.5rem; width: 3.2rem; height: 3.2rem; display: none; align-items: center; justify-content: center; position: fixed; padding: 0.75rem; bottom: 4rem; right: calc(1.25rem + 90px + var(--page-padding)); z-index: 999; cursor: pointer; border: none; color: var(--bg); background: var(--fg); border-radius: 50%; } .scroll-to-top.hidden { display: none; } .scroll-to-top i { transform: translateY(-2px); } @media (min-width: 1080px) { .scroll-to-top { display: flex; } }</style><button type="button" aria-label="scroll-to-top" class="scroll-to-top hidden" onclick="scrollToTop()"> <i class="fa fa-angle-up"></i></button><script>const scrollToTop = () => window.scroll({ top: 0, behavior: "smooth" }); window.addEventListener("scroll", () => { const button = document.querySelector(".scroll-to-top"); button.classList.toggle("hidden", window.scrollY <200); });</script>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="hyper_v_shortcuts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="linux_bash_test_operator.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="hyper_v_shortcuts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="linux_bash_test_operator.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/tabs.js"></script>
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+        <script src="enlarge-window.js"></script>
+
+
+    </div>
+    </body>
+</html>
